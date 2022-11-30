@@ -25,7 +25,11 @@ class UsersTableSeeder extends Seeder
             $user->email_verified_at = now();
             $user->save();
 
+            // Create token
+
             $user->createToken(Str::slug(config('app.name').'_auth_token', '_'))->plainTextToken;
+
+            // Assign Super Admin role
 
             $super_admin_role = Role::where('name', '=', 'super-admin')->first();
 
