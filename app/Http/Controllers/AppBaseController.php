@@ -6,9 +6,9 @@ use InfyOm\Generator\Utils\ResponseUtil;
 use Response;
 
 /**
- * @SWG\Swagger(
- *   basePath="/api/v1",
- *   @SWG\Info(
+ * @OA\PathItem(
+ *   path="/api/v1",
+ *   @OA\Info(
  *     title="Laravel Generator APIs",
  *     version="1.0.0",
  *   )

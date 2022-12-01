@@ -134,6 +134,8 @@ return [
 
         'localized' => false,
 
+        'seeder' => true,
+
         'tables_searchable_default' => false,
 
         'repository_pattern' => true,

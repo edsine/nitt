@@ -23,6 +23,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::resource('samples', App\Http\Controllers\API\SampleAPIController::class);
 
+Route::middleware('auth:sanctum')->group(function () {
+    Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
+    Route::resource('passenger_road_transport_data', App\Http\Controllers\API\PassengerRoadTransportDataAPIController::class);
+    Route::resource('freight_road_transport_data', App\Http\Controllers\API\FreightRoadTransportDataAPIController::class);
+});
+
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthAPIController::class, 'login'])->name('auth.login');
     Route::post('logout', [AuthAPIController::class, 'logout'])->name('auth.logout');
@@ -35,3 +41,9 @@ Route::prefix('auth')->group(function () {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 })->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+Route::resource('air_transport_datas', App\Http\Controllers\API\AirTransportDataAPIController::class);
+
+
+Route::resource('air_passengers_traffics', App\Http\Controllers\API\AirPassengersTrafficAPIController::class);
