@@ -47,3 +47,5 @@ Route::resource('air_transport_data', App\Http\Controllers\API\AirTransportDataA
 
 
 Route::resource('air_passengers_traffic', App\Http\Controllers\API\AirPassengersTrafficAPIController::class);
+
+

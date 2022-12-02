@@ -49,9 +49,10 @@ function* loginUser({ payload: { user, history } }) {
         password: user.password,
       })
       if (response.success) {
-        localStorage.setItem("authUser", JSON.stringify(response.data.user));
-        localStorage.setItem("userToken", JSON.stringify(response.data.token));
-        yield put(loginSuccess());
+        const { token, user } = response.data;
+        localStorage.setItem("authUser", JSON.stringify(user));
+        localStorage.setItem("userToken", JSON.stringify(token));
+        yield put(loginSuccess(user));
       }
       else {
         yield put(apiError(response.message))

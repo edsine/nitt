@@ -37,11 +37,12 @@ const UserProfile = props => {
         setidx(obj.uid)
       } else if (
         process.env.REACT_APP_DEFAULTAUTH === "fake" ||
-        process.env.REACT_APP_DEFAULTAUTH === "jwt"
+        process.env.REACT_APP_DEFAULTAUTH === "jwt" ||
+        process.env.REACT_APP_DEFAULTAUTH === "backend"
       ) {
-        setname(obj.username)
+        setname(obj.name)
         setemail(obj.email)
-        setidx(obj.uid)
+        setidx(obj.id)
       }
       setTimeout(() => {
         resetProfileFlag();
@@ -83,7 +84,7 @@ const UserProfile = props => {
                       <div className="text-muted">
                         <h5>{name}</h5>
                         <p className="mb-1">{email}</p>
-                        <p className="mb-0">Id no: #{idx}</p>
+                        {/* <p className="mb-0">Id no: #{idx}</p> */}
                       </div>
                     </div>
                   </div>
@@ -92,7 +93,7 @@ const UserProfile = props => {
             </Col>
           </Row>
 
-          <h4 className="card-title mb-4">Change User Name</h4>
+          <h4 className="card-title mb-4">Change Name</h4>
 
           <Card>
             <CardBody>
@@ -104,19 +105,19 @@ const UserProfile = props => {
               >
                 <div className="form-group">
                   <AvField
-                    name="username"
-                    label="User Name"
+                    name="name"
+                    label="Name"
                     value={name}
                     className="form-control"
-                    placeholder="Enter User Name"
+                    placeholder="Enter Name"
                     type="text"
                     required
                   />
-                  <AvField name="idx" value={idx} type="hidden" />
+                  <AvField name="id" value={idx} type="hidden" />
                 </div>
                 <div className="text-center mt-4">
                   <Button type="submit" color="danger">
-                    Edit User Name
+                    Edit Name
                   </Button>
                 </div>
               </AvForm>

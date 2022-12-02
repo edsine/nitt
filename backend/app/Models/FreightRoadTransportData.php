@@ -50,7 +50,7 @@ class FreightRoadTransportData extends Model
     protected $casts = [
         'id' => 'integer',
         'number_of_tonnes_carried' => 'integer',
-        'year' => 'date',
+        'year' => 'date:Y',
         'number_of_vehicle_in_the_fleet' => 'integer',
         'revenue_from_operation' => 'integer',
         'number_of_employees' => 'integer',

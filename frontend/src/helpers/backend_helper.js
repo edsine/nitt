@@ -27,9 +27,13 @@ const getAuthenticatedUser = config => get(url.GET_AUTHENTICATED_USER, config);
 // Get Road Transport Data (Passengers)
 const getPassengerRoadTransportData = config => get(url.GET_PASSENGER_ROAD_TRANSPORT_DATA, config);
 
+// Get Road Transport Data (Freight)
+const getFreightRoadTransportData = config => get(url.GET_FREIGHT_ROAD_TRANSPORT_DATA, config);
+
 export {
     getLoggedInUser,
     getPassengerRoadTransportData,
+    getFreightRoadTransportData,
     getAuthenticatedUser,
     isUserAuthenticated,
     postLogin,

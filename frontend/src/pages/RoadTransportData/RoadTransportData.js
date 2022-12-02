@@ -1,23 +1,30 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { MDBDataTable } from "mdbreact"
 import PropTypes from "prop-types"
 import { connect } from "react-redux"
 import { withRouter } from "react-router-dom"
 
-import { Row, Col, Card, CardBody, CardTitle, CardSubtitle } from "reactstrap"
+import { Row, Col, Card, CardBody, CardTitle, CardSubtitle, Button } from "reactstrap"
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb"
 import "../../assets/scss/datatables.scss";
-import { getPassengerRoadTransportData } from "../../store/roadtransportdata/actions";
+import { getFreightRoadTransportData, getPassengerRoadTransportData } from "../../store/roadtransportdata/actions";
+import AddPassengerRoadTransportData from "./addPassengerRoadTransportData"
 
 const RoadTransportData = (props) => {
 
-    const { passengersRTD, onGetPassengerRTD } = props
+    const { passengersRTD, onGetPassengerRTD, freightRTD, onGetFreightRTD } = props
+
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
     useEffect(() => {
         onGetPassengerRTD()
     }, [onGetPassengerRTD])
+
+    useEffect(() => {
+        onGetFreightRTD()
+    }, [onGetFreightRTD])
 
     const dataPassengers = {
         columns: [
@@ -77,168 +84,52 @@ const RoadTransportData = (props) => {
             },
             {
                 label: "No of Tonnes carried",
-                field: "tonnesCarriedCount",
+                field: "number_of_tonnes_carried",
                 sort: "asc",
                 width: 270,
             },
             {
                 label: "No of Vehicle in fleet",
-                field: "vehicleInFleetCount",
+                field: "number_of_vehicle_in_the_fleet",
                 sort: "asc",
                 width: 200,
             },
             {
                 label: "Revenue from operation",
-                field: "revenueFromOperation",
+                field: "revenue_from_operation",
                 sort: "asc",
                 width: 100,
             },
             {
                 label: "No. of Employee",
-                field: "employeesCount",
+                field: "number_of_employees",
                 sort: "asc",
                 width: 150,
             },
             {
                 label: "Annual cost of vehicle maintenance",
-                field: "vehicleMaintenanceCost",
+                field: "annual_cost_of_vehicle_maintenance",
                 sort: "asc",
                 width: 100,
             },
             {
                 label: "No. of Accident",
-                field: "accidentCount",
+                field: "number_of_accidents",
                 sort: "asc",
                 width: 100,
             }
         ],
-        rows: [
-            {
-                "year": "2010",
-                "tonnesCarriedCount": "224555",
-                "vehicleInFleetCount": "43223",
-                "revenueFromOperation": "4342244490",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "332213449",
-                "accidentCount": "356",
-            },
-            {
-                "year": "2011",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2012",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2013",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2014",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2015",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2016",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2017",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2018",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2019",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2020",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2021",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2022",
-                "tonnesCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-        ],
+        rows: freightRTD
     }
 
-    console.log(passengersRTD);
+    const handleClick = () => {
+        setIsAddModalOpen(true);
+    }
 
     return (
         <React.Fragment>
             <div className="page-content">
-
+                <AddPassengerRoadTransportData isOpen={isAddModalOpen} setIsOpen={setIsAddModalOpen} />
                 <Breadcrumbs title="Road transport Data" breadcrumbItem="Road transport" />
 
                 <Row>
@@ -246,9 +137,16 @@ const RoadTransportData = (props) => {
                         <Card>
                             <CardBody>
                                 <CardTitle>Road transport data (Passengers)</CardTitle>
+                                <Button
+                                    color="success"
+                                    className="btn btn-success waves-effect waves-light"
+                                    onClick={() => handleClick()}
+                                >
+                                    Add
+                                </Button>{" "}
                                 <CardSubtitle className="mb-3">
                                 </CardSubtitle>
-                                
+
                                 <MDBDataTable responsive striped bordered data={dataPassengers} />
                             </CardBody>
                         </Card>
@@ -278,14 +176,18 @@ const RoadTransportData = (props) => {
 RoadTransportData.propTypes = {
     passengersRTD: PropTypes.array,
     onGetPassengerRTD: PropTypes.func,
+    freightRTD: PropTypes.array,
+    onGetFreightRTD: PropTypes.func,
 }
 
-const mapStateToProps = ({roadTransportData}) => ({
-    passengersRTD: roadTransportData.passengersRTD
+const mapStateToProps = ({ roadTransportData }) => ({
+    passengersRTD: roadTransportData.passengersRTD,
+    freightRTD: roadTransportData.freightRTD,
 })
 
 const mapDispatchToProps = dispatch => ({
     onGetPassengerRTD: () => dispatch(getPassengerRoadTransportData()),
+    onGetFreightRTD: () => dispatch(getFreightRoadTransportData()),
 })
 
 export default connect(
