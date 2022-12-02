@@ -10,6 +10,7 @@ import calendarSaga from "./calendar/saga"
 import chatSaga from "./chat/saga"
 import tasksSaga from "./tasks/saga"
 import contactsSaga from "./contacts/saga"
+import roadTransportDataSaga from "./roadtransportdata/saga"
 
 export default function* rootSaga() {
   yield all([
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     fork(chatSaga),
     fork(tasksSaga),
     fork(contactsSaga),
+    fork(roadTransportDataSaga)
   ])
 }

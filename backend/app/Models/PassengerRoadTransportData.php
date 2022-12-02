@@ -49,7 +49,7 @@ class PassengerRoadTransportData extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'year' => 'date',
+        'year' => 'date:Y',
         'number_of_passengers_carried' => 'integer',
         'number_of_vehicles_in_fleet' => 'integer',
         'revenue_from_operation' => 'integer',
@@ -72,6 +72,7 @@ class PassengerRoadTransportData extends Model
         'annual_cost_of_vehicle_maintenance' => 'required',
         'number_of_accidents' => 'required'
     ];
+
 
 
 }

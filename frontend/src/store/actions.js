@@ -17,3 +17,6 @@ export * from "./tasks/actions"
 
 // contacts
 export * from "./contacts/actions"
+
+// Road Transport Data
+export * from "./roadtransportdata/actions"

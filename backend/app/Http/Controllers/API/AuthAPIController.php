@@ -37,7 +37,7 @@ class AuthAPIController extends AppBaseController
             return $this->sendResponse(['token' => $token, 'user' => $user->toArray()], 'Logged in');
         }
 
-        return $this->sendError('These credentials do not match our records', 406);
+        return $this->sendError('These credentials do not match our records', 200);
     }
 
     public function logout()

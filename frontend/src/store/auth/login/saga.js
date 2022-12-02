@@ -12,7 +12,8 @@ import {
   postSocialLogin,
 } from "../../../helpers/fakebackend_helper"
 
-import { postLogin } from "../../../helpers/backend_helper"
+import { postLogin, postLogout } from "../../../helpers/backend_helper"
+import { getHeaders } from "../../../helpers/backend-headers/headers"
 
 const fireBaseBackend = getFirebaseBackend()
 
@@ -47,7 +48,14 @@ function* loginUser({ payload: { user, history } }) {
         email: user.email,
         password: user.password,
       })
-      yield put(loginSuccess(response));
+      if (response.success) {
+        localStorage.setItem("authUser", JSON.stringify(response.data.user));
+        localStorage.setItem("userToken", JSON.stringify(response.data.token));
+        yield put(loginSuccess());
+      }
+      else {
+        yield put(apiError(response.message))
+      }
     }
     history.push("/dashboard")
   } catch (error) {
@@ -57,11 +65,20 @@ function* loginUser({ payload: { user, history } }) {
 
 function* logoutUser({ payload: { history } }) {
   try {
-    localStorage.removeItem("authUser")
 
     if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
       const response = yield call(fireBaseBackend.logout)
       yield put(logoutUserSuccess(response))
+    } else if (process.env.REACT_APP_DEFAULTAUTH === "backend") {
+      const response = yield call(postLogout, null, { headers: getHeaders() });
+      if (response.success) {
+        localStorage.removeItem("authUser");
+        localStorage.removeItem("userToken");
+        yield put(logoutUserSuccess(response));
+      }
+      else {
+        yield put(apiError(response.message))
+      }
     }
     history.push("/login")
   } catch (error) {

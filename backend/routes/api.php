@@ -16,7 +16,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('user', function (Request $request) {
     return $request->user();
 });
 
@@ -43,7 +43,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 
-Route::resource('air_transport_datas', App\Http\Controllers\API\AirTransportDataAPIController::class);
+Route::resource('air_transport_data', App\Http\Controllers\API\AirTransportDataAPIController::class);
 
 
-Route::resource('air_passengers_traffics', App\Http\Controllers\API\AirPassengersTrafficAPIController::class);
+Route::resource('air_passengers_traffic', App\Http\Controllers\API\AirPassengersTrafficAPIController::class);

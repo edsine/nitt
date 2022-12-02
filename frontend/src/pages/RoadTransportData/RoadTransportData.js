@@ -1,13 +1,23 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { MDBDataTable } from "mdbreact"
+import PropTypes from "prop-types"
+import { connect } from "react-redux"
+import { withRouter } from "react-router-dom"
 
 import { Row, Col, Card, CardBody, CardTitle, CardSubtitle } from "reactstrap"
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb"
-import  "../../assets/scss/datatables.scss";
+import "../../assets/scss/datatables.scss";
+import { getPassengerRoadTransportData } from "../../store/roadtransportdata/actions";
 
-const RoadTransportData = () => {
+const RoadTransportData = (props) => {
+
+    const { passengersRTD, onGetPassengerRTD } = props
+
+    useEffect(() => {
+        onGetPassengerRTD()
+    }, [onGetPassengerRTD])
 
     const dataPassengers = {
         columns: [
@@ -19,160 +29,42 @@ const RoadTransportData = () => {
             },
             {
                 label: "No of Passengers carried",
-                field: "passengersCarriedCount",
+                field: "number_of_passengers_carried",
                 sort: "asc",
                 width: 270,
             },
             {
                 label: "No of Vehicle in fleet",
-                field: "vehicleInFleetCount",
+                field: "number_of_vehicles_in_fleet",
                 sort: "asc",
                 width: 200,
             },
             {
                 label: "Revenue from operation",
-                field: "revenueFromOperation",
+                field: "revenue_from_operation",
                 sort: "asc",
                 width: 100,
             },
             {
                 label: "No. of Employee",
-                field: "employeesCount",
+                field: "number_of_employees",
                 sort: "asc",
                 width: 150,
             },
             {
                 label: "Annual cost of vehicle maintenance",
-                field: "vehicleMaintenanceCost",
+                field: "annual_cost_of_vehicle_maintenance",
                 sort: "asc",
                 width: 100,
             },
             {
                 label: "No. of Accident",
-                field: "accidentCount",
+                field: "number_of_accidents",
                 sort: "asc",
                 width: 100,
             }
         ],
-        rows: [
-            {
-                "year": "2010",
-                "passengersCarriedCount": "224555",
-                "vehicleInFleetCount": "43223",
-                "revenueFromOperation": "4342244490",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "332213449",
-                "accidentCount": "356",
-            },
-            {
-                "year": "2011",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2012",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2013",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2014",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2015",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2016",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2017",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2018",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2019",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2020",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2021",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-            {
-                "year": "2022",
-                "passengersCarriedCount": "37027",
-                "vehicleInFleetCount": "35539",
-                "revenueFromOperation": "56920",
-                "employeesCount": "34630",
-                "vehicleMaintenanceCost": "21020",
-                "accidentCount": "32000",
-            },
-        ],
+        rows: passengersRTD
     }
 
     const dataFreight = {
@@ -341,6 +233,8 @@ const RoadTransportData = () => {
         ],
     }
 
+    console.log(passengersRTD);
+
     return (
         <React.Fragment>
             <div className="page-content">
@@ -354,7 +248,7 @@ const RoadTransportData = () => {
                                 <CardTitle>Road transport data (Passengers)</CardTitle>
                                 <CardSubtitle className="mb-3">
                                 </CardSubtitle>
-
+                                
                                 <MDBDataTable responsive striped bordered data={dataPassengers} />
                             </CardBody>
                         </Card>
@@ -380,4 +274,21 @@ const RoadTransportData = () => {
     );
 }
 
-export default RoadTransportData;
+
+RoadTransportData.propTypes = {
+    passengersRTD: PropTypes.array,
+    onGetPassengerRTD: PropTypes.func,
+}
+
+const mapStateToProps = ({roadTransportData}) => ({
+    passengersRTD: roadTransportData.passengersRTD
+})
+
+const mapDispatchToProps = dispatch => ({
+    onGetPassengerRTD: () => dispatch(getPassengerRoadTransportData()),
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withRouter(RoadTransportData))

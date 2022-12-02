@@ -1,19 +1,15 @@
 import axios from "axios"
-// import accessToken from "./jwt-token-access/accessToken"
-
-//pass new generated access token here
-// const token = accessToken
 
 //apply base url for axios
-const API_URL = process.env.BACKEND_URL;
+const API_URL = "http://127.0.0.1:8000/api";
 
 const axiosApi = axios.create({
   baseURL: API_URL,
 })
 
-// axiosApi.defaults.headers.common["Authorization"] = token
+axiosApi.defaults.headers.post['Content-Type'] = 'application/json';
 
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+axiosApi.defaults.headers.post['Accept'] = 'application/json';
 
 axiosApi.interceptors.response.use(
   response => response,
