@@ -6,6 +6,8 @@ use Response;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repositories\UserRepository;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\API\CreateUserAPIRequest;
 use App\Http\Requests\API\UpdateUserAPIRequest;
@@ -64,6 +66,28 @@ class UserAPIController extends AppBaseController
 
         $input = $request->all();
 
+        $profile_image = $request->file('profile_image');
+        $file_name = '';
+        $path_folder = public_path('storage/profile_images');
+
+        if ($profile_image != '') {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'profile_image' => 'required',
+                    'profile_image.*' => 'required|profile_image|mimes:jpeg,png,jpg|max:2048'
+                ]
+            );
+
+            if ($validator->fails()) {
+                return $this->sendResponse($validator->errors(), 'validation');
+            }
+
+            $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
+            $profile_image->move($path_folder, $file_name);
+        }
+
+        $input['profile_image_path'] = $file_name;
         $user = $this->userRepository->create($input);
 
         return $this->sendResponse($user->toArray(), 'User saved successfully');
@@ -108,6 +132,27 @@ class UserAPIController extends AppBaseController
         }
         $input = $request->all();
 
+        $profile_image = $request->file('profile_image');
+        $file_name = '';
+        $path_folder = public_path('storage/profile_images');
+
+        if ($profile_image != '') {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'profile_image' => 'required',
+                    'profile_image.*' => 'required|profile_image|mimes:jpeg,png,jpg|max:2048'
+                ]
+            );
+
+            if ($validator->fails()) {
+                return $this->sendResponse($validator->errors(), 'validation');
+            }
+
+            $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
+            $profile_image->move($path_folder, $file_name);
+        }
+
         /** @var User $user */
         $user = $this->userRepository->find($id);
 
@@ -115,6 +160,10 @@ class UserAPIController extends AppBaseController
             return $this->sendError('User not found');
         }
 
+        $path_to_old_image = $path_folder . "/" . $user->profile_image_path;
+        deleteImageWithPath($path_to_old_image);
+
+        $input['profile_image_path'] = $file_name;
         $user = $this->userRepository->update($input, $id);
 
         return $this->sendResponse($user->toArray(), 'User updated successfully');
@@ -129,22 +178,22 @@ class UserAPIController extends AppBaseController
      *
      * @return Response
      */
-    public function changePassword($id, UpdateUserPasswordAPIRequest $request)
+    public function changePassword(UpdateUserPasswordAPIRequest $request)
     {
-        if (!checkPermission('update user')) {
-            return $this->sendError('Permission Denied', 403);
-        }
+
+        $user = Auth::user();
+        $user_id = $user->id;
 
         $password = $request->get('password');
 
         /** @var User $user */
-        $user = $this->userRepository->find($id);
+        $user = $this->userRepository->find($user_id);
 
         if (empty($user)) {
             return $this->sendError('User not found');
         }
 
-        $user = $this->userRepository->update(['password' => $password], $id);
+        $user = $this->userRepository->update(['password' => $password], $user_id);
 
         return $this->sendResponse($user->toArray(), 'User password updated successfully');
     }

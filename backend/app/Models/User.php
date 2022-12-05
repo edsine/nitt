@@ -60,6 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public static $update_rules = [
         'name' => ['required', 'max:255'],
         'email' => ['required', 'email', 'max:255', 'unique:users'],
+        'password' => ['required', 'min:6', 'confirmed']
     ];
 
     public static $change_password_rules = [

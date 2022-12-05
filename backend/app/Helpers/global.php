@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 
 
 function checkPermission($permission_name) {
@@ -10,4 +11,13 @@ function checkPermission($permission_name) {
         return true;
     }
     return false;
+}
+
+
+function deleteImageWithPath($path_delete)
+{
+
+    if (File::exists($path_delete)) {
+        File::delete($path_delete);
+    }
 }
