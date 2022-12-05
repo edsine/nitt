@@ -23,7 +23,7 @@ class CreateRailwayRollingStocksTable extends Migration
             $table->bigInteger('average_wagon_maintenance_cost');
             $table->bigInteger('annual_average_km_travel_coaches');
             $table->bigInteger('annual_average_km_travel_wagon');
-            $table->date('year');
+            $table->date('year')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

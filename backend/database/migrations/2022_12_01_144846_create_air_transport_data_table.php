@@ -16,7 +16,7 @@ class CreateAirTransportDataTable extends Migration
     {
         Schema::create('air_transport_data', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('year');
+            $table->date('year')->unique();
             $table->bigInteger('number_of_domestic_registered_airlines');
             $table->bigInteger('number_of_international_registered_airlines');
             $table->bigInteger('number_of_domestic_deregistered_airlines');

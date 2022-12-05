@@ -16,7 +16,7 @@ class CreateRailwaySafetyTable extends Migration
     {
         Schema::create('railway_safety', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('year');
+            $table->date('year')->unique();
             $table->bigInteger('number_of_near_accidents');
             $table->bigInteger('number_of_accidents');
             $table->timestamps();

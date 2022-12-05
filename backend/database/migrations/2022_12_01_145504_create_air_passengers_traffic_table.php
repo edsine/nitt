@@ -20,7 +20,7 @@ class CreateAirPassengersTrafficTable extends Migration
             $table->bigInteger('international_passengers_traffic');
             $table->bigInteger('domestic_freight_traffic');
             $table->bigInteger('international_freight_traffic');
-            $table->date('year');
+            $table->date('year')->unique();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -16,7 +16,7 @@ class CreateRailwayPassengersTable extends Migration
     {
         Schema::create('railway_passengers', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('year');
+            $table->date('year')->unique();
             $table->bigInteger('number_of_urban_passengers_carried');
             $table->bigInteger('number_of_regional_passengers_carried');
             $table->bigInteger('freight_carried');
