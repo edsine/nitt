@@ -29,6 +29,16 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('permissions', [App\Http\Controllers\API\PermissionAPIController::class, 'index']);
     Route::resource('passenger_road_transport_data', App\Http\Controllers\API\PassengerRoadTransportDataAPIController::class);
     Route::resource('freight_road_transport_data', App\Http\Controllers\API\FreightRoadTransportDataAPIController::class);
+    Route::resource('air_transport_data', App\Http\Controllers\API\AirTransportDataAPIController::class);
+    Route::resource('air_passengers_traffic', App\Http\Controllers\API\AirPassengersTrafficAPIController::class);
+    Route::resource('maritime_academies', App\Http\Controllers\API\MaritimeAcademyAPIController::class);
+    Route::resource('railway_passengers', App\Http\Controllers\API\RailwayPassengerAPIController::class);
+    Route::resource('railway_rolling_stocks', App\Http\Controllers\API\RailwayRollingStockAPIController::class);
+    Route::resource('railway_safeties', App\Http\Controllers\API\RailwaySafetyAPIController::class);
+    Route::resource('train_punctualities', App\Http\Controllers\API\TrainPunctualityAPIController::class);
+    Route::resource('maritime_administrations', App\Http\Controllers\API\MaritimeAdministrationAPIController::class);
+    Route::resource('vehicle_importations', App\Http\Controllers\API\VehicleImportationAPIController::class);
+    Route::resource('maritime_transports', App\Http\Controllers\API\MaritimeTransportAPIController::class);
 });
 
 Route::prefix('auth')->group(function () {
@@ -43,9 +53,3 @@ Route::prefix('auth')->group(function () {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 })->middleware(['auth', 'signed'])->name('verification.verify');
-
-
-Route::resource('air_transport_data', App\Http\Controllers\API\AirTransportDataAPIController::class);
-
-
-Route::resource('air_passengers_traffic', App\Http\Controllers\API\AirPassengersTrafficAPIController::class);

@@ -1,0 +1,131 @@
+<?php
+
+namespace App\Http\Controllers\API;
+
+use App\Http\Requests\API\CreateVehicleImportationAPIRequest;
+use App\Http\Requests\API\UpdateVehicleImportationAPIRequest;
+use App\Models\VehicleImportation;
+use App\Repositories\VehicleImportationRepository;
+use Illuminate\Http\Request;
+use App\Http\Controllers\AppBaseController;
+use Response;
+
+/**
+ * Class VehicleImportationController
+ * @package App\Http\Controllers\API
+ */
+
+class VehicleImportationAPIController extends AppBaseController
+{
+    /** @var  VehicleImportationRepository */
+    private $vehicleImportationRepository;
+
+    public function __construct(VehicleImportationRepository $vehicleImportationRepo)
+    {
+        $this->vehicleImportationRepository = $vehicleImportationRepo;
+    }
+
+    /**
+     * Display a listing of the VehicleImportation.
+     * GET|HEAD /vehicleImportations
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function index(Request $request)
+    {
+        $vehicleImportations = $this->vehicleImportationRepository->all(
+            $request->except(['skip', 'limit']),
+            $request->get('skip'),
+            $request->get('limit')
+        );
+
+        return $this->sendResponse($vehicleImportations->toArray(), 'Vehicle Importations retrieved successfully');
+    }
+
+    /**
+     * Store a newly created VehicleImportation in storage.
+     * POST /vehicleImportations
+     *
+     * @param CreateVehicleImportationAPIRequest $request
+     *
+     * @return Response
+     */
+    public function store(CreateVehicleImportationAPIRequest $request)
+    {
+        $input = $request->all();
+
+        $vehicleImportation = $this->vehicleImportationRepository->create($input);
+
+        return $this->sendResponse($vehicleImportation->toArray(), 'Vehicle Importation saved successfully');
+    }
+
+    /**
+     * Display the specified VehicleImportation.
+     * GET|HEAD /vehicleImportations/{id}
+     *
+     * @param int $id
+     *
+     * @return Response
+     */
+    public function show($id)
+    {
+        /** @var VehicleImportation $vehicleImportation */
+        $vehicleImportation = $this->vehicleImportationRepository->find($id);
+
+        if (empty($vehicleImportation)) {
+            return $this->sendError('Vehicle Importation not found');
+        }
+
+        return $this->sendResponse($vehicleImportation->toArray(), 'Vehicle Importation retrieved successfully');
+    }
+
+    /**
+     * Update the specified VehicleImportation in storage.
+     * PUT/PATCH /vehicleImportations/{id}
+     *
+     * @param int $id
+     * @param UpdateVehicleImportationAPIRequest $request
+     *
+     * @return Response
+     */
+    public function update($id, UpdateVehicleImportationAPIRequest $request)
+    {
+        $input = $request->all();
+
+        /** @var VehicleImportation $vehicleImportation */
+        $vehicleImportation = $this->vehicleImportationRepository->find($id);
+
+        if (empty($vehicleImportation)) {
+            return $this->sendError('Vehicle Importation not found');
+        }
+
+        $vehicleImportation = $this->vehicleImportationRepository->update($input, $id);
+
+        return $this->sendResponse($vehicleImportation->toArray(), 'VehicleImportation updated successfully');
+    }
+
+    /**
+     * Remove the specified VehicleImportation from storage.
+     * DELETE /vehicleImportations/{id}
+     *
+     * @param int $id
+     *
+     * @throws \Exception
+     *
+     * @return Response
+     */
+    public function destroy($id)
+    {
+        /** @var VehicleImportation $vehicleImportation */
+        $vehicleImportation = $this->vehicleImportationRepository->find($id);
+
+        if (empty($vehicleImportation)) {
+            return $this->sendError('Vehicle Importation not found');
+        }
+
+        $vehicleImportation->delete();
+
+        return $this->sendSuccess('Vehicle Importation deleted successfully');
+    }
+}
