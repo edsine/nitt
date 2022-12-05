@@ -11,7 +11,7 @@ use App\Http\Requests\API\CreateUserAPIRequest;
 use App\Http\Requests\API\UpdateUserAPIRequest;
 
 /**
- * Class SampleController
+ * Class UserAPIController
  * @package App\Http\Controllers\API
  */
 
@@ -34,6 +34,10 @@ class UserAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if(!checkPermission('read user')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $users = $this->userRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,10 @@ class UserAPIController extends AppBaseController
      */
     public function store(CreateUserAPIRequest $request)
     {
+        if(!checkPermission('create user')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $user = $this->userRepository->create($input);
@@ -70,6 +78,9 @@ class UserAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read user')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var User $user */
         $user = $this->userRepository->find($id);
 
@@ -91,6 +102,9 @@ class UserAPIController extends AppBaseController
      */
     public function update($id, UpdateUserAPIRequest $request)
     {
+        if(!checkPermission('update user')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $input = $request->all();
 
         /** @var User $user */
@@ -117,6 +131,10 @@ class UserAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete user')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         /** @var User $user */
         $user = $this->userRepository->find($id);
 
