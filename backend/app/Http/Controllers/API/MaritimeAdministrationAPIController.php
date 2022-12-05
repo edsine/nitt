@@ -34,6 +34,10 @@ class MaritimeAdministrationAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (!checkPermission('read maritime administration')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $maritimeAdministrations = $this->maritimeAdministrationRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,10 @@ class MaritimeAdministrationAPIController extends AppBaseController
      */
     public function store(CreateMaritimeAdministrationAPIRequest $request)
     {
+        if (!checkPermission('create maritime administration')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $maritimeAdministration = $this->maritimeAdministrationRepository->create($input);
@@ -70,6 +78,9 @@ class MaritimeAdministrationAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read maritime administration')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var MaritimeAdministration $maritimeAdministration */
         $maritimeAdministration = $this->maritimeAdministrationRepository->find($id);
 
@@ -91,6 +102,9 @@ class MaritimeAdministrationAPIController extends AppBaseController
      */
     public function update($id, UpdateMaritimeAdministrationAPIRequest $request)
     {
+        if(!checkPermission('update maritime administration')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $input = $request->all();
 
         /** @var MaritimeAdministration $maritimeAdministration */
@@ -117,6 +131,9 @@ class MaritimeAdministrationAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete maritime administration')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var MaritimeAdministration $maritimeAdministration */
         $maritimeAdministration = $this->maritimeAdministrationRepository->find($id);
 

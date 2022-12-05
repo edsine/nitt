@@ -34,6 +34,9 @@ class VehicleImportationAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if (!checkPermission('read vehicle importation')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $vehicleImportations = $this->vehicleImportationRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +56,9 @@ class VehicleImportationAPIController extends AppBaseController
      */
     public function store(CreateVehicleImportationAPIRequest $request)
     {
+        if (!checkPermission('create vehicle importation')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $input = $request->all();
 
         $vehicleImportation = $this->vehicleImportationRepository->create($input);
@@ -70,6 +76,9 @@ class VehicleImportationAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if (!checkPermission('read vehicle importation')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var VehicleImportation $vehicleImportation */
         $vehicleImportation = $this->vehicleImportationRepository->find($id);
 
@@ -91,6 +100,9 @@ class VehicleImportationAPIController extends AppBaseController
      */
     public function update($id, UpdateVehicleImportationAPIRequest $request)
     {
+        if (!checkPermission('update vehicle importation')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $input = $request->all();
 
         /** @var VehicleImportation $vehicleImportation */
@@ -117,6 +129,9 @@ class VehicleImportationAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if (!checkPermission('delete vehicle importation')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var VehicleImportation $vehicleImportation */
         $vehicleImportation = $this->vehicleImportationRepository->find($id);
 

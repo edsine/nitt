@@ -34,13 +34,17 @@ class FreightRoadTransportDataAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $freightRoadTransportDatas = $this->freightRoadTransportDataRepository->all(
+        if(!checkPermission('read freight road transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
+        $freightRoadTransportData = $this->freightRoadTransportDataRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
         );
 
-        return $this->sendResponse($freightRoadTransportDatas->toArray(), 'Freight Road Transport Data retrieved successfully');
+        return $this->sendResponse($freightRoadTransportData->toArray(), 'Freight Road Transport Data retrieved successfully');
     }
 
     /**
@@ -53,6 +57,10 @@ class FreightRoadTransportDataAPIController extends AppBaseController
      */
     public function store(CreateFreightRoadTransportDataAPIRequest $request)
     {
+        if(!checkPermission('create freight road transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $freightRoadTransportData = $this->freightRoadTransportDataRepository->create($input);
@@ -70,6 +78,9 @@ class FreightRoadTransportDataAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read freight road transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var FreightRoadTransportData $freightRoadTransportData */
         $freightRoadTransportData = $this->freightRoadTransportDataRepository->find($id);
 
@@ -91,6 +102,10 @@ class FreightRoadTransportDataAPIController extends AppBaseController
      */
     public function update($id, UpdateFreightRoadTransportDataAPIRequest $request)
     {
+        if(!checkPermission('update freight road transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         /** @var FreightRoadTransportData $freightRoadTransportData */
@@ -117,6 +132,10 @@ class FreightRoadTransportDataAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete freight road transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         /** @var FreightRoadTransportData $freightRoadTransportData */
         $freightRoadTransportData = $this->freightRoadTransportDataRepository->find($id);
 

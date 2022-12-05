@@ -34,6 +34,10 @@ class MaritimeAcademyAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if(!checkPermission('read maritime academy')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $maritimeAcademies = $this->maritimeAcademyRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,10 @@ class MaritimeAcademyAPIController extends AppBaseController
      */
     public function store(CreateMaritimeAcademyAPIRequest $request)
     {
+        if(!checkPermission('create maritime academy')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $maritimeAcademy = $this->maritimeAcademyRepository->create($input);
@@ -70,6 +78,10 @@ class MaritimeAcademyAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read maritime academy')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         /** @var MaritimeAcademy $maritimeAcademy */
         $maritimeAcademy = $this->maritimeAcademyRepository->find($id);
 
@@ -91,6 +103,10 @@ class MaritimeAcademyAPIController extends AppBaseController
      */
     public function update($id, UpdateMaritimeAcademyAPIRequest $request)
     {
+        if(!checkPermission('update maritime academy')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         /** @var MaritimeAcademy $maritimeAcademy */
@@ -117,6 +133,9 @@ class MaritimeAcademyAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete maritime academy')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var MaritimeAcademy $maritimeAcademy */
         $maritimeAcademy = $this->maritimeAcademyRepository->find($id);
 

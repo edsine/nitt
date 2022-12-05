@@ -34,6 +34,10 @@ class AirTransportDataAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if(!checkPermission('read air transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $airTransportDatas = $this->airTransportDataRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,10 @@ class AirTransportDataAPIController extends AppBaseController
      */
     public function store(CreateAirTransportDataAPIRequest $request)
     {
+        if(!checkPermission('create air transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $airTransportData = $this->airTransportDataRepository->create($input);
@@ -70,6 +78,10 @@ class AirTransportDataAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read air transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         /** @var AirTransportData $airTransportData */
         $airTransportData = $this->airTransportDataRepository->find($id);
 
@@ -91,6 +103,10 @@ class AirTransportDataAPIController extends AppBaseController
      */
     public function update($id, UpdateAirTransportDataAPIRequest $request)
     {
+        if(!checkPermission('update air transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         /** @var AirTransportData $airTransportData */
@@ -117,6 +133,10 @@ class AirTransportDataAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete air transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         /** @var AirTransportData $airTransportData */
         $airTransportData = $this->airTransportDataRepository->find($id);
 

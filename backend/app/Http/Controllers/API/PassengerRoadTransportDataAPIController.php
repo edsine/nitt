@@ -34,6 +34,10 @@ class PassengerRoadTransportDataAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if(!checkPermission('read passenger road transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $passengerRoadTransportDatas = $this->passengerRoadTransportDataRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,10 @@ class PassengerRoadTransportDataAPIController extends AppBaseController
      */
     public function store(CreatePassengerRoadTransportDataAPIRequest $request)
     {
+        if(!checkPermission('create passenger road transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $passengerRoadTransportData = $this->passengerRoadTransportDataRepository->create($input);
@@ -70,6 +78,9 @@ class PassengerRoadTransportDataAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read passenger road transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var PassengerRoadTransportData $passengerRoadTransportData */
         $passengerRoadTransportData = $this->passengerRoadTransportDataRepository->find($id);
 
@@ -91,6 +102,9 @@ class PassengerRoadTransportDataAPIController extends AppBaseController
      */
     public function update($id, UpdatePassengerRoadTransportDataAPIRequest $request)
     {
+        if(!checkPermission('update passenger road transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $input = $request->all();
 
         /** @var PassengerRoadTransportData $passengerRoadTransportData */
@@ -117,6 +131,9 @@ class PassengerRoadTransportDataAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete passenger road transport data')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var PassengerRoadTransportData $passengerRoadTransportData */
         $passengerRoadTransportData = $this->passengerRoadTransportDataRepository->find($id);
 

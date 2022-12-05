@@ -34,6 +34,10 @@ class AirPassengersTrafficAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if(!checkPermission('read air passengers traffic')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $airPassengersTraffics = $this->airPassengersTrafficRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,10 @@ class AirPassengersTrafficAPIController extends AppBaseController
      */
     public function store(CreateAirPassengersTrafficAPIRequest $request)
     {
+        if(!checkPermission('create air passengers traffic')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $airPassengersTraffic = $this->airPassengersTrafficRepository->create($input);
@@ -70,6 +78,10 @@ class AirPassengersTrafficAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read air passengers traffic')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         /** @var AirPassengersTraffic $airPassengersTraffic */
         $airPassengersTraffic = $this->airPassengersTrafficRepository->find($id);
 
@@ -91,6 +103,10 @@ class AirPassengersTrafficAPIController extends AppBaseController
      */
     public function update($id, UpdateAirPassengersTrafficAPIRequest $request)
     {
+        if(!checkPermission('update air passengers traffic')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         /** @var AirPassengersTraffic $airPassengersTraffic */
@@ -117,6 +133,10 @@ class AirPassengersTrafficAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete air passengers traffic')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         /** @var AirPassengersTraffic $airPassengersTraffic */
         $airPassengersTraffic = $this->airPassengersTrafficRepository->find($id);
 

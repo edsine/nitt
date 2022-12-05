@@ -34,6 +34,10 @@ class MaritimeTransportAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if(!checkPermission('read maritime transport')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $maritimeTransports = $this->maritimeTransportRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,10 @@ class MaritimeTransportAPIController extends AppBaseController
      */
     public function store(CreateMaritimeTransportAPIRequest $request)
     {
+        if(!checkPermission('create maritime transport')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $maritimeTransport = $this->maritimeTransportRepository->create($input);
@@ -70,6 +78,9 @@ class MaritimeTransportAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read maritime transport')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var MaritimeTransport $maritimeTransport */
         $maritimeTransport = $this->maritimeTransportRepository->find($id);
 
@@ -91,6 +102,9 @@ class MaritimeTransportAPIController extends AppBaseController
      */
     public function update($id, UpdateMaritimeTransportAPIRequest $request)
     {
+        if(!checkPermission('update maritime transport')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $input = $request->all();
 
         /** @var MaritimeTransport $maritimeTransport */
@@ -117,6 +131,9 @@ class MaritimeTransportAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete maritime transport')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var MaritimeTransport $maritimeTransport */
         $maritimeTransport = $this->maritimeTransportRepository->find($id);
 

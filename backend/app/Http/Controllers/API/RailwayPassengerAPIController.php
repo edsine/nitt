@@ -34,6 +34,10 @@ class RailwayPassengerAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if(!checkPermission('read railway passenger')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $railwayPassengers = $this->railwayPassengerRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,9 @@ class RailwayPassengerAPIController extends AppBaseController
      */
     public function store(CreateRailwayPassengerAPIRequest $request)
     {
+        if(!checkPermission('create railway passenger')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $input = $request->all();
 
         $railwayPassenger = $this->railwayPassengerRepository->create($input);
@@ -70,6 +77,9 @@ class RailwayPassengerAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read railway passenger')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var RailwayPassenger $railwayPassenger */
         $railwayPassenger = $this->railwayPassengerRepository->find($id);
 
@@ -91,6 +101,9 @@ class RailwayPassengerAPIController extends AppBaseController
      */
     public function update($id, UpdateRailwayPassengerAPIRequest $request)
     {
+        if(!checkPermission('update railway passenger')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $input = $request->all();
 
         /** @var RailwayPassenger $railwayPassenger */
@@ -117,6 +130,9 @@ class RailwayPassengerAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete railway passenger')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var RailwayPassenger $railwayPassenger */
         $railwayPassenger = $this->railwayPassengerRepository->find($id);
 

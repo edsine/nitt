@@ -34,6 +34,10 @@ class RailwayRollingStockAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if(!checkPermission('read railway rolling stock')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $railwayRollingStocks = $this->railwayRollingStockRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,10 @@ class RailwayRollingStockAPIController extends AppBaseController
      */
     public function store(CreateRailwayRollingStockAPIRequest $request)
     {
+        if(!checkPermission('create railway rolling stock')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $railwayRollingStock = $this->railwayRollingStockRepository->create($input);
@@ -70,6 +78,9 @@ class RailwayRollingStockAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read railway rolling stock')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var RailwayRollingStock $railwayRollingStock */
         $railwayRollingStock = $this->railwayRollingStockRepository->find($id);
 
@@ -91,6 +102,9 @@ class RailwayRollingStockAPIController extends AppBaseController
      */
     public function update($id, UpdateRailwayRollingStockAPIRequest $request)
     {
+        if(!checkPermission('update railway rolling stock')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $input = $request->all();
 
         /** @var RailwayRollingStock $railwayRollingStock */
@@ -117,6 +131,9 @@ class RailwayRollingStockAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete railway rolling stock')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var RailwayRollingStock $railwayRollingStock */
         $railwayRollingStock = $this->railwayRollingStockRepository->find($id);
 

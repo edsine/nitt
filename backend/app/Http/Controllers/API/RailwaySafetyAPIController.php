@@ -34,6 +34,10 @@ class RailwaySafetyAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if(!checkPermission('read railway safety')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $railwaySafeties = $this->railwaySafetyRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,10 @@ class RailwaySafetyAPIController extends AppBaseController
      */
     public function store(CreateRailwaySafetyAPIRequest $request)
     {
+        if(!checkPermission('create railway safety')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $railwaySafety = $this->railwaySafetyRepository->create($input);
@@ -70,6 +78,10 @@ class RailwaySafetyAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read railway safety')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         /** @var RailwaySafety $railwaySafety */
         $railwaySafety = $this->railwaySafetyRepository->find($id);
 
@@ -91,6 +103,10 @@ class RailwaySafetyAPIController extends AppBaseController
      */
     public function update($id, UpdateRailwaySafetyAPIRequest $request)
     {
+        if(!checkPermission('update railway safety')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         /** @var RailwaySafety $railwaySafety */
@@ -117,6 +133,10 @@ class RailwaySafetyAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete railway safety')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         /** @var RailwaySafety $railwaySafety */
         $railwaySafety = $this->railwaySafetyRepository->find($id);
 

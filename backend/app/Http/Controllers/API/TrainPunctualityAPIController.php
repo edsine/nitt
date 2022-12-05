@@ -34,6 +34,10 @@ class TrainPunctualityAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
+        if(!checkPermission('read train punctuality')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $trainPunctualities = $this->trainPunctualityRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -53,6 +57,10 @@ class TrainPunctualityAPIController extends AppBaseController
      */
     public function store(CreateTrainPunctualityAPIRequest $request)
     {
+        if(!checkPermission('create train punctuality')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
         $input = $request->all();
 
         $trainPunctuality = $this->trainPunctualityRepository->create($input);
@@ -70,6 +78,9 @@ class TrainPunctualityAPIController extends AppBaseController
      */
     public function show($id)
     {
+        if(!checkPermission('read train punctuality')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var TrainPunctuality $trainPunctuality */
         $trainPunctuality = $this->trainPunctualityRepository->find($id);
 
@@ -91,6 +102,9 @@ class TrainPunctualityAPIController extends AppBaseController
      */
     public function update($id, UpdateTrainPunctualityAPIRequest $request)
     {
+        if(!checkPermission('update train punctuality')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         $input = $request->all();
 
         /** @var TrainPunctuality $trainPunctuality */
@@ -117,6 +131,9 @@ class TrainPunctualityAPIController extends AppBaseController
      */
     public function destroy($id)
     {
+        if(!checkPermission('delete train punctuality')) {
+            return $this->sendError('Permission Denied', 403);
+        }
         /** @var TrainPunctuality $trainPunctuality */
         $trainPunctuality = $this->trainPunctualityRepository->find($id);
 
