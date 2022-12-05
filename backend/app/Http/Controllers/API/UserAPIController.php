@@ -9,6 +9,7 @@ use App\Repositories\UserRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\API\CreateUserAPIRequest;
 use App\Http\Requests\API\UpdateUserAPIRequest;
+use App\Http\Requests\API\UpdateUserPasswordAPIRequest;
 
 /**
  * Class UserAPIController
@@ -34,7 +35,7 @@ class UserAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        if(!checkPermission('read user')) {
+        if (!checkPermission('read user')) {
             return $this->sendError('Permission Denied', 403);
         }
 
@@ -57,7 +58,7 @@ class UserAPIController extends AppBaseController
      */
     public function store(CreateUserAPIRequest $request)
     {
-        if(!checkPermission('create user')) {
+        if (!checkPermission('create user')) {
             return $this->sendError('Permission Denied', 403);
         }
 
@@ -78,7 +79,7 @@ class UserAPIController extends AppBaseController
      */
     public function show($id)
     {
-        if(!checkPermission('read user')) {
+        if (!checkPermission('read user')) {
             return $this->sendError('Permission Denied', 403);
         }
         /** @var User $user */
@@ -102,7 +103,7 @@ class UserAPIController extends AppBaseController
      */
     public function update($id, UpdateUserAPIRequest $request)
     {
-        if(!checkPermission('update user')) {
+        if (!checkPermission('update user')) {
             return $this->sendError('Permission Denied', 403);
         }
         $input = $request->all();
@@ -120,6 +121,35 @@ class UserAPIController extends AppBaseController
     }
 
     /**
+     * Update the specified User password in storage.
+     * PUT/PATCH /users/change_password/{id}
+     *
+     * @param int $id
+     * @param UpdateUserPasswordAPIRequest $request
+     *
+     * @return Response
+     */
+    public function changePassword($id, UpdateUserPasswordAPIRequest $request)
+    {
+        if (!checkPermission('update user')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
+        $password = $request->get('password');
+
+        /** @var User $user */
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            return $this->sendError('User not found');
+        }
+
+        $user = $this->userRepository->update(['password' => $password], $id);
+
+        return $this->sendResponse($user->toArray(), 'User password updated successfully');
+    }
+
+    /**
      * Remove the specified User from storage.
      * DELETE /users/{id}
      *
@@ -131,7 +161,7 @@ class UserAPIController extends AppBaseController
      */
     public function destroy($id)
     {
-        if(!checkPermission('delete user')) {
+        if (!checkPermission('delete user')) {
             return $this->sendError('Permission Denied', 403);
         }
 

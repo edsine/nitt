@@ -116,7 +116,7 @@ class RailwayRollingStockAPIController extends AppBaseController
 
         $railwayRollingStock = $this->railwayRollingStockRepository->update($input, $id);
 
-        return $this->sendResponse($railwayRollingStock->toArray(), 'RailwayRollingStock updated successfully');
+        return $this->sendResponse($railwayRollingStock->toArray(), 'Railway Rolling Stock updated successfully');
     }
 
     /**

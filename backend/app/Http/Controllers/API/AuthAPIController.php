@@ -33,8 +33,9 @@ class AuthAPIController extends AppBaseController
         if (Auth::attempt($credentials)) {
             /** @var User $user */
             $user = Auth::user();
+            $user_permissions = $user->getAllPermissions();
             $token = $user->createToken(Str::slug(config('app.name') . '_auth_token', '_'))->plainTextToken;
-            return $this->sendResponse(['token' => $token, 'user' => $user->toArray()], 'Logged in');
+            return $this->sendResponse(['token' => $token, 'user' => $user->toArray(), 'userPermissions' => $user_permissions->toArray()], 'Logged in');
         }
 
         return $this->sendError('These credentials do not match our records');
@@ -66,10 +67,11 @@ class AuthAPIController extends AppBaseController
         $data_viewer_role = Role::where('name', '=', 'data-viewer')->first();
 
         $user->assignRole($data_viewer_role);
+        $user_permissions = $user->getAllPermissions();
 
 
         $token = $user->createToken(Str::slug(config('app.name') . '_auth_token', '_'))->plainTextToken;
-        return $this->sendResponse(['token' => $token, 'user' => $user->toArray()], 'Registered');
+        return $this->sendResponse(['token' => $token, 'user' => $user->toArray(), 'userPermissions' => $user_permissions->toArray()], 'Registered');
     }
 
 

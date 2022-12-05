@@ -44,7 +44,7 @@ class AirTransportDataAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($airTransportDatas->toArray(), 'Air Transport Datas retrieved successfully');
+        return $this->sendResponse($airTransportDatas->toArray(), 'Air Transport Data retrieved successfully');
     }
 
     /**
