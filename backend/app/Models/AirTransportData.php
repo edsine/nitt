@@ -26,7 +26,7 @@ class AirTransportData extends Model
     use HasFactory;
 
     public $table = 'air_transport_data';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -64,7 +64,7 @@ class AirTransportData extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|unique',
+        'year' => 'required|unique:air_transport_data',
         'number_of_domestic_registered_airlines' => 'required',
         'number_of_international_registered_airlines' => 'required',
         'number_of_domestic_deregistered_airlines' => 'required',
@@ -73,5 +73,5 @@ class AirTransportData extends Model
         'number_of_accidents' => 'required'
     ];
 
-    
+
 }

@@ -24,18 +24,8 @@ class UpdatePassengerRoadTransportDataAPIRequest extends APIRequest
      */
     public function rules()
     {
-        // $rules = PassengerRoadTransportData::$rules;
-
-        $id = $this->route('passenger_road_transport_data');
-        $rules = [
-            'year' => 'required|unique:passenger_road_transport_data,' .$id,
-            'number_of_passengers_carried' => 'required',
-            'number_of_vehicles_in_fleet' => 'required',
-            'revenue_from_operation' => 'required',
-            'number_of_employees' => 'required',
-            'annual_cost_of_vehicle_maintenance' => 'required',
-            'number_of_accidents' => 'required'
-        ];
+        $rules = PassengerRoadTransportData::$rules;
+        $rules['year'] = $rules['year'].",".$this->route("passenger_road_transport_data");
 
         return $rules;
     }

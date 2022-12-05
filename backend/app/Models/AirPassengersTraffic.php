@@ -24,7 +24,7 @@ class AirPassengersTraffic extends Model
     use HasFactory;
 
     public $table = 'air_passengers_traffic';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -62,8 +62,8 @@ class AirPassengersTraffic extends Model
         'international_passengers_traffic' => 'required',
         'domestic_freight_traffic' => 'required',
         'international_freight_traffic' => 'required',
-        'year' => 'required|unique'
+        'year' => 'required|unique:air_passengers_traffic'
     ];
 
-    
+
 }

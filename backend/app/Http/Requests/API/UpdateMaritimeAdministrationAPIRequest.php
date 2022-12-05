@@ -25,7 +25,8 @@ class UpdateMaritimeAdministrationAPIRequest extends APIRequest
     public function rules()
     {
         $rules = MaritimeAdministration::$rules;
-        
+        $rules['year'] = $rules['year'].",".$this->route("maritime_administration");
+
         return $rules;
     }
 }

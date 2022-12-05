@@ -24,15 +24,8 @@ class UpdateUserAPIRequest extends APIRequest
      */
     public function rules()
     {
-        // $rules = User::$rules;
-
-        $id = $this->route('user');
-        $rules = [
-            'name' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:255', 'unique:users,email,' . $id],
-            'password' => ['required', 'min:6', 'confirmed']
-        ];
-
+        $rules = User::$rules;
+        $rules['email'] = $rules['email'].",".$this->route("user");
 
         return $rules;
     }

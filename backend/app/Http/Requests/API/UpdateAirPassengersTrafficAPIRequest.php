@@ -25,7 +25,8 @@ class UpdateAirPassengersTrafficAPIRequest extends APIRequest
     public function rules()
     {
         $rules = AirPassengersTraffic::$rules;
-        
+        $rules['year'] = $rules['year'].",".$this->route("air_passengers_traffic");
+
         return $rules;
     }
 }
