@@ -63,7 +63,7 @@
         "name": "year",
         "dbType": "date",
         "htmlType": "date",
-        "validations": "required|unique",
+        "validations": "required|unique:air_passengers_traffic",
         "searchable": true,
         "fillable": true,
         "primary": false,

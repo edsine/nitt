@@ -26,7 +26,7 @@ class MaritimeAdministration extends Model
     use HasFactory;
 
     public $table = 'maritime_administration';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -64,7 +64,7 @@ class MaritimeAdministration extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|maritime_administration',
+        'year' => 'required|unique:maritime_administration',
         'nigerian_sea_fearers_count' => 'required',
         'foreign_sea_fearers_count' => 'required',
         'number_of_vessels_registered' => 'required',
@@ -73,5 +73,5 @@ class MaritimeAdministration extends Model
         'number_of_piracy_attacks' => 'required'
     ];
 
-    
+
 }

@@ -15,7 +15,7 @@
         "name": "year",
         "dbType": "date",
         "htmlType": "date",
-        "validations": "required|unique",
+        "validations": "required|unique:air_transport_data",
         "searchable": true,
         "fillable": true,
         "primary": false,
