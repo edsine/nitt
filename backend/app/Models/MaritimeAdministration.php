@@ -49,7 +49,7 @@ class MaritimeAdministration extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'year' => 'date',
+        'year' => 'integer',
         'nigerian_sea_fearers_count' => 'integer',
         'foreign_sea_fearers_count' => 'integer',
         'number_of_vessels_registered' => 'integer',
@@ -64,7 +64,7 @@ class MaritimeAdministration extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|date|unique:maritime_administration,year',
+        'year' => 'required|integer|unique:maritime_administration,year',
         'nigerian_sea_fearers_count' => 'required|integer',
         'foreign_sea_fearers_count' => 'required|integer',
         'number_of_vessels_registered' => 'required|integer',

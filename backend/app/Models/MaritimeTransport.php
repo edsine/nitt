@@ -55,7 +55,7 @@ class MaritimeTransport extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'year' => 'date',
+        'year' => 'integer',
         'containers_count' => 'integer',
         'general_cargo_count' => 'integer',
         'bulk_cargo_count' => 'integer',
@@ -73,7 +73,7 @@ class MaritimeTransport extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|date|unique:maritime_transport,year',
+        'year' => 'required|integer|unique:maritime_transport,year',
         'containers_count' => 'required|integer',
         'general_cargo_count' => 'required|integer',
         'bulk_cargo_count' => 'required|integer',

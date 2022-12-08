@@ -16,7 +16,7 @@ class CreateTrainPunctualityTable extends Migration
     {
         Schema::create('train_punctuality', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('year')->unique();
+            $table->integer('year')->unique();
             $table->bigInteger('number_of_train_delay');
             $table->bigInteger('number_of_late_arrival');
             $table->bigInteger('number_of_prompt_arrival');

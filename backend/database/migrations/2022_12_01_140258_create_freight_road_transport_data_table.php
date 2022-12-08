@@ -17,7 +17,7 @@ class CreateFreightRoadTransportDataTable extends Migration
         Schema::create('freight_road_transport_data', function (Blueprint $table) {
             $table->increments('id');
             $table->bigInteger('number_of_tonnes_carried');
-            $table->date('year')->unique();
+            $table->integer('year')->unique();
             $table->bigInteger('number_of_vehicles_in_fleet');
             $table->bigInteger('revenue_from_operation');
             $table->bigInteger('number_of_employees');

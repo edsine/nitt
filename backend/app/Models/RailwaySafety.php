@@ -41,7 +41,7 @@ class RailwaySafety extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'year' => 'date',
+        'year' => 'integer',
         'number_of_near_accidents' => 'integer',
         'number_of_accidents' => 'integer'
     ];
@@ -52,7 +52,7 @@ class RailwaySafety extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|date|unique:railway_safety,year',
+        'year' => 'required|integer|unique:railway_safety,year',
         'number_of_near_accidents' => 'required|integer',
         'number_of_accidents' => 'required|integer'
     ];

@@ -43,7 +43,7 @@ class VehicleImportation extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'year' => 'date',
+        'year' => 'integer',
         'vehicle_category' => 'integer',
         'new_vehicle_count' => 'integer',
         'used_vehicle_count' => 'integer'
@@ -55,7 +55,7 @@ class VehicleImportation extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|date|unique:vehicle_importation,year',
+        'year' => 'required|integer|unique:vehicle_importation,year',
         'vehicle_category' => 'required|integer',
         'new_vehicle_count' => 'required|integer',
         'used_vehicle_count' => 'required|integer'

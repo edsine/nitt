@@ -49,7 +49,7 @@ class AirPassengersTraffic extends Model
         'international_passengers_traffic' => 'integer',
         'domestic_freight_traffic' => 'integer',
         'international_freight_traffic' => 'integer',
-        'year' => 'date'
+        'year' => 'integer'
     ];
 
     /**
@@ -62,7 +62,7 @@ class AirPassengersTraffic extends Model
         'international_passengers_traffic' => 'required|integer',
         'domestic_freight_traffic' => 'required|integer',
         'international_freight_traffic' => 'required|integer',
-        'year' => 'required|date|unique:air_passengers_traffic,year'
+        'year' => 'required|integer|unique:air_passengers_traffic,year'
     ];
 
 

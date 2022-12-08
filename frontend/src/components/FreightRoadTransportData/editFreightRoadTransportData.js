@@ -63,7 +63,7 @@ const EditFreightRoadTransportData = (props) => {
                 <AvField
                   name="year"
                   placeholder=""
-                  type="date"
+                  type="number"
                   value={oldData?.year}
                   errorMessage="Select a Year"
                   className="form-control"

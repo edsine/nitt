@@ -43,7 +43,7 @@ class TrainPunctuality extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'year' => 'date',
+        'year' => 'integer',
         'number_of_train_delay' => 'integer',
         'number_of_late_arrival' => 'integer',
         'number_of_prompt_arrival' => 'integer'
@@ -55,7 +55,7 @@ class TrainPunctuality extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|date|unique:train_punctuality,year',
+        'year' => 'required|integer|unique:train_punctuality,year',
         'number_of_train_delay' => 'required|integer',
         'number_of_late_arrival' => 'required|integer',
         'number_of_prompt_arrival' => 'required|integer'

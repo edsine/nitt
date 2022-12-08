@@ -49,7 +49,7 @@ class PassengerRoadTransportData extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'year' => 'date:Y-m-d',
+        'year' => 'integer',
         'number_of_passengers_carried' => 'integer',
         'number_of_vehicles_in_fleet' => 'integer',
         'revenue_from_operation' => 'integer',
@@ -64,7 +64,7 @@ class PassengerRoadTransportData extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|date|unique:passenger_road_transport_data,year',
+        'year' => 'required|integer|unique:passenger_road_transport_data,year',
         'number_of_passengers_carried' => 'required|integer',
         'number_of_vehicles_in_fleet' => 'required|integer',
         'revenue_from_operation' => 'required|integer',

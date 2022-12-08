@@ -43,7 +43,7 @@ class MaritimeAcademy extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'year' => 'date',
+        'year' => 'integer',
         'number_of_staff' => 'integer',
         'number_of_admitted_students' => 'integer',
         'number_of_graduands' => 'integer'
@@ -55,7 +55,7 @@ class MaritimeAcademy extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|date|unique:maritime_academies,year',
+        'year' => 'required|integer|unique:maritime_academies,year',
         'number_of_staff' => 'required|integer',
         'number_of_admitted_students' => 'required|integer',
         'number_of_graduands' => 'required|integer'

@@ -13,8 +13,8 @@
     },
     {
         "name": "year",
-        "dbType": "date",
-        "htmlType": "date",
+        "dbType": "integer",
+        "htmlType": "number",
         "validations": "required|unique:train_punctuality",
         "searchable": true,
         "fillable": true,

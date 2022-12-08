@@ -49,7 +49,7 @@ class AirTransportData extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'year' => 'date',
+        'year' => 'integer',
         'number_of_domestic_registered_airlines' => 'integer',
         'number_of_international_registered_airlines' => 'integer',
         'number_of_domestic_deregistered_airlines' => 'integer',
@@ -64,7 +64,7 @@ class AirTransportData extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|date|unique:air_transport_data,year',
+        'year' => 'required|integer|unique:air_transport_data,year',
         'number_of_domestic_registered_airlines' => 'required|integer',
         'number_of_international_registered_airlines' => 'required|integer',
         'number_of_domestic_deregistered_airlines' => 'required|integer',

@@ -61,8 +61,8 @@
     },
     {
         "name": "year",
-        "dbType": "date",
-        "htmlType": "date",
+        "dbType": "integer",
+        "htmlType": "number",
         "validations": "required|unique:air_passengers_traffic",
         "searchable": true,
         "fillable": true,

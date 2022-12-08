@@ -63,7 +63,7 @@ const AddFreightRoadTransportData = (props) => {
                 <AvField
                   name="year"
                   placeholder=""
-                  type="date"
+                  type="number"
                   errorMessage="Select a Year"
                   className="form-control"
                   validate={{ required: { value: true } }}

@@ -13,8 +13,8 @@
     },
     {
         "name": "year",
-        "dbType": "date",
-        "htmlType": "date",
+        "dbType": "integer",
+        "htmlType": "number",
         "validations": "required|unique:maritime_transport",
         "searchable": true,
         "fillable": true,

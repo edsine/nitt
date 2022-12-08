@@ -13,8 +13,8 @@
     },
     {
         "name": "year",
-        "dbType": "date",
-        "htmlType": "date",
+        "dbType": "integer",
+        "htmlType": "number",
         "validations": "required|unique:railway_passengers",
         "searchable": true,
         "fillable": true,

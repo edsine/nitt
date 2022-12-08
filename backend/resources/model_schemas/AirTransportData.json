@@ -13,8 +13,8 @@
     },
     {
         "name": "year",
-        "dbType": "date",
-        "htmlType": "date",
+        "dbType": "integer",
+        "htmlType": "number",
         "validations": "required|unique:air_transport_data",
         "searchable": true,
         "fillable": true,

@@ -16,7 +16,7 @@ class CreateMaritimeTransportTable extends Migration
     {
         Schema::create('maritime_transport', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('year')->unique();
+            $table->integer('year')->unique();
             $table->bigInteger('containers_count');
             $table->bigInteger('general_cargo_count');
             $table->bigInteger('bulk_cargo_count');

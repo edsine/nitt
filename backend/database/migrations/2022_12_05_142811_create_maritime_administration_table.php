@@ -16,7 +16,7 @@ class CreateMaritimeAdministrationTable extends Migration
     {
         Schema::create('maritime_administration', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('year')->unique();
+            $table->integer('year')->unique();
             $table->bigInteger('nigerian_sea_fearers_count');
             $table->bigInteger('foreign_sea_fearers_count');
             $table->bigInteger('number_of_vessels_registered');

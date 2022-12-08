@@ -50,7 +50,7 @@ class FreightRoadTransportData extends Model
     protected $casts = [
         'id' => 'integer',
         'number_of_tonnes_carried' => 'integer',
-        'year' => 'date:Y-m-d',
+        'year' => 'integer',
         'number_of_vehicles_in_fleet' => 'integer',
         'revenue_from_operation' => 'integer',
         'number_of_employees' => 'integer',
@@ -64,7 +64,7 @@ class FreightRoadTransportData extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|date|unique:freight_road_transport_data,year',
+        'year' => 'required|integer|unique:freight_road_transport_data,year',
         'number_of_tonnes_carried' => 'required|integer',
         'number_of_vehicles_in_fleet' => 'required|integer',
         'revenue_from_operation' => 'required|integer',

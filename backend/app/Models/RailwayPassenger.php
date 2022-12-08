@@ -55,7 +55,7 @@ class RailwayPassenger extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'year' => 'date',
+        'year' => 'integer',
         'number_of_urban_passengers_carried' => 'integer',
         'number_of_regional_passengers_carried' => 'integer',
         'freight_carried' => 'integer',
@@ -73,7 +73,7 @@ class RailwayPassenger extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|date|unique:railway_passengers,year',
+        'year' => 'required|integer|unique:railway_passengers,year',
         'number_of_urban_passengers_carried' => 'required|integer',
         'number_of_regional_passengers_carried' => 'required|integer',
         'freight_carried' => 'required|integer',

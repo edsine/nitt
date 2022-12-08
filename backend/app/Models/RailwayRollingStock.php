@@ -58,7 +58,7 @@ class RailwayRollingStock extends Model
         'average_wagon_maintenance_cost' => 'integer',
         'annual_average_km_travel_coaches' => 'integer',
         'annual_average_km_travel_wagon' => 'integer',
-        'year' => 'date'
+        'year' => 'integer'
     ];
 
     /**
@@ -74,7 +74,7 @@ class RailwayRollingStock extends Model
         'average_wagon_maintenance_cost' => 'required|integer',
         'annual_average_km_travel_coaches' => 'required|integer',
         'annual_average_km_travel_wagon' => 'required|integer',
-        'year' => 'required|date|unique:railway_rolling_stocks,year'
+        'year' => 'required|integer|unique:railway_rolling_stocks,year'
     ];
 
 
