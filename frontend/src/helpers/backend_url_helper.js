@@ -10,6 +10,9 @@ export const POST_LOGOUT = "auth/logout";
 // GET AUTHENTICATED USER
 export const GET_AUTHENTICATED_USER = "user";
 
+// GET APP PERMISSIONS
+export const GET_APP_PERMISSIONS = "permissions"
+
 // GET ROAD TRANSPORT DATA (PASSENGERS)
 export const GET_PASSENGER_ROAD_TRANSPORT_DATA =
   "passenger_road_transport_data";

@@ -31,15 +31,11 @@ class PermissionAPIController extends AppBaseController
      */
     public function index(Request $request)
     {
-        if (!checkPermission('read role')) {
-            return $this->sendError('Permission Denied', 403);
-        }
-
         $permissions = $this->permissionRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
             $request->get('limit')
-        );
+        )->pluck('name');
 
         return $this->sendResponse($permissions->toArray(), 'Permissions retrieved successfully');
     }

@@ -14,6 +14,10 @@ export const isUserAuthenticated = () => {
   return getLoggedInUser() !== null;
 };
 
+// Get App Permissions
+export const getAppPermissions = (config) =>
+  get(url.GET_APP_PERMISSIONS, config);
+  
 // Login Method
 export const postLogin = (data) => post(url.POST_LOGIN, data);
 

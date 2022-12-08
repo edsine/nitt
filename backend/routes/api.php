@@ -27,7 +27,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('users/update_profile/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfile'])->name('auth.logout');
     Route::post('users/change_password/{id}', [App\Http\Controllers\API\UserAPIController::class, 'changePassword'])->name('change_password');
     Route::resource('roles', App\Http\Controllers\API\RoleAPIController::class);
-    Route::get('permissions', [App\Http\Controllers\API\PermissionAPIController::class, 'index']);
     Route::resource('passenger_road_transport_data', App\Http\Controllers\API\PassengerRoadTransportDataAPIController::class);
     Route::resource('freight_road_transport_data', App\Http\Controllers\API\FreightRoadTransportDataAPIController::class);
     Route::resource('air_transport_data', App\Http\Controllers\API\AirTransportDataAPIController::class);
@@ -49,6 +48,8 @@ Route::prefix('auth')->group(function () {
     Route::post('recover', [AuthAPIController::class, 'recover'])->name('auth.recover');
     Route::post('reset', [AuthAPIController::class, 'reset'])->name('auth.reset');
 });
+
+Route::get('permissions', [App\Http\Controllers\API\PermissionAPIController::class, 'index']);
 
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
