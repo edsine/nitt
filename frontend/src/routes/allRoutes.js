@@ -107,7 +107,7 @@ import LockScreen from "../pages/AuthenticationInner/auth-lock-screen"
 // Profile
 import UserProfile from "../pages/Authentication/user-profile"
 import VehicleImportation from "../pages/VehicleImportation/VehicleImportation"
-import RoadTransportData from "../pages/RoadTransportData/RoadTransportData"
+import RoadTransportData from "../pages/RoadTransportData/"
 import AirTransportData from "../pages/AirTransportData/AirTransportData"
 import RailwaysPassengers from "../pages/RailwaysPassengers/RailwaysPassengers"
 import RollingStock from "../pages/RollingStock/RollingStock"

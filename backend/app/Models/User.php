@@ -23,6 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'profile_image_path'
     ];
 
     protected $dates = ['deleted_at'];
@@ -65,5 +66,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public static $change_password_rules = [
         'password' => ['required', 'min:6', 'confirmed']
+    ];
+
+    public static $profile_update = [
+        'name' => ['required', 'max:255']
     ];
 }

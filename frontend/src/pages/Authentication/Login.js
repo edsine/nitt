@@ -103,7 +103,7 @@ const Login = (props) => {
 
                       <div className="mt-3">
                         <button
-                          className="btn btn-primary w-100 waves-effect waves-light"
+                          className="btn btn-success w-100 waves-effect waves-light"
                           type="submit"
                         >
                           Log In

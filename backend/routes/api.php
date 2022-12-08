@@ -25,6 +25,7 @@ Route::resource('samples', App\Http\Controllers\API\SampleAPIController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
+    Route::put('users/update_profile/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfile'])->name('auth.logout');
     Route::post('users/change_password/{id}', [App\Http\Controllers\API\UserAPIController::class, 'changePassword'])->name('change_password');
     Route::resource('roles', App\Http\Controllers\API\RoleAPIController::class);
     Route::get('permissions', [App\Http\Controllers\API\PermissionAPIController::class, 'index']);

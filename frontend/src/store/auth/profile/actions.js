@@ -1,9 +1,9 @@
 import { PROFILE_ERROR, PROFILE_SUCCESS, EDIT_PROFILE, RESET_PROFILE_FLAG } from "./actionTypes"
 
-export const editProfile = user => {
+export const editProfile = (data, idx) => {
   return {
     type: EDIT_PROFILE,
-    payload: { user },
+    payload: { data, idx },
   }
 }
 

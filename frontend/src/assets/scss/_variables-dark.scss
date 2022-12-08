@@ -9,8 +9,8 @@ $sidebar-bg: #1e2938;
 $sidebar-menu-item-color: #7f879c;
 $sidebar-menu-sub-item-color: #7f879c;
 $sidebar-menu-item-icon-color: #7f879c;
-$sidebar-menu-item-hover-color: #3b5de7;
-$sidebar-menu-item-active-color: #3b5de7;
+$sidebar-menu-item-hover-color: #008080;
+$sidebar-menu-item-active-color: #008080;
 $sidebar-width: 250px;
 $sidebar-collapsed-width: 70px;
 $sidebar-width-sm: 180px;
@@ -23,7 +23,7 @@ $sidebar-dark-menu-item-icon-color: #6a7187;
 $sidebar-dark-menu-item-hover-color: #ffffff;
 $sidebar-dark-menu-item-active-color: #ffffff;
 
-$bg-gradient: linear-gradient(to right, #273c92, #293e92);
+$bg-gradient: linear-gradient(to right, #008080, #008080);
 
 // Topbar - Deafult Light
 $header-height: 70px;
@@ -31,7 +31,7 @@ $header-bg: rgba(#ffffff, 0.03);
 $header-item-color: #555b6d;
 
 // Topbar - Dark
-$header-dark-bg: #3b5de7;
+$header-dark-bg: #008080;
 $header-dark-item-color: #e9ecef;
 
 // Topbar Search

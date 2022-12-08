@@ -49,7 +49,8 @@ function* loginUser({ payload: { user, history } }) {
         password: user.password,
       })
       if (response.success) {
-        const { token, user } = response.data;
+        const { token, user, userPermissions } = response.data;
+        localStorage.setItem("userPermissions", JSON.stringify(userPermissions));
         localStorage.setItem("authUser", JSON.stringify(user));
         localStorage.setItem("userToken", JSON.stringify(token));
         yield put(loginSuccess(user));
@@ -73,6 +74,7 @@ function* logoutUser({ payload: { history } }) {
     } else if (process.env.REACT_APP_DEFAULTAUTH === "backend") {
       const response = yield call(postLogout, null, { headers: getHeaders() });
       if (response.success) {
+        localStorage.removeItem("userPermissions");
         localStorage.removeItem("authUser");
         localStorage.removeItem("userToken");
         yield put(logoutUserSuccess(response));

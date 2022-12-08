@@ -82,7 +82,7 @@ const ForgetPasswordPage = props => {
                       <Row className="row mb-0">
                         <Col className="col-12 text-end">
                           <button
-                            className="btn btn-primary w-md waves-effect waves-light"
+                            className="btn btn-success w-md waves-effect waves-light"
                             type="submit"
                           >
                             Reset

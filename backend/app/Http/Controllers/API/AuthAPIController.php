@@ -35,7 +35,7 @@ class AuthAPIController extends AppBaseController
             $user = Auth::user();
             $user_permissions = $user->getAllPermissions();
             $token = $user->createToken(Str::slug(config('app.name') . '_auth_token', '_'))->plainTextToken;
-            return $this->sendResponse(['token' => $token, 'user' => $user->toArray(), 'userPermissions' => $user_permissions->toArray()], 'Logged in');
+            return $this->sendResponse(['token' => $token, 'user' => $user->toArray(), 'userPermissions' => $user_permissions->pluck('name')], 'Logged in');
         }
 
         return $this->sendError('These credentials do not match our records');

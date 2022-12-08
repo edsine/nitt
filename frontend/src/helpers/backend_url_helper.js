@@ -13,5 +13,17 @@ export const GET_AUTHENTICATED_USER = "user"
 // GET ROAD TRANSPORT DATA (PASSENGERS)
 export const GET_PASSENGER_ROAD_TRANSPORT_DATA = "passenger_road_transport_data"
 
+// ADD ROAD TRANSPORT DATA (PASSENGERS)
+export const ADD_PASSENGER_ROAD_TRANSPORT_DATA = "passenger_road_transport_data"
+
 // GET ROAD TRANSPORT DATA (PASSENGERS)
 export const GET_FREIGHT_ROAD_TRANSPORT_DATA = "freight_road_transport_data"
+
+
+// UPDATE USER
+
+export const PUT_USER = id => `users/${id}`
+
+// UPDATE PROFILE
+
+export const PUT_UPDATE_PROFILE = id => `users/update_profile/${id}`

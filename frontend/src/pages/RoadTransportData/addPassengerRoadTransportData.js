@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Modal, Button, Row, Col, Label } from 'reactstrap';
+import PropTypes from 'prop-types'
+import { connect } from "react-redux"
+import { Modal, Row, Col, Label, Alert } from 'reactstrap';
 import { AvForm, AvField } from "availity-reactstrap-validation"
+import { addPassengerRoadTransportData } from '../../store/actions';
 
 const AddPassengerRoadTransportData = (props) => {
     const { isOpen, setIsOpen } = props;
@@ -13,6 +16,10 @@ const AddPassengerRoadTransportData = (props) => {
         removeBodyCss()
     }
 
+    const handleValidSubmit = (event, values) => {
+        props.onAddPassengerRTD(values)
+    }
+
     return (
         <Modal
             isOpen={isOpen}
@@ -20,7 +27,17 @@ const AddPassengerRoadTransportData = (props) => {
                 toggle()
             }}
         >
-            <AvForm className="needs-validation">
+            {props.error && props.error ? (
+                <Alert color="danger">{props.error}</Alert>
+            ) : null}
+            {props.success && props.success ? (
+                <Alert color="success">{props.success}</Alert>
+            ) : null}
+            <AvForm className="needs-validation"
+                onValidSubmit={(e, v) => {
+                    handleValidSubmit(e, v)
+                }}
+            >
                 <div className="modal-header">
                     <h5 className="modal-title mt-0" id="myModalLabel">
                         Add Passenger Road Transport Data
@@ -71,15 +88,15 @@ const AddPassengerRoadTransportData = (props) => {
                     <Row>
                         <Col md="4">
                             <div className="mb-3">
-                                <Label htmlFor="numberOfVehicleInFleet">No. of Vehicles in Fleet</Label>
+                                <Label htmlFor="numberOfVehiclesInFleet">No. of Vehicles in Fleet</Label>
                                 <AvField
-                                    name="number_of_vehicle_in_fleet"
+                                    name="number_of_vehicles_in_fleet"
                                     placeholder=""
                                     type="number"
                                     errorMessage="Enter Number of Vehicles in Fleet."
                                     className="form-control"
                                     validate={{ required: { value: true } }}
-                                    id="numberOfVehicleInFleet"
+                                    id="numberOfVehiclesInFleet"
                                 />
                             </div>
                         </Col>
@@ -101,7 +118,7 @@ const AddPassengerRoadTransportData = (props) => {
                             <div className="mb-3">
                                 <Label htmlFor="numberOfEmployees">Number of Employees</Label>
                                 <AvField
-                                    name="zip"
+                                    name="number_of_employees"
                                     placeholder=""
                                     type="number"
                                     errorMessage="Enter Number of Employees"
@@ -113,9 +130,9 @@ const AddPassengerRoadTransportData = (props) => {
                         </Col>
                         <Col md="12">
                             <div className="mb-3">
-                                <Label htmlFor="annual_cost_of_vehicle_maintenance">Annual Cost of Vehicle Maintenance</Label>
+                                <Label htmlFor="annualCostOfVehicleMaintenance">Annual Cost of Vehicle Maintenance</Label>
                                 <AvField
-                                    name="annualCostOfVehicleMaintenance"
+                                    name="annual_cost_of_vehicle_maintenance"
                                     placeholder=""
                                     type="number"
                                     errorMessage="Enter Annual Cost of Vehicle Maintenance"
@@ -147,14 +164,14 @@ const AddPassengerRoadTransportData = (props) => {
                         onClick={() => {
                             toggle()
                         }}
-                        className="btn btn-primary waves-effect"
+                        className="btn btn-success waves-effect"
                         data-dismiss="modal"
                     >
                         Close
                     </button>
                     <button
                         type="submit"
-                        className="btn btn-primary waves-effect waves-light"
+                        className="btn btn-success waves-effect waves-light"
                     >
                         Save changes
                     </button>
@@ -164,4 +181,22 @@ const AddPassengerRoadTransportData = (props) => {
     );
 }
 
-export default AddPassengerRoadTransportData;
+AddPassengerRoadTransportData.propTypes = {
+    onAddPassengerRTD: PropTypes.func,
+    error: PropTypes.any,
+    success: PropTypes.any
+}
+
+const mapStatetoProps = state => {
+    const { error, success } = state.roadTransportData
+    return { error, success }
+}
+
+const mapDispatchToProps = dispatch => ({
+    onAddPassengerRTD: (values) => dispatch(addPassengerRoadTransportData(values)),
+})
+
+export default connect(
+    mapStatetoProps,
+    mapDispatchToProps
+)(AddPassengerRoadTransportData)

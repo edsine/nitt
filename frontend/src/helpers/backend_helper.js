@@ -1,6 +1,5 @@
 // import axios from "axios"
-import { config } from "@fullcalendar/react"
-import { get, post } from "./api_helper"
+import { get, post, put } from "./api_helper"
 import * as url from "./backend_url_helper"
 
 // Gets the logged in user data from local session
@@ -27,15 +26,27 @@ const getAuthenticatedUser = config => get(url.GET_AUTHENTICATED_USER, config);
 // Get Road Transport Data (Passengers)
 const getPassengerRoadTransportData = config => get(url.GET_PASSENGER_ROAD_TRANSPORT_DATA, config);
 
+// Add Road Transport Data (Passengers)
+const postPassengerRoadTransportData = (data, config) => post(url.ADD_PASSENGER_ROAD_TRANSPORT_DATA, data, config);
+
 // Get Road Transport Data (Freight)
 const getFreightRoadTransportData = config => get(url.GET_FREIGHT_ROAD_TRANSPORT_DATA, config);
+
+// Update User
+const putUser = (data, id, config) => put(url.PUT_USER(id), data, config)
+
+// Update Profile
+const putUpdateProfile = (data, id, config) => put(url.PUT_UPDATE_PROFILE(id), data, config)
 
 export {
     getLoggedInUser,
     getPassengerRoadTransportData,
+    postPassengerRoadTransportData,
     getFreightRoadTransportData,
     getAuthenticatedUser,
     isUserAuthenticated,
     postLogin,
-    postLogout
+    postLogout,
+    putUser,
+    putUpdateProfile
 }

@@ -338,7 +338,7 @@ const RightSidebar = props => {
 
               <Link
                 to="#"
-                className="btn btn-primary btn-block mt-3"
+                className="btn btn-success btn-block mt-3"
                 target="_blank"
               >
                 <i className="mdi mdi-cart mr-1" /> Purchase Now

@@ -11,3 +11,12 @@ export const getHeaders = () => {
     }
     return headers;
 }
+
+export const getFileUploadHeaders = () => {
+    const headers = {
+        accept: 'application/json',
+        'Content-Type': 'multipart/form-data',
+        Authorization: getAccessToken()
+    }
+    return headers;
+}

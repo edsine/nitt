@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\API\CreateUserAPIRequest;
 use App\Http\Requests\API\UpdateUserAPIRequest;
+use App\Http\Requests\API\UpdateProfileAPIRequest;
 use App\Http\Requests\API\UpdateUserPasswordAPIRequest;
 
 /**
@@ -165,6 +166,55 @@ class UserAPIController extends AppBaseController
 
         $input['profile_image_path'] = $file_name;
         $user = $this->userRepository->update($input, $id);
+
+        return $this->sendResponse($user->toArray(), 'User updated successfully');
+    }
+
+        /**
+     * Update the specified User in storage.
+     * PUT/PATCH /users/{id}
+     *
+     * @param int $id
+     * @param UpdateProfileAPIRequest $request
+     *
+     * @return Response
+     */
+    public function updateProfile($id, UpdateProfileAPIRequest $request)
+    {
+        $input = $request->all();
+
+        /** @var User $user */
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            return $this->sendError('User not found');
+        }
+
+        $user = $this->userRepository->update($input, $id);
+
+
+        $profile_image = $request->file('profile_image');
+        $path_folder = public_path('storage/profile_images');
+        if ($profile_image != '') {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    'profile_image' => 'required',
+                    'profile_image.*' => 'required|profile_image|mimes:jpeg,png,jpg|max:2048'
+                ]
+            );
+
+            if ($validator->fails()) {
+                return $this->sendResponse($validator->errors(), 'validation');
+            }
+
+            $path_to_old_image = $path_folder . "/" . $user->profile_image_path;
+            deleteImageWithPath($path_to_old_image);
+
+            $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
+            $profile_image->move($path_folder, $file_name);
+            $user->profile_image_path = $file_name;
+        }
 
         return $this->sendResponse($user->toArray(), 'User updated successfully');
     }

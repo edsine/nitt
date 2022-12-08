@@ -39,6 +39,7 @@ Sidebar.propTypes = {
 }
 
 const mapStatetoProps = state => {
+  console.log(state);
   return {
     layout: state.Layout,
     user: state.Login.user || JSON.parse(localStorage.getItem("authUser"))

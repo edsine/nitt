@@ -20,7 +20,7 @@ export async function get(url, config = {}) {
   return await axiosApi.get(url, { ...config })
     .then(response => response.data)
     .catch(error => {
-      console.log(error.response)
+      return error
     })
 }
 
@@ -29,7 +29,7 @@ export async function post(url, data, config = {}) {
     .post(url, { ...data }, { ...config })
     .then(response => response.data)
     .catch(error => {
-      console.log(error.response)
+      return error
     })
 }
 
@@ -38,7 +38,7 @@ export async function put(url, data, config = {}) {
     .put(url, { ...data }, { ...config })
     .then(response => response.data)
     .catch(error => {
-      console.log(error.response)
+      return error
     })
 }
 
@@ -47,6 +47,6 @@ export async function del(url, config = {}) {
     .delete(url, { ...config })
     .then(response => response.data)
     .catch(error => {
-      console.log(error.response)
+      return error
     })
 }

@@ -110,7 +110,7 @@ const Header = (props) => {
                           aria-label="Recipient's username"
                         />
                         <div className="input-group-append">
-                          <Button className="btn btn-primary" type="submit">
+                          <Button className="btn btn-success" type="submit">
                             <i className="mdi mdi-magnify"></i>
                           </Button>
                         </div>
