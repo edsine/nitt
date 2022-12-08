@@ -58,11 +58,11 @@ class AirPassengersTraffic extends Model
      * @var array
      */
     public static $rules = [
-        'domestic_passengers_traffic' => 'required',
-        'international_passengers_traffic' => 'required',
-        'domestic_freight_traffic' => 'required',
-        'international_freight_traffic' => 'required',
-        'year' => 'required|unique:air_passengers_traffic'
+        'domestic_passengers_traffic' => 'required|integer',
+        'international_passengers_traffic' => 'required|integer',
+        'domestic_freight_traffic' => 'required|integer',
+        'international_freight_traffic' => 'required|integer',
+        'year' => 'required|date|unique:air_passengers_traffic,year'
     ];
 
 

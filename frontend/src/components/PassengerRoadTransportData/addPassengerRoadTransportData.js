@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types'
 import { connect } from "react-redux"
 import { Modal, Row, Col, Label, Alert } from 'reactstrap';
@@ -27,11 +27,11 @@ const AddPassengerRoadTransportData = (props) => {
                 toggle()
             }}
         >
-            {props.error && props.error ? (
-                <Alert color="danger">{props.error}</Alert>
+            {props.error?.addError && props.error.addError ? (
+                <Alert color="danger">{props.error?.addError}</Alert>
             ) : null}
-            {props.success && props.success ? (
-                <Alert color="success">{props.success}</Alert>
+            {props.success?.addSuccess && props.success?.addSuccess ? (
+                <Alert color="success">{props.success?.addSuccess}</Alert>
             ) : null}
             <AvForm className="needs-validation"
                 onValidSubmit={(e, v) => {

@@ -23,7 +23,7 @@ class VehicleImportation extends Model
     use HasFactory;
 
     public $table = 'vehicle_importation';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -55,11 +55,11 @@ class VehicleImportation extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|unique:vehicle_importation',
-        'vehicle_category' => 'required',
-        'new_vehicle_count' => 'required',
-        'used_vehicle_count' => 'required'
+        'year' => 'required|date|unique:vehicle_importation,year',
+        'vehicle_category' => 'required|integer',
+        'new_vehicle_count' => 'required|integer',
+        'used_vehicle_count' => 'required|integer'
     ];
 
-    
+
 }

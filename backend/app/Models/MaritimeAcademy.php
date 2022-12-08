@@ -23,7 +23,7 @@ class MaritimeAcademy extends Model
     use HasFactory;
 
     public $table = 'maritime_academies';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -55,11 +55,11 @@ class MaritimeAcademy extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|unique:maritime_academies',
-        'number_of_staff' => 'required',
-        'number_of_admitted_students' => 'required',
-        'number_of_graduands' => 'required'
+        'year' => 'required|date|unique:maritime_academies,year',
+        'number_of_staff' => 'required|integer',
+        'number_of_admitted_students' => 'required|integer',
+        'number_of_graduands' => 'required|integer'
     ];
 
-    
+
 }

@@ -23,7 +23,7 @@ class TrainPunctuality extends Model
     use HasFactory;
 
     public $table = 'train_punctuality';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -55,11 +55,11 @@ class TrainPunctuality extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|unique:train_punctuality',
-        'number_of_train_delay' => 'required',
-        'number_of_late_arrival' => 'required',
-        'number_of_prompt_arrival' => 'required'
+        'year' => 'required|date|unique:train_punctuality,year',
+        'number_of_train_delay' => 'required|integer',
+        'number_of_late_arrival' => 'required|integer',
+        'number_of_prompt_arrival' => 'required|integer'
     ];
 
-    
+
 }

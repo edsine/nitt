@@ -90,7 +90,7 @@ const RoadTransportData = (props) => {
             },
             {
                 label: "No of Vehicle in fleet",
-                field: "number_of_vehicle_in_the_fleet",
+                field: "number_of_vehicles_in_fleet",
                 sort: "asc",
                 width: 200,
             },

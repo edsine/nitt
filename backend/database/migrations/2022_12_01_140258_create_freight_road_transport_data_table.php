@@ -18,7 +18,7 @@ class CreateFreightRoadTransportDataTable extends Migration
             $table->increments('id');
             $table->bigInteger('number_of_tonnes_carried');
             $table->date('year')->unique();
-            $table->bigInteger('number_of_vehicle_in_the_fleet');
+            $table->bigInteger('number_of_vehicles_in_fleet');
             $table->bigInteger('revenue_from_operation');
             $table->bigInteger('number_of_employees');
             $table->bigInteger('annual_cost_of_vehicle_maintenance');

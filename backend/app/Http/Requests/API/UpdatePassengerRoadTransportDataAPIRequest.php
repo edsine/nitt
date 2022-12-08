@@ -25,7 +25,7 @@ class UpdatePassengerRoadTransportDataAPIRequest extends APIRequest
     public function rules()
     {
         $rules = PassengerRoadTransportData::$rules;
-        $rules['year'] = $rules['year'].",".$this->route("passenger_road_transport_data");
+        $rules['year'] = $rules['year'] . "," . $this->route("passenger_road_transport_data");
 
         return $rules;
     }

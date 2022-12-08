@@ -64,13 +64,13 @@ class AirTransportData extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|unique:air_transport_data',
-        'number_of_domestic_registered_airlines' => 'required',
-        'number_of_international_registered_airlines' => 'required',
-        'number_of_domestic_deregistered_airlines' => 'required',
-        'number_of_international_deregistered_airlines' => 'required',
-        'number_of_near_accidents' => 'required',
-        'number_of_accidents' => 'required'
+        'year' => 'required|date|unique:air_transport_data,year',
+        'number_of_domestic_registered_airlines' => 'required|integer',
+        'number_of_international_registered_airlines' => 'required|integer',
+        'number_of_domestic_deregistered_airlines' => 'required|integer',
+        'number_of_international_deregistered_airlines' => 'required|integer',
+        'number_of_near_accidents' => 'required|integer',
+        'number_of_accidents' => 'required|integer'
     ];
 
 

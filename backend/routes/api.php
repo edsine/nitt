@@ -21,7 +21,6 @@ Route::middleware('auth:sanctum')->get('user', function (Request $request) {
 });
 
 
-Route::resource('samples', App\Http\Controllers\API\SampleAPIController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
@@ -55,3 +54,7 @@ Route::prefix('auth')->group(function () {
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 })->middleware(['auth', 'signed'])->name('verification.verify');
+
+
+
+

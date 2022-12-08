@@ -64,13 +64,13 @@ class MaritimeAdministration extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|unique:maritime_administration',
-        'nigerian_sea_fearers_count' => 'required',
-        'foreign_sea_fearers_count' => 'required',
-        'number_of_vessels_registered' => 'required',
-        'number_of_ships_cabotage' => 'required',
-        'number_of_accidents' => 'required',
-        'number_of_piracy_attacks' => 'required'
+        'year' => 'required|date|unique:maritime_administration,year',
+        'nigerian_sea_fearers_count' => 'required|integer',
+        'foreign_sea_fearers_count' => 'required|integer',
+        'number_of_vessels_registered' => 'required|integer',
+        'number_of_ships_cabotage' => 'required|integer',
+        'number_of_accidents' => 'required|integer',
+        'number_of_piracy_attacks' => 'required|integer'
     ];
 
 

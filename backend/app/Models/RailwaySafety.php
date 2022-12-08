@@ -22,7 +22,7 @@ class RailwaySafety extends Model
     use HasFactory;
 
     public $table = 'railway_safety';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -52,10 +52,10 @@ class RailwaySafety extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|unique:railway_safety',
-        'number_of_near_accidents' => 'required',
-        'number_of_accidents' => 'required'
+        'year' => 'required|date|unique:railway_safety,year',
+        'number_of_near_accidents' => 'required|integer',
+        'number_of_accidents' => 'required|integer'
     ];
 
-    
+
 }

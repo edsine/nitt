@@ -4,11 +4,8 @@ namespace App\Http\Controllers\API;
 
 use Response;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use App\Repositories\PermissionRepository;
 use App\Http\Controllers\AppBaseController;
-use App\Http\Requests\API\CreateUserAPIRequest;
-use App\Http\Requests\API\UpdateUserAPIRequest;
 
 /**
  * Class PermissionAPIController

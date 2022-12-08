@@ -19,7 +19,7 @@ class FreightRoadTransportDataRepository extends BaseRepository
     protected $fieldSearchable = [
         'number_of_tonnes_carried',
         'year',
-        'number_of_vehicle_in_the_fleet',
+        'number_of_vehicles_in_fleet',
         'revenue_from_operation',
         'number_of_employees',
         'annual_cost_of_vehicle_maintenance',

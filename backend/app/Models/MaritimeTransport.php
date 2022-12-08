@@ -29,7 +29,7 @@ class MaritimeTransport extends Model
     use HasFactory;
 
     public $table = 'maritime_transport';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -73,17 +73,17 @@ class MaritimeTransport extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|unique:maritime_transport',
-        'containers_count' => 'required',
-        'general_cargo_count' => 'required',
-        'bulk_cargo_count' => 'required',
-        'tankers_count' => 'required',
-        'containers_import_count' => 'required',
-        'containers_export_count' => 'required',
-        'general_cargo_tonnage' => 'required',
-        'bulk_cargo_tonnage' => 'required',
-        'accidents_recorded' => 'required'
+        'year' => 'required|date|unique:maritime_transport,year',
+        'containers_count' => 'required|integer',
+        'general_cargo_count' => 'required|integer',
+        'bulk_cargo_count' => 'required|integer',
+        'tankers_count' => 'required|integer',
+        'containers_import_count' => 'required|integer',
+        'containers_export_count' => 'required|integer',
+        'general_cargo_tonnage' => 'required|integer',
+        'bulk_cargo_tonnage' => 'required|integer',
+        'accidents_recorded' => 'required|integer'
     ];
 
-    
+
 }

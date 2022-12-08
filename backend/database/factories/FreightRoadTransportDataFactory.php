@@ -24,7 +24,7 @@ class FreightRoadTransportDataFactory extends Factory
         return [
             'number_of_tonnes_carried' => $this->faker->word,
         'year' => $this->faker->word,
-        'number_of_vehicle_in_the_fleet' => $this->faker->word,
+        'number_of_vehicles_in_fleet' => $this->faker->word,
         'revenue_from_operation' => $this->faker->word,
         'number_of_employees' => $this->faker->word,
         'annual_cost_of_vehicle_maintenance' => $this->faker->word,

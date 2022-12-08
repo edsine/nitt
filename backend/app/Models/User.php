@@ -53,14 +53,14 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     public static $create_rules = [
-        'name' => ['required', 'max:255'],
-        'email' => ['required', 'email', 'max:255', 'unique:users'],
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'email', 'max:255', 'unique:users,email'],
         'password' => ['required', 'min:6', 'confirmed']
     ];
 
     public static $update_rules = [
-        'name' => ['required', 'max:255'],
-        'email' => ['required', 'email', 'max:255', 'unique:users'],
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'email', 'max:255', 'unique:users,email'],
         'password' => ['required', 'min:6', 'confirmed']
     ];
 

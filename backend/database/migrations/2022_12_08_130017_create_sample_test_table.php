@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSamplesTable extends Migration
+class CreateSampleTestTable extends Migration
 {
 
     /**
@@ -14,7 +14,7 @@ class CreateSamplesTable extends Migration
      */
     public function up()
     {
-        Schema::create('samples', function (Blueprint $table) {
+        Schema::create('sample_test', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateSamplesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('samples');
+        Schema::drop('sample_test');
     }
 }

@@ -27,7 +27,7 @@ class RailwayRollingStock extends Model
     use HasFactory;
 
     public $table = 'railway_rolling_stocks';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -67,15 +67,15 @@ class RailwayRollingStock extends Model
      * @var array
      */
     public static $rules = [
-        'number_of_coaches_rolling_stock' => 'required',
-        'number_of_wagon_rolling_stock' => 'required',
-        'average_loco_availability' => 'required',
-        'average_coaches_maintenance_cost' => 'required',
-        'average_wagon_maintenance_cost' => 'required',
-        'annual_average_km_travel_coaches' => 'required',
-        'annual_average_km_travel_wagon' => 'required',
-        'year' => 'required|unique:railway_rolling_stocks'
+        'number_of_coaches_rolling_stock' => 'required|integer',
+        'number_of_wagon_rolling_stock' => 'required|integer',
+        'average_loco_availability' => 'required|integer',
+        'average_coaches_maintenance_cost' => 'required|integer',
+        'average_wagon_maintenance_cost' => 'required|integer',
+        'annual_average_km_travel_coaches' => 'required|integer',
+        'annual_average_km_travel_wagon' => 'required|integer',
+        'year' => 'required|date|unique:railway_rolling_stocks,year'
     ];
 
-    
+
 }

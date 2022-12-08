@@ -29,7 +29,7 @@ class RailwayPassenger extends Model
     use HasFactory;
 
     public $table = 'railway_passengers';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -73,17 +73,17 @@ class RailwayPassenger extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|unique:railway_passengers',
-        'number_of_urban_passengers_carried' => 'required',
-        'number_of_regional_passengers_carried' => 'required',
-        'freight_carried' => 'required',
-        'number_of_freight_trains' => 'required',
-        'number_of_passenger_trains' => 'required',
-        'freight_revenue_generation' => 'required',
-        'passenger_revenue_generation' => 'required',
-        'passenger_fuel_consumption_rate' => 'required',
-        'freight_fuel_consumption_rate' => 'required'
+        'year' => 'required|date|unique:railway_passengers,year',
+        'number_of_urban_passengers_carried' => 'required|integer',
+        'number_of_regional_passengers_carried' => 'required|integer',
+        'freight_carried' => 'required|integer',
+        'number_of_freight_trains' => 'required|integer',
+        'number_of_passenger_trains' => 'required|integer',
+        'freight_revenue_generation' => 'required|integer',
+        'passenger_revenue_generation' => 'required|integer',
+        'passenger_fuel_consumption_rate' => 'required|integer',
+        'freight_fuel_consumption_rate' => 'required|integer'
     ];
 
-    
+
 }
