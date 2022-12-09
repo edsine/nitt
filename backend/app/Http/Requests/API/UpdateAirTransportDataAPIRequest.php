@@ -25,7 +25,7 @@ class UpdateAirTransportDataAPIRequest extends APIRequest
     public function rules()
     {
         $rules = AirTransportData::$rules;
-        $rules['year'] = $rules['year'].",".$this->route("air_transport_data");
+        $rules['year'] = $rules['year'] . "," . $this->route("air_transport_datum");
 
         return $rules;
     }

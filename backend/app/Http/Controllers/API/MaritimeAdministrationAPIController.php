@@ -116,7 +116,7 @@ class MaritimeAdministrationAPIController extends AppBaseController
 
         $maritimeAdministration = $this->maritimeAdministrationRepository->update($input, $id);
 
-        return $this->sendResponse($maritimeAdministration->toArray(), 'MaritimeAdministration updated successfully');
+        return $this->sendResponse($maritimeAdministration->toArray(), 'Maritime Administration updated successfully');
     }
 
     /**

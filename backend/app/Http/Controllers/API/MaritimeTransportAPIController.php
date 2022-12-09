@@ -116,7 +116,7 @@ class MaritimeTransportAPIController extends AppBaseController
 
         $maritimeTransport = $this->maritimeTransportRepository->update($input, $id);
 
-        return $this->sendResponse($maritimeTransport->toArray(), 'MaritimeTransport updated successfully');
+        return $this->sendResponse($maritimeTransport->toArray(), 'Maritime Transport updated successfully');
     }
 
     /**

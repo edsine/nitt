@@ -114,7 +114,7 @@ class VehicleImportationAPIController extends AppBaseController
 
         $vehicleImportation = $this->vehicleImportationRepository->update($input, $id);
 
-        return $this->sendResponse($vehicleImportation->toArray(), 'VehicleImportation updated successfully');
+        return $this->sendResponse($vehicleImportation->toArray(), 'Vehicle Importation updated successfully');
     }
 
     /**

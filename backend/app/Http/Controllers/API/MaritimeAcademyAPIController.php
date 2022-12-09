@@ -118,7 +118,7 @@ class MaritimeAcademyAPIController extends AppBaseController
 
         $maritimeAcademy = $this->maritimeAcademyRepository->update($input, $id);
 
-        return $this->sendResponse($maritimeAcademy->toArray(), 'MaritimeAcademy updated successfully');
+        return $this->sendResponse($maritimeAcademy->toArray(), 'Maritime Academy updated successfully');
     }
 
     /**

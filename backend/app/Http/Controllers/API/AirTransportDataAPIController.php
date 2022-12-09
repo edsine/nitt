@@ -118,7 +118,7 @@ class AirTransportDataAPIController extends AppBaseController
 
         $airTransportData = $this->airTransportDataRepository->update($input, $id);
 
-        return $this->sendResponse($airTransportData->toArray(), 'AirTransportData updated successfully');
+        return $this->sendResponse($airTransportData->toArray(), 'Air Transport Data updated successfully');
     }
 
     /**

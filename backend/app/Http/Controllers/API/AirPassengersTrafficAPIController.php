@@ -118,7 +118,7 @@ class AirPassengersTrafficAPIController extends AppBaseController
 
         $airPassengersTraffic = $this->airPassengersTrafficRepository->update($input, $id);
 
-        return $this->sendResponse($airPassengersTraffic->toArray(), 'AirPassengersTraffic updated successfully');
+        return $this->sendResponse($airPassengersTraffic->toArray(), 'Air Passengers Traffic updated successfully');
     }
 
     /**

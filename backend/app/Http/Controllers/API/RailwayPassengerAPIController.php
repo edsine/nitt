@@ -115,7 +115,7 @@ class RailwayPassengerAPIController extends AppBaseController
 
         $railwayPassenger = $this->railwayPassengerRepository->update($input, $id);
 
-        return $this->sendResponse($railwayPassenger->toArray(), 'RailwayPassenger updated successfully');
+        return $this->sendResponse($railwayPassenger->toArray(), 'Railway Passenger updated successfully');
     }
 
     /**

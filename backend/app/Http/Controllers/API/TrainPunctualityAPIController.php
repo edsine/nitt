@@ -116,7 +116,7 @@ class TrainPunctualityAPIController extends AppBaseController
 
         $trainPunctuality = $this->trainPunctualityRepository->update($input, $id);
 
-        return $this->sendResponse($trainPunctuality->toArray(), 'TrainPunctuality updated successfully');
+        return $this->sendResponse($trainPunctuality->toArray(), 'Train Punctuality updated successfully');
     }
 
     /**

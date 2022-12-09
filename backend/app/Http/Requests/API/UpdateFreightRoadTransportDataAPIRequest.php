@@ -25,7 +25,7 @@ class UpdateFreightRoadTransportDataAPIRequest extends APIRequest
     public function rules()
     {
         $rules = FreightRoadTransportData::$rules;
-        $rules['year'] = $rules['year'].",".$this->route("freight_road_transport_data");
+        $rules['year'] = $rules['year'].",".$this->route("freight_road_transport_datum");
 
         return $rules;
     }

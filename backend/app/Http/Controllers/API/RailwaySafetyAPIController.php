@@ -118,7 +118,7 @@ class RailwaySafetyAPIController extends AppBaseController
 
         $railwaySafety = $this->railwaySafetyRepository->update($input, $id);
 
-        return $this->sendResponse($railwaySafety->toArray(), 'RailwaySafety updated successfully');
+        return $this->sendResponse($railwaySafety->toArray(), 'Railway Safety updated successfully');
     }
 
     /**
