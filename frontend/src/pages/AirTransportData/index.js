@@ -182,16 +182,16 @@ const AirTransportData = (props) => {
           <Col className="col-12">
             <Card>
               <CardBody>
-                <CardTitle>
-                  Air transport data
+                <div className="d-flex justify-content-between">
+                  <CardTitle>Air Transport Data</CardTitle>
                   <Button
                     color="success"
-                    className="btn btn-success waves-effect waves-light"
+                    className="btn btn-success waves-effect waves-light float-right"
                     onClick={() => handleClick()}
                   >
                     Add
                   </Button>{" "}
-                </CardTitle>
+                </div>
                 <CardSubtitle className="mb-3"></CardSubtitle>
 
                 <MDBDataTable responsive striped bordered data={data} />
@@ -213,7 +213,9 @@ AirTransportData.propTypes = {
 };
 
 const mapStateToProps = ({ airTransportData }) => ({
-  airTransportData: airTransportData.airTransportData,
+  airTransportData: Array.isArray(airTransportData.airTransportData)
+    ? airTransportData.airTransportData
+    : null,
   error: airTransportData.error,
   success: airTransportData.success,
 });

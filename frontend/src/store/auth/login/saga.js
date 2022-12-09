@@ -46,17 +46,6 @@ function* loginUser({ payload: { user, history } }) {
       localStorage.setItem("authUser", JSON.stringify(response));
       yield put(loginSuccess(response));
     } else if (process.env.REACT_APP_DEFAULTAUTH === "backend") {
-      const getPermissions = yield call(getAppPermissions, {
-        headers: getHeaders(),
-      });
-
-      if (getPermissions.success) {
-        localStorage.setItem(
-          "appPermissions",
-          JSON.stringify(getPermissions.data)
-        );
-      }
-
       const response = yield call(postLogin, {
         email: user.email,
         password: user.password,

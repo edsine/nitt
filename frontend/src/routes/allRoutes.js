@@ -113,6 +113,7 @@ import AirTransportData from "../pages/AirTransportData";
 import RailwaysPassengers from "../pages/RailwaysPassengers/RailwaysPassengers";
 import RollingStock from "../pages/RollingStock/RollingStock";
 import AirPassengerTraffic from "../pages/AirPassengerTraffic";
+import User from "../pages/User";
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
@@ -201,36 +202,58 @@ const userRoutes = [
   // //profile
   { path: "/profile", component: UserProfile },
 
+  // this route should be at the end of all other routes
+  { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
+];
+
+const permissionRoutes = [
   //Vehicle importation
-  { path: "/vehicle-importation", component: VehicleImportation },
+  {
+    path: "/vehicle-importation",
+    component: VehicleImportation,
+    permission: "read vehicle importation",
+  },
 
   //Passenger Road transport data
   {
     path: "/passenger-road-transport-data",
     component: PassengerRoadTransportData,
+    permission: "read passenger road transport data",
   },
 
   //Freight Road transport data
   {
     path: "/freight-road-transport-data",
     component: FreightRoadTransportData,
+    permission: "read freight road transport data",
   },
 
   //Air transport data
-  { path: "/air-transport-data", component: AirTransportData },
+  {
+    path: "/air-transport-data",
+    component: AirTransportData,
+    permission: "read air transport data",
+  },
 
   //Air Passenger Traffic
-  { path: "/air-passenger-traffic", component: AirPassengerTraffic },
-
+  {
+    path: "/air-passenger-traffic",
+    component: AirPassengerTraffic,
+    permission: "read air passengers traffic",
+  },
 
   //Railways Passengers
-  { path: "/railways-passengers", component: RailwaysPassengers },
+  {
+    path: "/railways-passengers",
+    component: RailwaysPassengers,
+    permission: "read railway passenger",
+  },
 
   //Rolling Stock (Railway)
-  { path: "/rolling-stock", component: RollingStock },
+  { path: "/rolling-stock", component: RollingStock, permission: "railway rolling stock" },
 
-  // this route should be at the end of all other routes
-  { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
+  //Rolling Stock (Railway)
+  { path: "/users", component: User, permission: "read user" },
 ];
 
 const authRoutes = [
@@ -251,4 +274,4 @@ const authRoutes = [
   { path: "/auth-lock-screen", component: LockScreen },
 ];
 
-export { userRoutes, authRoutes };
+export { userRoutes, authRoutes, permissionRoutes };

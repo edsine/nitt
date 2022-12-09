@@ -18,7 +18,6 @@ const INIT_STATE = {
 
 const airPassengerTraffic = (state = INIT_STATE, action) => {
   switch (action.type) {
-    //PASSENGER
     case GET_AIR_PASSENGER_TRAFFIC_SUCCESS:
       return {
         ...state,

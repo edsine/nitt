@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 
 //i18n
 import { withTranslation } from "react-i18next";
+import { checkPermisssion } from "../../helpers/check_permission";
 
 const SidebarContent = (props) => {
   const ref = useRef();
@@ -155,12 +156,23 @@ const SidebarContent = (props) => {
               </Link>
             </li>
 
-            <li>
-              <Link to="/rolling-stock" className=" waves-effect">
-                <i className="mdi mdi-airplane-landing"></i>
-                <span>{props.t("Rolling Stock")}</span>
-              </Link>
-            </li>
+            {checkPermisssion("read railway rolling stock") && (
+              <li>
+                <Link to="/rolling-stock" className=" waves-effect">
+                  <i className="mdi mdi-airplane-landing"></i>
+                  <span>{props.t("Rolling Stock")}</span>
+                </Link>
+              </li>
+            )}
+
+            {checkPermisssion("read user") && (
+              <li>
+                <Link to="/users" className=" waves-effect">
+                  <i className="mdi mdi-account"></i>
+                  <span>{props.t("Users")}</span>
+                </Link>
+              </li>
+            )}
 
             {/* <li>
               <Link to="/calendar" className=" waves-effect">

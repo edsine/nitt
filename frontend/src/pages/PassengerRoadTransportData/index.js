@@ -33,7 +33,7 @@ const PassengerRoadTransportData = (props) => {
     onGetPassengerRTD,
     deletePassengerRTD,
     error,
-    success
+    success,
   } = props;
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -152,10 +152,7 @@ const PassengerRoadTransportData = (props) => {
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
         />
-        <Breadcrumbs
-          title="Road transport Data"
-          breadcrumbItem="Passenger"
-        />
+        <Breadcrumbs title="Road transport Data" breadcrumbItem="Passenger" />
         {confirmAlert && (
           <SweetAlert
             title="Are you sure?"
@@ -182,16 +179,16 @@ const PassengerRoadTransportData = (props) => {
           <Col lg={12}>
             <Card>
               <CardBody>
-                <CardTitle>
-                  Road transport data (Passengers){" "}
+                <div className="d-flex justify-content-between">
+                  <CardTitle>Road transport data (Passengers) </CardTitle>
                   <Button
                     color="success"
-                    className="btn btn-success waves-effect waves-light"
+                    className="btn btn-success waves-effect waves-light float-right"
                     onClick={() => handleClick()}
                   >
                     Add
                   </Button>{" "}
-                </CardTitle>
+                </div>
                 <CardSubtitle className="mb-3"></CardSubtitle>
                 <MDBDataTable
                   responsive
@@ -217,14 +214,16 @@ PassengerRoadTransportData.propTypes = {
 };
 
 const mapStateToProps = ({ roadTransportData }) => ({
-  passengersRTD: roadTransportData.passengersRTD,
+  passengersRTD: Array.isArray(roadTransportData.passengersRTD)
+    ? roadTransportData.passengersRTD
+    : null,
   error: roadTransportData.error,
   success: roadTransportData.success,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGetPassengerRTD: () => dispatch(getPassengerRoadTransportData()),
-  deletePassengerRTD: (id) => dispatch(deletePassengerRoadTransportData(id))
+  deletePassengerRTD: (id) => dispatch(deletePassengerRoadTransportData(id)),
 });
 
 export default connect(

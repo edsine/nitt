@@ -179,7 +179,7 @@ class UserAPIController extends AppBaseController
      *
      * @return Response
      */
-    public function updateProfile($id, UpdateProfileAPIRequest $request)
+    public function updateProfile($id, Request $request)
     {
         $input = $request->all();
 

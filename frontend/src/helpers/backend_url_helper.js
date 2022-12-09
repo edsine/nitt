@@ -60,13 +60,24 @@ export const GET_AIR_PASSENGER_TRAFFIC = "air_passengers_traffic";
 export const ADD_AIR_PASSENGER_TRAFFIC = "air_passengers_traffic";
 
 // UPDATE AIR PASSENGER TRAFFIC
-export const UPDATE_AIR_PASSENGER_TRAFFIC = (id) => `air_passengers_traffic/${id}`;
+export const UPDATE_AIR_PASSENGER_TRAFFIC = (id) =>
+  `air_passengers_traffic/${id}`;
 
 // DELETE AIR PASSENGER TRAFFIC
-export const DELETE_AIR_PASSENGER_TRAFFIC = (id) => `air_passengers_traffic/${id}`;
+export const DELETE_AIR_PASSENGER_TRAFFIC = (id) =>
+  `air_passengers_traffic/${id}`;
+
+// GET USER
+export const GET_USERS = "users";
+
+// ADD USER
+export const ADD_USER = "users";
 
 // UPDATE USER
 export const PUT_USER = (id) => `users/${id}`;
+
+// DELETE USER
+export const DELETE_USER = (id) => `users/${id}`;
 
 // UPDATE PROFILE
 export const PUT_UPDATE_PROFILE = (id) => `users/update_profile/${id}`;

@@ -135,7 +135,7 @@ const Header = (props) => {
               {/* <NotificationDropdown /> */}
               {" "}
               <ProfileMenu />
-              <button
+              {/* <button
                 type="button"
                 className="btn header-item noti-icon right-bar-toggle waves-effect"
                 onClick={() => {
@@ -143,7 +143,7 @@ const Header = (props) => {
                 }}
               >
                 <i className="mdi mdi-settings-outline"></i>
-              </button>
+              </button> */}
             </div>
             <div>
               <div className="navbar-brand-box">
@@ -176,7 +176,7 @@ const Header = (props) => {
             >
               <i className="fa fa-fw fa-bars"></i>
             </button>
-              <Form className="app-search d-none d-lg-inline-block">
+              {/* <Form className="app-search d-none d-lg-inline-block">
                 <div className="position-relative">
                   <input
                     type="text"
@@ -185,7 +185,7 @@ const Header = (props) => {
                   />
                   <span className="bx bx-search-alt"></span>
                 </div>
-              </Form>{" "}
+              </Form>{" "} */}
               {/* <Dropdown
                 className="dropdown-mega d-none d-lg-inline-block ms-2"
                 isOpen={megaMenu}

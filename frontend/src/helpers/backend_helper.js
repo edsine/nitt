@@ -92,9 +92,18 @@ export const putAirPassengerTraffic = (data, id, config) =>
 export const deleteAirPassengerTraffic = (id, config) =>
   del(url.DELETE_AIR_PASSENGER_TRAFFIC(id), config);
 
+// Get Users
+export const getUsers = (config) => get(url.GET_USERS, config);
+
+// Add User
+export const postUser = (data, config) => post(url.ADD_USER, data, config);
+
 // Update User
 export const putUser = (data, id, config) =>
   put(url.PUT_USER(id), data, config);
+
+// Delete User
+export const deleteUser = (id, config) => del(url.DELETE_USER(id), config);
 
 // Update Profile
 export const putUpdateProfile = (data, id, config) =>

@@ -18,18 +18,14 @@ import {
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import "../../assets/scss/datatables.scss";
-import {
-  getFreightRoadTransportData,
-  deleteFreightRoadTransportData,
-} from "../../store/roadtransportdata/actions";
-import AddFreightRoadTransportData from "../../components/FreightRoadTransportData/addFreightRoadTransportData";
-import EditFreightRoadTransportData from "../../components/FreightRoadTransportData/editFreightRoadTransportData";
+import { deleteUser, getUsers } from "../../store/user/actions";
+import AddUser from "../../components/User/addUser";
+import EditUser from "../../components/User/editUser";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
 
-const FreightRoadTransportData = (props) => {
-  const { freightRTD, onGetFreightRTD, deleteFreightRTD, error, success } =
-    props;
+const User = (props) => {
+  const { users, onGetUsers, deleteUser, error, success } = props;
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
@@ -47,29 +43,29 @@ const FreightRoadTransportData = (props) => {
   };
 
   const handleDelete = () => {
-    deleteFreightRTD(currentId);
+    deleteUser(currentId);
     setConfirmAlert(false);
   };
 
   const onEditClick = (id) => {
     setIsEditModalOpen(true);
     setCurrentId(id);
-    const editData = freightRTD.find((item, index) => {
+    const editData = users.find((item, index) => {
       return item.id === id;
     });
     setCurrentEditData(editData);
   };
 
   useEffect(() => {
-    onGetFreightRTD();
+    onGetUsers();
   }, [
-    onGetFreightRTD,
+    onGetUsers,
     success?.addSuccess,
     success?.editSuccess,
     success?.deleteSuccess,
   ]);
 
-  const dataFreight = {
+  const dataUsers = {
     columns: [
       {
         label: "Year",
@@ -78,8 +74,8 @@ const FreightRoadTransportData = (props) => {
         width: 150,
       },
       {
-        label: "No of Tonnes carried",
-        field: "number_of_tonnes_carried",
+        label: "No of Passengers carried",
+        field: "number_of_passengers_carried",
         sort: "asc",
         width: 270,
       },
@@ -113,16 +109,11 @@ const FreightRoadTransportData = (props) => {
         sort: "asc",
         width: 100,
       },
-      {
-        label: "Action",
-        field: "action",
-        width: 200,
-      },
     ],
-    rows: freightRTD?.map((item, index) => {
+    rows: users?.map((item, index) => {
       item.action = (
         <TableAction
-          id={freightRTD[index].id}
+          id={users[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
         />
@@ -138,16 +129,13 @@ const FreightRoadTransportData = (props) => {
   return (
     <React.Fragment>
       <div className="page-content">
-        <AddFreightRoadTransportData
-          isOpen={isAddModalOpen}
-          setIsOpen={setIsAddModalOpen}
-        />
-        <EditFreightRoadTransportData
+        <AddUser isOpen={isAddModalOpen} setIsOpen={setIsAddModalOpen} />
+        <EditUser
           oldData={currentEditData}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
         />
-        <Breadcrumbs title="Road transport Data" breadcrumbItem="Freight" />
+        <Breadcrumbs title="All Users" breadcrumbItem="Users" />
         {confirmAlert && (
           <SweetAlert
             title="Are you sure?"
@@ -170,12 +158,13 @@ const FreightRoadTransportData = (props) => {
         {success?.deleteSuccess && success?.deleteSuccess ? (
           <Alert color="success">{success?.deleteSuccess}</Alert>
         ) : null}
+
         <Row>
           <Col className="col-12">
             <Card>
               <CardBody>
                 <div className="d-flex justify-content-between">
-                  <CardTitle>Road transport data (Freight)</CardTitle>
+                  <CardTitle>Users </CardTitle>
                   <Button
                     color="success"
                     className="btn btn-success waves-effect waves-light float-right"
@@ -185,8 +174,7 @@ const FreightRoadTransportData = (props) => {
                   </Button>{" "}
                 </div>
                 <CardSubtitle className="mb-3"></CardSubtitle>
-
-                <MDBDataTable responsive striped bordered data={dataFreight} />
+                <MDBDataTable responsive striped bordered data={dataUsers} />
               </CardBody>
             </Card>
           </Col>
@@ -196,28 +184,23 @@ const FreightRoadTransportData = (props) => {
   );
 };
 
-FreightRoadTransportData.propTypes = {
-  freightRTD: PropTypes.array,
-  onGetFreightRTD: PropTypes.func,
-  deleteFreightRTD: PropTypes.func,
+User.propTypes = {
+  users: PropTypes.array,
+  onGetUsers: PropTypes.func,
+  deleteUser: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStateToProps = ({ roadTransportData }) => ({
-  freightRTD: Array.isArray(roadTransportData.freightRTD)
-    ? roadTransportData.freightRTD
-    : null,
-  error: roadTransportData.error,
-  success: roadTransportData.success,
+const mapStateToProps = ({ users }) => ({
+  users: Array.isArray(users.users) ? users.users : null,
+  error: users.error,
+  success: users.success,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetFreightRTD: () => dispatch(getFreightRoadTransportData()),
-  deleteFreightRTD: (id) => dispatch(deleteFreightRoadTransportData(id)),
+  onGetUsers: () => dispatch(getUsers()),
+  deleteUser: (id) => dispatch(deleteUser(id)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(FreightRoadTransportData));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(User));

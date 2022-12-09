@@ -26,3 +26,6 @@ export * from "./airtransportdata/actions";
 
 // Air Passenger Traffic
 export * from "./airpassengertraffic/actions";
+
+// Users
+export * from "./user/actions";
