@@ -109,9 +109,10 @@ import UserProfile from "../pages/Authentication/user-profile";
 import VehicleImportation from "../pages/VehicleImportation/VehicleImportation";
 import PassengerRoadTransportData from "../pages/PassengerRoadTransportData";
 import FreightRoadTransportData from "../pages/FreightRoadTransportData";
-import AirTransportData from "../pages/AirTransportData/AirTransportData";
+import AirTransportData from "../pages/AirTransportData";
 import RailwaysPassengers from "../pages/RailwaysPassengers/RailwaysPassengers";
 import RollingStock from "../pages/RollingStock/RollingStock";
+import AirPassengerTraffic from "../pages/AirPassengerTraffic/AirPassengerTraffic";
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
@@ -217,6 +218,9 @@ const userRoutes = [
 
   //Air transport data
   { path: "/air-transport-data", component: AirTransportData },
+
+  //Air Passenger Traffic
+  { path: "/air-passenger-traffic", component: AirPassengerTraffic },
 
   //Railways Passengers
   { path: "/railways-passengers", component: RailwaysPassengers },

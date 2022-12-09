@@ -6,7 +6,7 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import { addPassengerRoadTransportData } from "../../store/actions";
 
 const AddPassengerRoadTransportData = (props) => {
-  const { isOpen, setIsOpen } = props;
+  const { isOpen, setIsOpen, error, success, onAddPassengerRTD } = props;
 
   const removeBodyCss = () => {
     document.body.classList.add("no_padding");
@@ -17,7 +17,7 @@ const AddPassengerRoadTransportData = (props) => {
   };
 
   const handleValidSubmit = (event, values) => {
-    props.onAddPassengerRTD(values);
+    onAddPassengerRTD(values);
   };
 
   return (
@@ -27,11 +27,11 @@ const AddPassengerRoadTransportData = (props) => {
         toggle();
       }}
     >
-      {props.error?.addError && props.error.addError ? (
-        <Alert color="danger">{props.error?.addError}</Alert>
+      {error?.addError && error.addError ? (
+        <Alert color="danger">{error?.addError}</Alert>
       ) : null}
-      {props.success?.addSuccess && props.success?.addSuccess ? (
-        <Alert color="success">{props.success?.addSuccess}</Alert>
+      {success?.addSuccess && success?.addSuccess ? (
+        <Alert color="success">{success?.addSuccess}</Alert>
       ) : null}
       <AvForm
         className="needs-validation"

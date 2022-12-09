@@ -28,7 +28,8 @@ import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
 
 const FreightRoadTransportData = (props) => {
-  const { freightRTD, onGetFreightRTD, deleteFreightRTD } = props;
+  const { freightRTD, onGetFreightRTD, deleteFreightRTD, error, success } =
+    props;
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
@@ -63,9 +64,9 @@ const FreightRoadTransportData = (props) => {
     onGetFreightRTD();
   }, [
     onGetFreightRTD,
-    props.success?.addSuccess,
-    props.success?.editSuccess,
-    props.success?.deleteSuccess,
+    success?.addSuccess,
+    success?.editSuccess,
+    success?.deleteSuccess,
   ]);
 
   const dataFreight = {
@@ -163,11 +164,11 @@ const FreightRoadTransportData = (props) => {
             You won't be able to revert this!
           </SweetAlert>
         )}
-        {props.error?.deleteError && props.error.deleteError ? (
-          <Alert color="danger">{props.error?.deleteError}</Alert>
+        {error?.deleteError && error.deleteError ? (
+          <Alert color="danger">{error?.deleteError}</Alert>
         ) : null}
-        {props.success?.deleteSuccess && props.success?.deleteSuccess ? (
-          <Alert color="success">{props.success?.deleteSuccess}</Alert>
+        {success?.deleteSuccess && success?.deleteSuccess ? (
+          <Alert color="success">{success?.deleteSuccess}</Alert>
         ) : null}
         <Row>
           <Col className="col-12">

@@ -11,7 +11,7 @@ export const POST_LOGOUT = "auth/logout";
 export const GET_AUTHENTICATED_USER = "user";
 
 // GET APP PERMISSIONS
-export const GET_APP_PERMISSIONS = "permissions"
+export const GET_APP_PERMISSIONS = "permissions";
 
 // GET ROAD TRANSPORT DATA (PASSENGERS)
 export const GET_PASSENGER_ROAD_TRANSPORT_DATA =
@@ -40,6 +40,18 @@ export const UPDATE_FREIGHT_RTD = (id) => `freight_road_transport_data/${id}`;
 
 // DELETE ROAD TRANSPORT DATA (PASSENGERS)
 export const DELETE_FREIGHT_RTD = (id) => `freight_road_transport_data/${id}`;
+
+// GET AIR TRANSPORT DATA
+export const GET_AIR_TRANSPORT_DATA = "air_transport_data";
+
+// ADD AIR TRANSPORT DATA
+export const ADD_AIR_TRANSPORT_DATA = "air_transport_data";
+
+// UPDATE AIR TRANSPORT DATA
+export const UPDATE_AIR_TRANSPORT_DATA = (id) => `air_transport_data/${id}`;
+
+// DELETE AIR TRANSPORT DATA
+export const DELETE_AIR_TRANSPORT_DATA = (id) => `air_transport_data/${id}`;
 
 // UPDATE USER
 export const PUT_USER = (id) => `users/${id}`;

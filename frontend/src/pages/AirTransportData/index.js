@@ -10,30 +10,29 @@ import {
   Card,
   CardBody,
   CardTitle,
+  Alert,
   CardSubtitle,
   Button,
-  Alert,
 } from "reactstrap";
-
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import "../../assets/scss/datatables.scss";
 import {
-  getPassengerRoadTransportData,
-  deletePassengerRoadTransportData,
-} from "../../store/roadtransportdata/actions";
-import AddPassengerRoadTransportData from "../../components/PassengerRoadTransportData/addPassengerRoadTransportData";
-import EditPassengerRoadTransportData from "../../components/PassengerRoadTransportData/editPassengerRoadTransportData";
+  getAirTransportData,
+  deleteAirTransportData,
+} from "../../store/airtransportdata/actions";
+import AddAirTransportData from "../../components/AirTransportData/addAirTransportData";
+import EditAirTransportData from "../../components/AirTransportData/editAirTransportData";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
 
-const PassengerRoadTransportData = (props) => {
+const AirTransportData = (props) => {
   const {
-    passengersRTD,
-    onGetPassengerRTD,
-    deletePassengerRTD,
+    airTransportData,
+    onGetAirTransportData,
+    deleteAirTransportData,
+    success,
     error,
-    success
   } = props;
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -52,29 +51,29 @@ const PassengerRoadTransportData = (props) => {
   };
 
   const handleDelete = () => {
-    deletePassengerRTD(currentId);
+    deleteAirTransportData(currentId);
     setConfirmAlert(false);
   };
 
   const onEditClick = (id) => {
     setIsEditModalOpen(true);
     setCurrentId(id);
-    const editData = passengersRTD.find((item, index) => {
+    const editData = airTransportData.find((item, index) => {
       return item.id === id;
     });
     setCurrentEditData(editData);
   };
 
   useEffect(() => {
-    onGetPassengerRTD();
+    onGetAirTransportData();
   }, [
-    onGetPassengerRTD,
+    onGetAirTransportData,
     success?.addSuccess,
     success?.editSuccess,
     success?.deleteSuccess,
   ]);
 
-  const dataPassengers = {
+  const data = {
     columns: [
       {
         label: "Year",
@@ -83,37 +82,37 @@ const PassengerRoadTransportData = (props) => {
         width: 150,
       },
       {
-        label: "No of Passengers carried",
-        field: "number_of_passengers_carried",
+        label: "Domestic Registered Airlines",
+        field: "number_of_domestic_registered_airlines",
         sort: "asc",
         width: 270,
       },
       {
-        label: "No of Vehicle in fleet",
-        field: "number_of_vehicles_in_fleet",
+        label: "International Registered Airlines",
+        field: "number_of_international_registered_airlines",
         sort: "asc",
         width: 200,
       },
       {
-        label: "Revenue from operation",
-        field: "revenue_from_operation",
+        label: "Domestic Deregistered Airlines",
+        field: "number_of_domestic_deregistered_airlines",
         sort: "asc",
         width: 100,
       },
       {
-        label: "No. of Employee",
-        field: "number_of_employees",
+        label: "International Deregistered Airlines",
+        field: "number_of_international_deregistered_airlines",
         sort: "asc",
         width: 150,
       },
       {
-        label: "Annual cost of vehicle maintenance",
-        field: "annual_cost_of_vehicle_maintenance",
+        label: "Near Air Accidents",
+        field: "number_of_near_accidents",
         sort: "asc",
         width: 100,
       },
       {
-        label: "No. of Accident",
+        label: "Air Accidents",
         field: "number_of_accidents",
         sort: "asc",
         width: 100,
@@ -124,10 +123,10 @@ const PassengerRoadTransportData = (props) => {
         width: 200,
       },
     ],
-    rows: passengersRTD?.map((item, index) => {
+    rows: airTransportData?.map((item, index) => {
       item.action = (
         <TableAction
-          id={passengersRTD[index].id}
+          id={airTransportData[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
         />
@@ -143,18 +142,18 @@ const PassengerRoadTransportData = (props) => {
   return (
     <React.Fragment>
       <div className="page-content">
-        <AddPassengerRoadTransportData
+        <AddAirTransportData
           isOpen={isAddModalOpen}
           setIsOpen={setIsAddModalOpen}
         />
-        <EditPassengerRoadTransportData
+        <EditAirTransportData
           oldData={currentEditData}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
         />
         <Breadcrumbs
-          title="Road transport Data"
-          breadcrumbItem="Passenger"
+          title="Air transport Data"
+          breadcrumbItem="Transport data"
         />
         {confirmAlert && (
           <SweetAlert
@@ -178,12 +177,13 @@ const PassengerRoadTransportData = (props) => {
         {success?.deleteSuccess && success?.deleteSuccess ? (
           <Alert color="success">{success?.deleteSuccess}</Alert>
         ) : null}
+
         <Row>
-          <Col lg={12}>
+          <Col className="col-12">
             <Card>
               <CardBody>
                 <CardTitle>
-                  Road transport data (Passengers){" "}
+                  Air transport data
                   <Button
                     color="success"
                     className="btn btn-success waves-effect waves-light"
@@ -193,12 +193,8 @@ const PassengerRoadTransportData = (props) => {
                   </Button>{" "}
                 </CardTitle>
                 <CardSubtitle className="mb-3"></CardSubtitle>
-                <MDBDataTable
-                  responsive
-                  striped
-                  bordered
-                  data={dataPassengers}
-                />
+
+                <MDBDataTable responsive striped bordered data={data} />
               </CardBody>
             </Card>
           </Col>
@@ -208,26 +204,26 @@ const PassengerRoadTransportData = (props) => {
   );
 };
 
-PassengerRoadTransportData.propTypes = {
-  passengersRTD: PropTypes.array,
-  onGetPassengerRTD: PropTypes.func,
-  deletePassengerRTD: PropTypes.func,
+AirTransportData.propTypes = {
+  airTransportData: PropTypes.array,
+  onGetAirTransportData: PropTypes.func,
+  deleteAirTransportData: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStateToProps = ({ roadTransportData }) => ({
-  passengersRTD: roadTransportData.passengersRTD,
-  error: roadTransportData.error,
-  success: roadTransportData.success,
+const mapStateToProps = ({ airTransportData }) => ({
+  airTransportData: airTransportData.airTransportData,
+  error: airTransportData.error,
+  success: airTransportData.success,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetPassengerRTD: () => dispatch(getPassengerRoadTransportData()),
-  deletePassengerRTD: (id) => dispatch(deletePassengerRoadTransportData(id))
+  onGetAirTransportData: () => dispatch(getAirTransportData()),
+  deleteAirTransportData: (id) => dispatch(deleteAirTransportData(id)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(PassengerRoadTransportData));
+)(withRouter(AirTransportData));

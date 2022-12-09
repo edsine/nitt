@@ -113,20 +113,39 @@ const SidebarContent = (props) => {
 
             <li>
               <Link to="/#" className="waves-effect">
-                <i className="mdi mdi-airplay"></i><span className="badge rounded-pill bg-info float-end"></span>
+                <i className="mdi mdi-airplay"></i>
+                <span className="badge rounded-pill bg-info float-end"></span>
                 <span>{props.t("Road transport data")}</span>
               </Link>
               <ul className="sub-menu">
-                <li><Link to="/passenger-road-transport-data">{props.t("Passenger")}</Link></li>
-                <li><Link to="/freight-road-transport-data">{props.t("Freight")}</Link></li>
+                <li>
+                  <Link to="/passenger-road-transport-data">
+                    {props.t("Passenger")}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/freight-road-transport-data">
+                    {props.t("Freight")}
+                  </Link>
+                </li>
               </ul>
             </li>
-
             <li>
-              <Link to="/air-transport-data" className=" waves-effect">
-                <i className="mdi mdi-airplane-landing"></i>
+              <Link to="/#" className="waves-effect">
+                <i className="mdi mdi-airplay"></i>
+                <span className="badge rounded-pill bg-info float-end"></span>
                 <span>{props.t("Air transport data")}</span>
               </Link>
+              <ul className="sub-menu">
+                <li>
+                  <Link to="/air-transport-data">
+                    {props.t("Transport data")}
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/air-passenger-traffic">{props.t("Traffic")}</Link>
+                </li>
+              </ul>
             </li>
 
             <li>

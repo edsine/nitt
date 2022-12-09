@@ -17,7 +17,7 @@ export const isUserAuthenticated = () => {
 // Get App Permissions
 export const getAppPermissions = (config) =>
   get(url.GET_APP_PERMISSIONS, config);
-  
+
 // Login Method
 export const postLogin = (data) => post(url.POST_LOGIN, data);
 
@@ -59,6 +59,22 @@ export const putFreightRoadTransportData = (data, id, config) =>
 // Delete Road Transport Data (Freight)
 export const deleteFreightRoadTransportData = (id, config) =>
   del(url.DELETE_FREIGHT_RTD(id), config);
+
+// Get Air Transport Data
+export const getAirTransportData = (config) =>
+  get(url.GET_AIR_TRANSPORT_DATA, config);
+
+// Add Air Transport Data
+export const postAirTransportData = (data, config) =>
+  post(url.ADD_AIR_TRANSPORT_DATA, data, config);
+
+// Update Air Transport Data
+export const putAirTransportData = (data, id, config) =>
+  put(url.UPDATE_AIR_TRANSPORT_DATA(id), data, config);
+
+// Delete Air Transport Data
+export const deleteAirTransportData = (id, config) =>
+  del(url.DELETE_AIR_TRANSPORT_DATA(id), config);
 
 // Update User
 export const putUser = (data, id, config) =>

@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
-import { editFreightRoadTransportData } from "../../store/actions";
+import { addAirTransportData } from "../../store/actions";
 
-const EditFreightRoadTransportData = (props) => {
-  const { isOpen, setIsOpen, oldData, onEditFreightRTD, error, success } = props;
+const AddAirTransportData = (props) => {
+  const { isOpen, setIsOpen, error, success, onAddAirTransportData } = props;
 
   const removeBodyCss = () => {
     document.body.classList.add("no_padding");
@@ -17,7 +17,7 @@ const EditFreightRoadTransportData = (props) => {
   };
 
   const handleValidSubmit = (event, values) => {
-    onEditFreightRTD(values, oldData.id);
+    onAddAirTransportData(values);
   };
 
   return (
@@ -27,11 +27,11 @@ const EditFreightRoadTransportData = (props) => {
         toggle();
       }}
     >
-      {error?.editError && error.editError ? (
-        <Alert color="danger">{error?.editError}</Alert>
+      {error?.addError && error.addError ? (
+        <Alert color="danger">{error?.addError}</Alert>
       ) : null}
-      {success?.editSuccess && success?.editSuccess ? (
-        <Alert color="success">{success?.editSuccess}</Alert>
+      {success?.addSuccess && success?.addSuccess ? (
+        <Alert color="success">{success?.addSuccess}</Alert>
       ) : null}
       <AvForm
         className="needs-validation"
@@ -41,7 +41,7 @@ const EditFreightRoadTransportData = (props) => {
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
-            Edit Freight Road Transport Data
+            Add Air Transport Data
           </h5>
           <button
             type="button"
@@ -64,7 +64,6 @@ const EditFreightRoadTransportData = (props) => {
                   name="year"
                   placeholder=""
                   type="number"
-                  value={oldData?.year}
                   errorMessage="Select a Year"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -74,16 +73,33 @@ const EditFreightRoadTransportData = (props) => {
             </Col>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="numberOfTonnesCarried">Tonnes Carried</Label>
+                <Label htmlFor="numberOfDomesticRegisteredAirlines">
+                  Domestic Registered Airlines
+                </Label>
                 <AvField
-                  name="number_of_tonnes_carried"
+                  name="number_of_domestic_registered_airlines"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_tonnes_carried}
-                  errorMessage="Enter Number of Tonnes Carried."
+                  errorMessage="Enter Number of Domestic Registered Airlines."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="numberOfTonnesCarried"
+                  id="numberOfDomesticRegisteredAirlines"
+                />
+              </div>
+            </Col>
+            <Col md="6">
+              <div className="mb-3">
+                <Label htmlFor="numberOfDomesticDeregisteredAirlines">
+                  Domestic Deregistered Airlines
+                </Label>
+                <AvField
+                  name="number_of_domestic_deregistered_airlines"
+                  placeholder=""
+                  type="number"
+                  errorMessage="Enter Number of Domestic Deregistered Airlines."
+                  className="form-control"
+                  validate={{ required: { value: true } }}
+                  id="numberOfDomesticDeregisteredAirlines"
                 />
               </div>
             </Col>
@@ -91,67 +107,49 @@ const EditFreightRoadTransportData = (props) => {
           <Row>
             <Col md="4">
               <div className="mb-3">
-                <Label htmlFor="numberOfVehiclesInFleet">
-                  No. of Vehicles in Fleet
+                <Label htmlFor="numberOfInternationalRegisteredAirlines">
+                  International Registered Airlines
                 </Label>
                 <AvField
-                  name="number_of_vehicles_in_fleet"
+                  name="number_of_international_registered_airlines"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_vehicles_in_fleet}
-                  errorMessage="Enter Number of Vehicles in Fleet."
+                  errorMessage="Enter Number of International Registered Airlines."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="numberOfVehiclesInFleet"
+                  id="numberOfInternationalRegisteredAirlines"
                 />
               </div>
             </Col>
             <Col md="4">
               <div className="mb-3">
-                <Label htmlFor="revenueFromOperation">
-                  Revenue from Operation
+                <Label htmlFor="numberOfInternationalDeregisteredAirlines">
+                  International Deregistered Airlines
                 </Label>
                 <AvField
-                  name="revenue_from_operation"
+                  name="number_of_international_deregistered_airlines"
                   placeholder=""
                   type="number"
-                  value={oldData?.revenue_from_operation}
-                  errorMessage="Enter Revenue from Operations"
+                  errorMessage="Enter Number of International Deregistered Airlines."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="revenueFromOperation"
+                  id="numberOfInternationalDeregisteredAirlines"
                 />
               </div>
             </Col>
             <Col md="4">
               <div className="mb-3">
-                <Label htmlFor="numberOfEmployees">Number of Employees</Label>
-                <AvField
-                  name="number_of_employees"
-                  placeholder=""
-                  type="number"
-                  value={oldData?.number_of_employees}
-                  errorMessage="Enter Number of Employees"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="numberOfEmployees"
-                />
-              </div>
-            </Col>
-            <Col md="12">
-              <div className="mb-3">
-                <Label htmlFor="annualCostOfVehicleMaintenance">
-                  Annual Cost of Vehicle Maintenance
+                <Label htmlFor="numberOfNearAccidents">
+                  No. of Near Accidents
                 </Label>
                 <AvField
-                  name="annual_cost_of_vehicle_maintenance"
+                  name="number_of_near_accidents"
                   placeholder=""
                   type="number"
-                  value={oldData?.annual_cost_of_vehicle_maintenance}
-                  errorMessage="Enter Annual Cost of Vehicle Maintenance"
+                  errorMessage="Enter Number of Near Accidents"
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="annualCostOfVehicleMaintenance"
+                  id="numberOfNearAccidents"
                 />
               </div>
             </Col>
@@ -162,7 +160,6 @@ const EditFreightRoadTransportData = (props) => {
                   name="number_of_accidents"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_accidents}
                   errorMessage="Enter Number of Accidents"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -195,23 +192,22 @@ const EditFreightRoadTransportData = (props) => {
   );
 };
 
-EditFreightRoadTransportData.propTypes = {
-  onEditFreightRTD: PropTypes.func,
+AddAirTransportData.propTypes = {
+  onAddAirTransportData: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
 const mapStatetoProps = (state) => {
-  const { error, success } = state.roadTransportData;
+  const { error, success } = state.airTransportData;
   return { error, success };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onEditFreightRTD: (values, id) =>
-    dispatch(editFreightRoadTransportData(values, id)),
+  onAddAirTransportData: (values) => dispatch(addAirTransportData(values)),
 });
 
 export default connect(
   mapStatetoProps,
   mapDispatchToProps
-)(EditFreightRoadTransportData);
+)(AddAirTransportData);

@@ -20,3 +20,6 @@ export * from "./contacts/actions"
 
 // Road Transport Data
 export * from "./roadtransportdata/actions"
+
+// Air Transport Data
+export * from "./airtransportdata/actions"
