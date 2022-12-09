@@ -112,7 +112,7 @@ import FreightRoadTransportData from "../pages/FreightRoadTransportData";
 import AirTransportData from "../pages/AirTransportData";
 import RailwaysPassengers from "../pages/RailwaysPassengers/RailwaysPassengers";
 import RollingStock from "../pages/RollingStock/RollingStock";
-import AirPassengerTraffic from "../pages/AirPassengerTraffic/AirPassengerTraffic";
+import AirPassengerTraffic from "../pages/AirPassengerTraffic";
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
@@ -221,6 +221,7 @@ const userRoutes = [
 
   //Air Passenger Traffic
   { path: "/air-passenger-traffic", component: AirPassengerTraffic },
+
 
   //Railways Passengers
   { path: "/railways-passengers", component: RailwaysPassengers },

@@ -76,6 +76,22 @@ export const putAirTransportData = (data, id, config) =>
 export const deleteAirTransportData = (id, config) =>
   del(url.DELETE_AIR_TRANSPORT_DATA(id), config);
 
+// Get Air Passenger Traffic
+export const getAirPassengerTraffic = (config) =>
+  get(url.GET_AIR_PASSENGER_TRAFFIC, config);
+
+// Add Air Passenger Traffic
+export const postAirPassengerTraffic = (data, config) =>
+  post(url.ADD_AIR_PASSENGER_TRAFFIC, data, config);
+
+// Update Air Passenger Traffic
+export const putAirPassengerTraffic = (data, id, config) =>
+  put(url.UPDATE_AIR_PASSENGER_TRAFFIC(id), data, config);
+
+// Delete Air Passenger Traffic
+export const deleteAirPassengerTraffic = (id, config) =>
+  del(url.DELETE_AIR_PASSENGER_TRAFFIC(id), config);
+
 // Update User
 export const putUser = (data, id, config) =>
   put(url.PUT_USER(id), data, config);

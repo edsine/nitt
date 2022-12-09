@@ -1,25 +1,28 @@
-export * from "./layout/actions"
+export * from "./layout/actions";
 
 // Authentication module
-export * from "./auth/register/actions"
-export * from "./auth/login/actions"
-export * from "./auth/forgetpwd/actions"
-export * from "./auth/profile/actions"
+export * from "./auth/register/actions";
+export * from "./auth/login/actions";
+export * from "./auth/forgetpwd/actions";
+export * from "./auth/profile/actions";
 
 //Calendar
-export * from "./calendar/actions"
+export * from "./calendar/actions";
 
 //chat
-export * from "./chat/actions"
+export * from "./chat/actions";
 
 // tasks
-export * from "./tasks/actions"
+export * from "./tasks/actions";
 
 // contacts
-export * from "./contacts/actions"
+export * from "./contacts/actions";
 
 // Road Transport Data
-export * from "./roadtransportdata/actions"
+export * from "./roadtransportdata/actions";
 
 // Air Transport Data
-export * from "./airtransportdata/actions"
+export * from "./airtransportdata/actions";
+
+// Air Passenger Traffic
+export * from "./airpassengertraffic/actions";

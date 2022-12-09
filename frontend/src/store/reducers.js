@@ -27,6 +27,9 @@ import roadTransportData from "./roadtransportdata/reducer";
 // Air Transport Data
 import airTransportData from "./airtransportdata/reducer";
 
+// Air Passenger
+import airPassengerTraffic from "./airpassengertraffic/reducer";
+
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -39,7 +42,8 @@ const rootReducer = combineReducers({
   tasks,
   contacts,
   roadTransportData,
-  airTransportData
+  airTransportData,
+  airPassengerTraffic
 })
 
 export default rootReducer

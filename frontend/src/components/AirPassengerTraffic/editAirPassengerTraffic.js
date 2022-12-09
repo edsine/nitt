@@ -3,11 +3,17 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
-import { editAirTransportData } from "../../store/actions";
+import { editAirPassengerTraffic } from "../../store/actions";
 
-const EditAirTransportData = (props) => {
-  const { isOpen, setIsOpen, oldData, onEditAirTransportData, error, success } =
-    props;
+const EditAirPassengerTraffic = (props) => {
+  const {
+    isOpen,
+    setIsOpen,
+    oldData,
+    onEditAirPassengerTraffic,
+    error,
+    success,
+  } = props;
 
   const removeBodyCss = () => {
     document.body.classList.add("no_padding");
@@ -18,7 +24,7 @@ const EditAirTransportData = (props) => {
   };
 
   const handleValidSubmit = (event, values) => {
-    onEditAirTransportData(values, oldData.id);
+    onEditAirPassengerTraffic(values, oldData.id);
   };
 
   return (
@@ -42,7 +48,7 @@ const EditAirTransportData = (props) => {
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
-            Edit Air Transport Data
+            Edit Air Passenger Traffic
           </h5>
           <button
             type="button"
@@ -75,35 +81,35 @@ const EditAirTransportData = (props) => {
             </Col>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="numberOfDomesticRegisteredAirlines">
-                  Domestic Registered Airlines
+                <Label htmlFor="domesticPassengersTraffic">
+                  Domestic Passenger Traffic
                 </Label>
                 <AvField
-                  name="number_of_domestic_registered_airlines"
+                  name="domestic_passengers_traffic"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_domestic_registered_airlines}
-                  errorMessage="Enter Number of Domestic Registered Airlines."
+                  value={oldData?.domestic_passengers_traffic}
+                  errorMessage="Enter Number of Domestic Passenger Traffic."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="numberOfDomesticRegisteredAirlines"
+                  id="domesticPassengersTraffic"
                 />
               </div>
             </Col>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="numberOfDomesticDeregisteredAirlines">
-                  Domestic Deregistered Airlines
+                <Label htmlFor="internationalPassengersTraffic">
+                  International Passenger Traffic
                 </Label>
                 <AvField
-                  name="number_of_domestic_deregistered_airlines"
+                  name="international_passengers_traffic"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_domestic_deregistered_airlines}
-                  errorMessage="Enter Number of Domestic Deregistered Airlines."
+                  value={oldData?.international_passengers_traffic}
+                  errorMessage="Enter Number of International Passenger Traffic."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="numberOfDomesticDeregisteredAirlines"
+                  id="internationalPassengersTraffic"
                 />
               </div>
             </Col>
@@ -111,67 +117,35 @@ const EditAirTransportData = (props) => {
           <Row>
             <Col md="4">
               <div className="mb-3">
-                <Label htmlFor="numberOfInternationalRegisteredAirlines">
-                  International Registered Airlines
+                <Label htmlFor="domesticFreightTraffic">
+                  Domestic Freight Traffic
                 </Label>
                 <AvField
-                  name="number_of_international_registered_airlines"
+                  name="domestic_freight_traffic"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_international_registered_airlines}
-                  errorMessage="Enter Number of International Registered Airlines."
+                  value={oldData?.domestic_freight_traffic}
+                  errorMessage="Enter Number of Domestic Freight Traffic."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="numberOfInternationalRegisteredAirlines"
+                  id="domesticFreightTraffic"
                 />
               </div>
             </Col>
             <Col md="4">
               <div className="mb-3">
-                <Label htmlFor="numberOfInternationalDeregisteredAirlines">
-                  International Deregistered Airlines
+                <Label htmlFor="internationalFreightTraffic">
+                  International Freight Traffic
                 </Label>
                 <AvField
-                  name="number_of_international_deregistered_airlines"
+                  name="international_freight_traffic"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_international_deregistered_airlines}
-                  errorMessage="Enter Number of International Deregistered Airlines."
+                  value={oldData?.international_freight_traffic}
+                  errorMessage="Enter Number of International Freight Traffic."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="numberOfInternationalDeregisteredAirlines"
-                />
-              </div>
-            </Col>
-            <Col md="4">
-              <div className="mb-3">
-                <Label htmlFor="numberOfNearAccidents">
-                  No. of Near Accidents
-                </Label>
-                <AvField
-                  name="number_of_near_accidents"
-                  placeholder=""
-                  type="number"
-                  value={oldData?.number_of_near_accidents}
-                  errorMessage="Enter Number of Near Accidents"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="numberOfNearAccidents"
-                />
-              </div>
-            </Col>
-            <Col md="4">
-              <div className="mb-3">
-                <Label htmlFor="numberOfAccidents">No. of Accidents</Label>
-                <AvField
-                  name="number_of_accidents"
-                  placeholder=""
-                  type="number"
-                  value={oldData?.number_of_accidents}
-                  errorMessage="Enter Number of Accidents"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="numberOfAccidents"
+                  id="internationalFreightTraffic"
                 />
               </div>
             </Col>
@@ -200,23 +174,23 @@ const EditAirTransportData = (props) => {
   );
 };
 
-EditAirTransportData.propTypes = {
-  onEditAirTransportData: PropTypes.func,
+EditAirPassengerTraffic.propTypes = {
+  onEditAirPassengerTraffic: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStatetoProps = ({ airTransportData }) => {
-  const { error, success } = airTransportData;
+const mapStatetoProps = ({ airPassengerTraffic }) => {
+  const { error, success } = airPassengerTraffic;
   return { error, success };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onEditAirTransportData: (values, id) =>
-    dispatch(editAirTransportData(values, id)),
+  onEditAirPassengerTraffic: (values, id) =>
+    dispatch(editAirPassengerTraffic(values, id)),
 });
 
 export default connect(
   mapStatetoProps,
   mapDispatchToProps
-)(EditAirTransportData);
+)(EditAirPassengerTraffic);

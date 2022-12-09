@@ -198,8 +198,8 @@ AddAirTransportData.propTypes = {
   success: PropTypes.any,
 };
 
-const mapStatetoProps = (state) => {
-  const { error, success } = state.airTransportData;
+const mapStatetoProps = ({ airTransportData }) => {
+  const { error, success } = airTransportData;
   return { error, success };
 };
 

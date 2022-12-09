@@ -194,8 +194,8 @@ AddFreightRoadTransportData.propTypes = {
   success: PropTypes.any,
 };
 
-const mapStatetoProps = (state) => {
-  const { error, success } = state.roadTransportData;
+const mapStatetoProps = ({ roadTransportData }) => {
+  const { error, success } = roadTransportData;
   return { error, success };
 };
 

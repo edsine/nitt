@@ -53,6 +53,18 @@ export const UPDATE_AIR_TRANSPORT_DATA = (id) => `air_transport_data/${id}`;
 // DELETE AIR TRANSPORT DATA
 export const DELETE_AIR_TRANSPORT_DATA = (id) => `air_transport_data/${id}`;
 
+// GET AIR PASSENGER TRAFFIC
+export const GET_AIR_PASSENGER_TRAFFIC = "air_passengers_traffic";
+
+// ADD AIR PASSENGER TRAFFIC
+export const ADD_AIR_PASSENGER_TRAFFIC = "air_passengers_traffic";
+
+// UPDATE AIR PASSENGER TRAFFIC
+export const UPDATE_AIR_PASSENGER_TRAFFIC = (id) => `air_passengers_traffic/${id}`;
+
+// DELETE AIR PASSENGER TRAFFIC
+export const DELETE_AIR_PASSENGER_TRAFFIC = (id) => `air_passengers_traffic/${id}`;
+
 // UPDATE USER
 export const PUT_USER = (id) => `users/${id}`;
 

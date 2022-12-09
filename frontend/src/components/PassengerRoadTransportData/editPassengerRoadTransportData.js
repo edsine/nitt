@@ -6,7 +6,8 @@ import { AvForm, AvField } from "availity-reactstrap-validation";
 import { editPassengerRoadTransportData } from "../../store/actions";
 
 const EditPassengerRoadTransportData = (props) => {
-  const { isOpen, setIsOpen, oldData, error, success, onEditPassengerRTD } = props;
+  const { isOpen, setIsOpen, oldData, error, success, onEditPassengerRTD } =
+    props;
 
   const removeBodyCss = () => {
     document.body.classList.add("no_padding");
@@ -203,8 +204,8 @@ EditPassengerRoadTransportData.propTypes = {
   success: PropTypes.any,
 };
 
-const mapStatetoProps = (state) => {
-  const { error, success } = state.roadTransportData;
+const mapStatetoProps = ({ roadTransportData }) => {
+  const { error, success } = roadTransportData;
   return { error, success };
 };
 
