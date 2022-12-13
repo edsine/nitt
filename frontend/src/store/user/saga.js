@@ -1,7 +1,13 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 
 // Crypto Redux States
-import { GET_USERS, ADD_USER, EDIT_USER, DELETE_USER } from "./actionTypes";
+import {
+  GET_USERS,
+  ADD_USER,
+  EDIT_USER,
+  DELETE_USER,
+  CHANGE_PASSWORD,
+} from "./actionTypes";
 import {
   getUsersSuccess,
   getUsersFail,
@@ -12,6 +18,8 @@ import {
   deleteUserSuccess,
   deleteUserFail,
   clearMessage,
+  changePasswordSuccess,
+  changePasswordFail,
 } from "./actions";
 
 import {
@@ -19,6 +27,7 @@ import {
   postUser,
   putUser,
   deleteUser,
+  postChangePassword,
 } from "../../helpers/backend_helper";
 import { getHeaders } from "../../helpers/backend-headers/headers";
 
@@ -31,7 +40,9 @@ function* fetchUsers() {
       const { data } = response;
       yield put(getUsersSuccess(data));
     } else {
-      yield put(getUsersFail(Object.values(response?.errors)));
+      yield put(
+        getUsersFail(response?.message || Object.values(response?.errors))
+      );
     }
   } catch (error) {
     yield put(getUsersFail(error));
@@ -47,7 +58,9 @@ function* addUser({ payload }) {
       const { data, message } = response;
       yield put(addUserSuccess(data, message));
     } else {
-      yield put(addUserFail(Object.values(response?.errors)));
+      yield put(
+        addUserFail(response?.message || Object.values(response?.errors))
+      );
     }
   } catch (error) {
     yield put(addUserFail(error));
@@ -60,10 +73,29 @@ function* updateUser({ payload: { user, id } }) {
     if (response?.success) {
       yield put(editUserSuccess(response?.data, response?.message));
     } else {
-      yield put(editUserFail(Object.values(response?.errors)));
+      yield put(
+        editUserFail(response?.message || Object.values(response?.errors))
+      );
     }
   } catch (error) {
     yield put(editUserFail(error));
+  }
+}
+
+function* updatePassword({ payload: { values, id } }) {
+  try {
+    const response = yield call(postChangePassword, values, id, {
+      headers: getHeaders(),
+    });
+    if (response?.success) {
+      yield put(changePasswordSuccess(response?.data, response?.message));
+    } else {
+      yield put(
+        changePasswordFail(response?.message || Object.values(response?.errors))
+      );
+    }
+  } catch (error) {
+    yield put(changePasswordFail(error));
   }
 }
 
@@ -75,7 +107,9 @@ function* removeUser({ payload }) {
     if (response?.success) {
       yield put(deleteUserSuccess(response?.message));
     } else {
-      yield put(deleteUserFail(Object.values(response?.errors)));
+      yield put(
+        deleteUserFail(response?.message || Object.values(response?.errors))
+      );
     }
   } catch (error) {
     yield put(deleteUserFail(error));
@@ -86,6 +120,7 @@ function* userSaga() {
   yield takeEvery(GET_USERS, fetchUsers);
   yield takeEvery(ADD_USER, addUser);
   yield takeEvery(EDIT_USER, updateUser);
+  yield takeEvery(CHANGE_PASSWORD, updatePassword);
   yield takeEvery(DELETE_USER, removeUser);
 }
 

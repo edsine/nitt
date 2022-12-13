@@ -23,6 +23,8 @@ import AddUser from "../../components/User/addUser";
 import EditUser from "../../components/User/editUser";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
+import ChangePassword from "../../components/User/changePassword";
+import { checkPermisssion } from "../../helpers/check_permission";
 
 const User = (props) => {
   const { users, onGetUsers, deleteUser, error, success } = props;
@@ -30,6 +32,9 @@ const User = (props) => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const [isChangePasswordModalOpen, setIsChangePasswordModalOpen] =
+    useState(false);
 
   const [confirmAlert, setConfirmAlert] = useState(false);
 
@@ -56,6 +61,15 @@ const User = (props) => {
     setCurrentEditData(editData);
   };
 
+  const onChangePasswordClick = (id) => {
+    setIsChangePasswordModalOpen(true);
+    setCurrentId(id);
+    const editData = users.find((item, index) => {
+      return item.id === id;
+    });
+    setCurrentEditData(editData);
+  };
+
   useEffect(() => {
     onGetUsers();
   }, [
@@ -68,54 +82,56 @@ const User = (props) => {
   const dataUsers = {
     columns: [
       {
-        label: "Year",
-        field: "year",
+        label: "Profile Image",
+        field: "profile_image",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Name",
+        field: "name",
         sort: "asc",
         width: 150,
       },
       {
-        label: "No of Passengers carried",
-        field: "number_of_passengers_carried",
-        sort: "asc",
-        width: 270,
-      },
-      {
-        label: "No of Vehicle in fleet",
-        field: "number_of_vehicles_in_fleet",
-        sort: "asc",
-        width: 200,
-      },
-      {
-        label: "Revenue from operation",
-        field: "revenue_from_operation",
-        sort: "asc",
-        width: 100,
-      },
-      {
-        label: "No. of Employee",
-        field: "number_of_employees",
+        label: "Email",
+        field: "email",
         sort: "asc",
         width: 150,
       },
       {
-        label: "Annual cost of vehicle maintenance",
-        field: "annual_cost_of_vehicle_maintenance",
+        label: "Role",
+        field: "role",
         sort: "asc",
         width: 100,
       },
       {
-        label: "No. of Accident",
-        field: "number_of_accidents",
-        sort: "asc",
-        width: 100,
+        label: "Action",
+        field: "action",
+        width: 50,
       },
     ],
     rows: users?.map((item, index) => {
+      item.profile_image = (
+        <img
+          height={30}
+          width={30}
+          src={users[index].profile_image}
+          alt=""
+          className="avatar-md rounded-circle img-thumbnail"
+        />
+      );
       item.action = (
         <TableAction
           id={users[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
+          handleChangePassword={onChangePasswordClick}
+          addChangePassword
+          permissions={{
+            edit: "update user",
+            delete: "delete user",
+          }}
         />
       );
       return item;
@@ -134,6 +150,11 @@ const User = (props) => {
           oldData={currentEditData}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
+        />
+        <ChangePassword
+          oldData={currentEditData}
+          isOpen={isChangePasswordModalOpen}
+          setIsOpen={setIsChangePasswordModalOpen}
         />
         <Breadcrumbs title="All Users" breadcrumbItem="Users" />
         {confirmAlert && (
@@ -165,13 +186,15 @@ const User = (props) => {
               <CardBody>
                 <div className="d-flex justify-content-between">
                   <CardTitle>Users </CardTitle>
-                  <Button
-                    color="success"
-                    className="btn btn-success waves-effect waves-light float-right"
-                    onClick={() => handleClick()}
-                  >
-                    Add
-                  </Button>{" "}
+                  {checkPermisssion("create user") && (
+                    <Button
+                      color="success"
+                      className="btn btn-success waves-effect waves-light float-right"
+                      onClick={() => handleClick()}
+                    >
+                      Add
+                    </Button>
+                  )}
                 </div>
                 <CardSubtitle className="mb-3"></CardSubtitle>
                 <MDBDataTable responsive striped bordered data={dataUsers} />

@@ -81,3 +81,18 @@ export const DELETE_USER = (id) => `users/${id}`;
 
 // UPDATE PROFILE
 export const PUT_UPDATE_PROFILE = (id) => `users/update_profile/${id}`;
+
+// CHANGE PASSWORD
+export const POST_CHANGE_PASSWORD = (id) => `users/change_password/${id}`;
+
+// GET ROLES
+export const GET_ROLES = "roles";
+
+// ADD ROLE
+export const ADD_ROLE = "roles";
+
+// UPDATE ROLE
+export const PUT_ROLE = (id) => `roles/${id}`;
+
+// DELETE ROLE
+export const DELETE_ROLE = (id) => `roles/${id}`;

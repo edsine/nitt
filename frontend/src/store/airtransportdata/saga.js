@@ -36,7 +36,11 @@ function* fetchAirTransportData() {
       const { data } = response;
       yield put(getAirTransportDataSuccess(data));
     } else {
-      yield put(getAirTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        getAirTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(getAirTransportDataFail(error));
@@ -52,7 +56,11 @@ function* addAirTransportData({ payload }) {
       const { data, message } = response;
       yield put(addAirTransportDataSuccess(data, message));
     } else {
-      yield put(addAirTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        addAirTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(addAirTransportDataFail(error));
@@ -61,18 +69,17 @@ function* addAirTransportData({ payload }) {
 
 function* updateAirTransportData({ payload: { airTransportData, id } }) {
   try {
-    const response = yield call(
-      putAirTransportData,
-      airTransportData,
-      id,
-      { headers: getHeaders() }
-    );
+    const response = yield call(putAirTransportData, airTransportData, id, {
+      headers: getHeaders(),
+    });
     if (response?.success) {
-      yield put(
-        editAirTransportDataSuccess(response?.data, response?.message)
-      );
+      yield put(editAirTransportDataSuccess(response?.data, response?.message));
     } else {
-      yield put(editAirTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        editAirTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(editAirTransportDataFail(error));
@@ -87,7 +94,11 @@ function* removeAirTransportData({ payload }) {
     if (response?.success) {
       yield put(deleteAirTransportDataSuccess(response?.message));
     } else {
-      yield put(deleteAirTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        deleteAirTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(deleteAirTransportDataFail(error));
@@ -95,22 +106,10 @@ function* removeAirTransportData({ payload }) {
 }
 
 function* airTransportDataSaga() {
-  yield takeEvery(
-    GET_AIR_TRANSPORT_DATA,
-    fetchAirTransportData
-  );
-  yield takeEvery(
-    ADD_AIR_TRANSPORT_DATA,
-    addAirTransportData
-  );
-  yield takeEvery(
-    EDIT_AIR_TRANSPORT_DATA,
-    updateAirTransportData
-  );
-  yield takeEvery(
-    DELETE_AIR_TRANSPORT_DATA,
-    removeAirTransportData
-  );
+  yield takeEvery(GET_AIR_TRANSPORT_DATA, fetchAirTransportData);
+  yield takeEvery(ADD_AIR_TRANSPORT_DATA, addAirTransportData);
+  yield takeEvery(EDIT_AIR_TRANSPORT_DATA, updateAirTransportData);
+  yield takeEvery(DELETE_AIR_TRANSPORT_DATA, removeAirTransportData);
 }
 
 export default airTransportDataSaga;

@@ -1,20 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
-import { addUser, getRoles } from "../../store/actions";
+import { changePassword } from "../../store/actions";
 
-const AddUser = (props) => {
-  const {
-    isOpen,
-    setIsOpen,
-    error,
-    success,
-    onAddUser,
-    rolesArray,
-    onGetRoles,
-  } = props;
+const ChangePassword = (props) => {
+  const { isOpen, setIsOpen, oldData, onChangePassword, error, success } =
+    props;
 
   const removeBodyCss = () => {
     document.body.classList.add("no_padding");
@@ -25,12 +18,8 @@ const AddUser = (props) => {
   };
 
   const handleValidSubmit = (event, values) => {
-    onAddUser(values);
+    onChangePassword(values, oldData.id);
   };
-
-  useEffect(() => {
-    onGetRoles();
-  }, [onGetRoles]);
 
   return (
     <Modal
@@ -39,11 +28,11 @@ const AddUser = (props) => {
         toggle();
       }}
     >
-      {error?.addError && error.addError ? (
-        <Alert color="danger">{error?.addError}</Alert>
+      {error?.changePasswordError && error.changePasswordError ? (
+        <Alert color="danger">{error?.changePasswordError}</Alert>
       ) : null}
-      {success?.addSuccess && success?.addSuccess ? (
-        <Alert color="success">{success?.addSuccess}</Alert>
+      {success?.changePasswordSuccess && success?.changePasswordSuccess ? (
+        <Alert color="success">{success?.changePasswordSuccess}</Alert>
       ) : null}
       <AvForm
         className="needs-validation"
@@ -53,7 +42,7 @@ const AddUser = (props) => {
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
-            Add User
+            Change Password
           </h5>
           <button
             type="button"
@@ -69,34 +58,6 @@ const AddUser = (props) => {
         </div>
         <div className="modal-body">
           <Row>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="name">Name</Label>
-                <AvField
-                  name="name"
-                  placeholder=""
-                  type="text"
-                  errorMessage="Enter a name"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="name"
-                />
-              </div>
-            </Col>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="email">Email</Label>
-                <AvField
-                  name="email"
-                  placeholder=""
-                  type="email"
-                  errorMessage="Enter a vaid email."
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="email"
-                />
-              </div>
-            </Col>
             <Col md="6">
               <div className="mb-3">
                 <Label htmlFor="password">Password</Label>
@@ -126,27 +87,6 @@ const AddUser = (props) => {
               </div>
             </Col>
           </Row>
-          <Row>
-            <Col md="4">
-              <div className="mb-3">
-                <Label htmlFor="role">Role</Label>
-                <AvField
-                  name="role"
-                  placeholder=""
-                  type="select"
-                  errorMessage="Please select a role"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="role"
-                >
-                  <option>Select</option>
-                  {rolesArray?.map((role, index) => (
-                    <option key={index} value={role.name}>{role.name}</option>
-                  ))}
-                </AvField>
-              </div>
-            </Col>
-          </Row>
         </div>
         <div className="modal-footer">
           <button
@@ -171,12 +111,10 @@ const AddUser = (props) => {
   );
 };
 
-AddUser.propTypes = {
-  onAddUser: PropTypes.func,
+ChangePassword.propTypes = {
+  onChangePassword: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
-  onGetRoles: PropTypes.func,
-  rolesArray: PropTypes.array,
 };
 
 const mapStatetoProps = ({ users, roles }) => {
@@ -186,8 +124,7 @@ const mapStatetoProps = ({ users, roles }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddUser: (values) => dispatch(addUser(values)),
-  onGetRoles: () => dispatch(getRoles()),
+  onChangePassword: (values, id) => dispatch(changePassword(values, id)),
 });
 
-export default connect(mapStatetoProps, mapDispatchToProps)(AddUser);
+export default connect(mapStatetoProps, mapDispatchToProps)(ChangePassword);

@@ -14,6 +14,7 @@ import roadTransportDataSaga from "./roadtransportdata/saga"
 import airTransportDataSaga from "./airtransportdata/saga"
 import airPassengerTrafficSaga from "./airpassengertraffic/saga"
 import userSaga from "./user/saga"
+import roleSaga from "./role/saga"
 
 export default function* rootSaga() {
   yield all([
@@ -30,6 +31,7 @@ export default function* rootSaga() {
     fork(roadTransportDataSaga),
     fork(airTransportDataSaga),
     fork(airPassengerTrafficSaga),
-    fork(userSaga)
+    fork(userSaga),
+    fork(roleSaga)
   ])
 }

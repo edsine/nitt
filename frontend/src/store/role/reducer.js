@@ -1,88 +1,70 @@
 import {
-  GET_USERS_SUCCESS,
-  GET_USERS_FAIL,
-  ADD_USER_SUCCESS,
-  ADD_USER_FAIL,
-  DELETE_USER_SUCCESS,
-  EDIT_USER_FAIL,
-  EDIT_USER_SUCCESS,
-  CHANGE_PASSWORD_FAIL,
-  CHANGE_PASSWORD_SUCCESS,
-  DELETE_USER_FAIL,
+  GET_ROLES_SUCCESS,
+  GET_ROLES_FAIL,
+  ADD_ROLE_SUCCESS,
+  ADD_ROLE_FAIL,
+  DELETE_ROLE_SUCCESS,
+  EDIT_ROLE_FAIL,
+  EDIT_ROLE_SUCCESS,
+  DELETE_ROLE_FAIL,
   CLEAR_MESSAGE,
 } from "./actionTypes";
 
 const INIT_STATE = {
-  users: [],
+  roles: [],
   error: null,
   success: null,
 };
 
-const users = (state = INIT_STATE, action) => {
+const roles = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case GET_USERS_SUCCESS:
+    case GET_ROLES_SUCCESS:
       return {
         ...state,
-        users: action.payload,
+        roles: action.payload,
         error: null,
       };
 
-    case GET_USERS_FAIL:
+    case GET_ROLES_FAIL:
       return {
         ...state,
         error: { ...state.error, getError: action.payload },
         success: null,
       };
-    case ADD_USER_SUCCESS:
+    case ADD_ROLE_SUCCESS:
       return {
         ...state,
         success: { ...state.success, addSuccess: action.payload.message },
         error: null,
       };
 
-    case ADD_USER_FAIL:
+    case ADD_ROLE_FAIL:
       return {
         ...state,
         error: { ...state.error, addError: action.payload },
         success: null,
       };
-    case EDIT_USER_SUCCESS:
+    case EDIT_ROLE_SUCCESS:
       return {
         ...state,
         success: { ...state.success, editSuccess: action.payload.message },
         error: null,
       };
 
-    case EDIT_USER_FAIL:
+    case EDIT_ROLE_FAIL:
       return {
         ...state,
         error: { ...state.error, editError: action.payload },
         success: null,
       };
-    case CHANGE_PASSWORD_SUCCESS:
-      return {
-        ...state,
-        success: {
-          ...state.success,
-          changePasswordSuccess: action.payload.message,
-        },
-        error: null,
-      };
-
-    case CHANGE_PASSWORD_FAIL:
-      return {
-        ...state,
-        error: { ...state.error, changePasswordError: action.payload },
-        success: null,
-      };
-    case DELETE_USER_SUCCESS:
+    case DELETE_ROLE_SUCCESS:
       return {
         ...state,
         success: { ...state.success, deleteSuccess: action.payload },
         error: null,
       };
 
-    case DELETE_USER_FAIL:
+    case DELETE_ROLE_FAIL:
       return {
         ...state,
         error: { ...state.error, deleteError: action.payload },
@@ -99,4 +81,4 @@ const users = (state = INIT_STATE, action) => {
   }
 };
 
-export default users;
+export default roles;

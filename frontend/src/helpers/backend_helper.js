@@ -108,3 +108,20 @@ export const deleteUser = (id, config) => del(url.DELETE_USER(id), config);
 // Update Profile
 export const putUpdateProfile = (data, id, config) =>
   put(url.PUT_UPDATE_PROFILE(id), data, config);
+
+// Change Password
+export const postChangePassword = (data, id, config) =>
+  post(url.POST_CHANGE_PASSWORD(id), data, config);
+
+// Get Roles
+export const getRoles = (config) => get(url.GET_ROLES, config);
+
+// Add Role
+export const postRole = (data, config) => post(url.ADD_ROLE, data, config);
+
+// Update Role
+export const putRole = (data, id, config) =>
+  put(url.PUT_ROLE(id), data, config);
+
+// Delete Role
+export const deleteRole = (id, config) => del(url.DELETE_ROLE(id), config);

@@ -8,6 +8,9 @@ import {
   EDIT_USER,
   EDIT_USER_FAIL,
   EDIT_USER_SUCCESS,
+  CHANGE_PASSWORD,
+  CHANGE_PASSWORD_SUCCESS,
+  CHANGE_PASSWORD_FAIL,
   DELETE_USER,
   DELETE_USER_FAIL,
   DELETE_USER_SUCCESS,
@@ -34,10 +37,7 @@ export const addUser = (user) => ({
   payload: user,
 });
 
-export const addUserSuccess = (
-  user,
-  message
-) => ({
+export const addUserSuccess = (user, message) => ({
   type: ADD_USER_SUCCESS,
   payload: { user, message },
 });
@@ -47,21 +47,33 @@ export const addUserFail = (error) => ({
   payload: error,
 });
 
-export const editUser = (users, id) => ({
+export const editUser = (user, id) => ({
   type: EDIT_USER,
-  payload: { users, id },
+  payload: { user, id },
 });
 
-export const editUserSuccess = (
-  user,
-  message
-) => ({
+export const editUserSuccess = (user, message) => ({
   type: EDIT_USER_SUCCESS,
   payload: { user, message },
 });
 
 export const editUserFail = (error) => ({
   type: EDIT_USER_FAIL,
+  payload: error,
+});
+
+export const changePassword = (values, id) => ({
+  type: CHANGE_PASSWORD,
+  payload: { values, id },
+});
+
+export const changePasswordSuccess = (user, message) => ({
+  type: CHANGE_PASSWORD_SUCCESS,
+  payload: { user, message },
+});
+
+export const changePasswordFail = (error) => ({
+  type: CHANGE_PASSWORD_FAIL,
   payload: error,
 });
 
@@ -79,7 +91,6 @@ export const deleteUserFail = (error) => ({
   type: DELETE_USER_FAIL,
   payload: error,
 });
-
 
 export const clearMessage = () => ({
   type: CLEAR_MESSAGE,

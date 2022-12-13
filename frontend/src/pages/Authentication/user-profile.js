@@ -14,14 +14,26 @@ import Breadcrumb from "../../components/Common/Breadcrumb";
 
 import avatar from "../../assets/images/users/avatar-2.jpg";
 // actions
-import { editProfile, resetProfileFlag } from "../../store/actions";
+import {
+  editProfile,
+  resetProfileFlag,
+  changePassword,
+} from "../../store/actions";
 
 const UserProfile = (props) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [idx, setIdx] = useState(1);
   const [profileImagePath, setProfileImagePath] = useState(1);
-  const { resetProfileFlag, editProfile } = props;
+  const {
+    resetProfileFlag,
+    editProfile,
+    changePassword,
+    error,
+    success,
+    userSuccess,
+    userError,
+  } = props;
 
   useEffect(() => {
     if (localStorage.getItem("authUser")) {
@@ -55,6 +67,10 @@ const UserProfile = (props) => {
     editProfile(data, values.idx);
   }
 
+  function handleValidPasswordSubmit(event, values) {
+    changePassword(values, values.chPsIdx);
+  }
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -63,11 +79,20 @@ const UserProfile = (props) => {
 
         <Row>
           <Col lg="12">
-            {props.error && props.error ? (
-              <Alert color="danger">{props.error}</Alert>
+            {error && error ? <Alert color="danger">{error}</Alert> : null}
+            {success && success ? (
+              <Alert color="success">{success}</Alert>
             ) : null}
-            {props.success && props.success ? (
-              <Alert color="success">{props.success}</Alert>
+
+            {userError?.changePasswordError &&
+            userError?.changePasswordError ? (
+              <Alert color="danger">{userError?.changePasswordError}</Alert>
+            ) : null}
+            {userSuccess?.changePasswordSuccess &&
+            userSuccess?.changePasswordSuccess ? (
+              <Alert color="success">
+                {userSuccess?.changePasswordSuccess}
+              </Alert>
             ) : null}
 
             <Card>
@@ -97,48 +122,114 @@ const UserProfile = (props) => {
 
         <Card>
           <CardBody>
-            <AvForm
-              className="form-horizontal"
-              onValidSubmit={(e, v) => {
-                handleValidSubmit(e, v);
-              }}
-            >
-              <div className="form-group">
-                <Row>
-                  <Col md="12">
-                    <AvField
-                      name="username"
-                      label="Name"
-                      value={name}
-                      className="form-control mb-3"
-                      placeholder="Enter Name"
-                      type="text"
-                      required
-                    />
-                  </Col>
-                  <Col md="6">
-                    <div className="input-group">
-                      <AvInput
-                        type="file"
-                        name="profile_image"
-                        className="form-control"
-                        id="profile-image"
-                        accept="image/png, image/jpeg"
-                      />
-                      <Label className="input-group-text" for="profile-image">
-                        Upload
-                      </Label>
+            <Row>
+              <Col>
+                <AvForm
+                  className="form-horizontal"
+                  onValidSubmit={(e, v) => {
+                    handleValidSubmit(e, v);
+                  }}
+                >
+                  <div className="form-group">
+                    <Row>
+                      <Col md="6">
+                        <AvField
+                          name="username"
+                          label="Name"
+                          value={name}
+                          className="form-control mb-3"
+                          placeholder="Enter Name"
+                          type="text"
+                          required
+                        />
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col md="6">
+                        <div className="input-group">
+                          <AvInput
+                            type="file"
+                            name="profile_image"
+                            className="form-control"
+                            id="profile-image"
+                            accept="image/png, image/jpeg"
+                          />
+                          <Label
+                            className="input-group-text"
+                            for="profile-image"
+                          >
+                            Upload
+                          </Label>
+                        </div>
+                      </Col>
+                    </Row>
+                    <AvField name="idx" value={idx} type="hidden" />
+                  </div>
+                  <div className="text-left mt-4">
+                    <Button type="submit" color="danger">
+                      Edit Profile
+                    </Button>
+                  </div>
+                </AvForm>
+              </Col>
+            </Row>
+          </CardBody>
+        </Card>
+
+        <h4 className="card-title mb-4">Change Password</h4>
+        <Card>
+          <CardBody>
+            <Row>
+              <Col>
+                <AvForm
+                  className="needs-validation"
+                  onValidSubmit={(e, v) => {
+                    handleValidPasswordSubmit(e, v);
+                  }}
+                >
+                  <div className="form-group">
+                    <Row>
+                      <Col md="6">
+                        <div className="mb-3">
+                          <Label htmlFor="password">Password</Label>
+                          <AvField
+                            name="password"
+                            placeholder=""
+                            type="password"
+                            errorMessage="Enter a valid password"
+                            className="form-control"
+                            validate={{ required: { value: true } }}
+                            id="password"
+                          />
+                        </div>
+                      </Col>
+                      <Col md="6">
+                        <div className="mb-3">
+                          <Label htmlFor="passwordConfirmation">
+                            Confirm Password
+                          </Label>
+                          <AvField
+                            name="password_confirmation"
+                            placeholder=""
+                            type="password"
+                            errorMessage="Please confirm your password."
+                            className="form-control"
+                            validate={{ required: { value: true } }}
+                            id="passwordConfirmation"
+                          />
+                        </div>
+                      </Col>
+                    </Row>
+                    <AvField name="chPsIdx" value={idx} type="hidden" />
+                    <div className="text-left mt-4">
+                      <Button type="submit" color="danger">
+                        Change Password
+                      </Button>
                     </div>
-                  </Col>
-                </Row>
-                <AvField name="idx" value={idx} type="hidden" />
-              </div>
-              <div className="text-center mt-4">
-                <Button type="submit" color="danger">
-                  Edit Profile
-                </Button>
-              </div>
-            </AvForm>
+                  </div>
+                </AvForm>
+              </Col>
+            </Row>
           </CardBody>
         </Card>
       </div>
@@ -148,15 +239,22 @@ const UserProfile = (props) => {
 
 UserProfile.propTypes = {
   editProfile: PropTypes.func,
+  changePassword: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
+  userError: PropTypes.any,
+  userSuccess: PropTypes.any,
 };
 
-const mapStatetoProps = ({ Profile }) => {
+const mapStatetoProps = ({ Profile, users }) => {
   const { error, success } = Profile;
-  return { error, success };
+  const userError = users.error;
+  const userSuccess = users.success;
+  return { error, success, userError, userSuccess };
 };
 
 export default withRouter(
-  connect(mapStatetoProps, { editProfile, resetProfileFlag })(UserProfile)
+  connect(mapStatetoProps, { editProfile, resetProfileFlag, changePassword })(
+    UserProfile
+  )
 );

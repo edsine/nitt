@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
-import { editUser } from "../../store/actions";
+import { editUser, getRoles } from "../../store/actions";
 
 const EditUser = (props) => {
-  const { isOpen, setIsOpen, oldData, onEditUser, error, success } = props;
+  const {
+    isOpen,
+    setIsOpen,
+    oldData,
+    onEditUser,
+    rolesArray,
+    onGetRoles,
+    error,
+    success,
+  } = props;
 
   const removeBodyCss = () => {
     document.body.classList.add("no_padding");
@@ -19,6 +28,10 @@ const EditUser = (props) => {
   const handleValidSubmit = (event, values) => {
     onEditUser(values, oldData.id);
   };
+
+  useEffect(() => {
+    onGetRoles();
+  }, [onGetRoles]);
 
   return (
     <Modal
@@ -59,50 +72,31 @@ const EditUser = (props) => {
           <Row>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="year">Year</Label>
+                <Label htmlFor="name">Name</Label>
                 <AvField
-                  name="year"
+                  name="name"
                   placeholder=""
-                  type="number"
-                  value={oldData?.year}
-                  errorMessage="Select a Year"
+                  type="text"
+                  value={oldData?.name}
+                  errorMessage="Enter a name"
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="year"
+                  id="name"
                 />
               </div>
             </Col>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="domesticPassengersTraffic">
-                  Domestic Passenger Traffic
-                </Label>
+                <Label htmlFor="email">Email</Label>
                 <AvField
-                  name="domestic_passengers_traffic"
+                  name="email"
                   placeholder=""
-                  type="number"
-                  value={oldData?.domestic_passengers_traffic}
-                  errorMessage="Enter Number of Domestic Passenger Traffic."
+                  type="email"
+                  value={oldData?.email}
+                  errorMessage="Enter a vaid email."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="domesticPassengersTraffic"
-                />
-              </div>
-            </Col>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="internationalPassengersTraffic">
-                  International Passenger Traffic
-                </Label>
-                <AvField
-                  name="international_passengers_traffic"
-                  placeholder=""
-                  type="number"
-                  value={oldData?.international_passengers_traffic}
-                  errorMessage="Enter Number of International Passenger Traffic."
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="internationalPassengersTraffic"
+                  id="email"
                 />
               </div>
             </Col>
@@ -110,36 +104,24 @@ const EditUser = (props) => {
           <Row>
             <Col md="4">
               <div className="mb-3">
-                <Label htmlFor="domesticFreightTraffic">
-                  Domestic Freight Traffic
-                </Label>
+                <Label htmlFor="role">Role</Label>
                 <AvField
-                  name="domestic_freight_traffic"
+                  name="role"
                   placeholder=""
-                  type="number"
-                  value={oldData?.domestic_freight_traffic}
-                  errorMessage="Enter Number of Domestic Freight Traffic."
+                  type="select"
+                  errorMessage="Please select a role"
                   className="form-control"
+                  value={oldData?.role}
                   validate={{ required: { value: true } }}
-                  id="domesticFreightTraffic"
-                />
-              </div>
-            </Col>
-            <Col md="4">
-              <div className="mb-3">
-                <Label htmlFor="internationalFreightTraffic">
-                  International Freight Traffic
-                </Label>
-                <AvField
-                  name="international_freight_traffic"
-                  placeholder=""
-                  type="number"
-                  value={oldData?.international_freight_traffic}
-                  errorMessage="Enter Number of International Freight Traffic."
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="internationalFreightTraffic"
-                />
+                  id="role"
+                >
+                  <option>Select</option>
+                  {rolesArray?.map((role, index) => (
+                    <option key={index} value={role.name}>
+                      {role.name}
+                    </option>
+                  ))}
+                </AvField>
               </div>
             </Col>
           </Row>
@@ -171,15 +153,19 @@ EditUser.propTypes = {
   onEditUser: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
+  onGetRoles: PropTypes.func,
+  rolesArray: PropTypes.array,
 };
 
-const mapStatetoProps = ({ users }) => {
+const mapStatetoProps = ({ users, roles }) => {
   const { error, success } = users;
-  return { error, success };
+  const rolesArray = Array.isArray(roles.roles) ? roles.roles : null;
+  return { error, success, rolesArray };
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onEditUser: (values, id) => dispatch(editUser(values, id)),
+  onGetRoles: () => dispatch(getRoles()),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(EditUser);

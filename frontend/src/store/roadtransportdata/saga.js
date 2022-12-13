@@ -52,7 +52,11 @@ function* fetchPassengerRoadTransportData() {
       const { data } = response;
       yield put(getPassengerRoadTransportDataSuccess(data));
     } else {
-      yield put(getPassengerRoadTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        getPassengerRoadTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(getPassengerRoadTransportDataFail(error));
@@ -68,7 +72,11 @@ function* addPassengerRoadTransportData({ payload }) {
       const { data, message } = response;
       yield put(addPassengerRoadTransportDataSuccess(data, message));
     } else {
-      yield put(addPassengerRoadTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        addPassengerRoadTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(addPassengerRoadTransportDataFail(error));
@@ -88,7 +96,11 @@ function* updatePassengerRoadTransportData({ payload: { passengerRTD, id } }) {
         editPassengerRoadTransportDataSuccess(response?.data, response?.message)
       );
     } else {
-      yield put(editPassengerRoadTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        editPassengerRoadTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(editPassengerRoadTransportDataFail(error));
@@ -103,7 +115,11 @@ function* removePassengerRoadTransportData({ payload }) {
     if (response?.success) {
       yield put(deletePassengerRoadTransportDataSuccess(response?.message));
     } else {
-      yield put(deletePassengerRoadTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        deletePassengerRoadTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(deletePassengerRoadTransportDataFail(error));
@@ -118,7 +134,11 @@ function* fetchFreightRoadTransportData() {
     if (response?.success) {
       yield put(getFreightRoadTransportDataSuccess(response?.data));
     } else {
-      yield put(getFreightRoadTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        getFreightRoadTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(getFreightRoadTransportDataFail(error));
@@ -131,9 +151,15 @@ function* addFreightRoadTransportData({ payload }) {
       headers: getHeaders(),
     });
     if (response?.success) {
-      yield put(addFreightRoadTransportDataSuccess(response?.data, response?.message));
+      yield put(
+        addFreightRoadTransportDataSuccess(response?.data, response?.message)
+      );
     } else {
-      yield put(addFreightRoadTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        addFreightRoadTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(addFreightRoadTransportDataFail(error));
@@ -146,9 +172,15 @@ function* updateFreightRoadTransportData({ payload: { freightRTD, id } }) {
       headers: getHeaders(),
     });
     if (response?.success) {
-      yield put(editFreightRoadTransportDataSuccess(response?.data, response?.message));
+      yield put(
+        editFreightRoadTransportDataSuccess(response?.data, response?.message)
+      );
     } else {
-      yield put(editFreightRoadTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        editFreightRoadTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(editFreightRoadTransportDataFail(error));
@@ -163,7 +195,11 @@ function* removeFreightRoadTransportData({ payload }) {
     if (response?.success) {
       yield put(deleteFreightRoadTransportDataSuccess(response?.message));
     } else {
-      yield put(deleteFreightRoadTransportDataFail(Object.values(response?.errors)));
+      yield put(
+        deleteFreightRoadTransportDataFail(
+          response?.message || Object.values(response?.errors)
+        )
+      );
     }
   } catch (error) {
     yield put(deleteFreightRoadTransportDataFail(error));

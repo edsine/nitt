@@ -29,3 +29,6 @@ export * from "./airpassengertraffic/actions";
 
 // Users
 export * from "./user/actions";
+
+// Roles
+export * from "./role/actions";

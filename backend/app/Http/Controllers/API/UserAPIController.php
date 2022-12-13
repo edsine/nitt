@@ -13,6 +13,7 @@ use App\Http\Requests\API\CreateUserAPIRequest;
 use App\Http\Requests\API\UpdateUserAPIRequest;
 use App\Http\Requests\API\UpdateProfileAPIRequest;
 use App\Http\Requests\API\UpdateUserPasswordAPIRequest;
+use App\Http\Resources\UserResource;
 
 /**
  * Class UserAPIController
@@ -48,7 +49,7 @@ class UserAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($users->toArray(), 'Users retrieved successfully');
+        return $this->sendResponse(UserResource::collection($users), 'Users retrieved successfully');
     }
 
     /**
@@ -66,6 +67,7 @@ class UserAPIController extends AppBaseController
         }
 
         $input = $request->all();
+        $role = $input['role'];
 
         $profile_image = $request->file('profile_image');
         $file_name = '';
@@ -90,6 +92,7 @@ class UserAPIController extends AppBaseController
 
         $input['profile_image_path'] = $file_name;
         $user = $this->userRepository->create($input);
+        $user->syncRoles([$role]);
 
         return $this->sendResponse($user->toArray(), 'User saved successfully');
     }
@@ -131,7 +134,13 @@ class UserAPIController extends AppBaseController
         if (!checkPermission('update user')) {
             return $this->sendError('Permission Denied', 403);
         }
+
+        if ($id == 1) {
+            return $this->sendError('Cannot edit system user', 403);
+        }
+
         $input = $request->all();
+        $role = $input['role'];
 
         $profile_image = $request->file('profile_image');
         $file_name = '';
@@ -166,11 +175,12 @@ class UserAPIController extends AppBaseController
 
         $input['profile_image_path'] = $file_name;
         $user = $this->userRepository->update($input, $id);
+        $user->syncRoles([$role]);
 
         return $this->sendResponse($user->toArray(), 'User updated successfully');
     }
 
-        /**
+    /**
      * Update the specified User in storage.
      * PUT/PATCH /users/{id}
      *
@@ -262,6 +272,10 @@ class UserAPIController extends AppBaseController
     {
         if (!checkPermission('delete user')) {
             return $this->sendError('Permission Denied', 403);
+        }
+
+        if ($id == 1) {
+            return $this->sendError('Cannot delete system user', 403);
         }
 
         /** @var User $user */

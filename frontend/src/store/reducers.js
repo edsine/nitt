@@ -33,6 +33,9 @@ import airPassengerTraffic from "./airpassengertraffic/reducer";
 // Users
 import users from "./user/reducer";
 
+// Roles
+import roles from "./role/reducer";
+
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -47,7 +50,8 @@ const rootReducer = combineReducers({
   roadTransportData,
   airTransportData,
   airPassengerTraffic,
-  users
+  users,
+  roles
 })
 
 export default rootReducer
