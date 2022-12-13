@@ -8,6 +8,7 @@ use App\Models\VehicleImportation;
 use App\Repositories\VehicleImportationRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AppBaseController;
+use App\Http\Resources\VehicleImportationResource;
 use Response;
 
 /**
@@ -43,7 +44,7 @@ class VehicleImportationAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($vehicleImportations->toArray(), 'Vehicle Importations retrieved successfully');
+        return $this->sendResponse(VehicleImportationResource::collection($vehicleImportations), 'Vehicle Importations retrieved successfully');
     }
 
     /**

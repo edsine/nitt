@@ -14,8 +14,7 @@ export const getHeaders = () => {
 
 export const getFileUploadHeaders = () => {
     const headers = {
-        accept: 'application/json',
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
         Authorization: getAccessToken()
     }
     return headers;

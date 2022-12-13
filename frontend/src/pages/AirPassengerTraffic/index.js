@@ -20,7 +20,7 @@ import "../../assets/scss/datatables.scss";
 import {
   getAirPassengerTraffic,
   deleteAirPassengerTraffic,
-} from "../../store/airpassengertraffic/actions";
+} from "../../store/actions";
 import AddAirPassengerTraffic from "../../components/AirPassengerTraffic/addAirPassengerTraffic";
 import EditAirPassengerTraffic from "../../components/AirPassengerTraffic/editAirPassengerTraffic";
 import TableAction from "../../components/Common/TableAction";
@@ -116,6 +116,10 @@ const AirPassengerTraffic = (props) => {
           id={airPassengerTraffic[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
+          permissions={{
+            edit: "update air passengers traffic",
+            delete: "delete air passengers traffic",
+          }}
         />
       );
       return item;

@@ -24,7 +24,8 @@ Route::middleware('auth:sanctum')->get('user', function (Request $request) {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
-    Route::put('users/update_profile/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfile'])->name('auth.logout');
+    Route::put('users/update_profile/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfile']);
+    Route::put('users/update_profile_image/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfileImage']);
     Route::post('users/change_password/{id}', [App\Http\Controllers\API\UserAPIController::class, 'changePassword'])->name('change_password');
     Route::resource('roles', App\Http\Controllers\API\RoleAPIController::class);
     Route::resource('passenger_road_transport_data', App\Http\Controllers\API\PassengerRoadTransportDataAPIController::class);
@@ -39,6 +40,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('maritime_administrations', App\Http\Controllers\API\MaritimeAdministrationAPIController::class);
     Route::resource('vehicle_importations', App\Http\Controllers\API\VehicleImportationAPIController::class);
     Route::resource('maritime_transports', App\Http\Controllers\API\MaritimeTransportAPIController::class);
+    Route::get('permissions', [App\Http\Controllers\API\PermissionAPIController::class, 'index']);
 });
 
 Route::prefix('auth')->group(function () {
@@ -48,8 +50,6 @@ Route::prefix('auth')->group(function () {
     Route::post('recover', [AuthAPIController::class, 'recover'])->name('auth.recover');
     Route::post('reset', [AuthAPIController::class, 'reset'])->name('auth.reset');
 });
-
-Route::get('permissions', [App\Http\Controllers\API\PermissionAPIController::class, 'index']);
 
 
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {

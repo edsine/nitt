@@ -32,7 +32,7 @@ function* fetchRoles() {
       yield put(getRolesSuccess(data));
     } else {
       yield put(
-        getRolesFail(response?.message || Object.values(response?.errors))
+        getRolesFail(response?.errors ? Object.values(response?.errors) : response?.message)
       );
     }
   } catch (error) {
@@ -50,7 +50,7 @@ function* addRole({ payload }) {
       yield put(addRoleSuccess(data, message));
     } else {
       yield put(
-        addRoleFail(response?.message || Object.values(response?.errors))
+        addRoleFail(response?.errors ? Object.values(response?.errors) : response?.message)
       );
     }
   } catch (error) {
@@ -65,7 +65,7 @@ function* updateRole({ payload: { role, id } }) {
       yield put(editRoleSuccess(response?.data, response?.message));
     } else {
       yield put(
-        editRoleFail(response?.message || Object.values(response?.errors))
+        editRoleFail(response?.errors ? Object.values(response?.errors) : response?.message)
       );
     }
   } catch (error) {
@@ -82,7 +82,7 @@ function* removeRole({ payload }) {
       yield put(deleteRoleSuccess(response?.message));
     } else {
       yield put(
-        deleteRoleFail(response?.message || Object.values(response?.errors))
+        deleteRoleFail(response?.errors ? Object.values(response?.errors) : response?.message)
       );
     }
   } catch (error) {

@@ -18,22 +18,22 @@ import {
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import "../../assets/scss/datatables.scss";
-import {
-  getFreightRoadTransportData,
-  deleteFreightRoadTransportData,
-} from "../../store/actions";
-import AddFreightRoadTransportData from "../../components/FreightRoadTransportData/addFreightRoadTransportData";
-import EditFreightRoadTransportData from "../../components/FreightRoadTransportData/editFreightRoadTransportData";
+import { deleteRole, getRoles } from "../../store/actions";
+import AddRole from "../../components/Role/addRole";
+import EditRole from "../../components/Role/editRole";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
+import { checkPermisssion } from "../../helpers/check_permission";
 
-const FreightRoadTransportData = (props) => {
-  const { freightRTD, onGetFreightRTD, deleteFreightRTD, error, success } =
-    props;
+const Role = (props) => {
+  const { roles, onGetRoles, deleteRole, error, success } = props;
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const [isChangePasswordModalOpen, setIsChangePasswordModalOpen] =
+    useState(false);
 
   const [confirmAlert, setConfirmAlert] = useState(false);
 
@@ -47,87 +47,51 @@ const FreightRoadTransportData = (props) => {
   };
 
   const handleDelete = () => {
-    deleteFreightRTD(currentId);
+    deleteRole(currentId);
     setConfirmAlert(false);
   };
 
   const onEditClick = (id) => {
     setIsEditModalOpen(true);
     setCurrentId(id);
-    const editData = freightRTD.find((item, index) => {
+    const editData = roles.find((item, index) => {
       return item.id === id;
     });
     setCurrentEditData(editData);
   };
 
   useEffect(() => {
-    onGetFreightRTD();
+    onGetRoles();
   }, [
-    onGetFreightRTD,
+    onGetRoles,
     success?.addSuccess,
     success?.editSuccess,
     success?.deleteSuccess,
   ]);
 
-  const dataFreight = {
+  const dataRoles = {
     columns: [
       {
-        label: "Year",
-        field: "year",
+        label: "Name",
+        field: "name",
         sort: "asc",
         width: 150,
-      },
-      {
-        label: "No of Tonnes carried",
-        field: "number_of_tonnes_carried",
-        sort: "asc",
-        width: 270,
-      },
-      {
-        label: "No of Vehicle in fleet",
-        field: "number_of_vehicles_in_fleet",
-        sort: "asc",
-        width: 200,
-      },
-      {
-        label: "Revenue from operation",
-        field: "revenue_from_operation",
-        sort: "asc",
-        width: 100,
-      },
-      {
-        label: "No. of Employee",
-        field: "number_of_employees",
-        sort: "asc",
-        width: 150,
-      },
-      {
-        label: "Annual cost of vehicle maintenance",
-        field: "annual_cost_of_vehicle_maintenance",
-        sort: "asc",
-        width: 100,
-      },
-      {
-        label: "No. of Accident",
-        field: "number_of_accidents",
-        sort: "asc",
-        width: 100,
       },
       {
         label: "Action",
         field: "action",
-        width: 200,
+        width: 50,
       },
     ],
-    rows: freightRTD?.map((item, index) => {
+    rows: roles?.map((item, index) => {
       item.action = (
         <TableAction
-          id={freightRTD[index].id}
+          id={roles[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
           permissions={{
-            edit: "update freight road transport data",
-            delete: "delete freight road transport data",
+            edit: "update role",
+            delete: "delete role",
           }}
         />
       );
@@ -142,16 +106,13 @@ const FreightRoadTransportData = (props) => {
   return (
     <React.Fragment>
       <div className="page-content">
-        <AddFreightRoadTransportData
-          isOpen={isAddModalOpen}
-          setIsOpen={setIsAddModalOpen}
-        />
-        <EditFreightRoadTransportData
+        <AddRole isOpen={isAddModalOpen} setIsOpen={setIsAddModalOpen} />
+        <EditRole
           oldData={currentEditData}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
         />
-        <Breadcrumbs title="Road transport Data" breadcrumbItem="Freight" />
+        <Breadcrumbs title="All Roles" breadcrumbItem="Roles" />
         {confirmAlert && (
           <SweetAlert
             title="Are you sure?"
@@ -174,23 +135,25 @@ const FreightRoadTransportData = (props) => {
         {success?.deleteSuccess && success?.deleteSuccess ? (
           <Alert color="success">{success?.deleteSuccess}</Alert>
         ) : null}
+
         <Row>
           <Col className="col-12">
             <Card>
               <CardBody>
                 <div className="d-flex justify-content-between">
-                  <CardTitle>Road transport data (Freight)</CardTitle>
-                  <Button
-                    color="success"
-                    className="btn btn-success waves-effect waves-light float-right"
-                    onClick={() => handleClick()}
-                  >
-                    Add
-                  </Button>{" "}
+                  <CardTitle>Roles </CardTitle>
+                  {checkPermisssion("create role") && (
+                    <Button
+                      color="success"
+                      className="btn btn-success waves-effect waves-light float-right"
+                      onClick={() => handleClick()}
+                    >
+                      Add
+                    </Button>
+                  )}
                 </div>
                 <CardSubtitle className="mb-3"></CardSubtitle>
-
-                <MDBDataTable responsive striped bordered data={dataFreight} />
+                <MDBDataTable responsive striped bordered data={dataRoles} />
               </CardBody>
             </Card>
           </Col>
@@ -200,28 +163,23 @@ const FreightRoadTransportData = (props) => {
   );
 };
 
-FreightRoadTransportData.propTypes = {
-  freightRTD: PropTypes.array,
-  onGetFreightRTD: PropTypes.func,
-  deleteFreightRTD: PropTypes.func,
+Role.propTypes = {
+  users: PropTypes.array,
+  onGetRoles: PropTypes.func,
+  deleteRole: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStateToProps = ({ roadTransportData }) => ({
-  freightRTD: Array.isArray(roadTransportData.freightRTD)
-    ? roadTransportData.freightRTD
-    : null,
-  error: roadTransportData.error,
-  success: roadTransportData.success,
+const mapStateToProps = ({ roles }) => ({
+  roles: Array.isArray(roles.roles) ? roles.roles : null,
+  error: roles.error,
+  success: roles.success,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetFreightRTD: () => dispatch(getFreightRoadTransportData()),
-  deleteFreightRTD: (id) => dispatch(deleteFreightRoadTransportData(id)),
+  onGetRoles: () => dispatch(getRoles()),
+  deleteRole: (id) => dispatch(deleteRole(id)),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(FreightRoadTransportData));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Role));

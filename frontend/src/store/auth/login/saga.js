@@ -60,7 +60,7 @@ function* loginUser({ payload: { user, history } }) {
         localStorage.setItem("userToken", JSON.stringify(token));
         yield put(loginSuccess(user));
       } else {
-        yield put(apiError(response.message));
+        yield put(apiError(response?.errors ? Object.values(response?.errors) : response?.message));
       }
     }
     history.push("/dashboard");
@@ -82,7 +82,7 @@ function* logoutUser({ payload: { history } }) {
         localStorage.removeItem("userToken");
         yield put(logoutUserSuccess(response));
       } else {
-        yield put(apiError(response.message));
+        yield put(apiError(response?.errors ? Object.values(response?.errors) : response?.message));
       }
     }
     history.push("/login");

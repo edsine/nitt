@@ -1,37 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { MDBDataTable } from "mdbreact";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-import {
-  Row,
-  Col,
-  Card,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  Button,
-  Alert,
-} from "reactstrap";
+import { Row, Col, Card, CardBody, CardTitle, Button, Alert } from "reactstrap";
 
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import "../../assets/scss/datatables.scss";
 import {
-  getPassengerRoadTransportData,
-  deletePassengerRoadTransportData,
+  deleteVehicleImportation,
+  getVehicleImportations,
 } from "../../store/actions";
-import AddPassengerRoadTransportData from "../../components/PassengerRoadTransportData/addPassengerRoadTransportData";
-import EditPassengerRoadTransportData from "../../components/PassengerRoadTransportData/editPassengerRoadTransportData";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
+import AddVehicleImportation from "../../components/VehicleImportation/addVehicleImportation";
+import EditVehicleImportation from "../../components/VehicleImportation/editVehicleImportation";
 
-const PassengerRoadTransportData = (props) => {
+const VehicleImportation = (props) => {
   const {
-    passengersRTD,
-    onGetPassengerRTD,
-    deletePassengerRTD,
+    vehicleImportations,
+    onGetVehicleImportations,
+    deleteVehicleImportation,
     error,
     success,
   } = props;
@@ -52,30 +43,35 @@ const PassengerRoadTransportData = (props) => {
   };
 
   const handleDelete = () => {
-    deletePassengerRTD(currentId);
+    deleteVehicleImportation(currentId);
     setConfirmAlert(false);
   };
 
   const onEditClick = (id) => {
     setIsEditModalOpen(true);
     setCurrentId(id);
-    const editData = passengersRTD.find((item, index) => {
+    const editData = vehicleImportations.find((item, index) => {
       return item.id === id;
     });
     setCurrentEditData(editData);
   };
 
   useEffect(() => {
-    onGetPassengerRTD();
+    onGetVehicleImportations();
   }, [
-    onGetPassengerRTD,
+    onGetVehicleImportations,
     success?.addSuccess,
     success?.editSuccess,
     success?.deleteSuccess,
   ]);
-
-  const dataPassengers = {
+  const data = {
     columns: [
+      {
+        label: "Vehicle Category",
+        field: "vehicle_category_name",
+        sort: "asc",
+        width: 150,
+      },
       {
         label: "Year",
         field: "year",
@@ -83,40 +79,16 @@ const PassengerRoadTransportData = (props) => {
         width: 150,
       },
       {
-        label: "No of Passengers carried",
-        field: "number_of_passengers_carried",
-        sort: "asc",
-        width: 270,
-      },
-      {
-        label: "No of Vehicle in fleet",
-        field: "number_of_vehicles_in_fleet",
-        sort: "asc",
-        width: 200,
-      },
-      {
-        label: "Revenue from operation",
-        field: "revenue_from_operation",
-        sort: "asc",
-        width: 100,
-      },
-      {
-        label: "No. of Employee",
-        field: "number_of_employees",
+        label: "New Vehicles",
+        field: "new_vehicle_count",
         sort: "asc",
         width: 150,
       },
       {
-        label: "Annual cost of vehicle maintenance",
-        field: "annual_cost_of_vehicle_maintenance",
+        label: "Used Vehicles",
+        field: "used_vehicle_count",
         sort: "asc",
-        width: 100,
-      },
-      {
-        label: "No. of Accident",
-        field: "number_of_accidents",
-        sort: "asc",
-        width: 100,
+        width: 150,
       },
       {
         label: "Action",
@@ -124,15 +96,15 @@ const PassengerRoadTransportData = (props) => {
         width: 200,
       },
     ],
-    rows: passengersRTD?.map((item, index) => {
+    rows: vehicleImportations?.map((item, index) => {
       item.action = (
         <TableAction
-          id={passengersRTD[index].id}
+          id={vehicleImportations[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
           permissions={{
-            edit: "update passenger road transport data",
-            delete: "delete passenger road transport data",
+            edit: "update vehicle importation",
+            delete: "delete vehicle importation",
           }}
         />
       );
@@ -143,20 +115,19 @@ const PassengerRoadTransportData = (props) => {
   const handleClick = () => {
     setIsAddModalOpen(true);
   };
-
   return (
     <React.Fragment>
       <div className="page-content">
-        <AddPassengerRoadTransportData
+        <AddVehicleImportation
           isOpen={isAddModalOpen}
           setIsOpen={setIsAddModalOpen}
         />
-        <EditPassengerRoadTransportData
+        <EditVehicleImportation
           oldData={currentEditData}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
         />
-        <Breadcrumbs title="Road transport Data" breadcrumbItem="Passenger" />
+        <Breadcrumbs title="Vehicle Importation" breadcrumbItem="Vehicles" />
         {confirmAlert && (
           <SweetAlert
             title="Are you sure?"
@@ -173,6 +144,7 @@ const PassengerRoadTransportData = (props) => {
             You won't be able to revert this!
           </SweetAlert>
         )}
+
         {error?.deleteError && error.deleteError ? (
           <Alert color="danger">{error?.deleteError}</Alert>
         ) : null}
@@ -180,11 +152,14 @@ const PassengerRoadTransportData = (props) => {
           <Alert color="success">{success?.deleteSuccess}</Alert>
         ) : null}
         <Row>
-          <Col lg={12}>
+          <Col className="col-12">
             <Card>
               <CardBody>
+                <CardTitle></CardTitle>
                 <div className="d-flex justify-content-between">
-                  <CardTitle>Road transport data (Passengers) </CardTitle>
+                  <CardTitle>
+                    Analysis of Vehicle Importation to Nigeria{" "}
+                  </CardTitle>
                   <Button
                     color="success"
                     className="btn btn-success waves-effect waves-light float-right"
@@ -193,13 +168,8 @@ const PassengerRoadTransportData = (props) => {
                     Add
                   </Button>{" "}
                 </div>
-                <CardSubtitle className="mb-3"></CardSubtitle>
-                <MDBDataTable
-                  responsive
-                  striped
-                  bordered
-                  data={dataPassengers}
-                />
+
+                <MDBDataTable responsive striped bordered data={data} />
               </CardBody>
             </Card>
           </Col>
@@ -209,28 +179,28 @@ const PassengerRoadTransportData = (props) => {
   );
 };
 
-PassengerRoadTransportData.propTypes = {
-  passengersRTD: PropTypes.array,
-  onGetPassengerRTD: PropTypes.func,
-  deletePassengerRTD: PropTypes.func,
+VehicleImportation.propTypes = {
+  vehicleImportations: PropTypes.array,
+  onGetVehicleImportations: PropTypes.func,
+  deleteVehicleImportation: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStateToProps = ({ roadTransportData }) => ({
-  passengersRTD: Array.isArray(roadTransportData.passengersRTD)
-    ? roadTransportData.passengersRTD
+const mapStateToProps = ({ vehicleImportation }) => ({
+  vehicleImportations: Array.isArray(vehicleImportation.vehicleImportations)
+    ? vehicleImportation.vehicleImportations
     : null,
-  error: roadTransportData.error,
-  success: roadTransportData.success,
+  error: vehicleImportation.error,
+  success: vehicleImportation.success,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetPassengerRTD: () => dispatch(getPassengerRoadTransportData()),
-  deletePassengerRTD: (id) => dispatch(deletePassengerRoadTransportData(id)),
+  onGetVehicleImportations: () => dispatch(getVehicleImportations()),
+  deleteVehicleImportation: (id) => dispatch(deleteVehicleImportation(id)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(PassengerRoadTransportData));
+)(withRouter(VehicleImportation));

@@ -82,6 +82,10 @@ export const DELETE_USER = (id) => `users/${id}`;
 // UPDATE PROFILE
 export const PUT_UPDATE_PROFILE = (id) => `users/update_profile/${id}`;
 
+// UPDATE PROFILE IMAGE
+export const PUT_UPDATE_PROFILE_IMAGE = (id) =>
+  `users/update_profile_image/${id}`;
+
 // CHANGE PASSWORD
 export const POST_CHANGE_PASSWORD = (id) => `users/change_password/${id}`;
 
@@ -96,3 +100,15 @@ export const PUT_ROLE = (id) => `roles/${id}`;
 
 // DELETE ROLE
 export const DELETE_ROLE = (id) => `roles/${id}`;
+
+// GET ROLES
+export const GET_VEHICLE_IMPORTATIONS = "vehicle_importations";
+
+// ADD ROLE
+export const ADD_VEHICLE_IMPORTATION = "vehicle_importations";
+
+// UPDATE ROLE
+export const PUT_VEHICLE_IMPORTATION = (id) => `vehicle_importations/${id}`;
+
+// DELETE ROLE
+export const DELETE_VEHICLE_IMPORTATION = (id) => `vehicle_importations/${id}`;

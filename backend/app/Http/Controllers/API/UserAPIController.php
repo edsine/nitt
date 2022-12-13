@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use Response;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 use App\Repositories\UserRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -12,8 +13,8 @@ use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\API\CreateUserAPIRequest;
 use App\Http\Requests\API\UpdateUserAPIRequest;
 use App\Http\Requests\API\UpdateProfileAPIRequest;
+use App\Http\Requests\API\UpdateProfileImageAPIRequest;
 use App\Http\Requests\API\UpdateUserPasswordAPIRequest;
-use App\Http\Resources\UserResource;
 
 /**
  * Class UserAPIController
@@ -68,29 +69,30 @@ class UserAPIController extends AppBaseController
 
         $input = $request->all();
         $role = $input['role'];
+        $input['password'] = bcrypt($input['password']);
 
-        $profile_image = $request->file('profile_image');
-        $file_name = '';
-        $path_folder = public_path('storage/profile_images');
+        // $profile_image = $request->file('profile_image');
+        // $file_name = '';
+        // $path_folder = public_path('storage/profile_images');
 
-        if ($profile_image != '') {
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'profile_image' => 'required',
-                    'profile_image.*' => 'required|profile_image|mimes:jpeg,png,jpg|max:2048'
-                ]
-            );
+        // if ($profile_image != '') {
+        //     $validator = Validator::make(
+        //         $request->all(),
+        //         [
+        //             'profile_image' => 'required',
+        //             'profile_image.*' => 'required|profile_image|mimes:jpeg,png,jpg|max:2048'
+        //         ]
+        //     );
 
-            if ($validator->fails()) {
-                return $this->sendResponse($validator->errors(), 'validation');
-            }
+        //     if ($validator->fails()) {
+        //         return $this->sendResponse($validator->errors(), 'validation');
+        //     }
 
-            $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
-            $profile_image->move($path_folder, $file_name);
-        }
+        //     $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
+        //     $profile_image->move($path_folder, $file_name);
+        // }
 
-        $input['profile_image_path'] = $file_name;
+        // $input['profile_image_path'] = $file_name;
         $user = $this->userRepository->create($input);
         $user->syncRoles([$role]);
 
@@ -142,26 +144,26 @@ class UserAPIController extends AppBaseController
         $input = $request->all();
         $role = $input['role'];
 
-        $profile_image = $request->file('profile_image');
-        $file_name = '';
-        $path_folder = public_path('storage/profile_images');
+        // $profile_image = $request->file('profile_image');
+        // $file_name = '';
+        // $path_folder = public_path('storage/profile_images');
 
-        if ($profile_image != '') {
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'profile_image' => 'required',
-                    'profile_image.*' => 'required|profile_image|mimes:jpeg,png,jpg|max:2048'
-                ]
-            );
+        // if ($profile_image != '') {
+        //     $validator = Validator::make(
+        //         $request->all(),
+        //         [
+        //             'profile_image' => 'required',
+        //             'profile_image.*' => 'required|profile_image|mimes:jpeg,png,jpg|max:2048'
+        //         ]
+        //     );
 
-            if ($validator->fails()) {
-                return $this->sendResponse($validator->errors(), 'validation');
-            }
+        //     if ($validator->fails()) {
+        //         return $this->sendResponse($validator->errors(), 'validation');
+        //     }
 
-            $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
-            $profile_image->move($path_folder, $file_name);
-        }
+        //     $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
+        //     $profile_image->move($path_folder, $file_name);
+        // }
 
         /** @var User $user */
         $user = $this->userRepository->find($id);
@@ -170,10 +172,10 @@ class UserAPIController extends AppBaseController
             return $this->sendError('User not found');
         }
 
-        $path_to_old_image = $path_folder . "/" . $user->profile_image_path;
-        deleteImageWithPath($path_to_old_image);
+        // $path_to_old_image = $path_folder . "/" . $user->profile_image_path;
+        // deleteImageWithPath($path_to_old_image);
 
-        $input['profile_image_path'] = $file_name;
+        // $input['profile_image_path'] = $file_name;
         $user = $this->userRepository->update($input, $id);
         $user->syncRoles([$role]);
 
@@ -182,14 +184,14 @@ class UserAPIController extends AppBaseController
 
     /**
      * Update the specified User in storage.
-     * PUT/PATCH /users/{id}
+     * PUT/PATCH /users/update_profile/{id}
      *
      * @param int $id
      * @param UpdateProfileAPIRequest $request
      *
      * @return Response
      */
-    public function updateProfile($id, Request $request)
+    public function updateProfile($id, UpdateProfileAPIRequest $request)
     {
         $input = $request->all();
 
@@ -202,31 +204,38 @@ class UserAPIController extends AppBaseController
 
         $user = $this->userRepository->update($input, $id);
 
+        return $this->sendResponse($user->toArray(), 'User updated successfully');
+    }
+
+    /**
+     * Update the specified User in storage.
+     * PUT/PATCH /users/update_profile_image/{id}
+     *
+     * @param int $id
+     * @param UpdateProfileImageAPIRequest $request
+     *
+     * @return Response
+     */
+    public function updateProfileImage($id, UpdateProfileImageAPIRequest $request)
+    {
+
+        /** @var User $user */
+        $user = $this->userRepository->find($id);
+
+        if (empty($user)) {
+            return $this->sendError('User not found');
+        }
 
         $profile_image = $request->file('profile_image');
         $path_folder = public_path('storage/profile_images');
-        if ($profile_image != '') {
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'profile_image' => 'required',
-                    'profile_image.*' => 'required|profile_image|mimes:jpeg,png,jpg|max:2048'
-                ]
-            );
+        $path_to_old_image = $path_folder . "/" . $user->profile_image_path;
+        deleteImageWithPath($path_to_old_image);
 
-            if ($validator->fails()) {
-                return $this->sendResponse($validator->errors(), 'validation');
-            }
+        $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
+        $profile_image->move($path_folder, $file_name);
+        $user->profile_image_path = $file_name;
 
-            $path_to_old_image = $path_folder . "/" . $user->profile_image_path;
-            deleteImageWithPath($path_to_old_image);
-
-            $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
-            $profile_image->move($path_folder, $file_name);
-            $user->profile_image_path = $file_name;
-        }
-
-        return $this->sendResponse($user->toArray(), 'User updated successfully');
+        return $this->sendResponse($user->toArray(), 'Profile image updated successfully');
     }
 
     /**
@@ -253,7 +262,7 @@ class UserAPIController extends AppBaseController
             return $this->sendError('User not found');
         }
 
-        $user = $this->userRepository->update(['password' => $password], $user_id);
+        $user = $this->userRepository->update(['password' => bcrypt($password)], $user_id);
 
         return $this->sendResponse($user->toArray(), 'User password updated successfully');
     }

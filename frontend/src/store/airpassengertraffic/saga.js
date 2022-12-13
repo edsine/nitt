@@ -38,7 +38,7 @@ function* fetchAirPassengerTraffic() {
     } else {
       yield put(
         getAirPassengerTrafficFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -58,7 +58,7 @@ function* addAirPassengerTraffic({ payload }) {
     } else {
       yield put(
         addAirPassengerTrafficFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -82,7 +82,7 @@ function* updateAirPassengerTraffic({ payload: { airPassengerTraffic, id } }) {
     } else {
       yield put(
         editAirPassengerTrafficFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -101,7 +101,7 @@ function* removeAirPassengerTraffic({ payload }) {
     } else {
       yield put(
         deleteAirPassengerTrafficFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }

@@ -16,6 +16,7 @@ import avatar from "../../assets/images/users/avatar-2.jpg";
 // actions
 import {
   editProfile,
+  editProfileImage,
   resetProfileFlag,
   changePassword,
 } from "../../store/actions";
@@ -28,9 +29,12 @@ const UserProfile = (props) => {
   const {
     resetProfileFlag,
     editProfile,
+    editProfileImage,
     changePassword,
     error,
     success,
+    profileImageSuccess,
+    profileImageError,
     userSuccess,
     userError,
   } = props;
@@ -59,12 +63,14 @@ const UserProfile = (props) => {
   }, [props.success, resetProfileFlag]);
 
   function handleValidSubmit(event, values) {
-    const image = event.target.profile_image?.files[0];
+    editProfile(values, values.id);
+  }
 
+  function handleProfileImageChange(event, values) {
+    const image = event.target.profile_image?.files[0];
     const data = new FormData();
     data.append("profile_image", image);
-    data.append("name", values.username);
-    editProfile(data, values.idx);
+    editProfileImage(data, values.profileImageId);
   }
 
   function handleValidPasswordSubmit(event, values) {
@@ -82,6 +88,13 @@ const UserProfile = (props) => {
             {error && error ? <Alert color="danger">{error}</Alert> : null}
             {success && success ? (
               <Alert color="success">{success}</Alert>
+            ) : null}
+
+            {profileImageError && profileImageError ? (
+              <Alert color="danger">{profileImageError}</Alert>
+            ) : null}
+            {profileImageSuccess && profileImageSuccess ? (
+              <Alert color="success">{profileImageSuccess}</Alert>
             ) : null}
 
             {userError?.changePasswordError &&
@@ -134,7 +147,7 @@ const UserProfile = (props) => {
                     <Row>
                       <Col md="6">
                         <AvField
-                          name="username"
+                          name="name"
                           label="Name"
                           value={name}
                           className="form-control mb-3"
@@ -144,6 +157,32 @@ const UserProfile = (props) => {
                         />
                       </Col>
                     </Row>
+                    <AvField name="id" value={idx} type="hidden" />
+                  </div>
+                  <div className="text-left mt-4">
+                    <Button type="submit" color="danger">
+                      Edit Profile
+                    </Button>
+                  </div>
+                </AvForm>
+              </Col>
+            </Row>
+          </CardBody>
+        </Card>
+
+        <h4 className="card-title mb-4">Update Profile Image</h4>
+
+        <Card>
+          <CardBody>
+            <Row>
+              <Col>
+                <AvForm
+                  className="form-horizontal"
+                  onValidSubmit={(e, v) => {
+                    handleProfileImageChange(e, v);
+                  }}
+                >
+                  <div className="form-group">
                     <Row>
                       <Col md="6">
                         <div className="input-group">
@@ -152,6 +191,7 @@ const UserProfile = (props) => {
                             name="profile_image"
                             className="form-control"
                             id="profile-image"
+                            required
                             accept="image/png, image/jpeg"
                           />
                           <Label
@@ -163,11 +203,11 @@ const UserProfile = (props) => {
                         </div>
                       </Col>
                     </Row>
-                    <AvField name="idx" value={idx} type="hidden" />
+                    <AvField name="profileImageId" value={idx} type="hidden" />
                   </div>
                   <div className="text-left mt-4">
                     <Button type="submit" color="danger">
-                      Edit Profile
+                      Change Profile Image
                     </Button>
                   </div>
                 </AvForm>
@@ -239,22 +279,35 @@ const UserProfile = (props) => {
 
 UserProfile.propTypes = {
   editProfile: PropTypes.func,
+  editProfileImage: PropTypes.func,
   changePassword: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
+  profileImageError: PropTypes.any,
+  profileImageSuccess: PropTypes.any,
   userError: PropTypes.any,
   userSuccess: PropTypes.any,
 };
 
 const mapStatetoProps = ({ Profile, users }) => {
-  const { error, success } = Profile;
+  const { error, success, profileImageError, profileImageSuccess } = Profile;
   const userError = users.error;
   const userSuccess = users.success;
-  return { error, success, userError, userSuccess };
+  return {
+    error,
+    success,
+    userError,
+    userSuccess,
+    profileImageSuccess,
+    profileImageError,
+  };
 };
 
 export default withRouter(
-  connect(mapStatetoProps, { editProfile, resetProfileFlag, changePassword })(
-    UserProfile
-  )
+  connect(mapStatetoProps, {
+    editProfile,
+    editProfileImage,
+    resetProfileFlag,
+    changePassword,
+  })(UserProfile)
 );

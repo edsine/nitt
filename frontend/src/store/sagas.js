@@ -1,20 +1,22 @@
-import { all, fork } from "redux-saga/effects"
+import { all, fork } from "redux-saga/effects";
 
 //public
-import AccountSaga from "./auth/register/saga"
-import AuthSaga from "./auth/login/saga"
-import ForgetSaga from "./auth/forgetpwd/saga"
-import ProfileSaga from "./auth/profile/saga"
-import LayoutSaga from "./layout/saga"
-import calendarSaga from "./calendar/saga"
-import chatSaga from "./chat/saga"
-import tasksSaga from "./tasks/saga"
-import contactsSaga from "./contacts/saga"
-import roadTransportDataSaga from "./roadtransportdata/saga"
-import airTransportDataSaga from "./airtransportdata/saga"
-import airPassengerTrafficSaga from "./airpassengertraffic/saga"
-import userSaga from "./user/saga"
-import roleSaga from "./role/saga"
+import AccountSaga from "./auth/register/saga";
+import AuthSaga from "./auth/login/saga";
+import ForgetSaga from "./auth/forgetpwd/saga";
+import ProfileSaga from "./auth/profile/saga";
+import LayoutSaga from "./layout/saga";
+import calendarSaga from "./calendar/saga";
+import chatSaga from "./chat/saga";
+import tasksSaga from "./tasks/saga";
+import contactsSaga from "./contacts/saga";
+import roadTransportDataSaga from "./roadtransportdata/saga";
+import airTransportDataSaga from "./airtransportdata/saga";
+import airPassengerTrafficSaga from "./airpassengertraffic/saga";
+import userSaga from "./user/saga";
+import roleSaga from "./role/saga";
+import vehicleImportationSaga from "./vehicleimportation/saga";
+import permissionSaga from "./permission/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -32,6 +34,8 @@ export default function* rootSaga() {
     fork(airTransportDataSaga),
     fork(airPassengerTrafficSaga),
     fork(userSaga),
-    fork(roleSaga)
-  ])
+    fork(roleSaga),
+    fork(vehicleImportationSaga),
+    fork(permissionSaga)
+  ]);
 }

@@ -14,7 +14,6 @@ import {
   CLEAR_MESSAGE,
 } from "./actionTypes";
 
-//PASSENGER
 export const getRoles = () => ({
   type: GET_ROLES,
 });

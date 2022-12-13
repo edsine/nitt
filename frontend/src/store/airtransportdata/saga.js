@@ -38,7 +38,7 @@ function* fetchAirTransportData() {
     } else {
       yield put(
         getAirTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -58,7 +58,7 @@ function* addAirTransportData({ payload }) {
     } else {
       yield put(
         addAirTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -77,7 +77,7 @@ function* updateAirTransportData({ payload: { airTransportData, id } }) {
     } else {
       yield put(
         editAirTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -96,7 +96,7 @@ function* removeAirTransportData({ payload }) {
     } else {
       yield put(
         deleteAirTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }

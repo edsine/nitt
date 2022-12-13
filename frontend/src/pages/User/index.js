@@ -18,7 +18,7 @@ import {
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import "../../assets/scss/datatables.scss";
-import { deleteUser, getUsers } from "../../store/user/actions";
+import { deleteUser, getUsers } from "../../store/actions";
 import AddUser from "../../components/User/addUser";
 import EditUser from "../../components/User/editUser";
 import TableAction from "../../components/Common/TableAction";

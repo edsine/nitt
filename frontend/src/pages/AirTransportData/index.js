@@ -20,7 +20,7 @@ import "../../assets/scss/datatables.scss";
 import {
   getAirTransportData,
   deleteAirTransportData,
-} from "../../store/airtransportdata/actions";
+} from "../../store/actions";
 import AddAirTransportData from "../../components/AirTransportData/addAirTransportData";
 import EditAirTransportData from "../../components/AirTransportData/editAirTransportData";
 import TableAction from "../../components/Common/TableAction";
@@ -129,6 +129,10 @@ const AirTransportData = (props) => {
           id={airTransportData[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
+          permissions={{
+            edit: "update air transport data",
+            delete: "delete air transport data",
+          }}
         />
       );
       return item;

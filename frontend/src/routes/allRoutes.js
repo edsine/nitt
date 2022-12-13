@@ -104,9 +104,9 @@ import Register1 from "../pages/AuthenticationInner/Register";
 import Recoverpw from "../pages/AuthenticationInner/Recoverpw";
 import LockScreen from "../pages/AuthenticationInner/auth-lock-screen";
 
-// Profile
+
 import UserProfile from "../pages/Authentication/user-profile";
-import VehicleImportation from "../pages/VehicleImportation/VehicleImportation";
+import VehicleImportation from "../pages/VehicleImportation";
 import PassengerRoadTransportData from "../pages/PassengerRoadTransportData";
 import FreightRoadTransportData from "../pages/FreightRoadTransportData";
 import AirTransportData from "../pages/AirTransportData";
@@ -114,6 +114,7 @@ import RailwaysPassengers from "../pages/RailwaysPassengers/RailwaysPassengers";
 import RollingStock from "../pages/RollingStock/RollingStock";
 import AirPassengerTraffic from "../pages/AirPassengerTraffic";
 import User from "../pages/User";
+import Role from "../pages/Role";
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
@@ -250,10 +251,17 @@ const permissionRoutes = [
   },
 
   //Rolling Stock (Railway)
-  { path: "/rolling-stock", component: RollingStock, permission: "railway rolling stock" },
+  {
+    path: "/rolling-stock",
+    component: RollingStock,
+    permission: "read railway rolling stock",
+  },
 
-  //Rolling Stock (Railway)
+  //Users
   { path: "/users", component: User, permission: "read user" },
+
+  //Roles
+  { path: "/roles", component: Role, permission: "read role" },
 ];
 
 const authRoutes = [

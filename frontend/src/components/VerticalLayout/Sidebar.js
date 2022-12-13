@@ -17,7 +17,7 @@ const Sidebar = props => {
         <div className="h-100">
           <div className="user-wid text-center py-4">
             <div className="user-img">
-              <img src={avatar2} alt="" className="avatar-md mx-auto rounded-circle" />
+              <img src={user.profile_image_path  || avatar2} alt="" className="avatar-md mx-auto rounded-circle" />
             </div>
 
             <div className="mt-3">

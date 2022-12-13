@@ -32,3 +32,9 @@ export * from "./user/actions";
 
 // Roles
 export * from "./role/actions";
+
+// Permissions
+export * from "./permission/actions";
+
+// Vehicle Importation
+export * from "./vehicleimportation/actions";

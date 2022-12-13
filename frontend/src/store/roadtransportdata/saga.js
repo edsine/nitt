@@ -54,7 +54,7 @@ function* fetchPassengerRoadTransportData() {
     } else {
       yield put(
         getPassengerRoadTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -74,7 +74,7 @@ function* addPassengerRoadTransportData({ payload }) {
     } else {
       yield put(
         addPassengerRoadTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -98,7 +98,7 @@ function* updatePassengerRoadTransportData({ payload: { passengerRTD, id } }) {
     } else {
       yield put(
         editPassengerRoadTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -117,7 +117,7 @@ function* removePassengerRoadTransportData({ payload }) {
     } else {
       yield put(
         deletePassengerRoadTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -136,7 +136,7 @@ function* fetchFreightRoadTransportData() {
     } else {
       yield put(
         getFreightRoadTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -157,7 +157,7 @@ function* addFreightRoadTransportData({ payload }) {
     } else {
       yield put(
         addFreightRoadTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -178,7 +178,7 @@ function* updateFreightRoadTransportData({ payload: { freightRTD, id } }) {
     } else {
       yield put(
         editFreightRoadTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
@@ -197,7 +197,7 @@ function* removeFreightRoadTransportData({ payload }) {
     } else {
       yield put(
         deleteFreightRoadTransportDataFail(
-          response?.message || Object.values(response?.errors)
+          response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }

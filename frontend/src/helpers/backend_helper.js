@@ -109,6 +109,10 @@ export const deleteUser = (id, config) => del(url.DELETE_USER(id), config);
 export const putUpdateProfile = (data, id, config) =>
   put(url.PUT_UPDATE_PROFILE(id), data, config);
 
+// Update Profile
+export const putUpdateProfileImage = (data, id, config) =>
+  put(url.PUT_UPDATE_PROFILE_IMAGE(id), data, config);
+
 // Change Password
 export const postChangePassword = (data, id, config) =>
   post(url.POST_CHANGE_PASSWORD(id), data, config);
@@ -125,3 +129,19 @@ export const putRole = (data, id, config) =>
 
 // Delete Role
 export const deleteRole = (id, config) => del(url.DELETE_ROLE(id), config);
+
+// Get Permissions
+export const getPermissions = (config) => get(url.GET_APP_PERMISSIONS, config);
+
+// Get VehicleImportation
+export const getVehicleImportations = (config) => get(url.GET_VEHICLE_IMPORTATIONS, config);
+
+// Add VehicleImportation
+export const postVehicleImportation = (data, config) => post(url.ADD_VEHICLE_IMPORTATION, data, config);
+
+// Update VehicleImportation
+export const putVehicleImportation = (data, id, config) =>
+  put(url.PUT_VEHICLE_IMPORTATION(id), data, config);
+
+// Delete VehicleImportation
+export const deleteVehicleImportation = (id, config) => del(url.DELETE_VEHICLE_IMPORTATION(id), config);

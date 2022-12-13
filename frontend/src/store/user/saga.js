@@ -41,7 +41,7 @@ function* fetchUsers() {
       yield put(getUsersSuccess(data));
     } else {
       yield put(
-        getUsersFail(response?.message || Object.values(response?.errors))
+        getUsersFail(response?.errors ? Object.values(response?.errors) : response?.message)
       );
     }
   } catch (error) {
@@ -59,7 +59,7 @@ function* addUser({ payload }) {
       yield put(addUserSuccess(data, message));
     } else {
       yield put(
-        addUserFail(response?.message || Object.values(response?.errors))
+        addUserFail(response?.errors ? Object.values(response?.errors) : response?.message)
       );
     }
   } catch (error) {
@@ -74,7 +74,7 @@ function* updateUser({ payload: { user, id } }) {
       yield put(editUserSuccess(response?.data, response?.message));
     } else {
       yield put(
-        editUserFail(response?.message || Object.values(response?.errors))
+        editUserFail(response?.errors ? Object.values(response?.errors) : response?.message)
       );
     }
   } catch (error) {
@@ -91,7 +91,7 @@ function* updatePassword({ payload: { values, id } }) {
       yield put(changePasswordSuccess(response?.data, response?.message));
     } else {
       yield put(
-        changePasswordFail(response?.message || Object.values(response?.errors))
+        changePasswordFail(response?.errors ? Object.values(response?.errors) : response?.message)
       );
     }
   } catch (error) {
@@ -108,7 +108,9 @@ function* removeUser({ payload }) {
       yield put(deleteUserSuccess(response?.message));
     } else {
       yield put(
-        deleteUserFail(response?.message || Object.values(response?.errors))
+        deleteUserFail(
+          response?.errors ? Object.values(response?.errors) : response?.message
+        )
       );
     }
   } catch (error) {

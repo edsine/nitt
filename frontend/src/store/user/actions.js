@@ -17,7 +17,6 @@ import {
   CLEAR_MESSAGE,
 } from "./actionTypes";
 
-//PASSENGER
 export const getUsers = () => ({
   type: GET_USERS,
 });

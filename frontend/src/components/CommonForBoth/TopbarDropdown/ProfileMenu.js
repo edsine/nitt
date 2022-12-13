@@ -1,42 +1,44 @@
-import React, { useState, useEffect } from "react"
-import PropTypes from 'prop-types'
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from "reactstrap"
+} from "reactstrap";
 
 //i18n
-import { withTranslation } from "react-i18next"
+import { withTranslation } from "react-i18next";
 // Redux
-import { connect } from "react-redux"
-import { withRouter, Link } from "react-router-dom"
+import { connect } from "react-redux";
+import { withRouter, Link } from "react-router-dom";
 
 // users
-import user4 from "../../../assets/images/users/avatar-2.jpg"
+import user4 from "../../../assets/images/users/avatar-2.jpg";
 
-const ProfileMenu = props => {
+const ProfileMenu = (props) => {
   // Declare a new state variable, which we'll call "menu"
-  const [menu, setMenu] = useState(false)
+  const [menu, setMenu] = useState(false);
 
-  const [username, setusername] = useState("")
+  const [username, setusername] = useState("");
+  const [profileImagePath, setProfileImagePath] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("authUser")) {
       if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-        const obj = JSON.parse(localStorage.getItem("authUser"))
-        setusername(obj.displayName)
+        const obj = JSON.parse(localStorage.getItem("authUser"));
+        setusername(obj.displayName);
       } else if (
         process.env.REACT_APP_DEFAULTAUTH === "fake" ||
         process.env.REACT_APP_DEFAULTAUTH === "jwt" ||
         process.env.REACT_APP_DEFAULTAUTH === "backend"
       ) {
-        const obj = JSON.parse(localStorage.getItem("authUser"))
-        setusername(obj.name)
+        const obj = JSON.parse(localStorage.getItem("authUser"));
+        setusername(obj.name);
+        setProfileImagePath(obj.profile_image_path);
       }
     }
-  }, [props.success])
+  }, [props.success]);
 
   return (
     <React.Fragment>
@@ -52,7 +54,7 @@ const ProfileMenu = props => {
         >
           <img
             className="rounded-circle header-profile-user"
-            src={user4}
+            src={profileImagePath || user4}
             alt="Header Avatar"
           />{" "}
           <span className="d-none d-xl-inline-block ms-1">{username}</span>{" "}
@@ -76,19 +78,19 @@ const ProfileMenu = props => {
         </DropdownMenu>
       </Dropdown>
     </React.Fragment>
-  )
-}
+  );
+};
 
 ProfileMenu.propTypes = {
   success: PropTypes.any,
-  t: PropTypes.any
-}
+  t: PropTypes.any,
+};
 
-const mapStatetoProps = state => {
-  const { error, success } = state.Profile
-  return { error, success }
-}
+const mapStatetoProps = (state) => {
+  const { error, success } = state.Profile;
+  return { error, success };
+};
 
 export default withRouter(
   connect(mapStatetoProps, {})(withTranslation()(ProfileMenu))
-)
+);
