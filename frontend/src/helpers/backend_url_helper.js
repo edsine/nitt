@@ -112,3 +112,27 @@ export const PUT_VEHICLE_IMPORTATION = (id) => `vehicle_importations/${id}`;
 
 // DELETE ROLE
 export const DELETE_VEHICLE_IMPORTATION = (id) => `vehicle_importations/${id}`;
+
+// GET RAILWAYS PASSENGERS
+export const GET_RAILWAYS_PASSENGERS = "railway_passengers";
+
+// ADD RAILWAYS PASSENGER
+export const ADD_RAILWAYS_PASSENGER = "railway_passengers";
+
+// UPDATE RAILWAYS PASSENGER
+export const PUT_RAILWAYS_PASSENGER = (id) => `railway_passengers/${id}`;
+
+// DELETE RAILWAYS PASSENGER
+export const DELETE_RAILWAYS_PASSENGER = (id) => `railway_passengers/${id}`;
+
+// GET ROLLING STOCKS
+export const GET_ROLLING_STOCKS = "railway_rolling_stocks";
+
+// ADD ROLLING STOCK
+export const ADD_ROLLING_STOCK = "railway_rolling_stocks";
+
+// UPDATE ROLLING STOCK
+export const PUT_ROLLING_STOCK = (id) => `railway_rolling_stocks/${id}`;
+
+// DELETE ROLLING STOCK
+export const DELETE_ROLLING_STOCK = (id) => `railway_rolling_stocks/${id}`;

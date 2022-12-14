@@ -42,6 +42,12 @@ import permissions from "./permission/reducer";
 // Vehicle Importation
 import vehicleImportation from "./vehicleimportation/reducer";
 
+// Railways Passengers
+import railwaysPassengers from "./railwayspassengers/reducer";
+
+// Rolling Stock
+import rollingStock from "./rollingstock/reducer";
+
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -59,7 +65,9 @@ const rootReducer = combineReducers({
   users,
   roles,
   vehicleImportation,
-  permissions
+  permissions,
+  railwaysPassengers,
+  rollingStock
 });
 
 export default rootReducer;

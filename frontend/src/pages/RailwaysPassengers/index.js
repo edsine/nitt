@@ -10,30 +10,31 @@ import {
   Card,
   CardBody,
   CardTitle,
-  Alert,
   CardSubtitle,
   Button,
+  Alert,
 } from "reactstrap";
+
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import "../../assets/scss/datatables.scss";
 import {
-  getAirPassengerTraffic,
-  deleteAirPassengerTraffic,
+  getRailwaysPassengers,
+  deleteRailwaysPassenger,
 } from "../../store/actions";
-import AddAirPassengerTraffic from "../../components/AirPassengerTraffic/addAirPassengerTraffic";
-import EditAirPassengerTraffic from "../../components/AirPassengerTraffic/editAirPassengerTraffic";
+import AddRailwaysPassenger from "../../components/RailwaysPassenger/addRailwaysPassenger";
+import EditRailwaysPassenger from "../../components/RailwaysPassenger/editRailwaysPassenger";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { checkPermisssion } from "../../helpers/check_permission";
 
-const AirPassengerTraffic = (props) => {
+const RailwaysPassengers = (props) => {
   const {
-    airPassengerTraffic,
-    onGetAirPassengerTraffic,
-    deleteAirPassengerTraffic,
-    success,
+    railwaysPassengers,
+    onGetRailwaysPassengers,
+    deleteRailwaysPassenger,
     error,
+    success,
   } = props;
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -52,28 +53,29 @@ const AirPassengerTraffic = (props) => {
   };
 
   const handleDelete = () => {
-    deleteAirPassengerTraffic(currentId);
+    deleteRailwaysPassenger(currentId);
     setConfirmAlert(false);
   };
 
   const onEditClick = (id) => {
     setIsEditModalOpen(true);
     setCurrentId(id);
-    const editData = airPassengerTraffic.find((item, index) => {
+    const editData = railwaysPassengers.find((item, index) => {
       return item.id === id;
     });
     setCurrentEditData(editData);
   };
 
   useEffect(() => {
-    onGetAirPassengerTraffic();
+    onGetRailwaysPassengers();
   }, [
-    onGetAirPassengerTraffic,
+    onGetRailwaysPassengers,
     success?.addSuccess,
     success?.editSuccess,
     success?.deleteSuccess,
   ]);
-  const trafficData = {
+
+  const dataRailwaysPassengers = {
     columns: [
       {
         label: "Year",
@@ -82,28 +84,46 @@ const AirPassengerTraffic = (props) => {
         width: 150,
       },
       {
-        label: "Domestic Passenger Traffic",
-        field: "domestic_passengers_traffic",
+        label: "Urban Passengers carried",
+        field: "number_of_urban_passengers_carried",
         sort: "asc",
         width: 270,
       },
       {
-        label: "International Passenger Traffic",
-        field: "international_passengers_traffic",
+        label: "Regional Passengers carried",
+        field: "number_of_regional_passengers_carried",
         sort: "asc",
         width: 200,
       },
       {
-        label: "Domestic Freight Traffic/Ton",
-        field: "domestic_freight_traffic",
+        label: "Freight Carried",
+        field: "freight_carried",
         sort: "asc",
         width: 100,
       },
       {
-        label: "International Freight Traffic/Ton",
-        field: "international_freight_traffic",
+        label: "Freight Trains",
+        field: "number_of_freight_trains",
         sort: "asc",
         width: 150,
+      },
+      {
+        label: "Passenger Trains",
+        field: "number_of_passenger_trains",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Freight Revenue Generation",
+        field: "freight_revenue_generation",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Passenger Fuel Consumption",
+        field: "passenger_fuel_consumption_rate",
+        sort: "asc",
+        width: 100,
       },
       {
         label: "Action",
@@ -111,15 +131,15 @@ const AirPassengerTraffic = (props) => {
         width: 200,
       },
     ],
-    rows: airPassengerTraffic?.map((item, index) => {
+    rows: railwaysPassengers?.map((item, index) => {
       item.action = (
         <TableAction
-          id={airPassengerTraffic[index].id}
+          id={railwaysPassengers[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
           permissions={{
-            edit: "update air passengers traffic",
-            delete: "delete air passengers traffic",
+            edit: "update railway passenger",
+            delete: "delete railway passenger",
           }}
         />
       );
@@ -134,19 +154,16 @@ const AirPassengerTraffic = (props) => {
   return (
     <React.Fragment>
       <div className="page-content">
-        <AddAirPassengerTraffic
+        <AddRailwaysPassenger
           isOpen={isAddModalOpen}
           setIsOpen={setIsAddModalOpen}
         />
-        <EditAirPassengerTraffic
+        <EditRailwaysPassenger
           oldData={currentEditData}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
         />
-        <Breadcrumbs
-          title="Air transport Data"
-          breadcrumbItem="Traffic"
-        />
+        <Breadcrumbs title="Railways" breadcrumbItem="Passenger" />
         {confirmAlert && (
           <SweetAlert
             title="Are you sure?"
@@ -169,14 +186,13 @@ const AirPassengerTraffic = (props) => {
         {success?.deleteSuccess && success?.deleteSuccess ? (
           <Alert color="success">{success?.deleteSuccess}</Alert>
         ) : null}
-
         <Row>
-          <Col className="col-12">
+          <Col lg={12}>
             <Card>
               <CardBody>
                 <div className="d-flex justify-content-between">
-                  <CardTitle>Air Passenger Traffic</CardTitle>
-                  {checkPermisssion("create air passengers traffic") && (
+                  <CardTitle>Railways Passengers</CardTitle>
+                  {checkPermisssion("create railway passenger") && (
                     <Button
                       color="success"
                       className="btn btn-success waves-effect waves-light float-right"
@@ -187,8 +203,12 @@ const AirPassengerTraffic = (props) => {
                   )}
                 </div>
                 <CardSubtitle className="mb-3"></CardSubtitle>
-
-                <MDBDataTable responsive striped bordered data={trafficData} />
+                <MDBDataTable
+                  responsive
+                  striped
+                  bordered
+                  data={dataRailwaysPassengers}
+                />
               </CardBody>
             </Card>
           </Col>
@@ -198,28 +218,28 @@ const AirPassengerTraffic = (props) => {
   );
 };
 
-AirPassengerTraffic.propTypes = {
-  airPassengerTraffic: PropTypes.array,
-  onGetAirPassengerTraffic: PropTypes.func,
-  deleteAirPassengerTraffic: PropTypes.func,
+RailwaysPassengers.propTypes = {
+  railwaysPassengers: PropTypes.array,
+  onGetRailwaysPassenger: PropTypes.func,
+  deleteRailwaysPassenger: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStateToProps = ({ airPassengerTraffic }) => ({
-  airPassengerTraffic: Array.isArray(airPassengerTraffic.airPassengerTraffic)
-    ? airPassengerTraffic.airPassengerTraffic
+const mapStateToProps = ({ railwaysPassengers }) => ({
+  railwaysPassengers: Array.isArray(railwaysPassengers.railwaysPassengers)
+    ? railwaysPassengers.railwaysPassengers
     : null,
-  error: airPassengerTraffic.error,
-  success: airPassengerTraffic.success,
+  error: railwaysPassengers.error,
+  success: railwaysPassengers.success,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetAirPassengerTraffic: () => dispatch(getAirPassengerTraffic()),
-  deleteAirPassengerTraffic: (id) => dispatch(deleteAirPassengerTraffic(id)),
+  onGetRailwaysPassengers: () => dispatch(getRailwaysPassengers()),
+  deleteRailwaysPassenger: (id) => dispatch(deleteRailwaysPassenger(id)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(AirPassengerTraffic));
+)(withRouter(RailwaysPassengers));

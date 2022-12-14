@@ -91,21 +91,19 @@ const EditRole = (props) => {
               </div>
             </Col>
             <Col md="12">
-              <Row>
-                <AvCheckboxGroup
-                  name="permissions[]"
-                  inline
-                  value={oldData?.permissions}
-                >
-                  {permissionsArray?.map((permission, index) => (
-                    <AvCheckbox
-                      key={index}
-                      label={permission}
-                      value={permission}
-                    />
-                  ))}
-                </AvCheckboxGroup>
-              </Row>
+              <AvCheckboxGroup
+                name="permissions[]"
+                inline
+                value={oldData?.permissions}
+              >
+                {permissionsArray?.map((permission, index) => (
+                  <AvCheckbox
+                    key={index}
+                    label={permission}
+                    value={permission}
+                  />
+                ))}
+              </AvCheckboxGroup>
             </Col>
           </Row>
         </div>

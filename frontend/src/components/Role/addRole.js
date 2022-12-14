@@ -5,8 +5,8 @@ import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import {
   AvForm,
   AvField,
-  AvGroup,
-  AvInput,
+  AvCheckbox,
+  AvCheckboxGroup
 } from "availity-reactstrap-validation";
 import { addRole, getPermissions } from "../../store/actions";
 
@@ -89,22 +89,18 @@ const AddRole = (props) => {
               </div>
             </Col>
             <Col md="12">
-              <Row>
+              <AvCheckboxGroup
+                name="permissions[]"
+                inline
+              >
                 {permissionsArray?.map((permission, index) => (
-                  <Col md={6} key={index}>
-                    <AvGroup check>
-                      <Label check>
-                        <AvInput
-                          type="checkbox"
-                          trueValue={permission}
-                          name="permissions[]"
-                        />{" "}
-                        {permission}
-                      </Label>
-                    </AvGroup>
-                  </Col>
+                  <AvCheckbox
+                    key={index}
+                    label={permission}
+                    value={permission}
+                  />
                 ))}
-              </Row>
+              </AvCheckboxGroup>
             </Col>
           </Row>
         </div>

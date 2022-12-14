@@ -38,3 +38,9 @@ export * from "./permission/actions";
 
 // Vehicle Importation
 export * from "./vehicleimportation/actions";
+
+// Railways Passengers
+export * from "./railwayspassengers/actions";
+
+// Rolling Stock
+export * from "./rollingstock/actions";

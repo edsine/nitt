@@ -134,14 +134,48 @@ export const deleteRole = (id, config) => del(url.DELETE_ROLE(id), config);
 export const getPermissions = (config) => get(url.GET_APP_PERMISSIONS, config);
 
 // Get VehicleImportation
-export const getVehicleImportations = (config) => get(url.GET_VEHICLE_IMPORTATIONS, config);
+export const getVehicleImportations = (config) =>
+  get(url.GET_VEHICLE_IMPORTATIONS, config);
 
 // Add VehicleImportation
-export const postVehicleImportation = (data, config) => post(url.ADD_VEHICLE_IMPORTATION, data, config);
+export const postVehicleImportation = (data, config) =>
+  post(url.ADD_VEHICLE_IMPORTATION, data, config);
 
 // Update VehicleImportation
 export const putVehicleImportation = (data, id, config) =>
   put(url.PUT_VEHICLE_IMPORTATION(id), data, config);
 
 // Delete VehicleImportation
-export const deleteVehicleImportation = (id, config) => del(url.DELETE_VEHICLE_IMPORTATION(id), config);
+export const deleteVehicleImportation = (id, config) =>
+  del(url.DELETE_VEHICLE_IMPORTATION(id), config);
+
+// Get Railways Passengers
+export const getRailwaysPassengers = (config) =>
+  get(url.GET_RAILWAYS_PASSENGERS, config);
+
+// Add Railways Passengers
+export const postRailwaysPassenger = (data, config) =>
+  post(url.ADD_RAILWAYS_PASSENGER, data, config);
+
+// Update Railways Passengers
+export const putRailwaysPassenger = (data, id, config) =>
+  put(url.PUT_RAILWAYS_PASSENGER(id), data, config);
+
+// Delete Railways Passengers
+export const deleteRailwaysPassenger = (id, config) =>
+  del(url.DELETE_RAILWAYS_PASSENGER(id), config);
+
+// Get Rolling Stock
+export const getRollingStocks = (config) => get(url.GET_ROLLING_STOCKS, config);
+
+// Add Rolling Stock
+export const postRollingStock = (data, config) =>
+  post(url.ADD_ROLLING_STOCK, data, config);
+
+// Update Rolling Stock
+export const putRollingStock = (data, id, config) =>
+  put(url.PUT_ROLLING_STOCK(id), data, config);
+
+// Delete Rolling Stock
+export const deleteRollingStock = (id, config) =>
+  del(url.DELETE_ROLLING_STOCK(id), config);

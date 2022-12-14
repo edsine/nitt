@@ -10,30 +10,28 @@ import {
   Card,
   CardBody,
   CardTitle,
-  Alert,
   CardSubtitle,
   Button,
+  Alert,
 } from "reactstrap";
+
 //Import Breadcrumb
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import "../../assets/scss/datatables.scss";
-import {
-  getAirPassengerTraffic,
-  deleteAirPassengerTraffic,
-} from "../../store/actions";
-import AddAirPassengerTraffic from "../../components/AirPassengerTraffic/addAirPassengerTraffic";
-import EditAirPassengerTraffic from "../../components/AirPassengerTraffic/editAirPassengerTraffic";
+import { getRollingStocks, deleteRollingStock } from "../../store/actions";
+import AddRollingStock from "../../components/RollingStock/addRollingStock";
+import EditRollingStock from "../../components/RollingStock/editRollingStock";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { checkPermisssion } from "../../helpers/check_permission";
 
-const AirPassengerTraffic = (props) => {
+const RollingStocks = (props) => {
   const {
-    airPassengerTraffic,
-    onGetAirPassengerTraffic,
-    deleteAirPassengerTraffic,
-    success,
+    rollingStocks,
+    onGetRollingStocks,
+    deleteRollingStock,
     error,
+    success,
   } = props;
 
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -52,28 +50,29 @@ const AirPassengerTraffic = (props) => {
   };
 
   const handleDelete = () => {
-    deleteAirPassengerTraffic(currentId);
+    deleteRollingStock(currentId);
     setConfirmAlert(false);
   };
 
   const onEditClick = (id) => {
     setIsEditModalOpen(true);
     setCurrentId(id);
-    const editData = airPassengerTraffic.find((item, index) => {
+    const editData = rollingStocks.find((item, index) => {
       return item.id === id;
     });
     setCurrentEditData(editData);
   };
 
   useEffect(() => {
-    onGetAirPassengerTraffic();
+    onGetRollingStocks();
   }, [
-    onGetAirPassengerTraffic,
+    onGetRollingStocks,
     success?.addSuccess,
     success?.editSuccess,
     success?.deleteSuccess,
   ]);
-  const trafficData = {
+
+  const dataRollingStocks = {
     columns: [
       {
         label: "Year",
@@ -82,28 +81,46 @@ const AirPassengerTraffic = (props) => {
         width: 150,
       },
       {
-        label: "Domestic Passenger Traffic",
-        field: "domestic_passengers_traffic",
+        label: "Coaches",
+        field: "number_of_coaches_rolling_stock",
         sort: "asc",
         width: 270,
       },
       {
-        label: "International Passenger Traffic",
-        field: "international_passengers_traffic",
+        label: "Wagon",
+        field: "number_of_wagon_rolling_stock",
         sort: "asc",
         width: 200,
       },
       {
-        label: "Domestic Freight Traffic/Ton",
-        field: "domestic_freight_traffic",
+        label: "Loco",
+        field: "average_loco_availability",
         sort: "asc",
         width: 100,
       },
       {
-        label: "International Freight Traffic/Ton",
-        field: "international_freight_traffic",
+        label: "Coaches Maintenance Cost",
+        field: "average_coaches_maintenance_cost",
         sort: "asc",
         width: 150,
+      },
+      {
+        label: "Wagon Maintenance Cost",
+        field: "average_wagon_maintenance_cost",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Annual Average Travel (Coaches(km))",
+        field: "annual_average_km_travel_coaches",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Annual Average Travel (Wagon(km))",
+        field: "annual_average_km_travel_wagon",
+        sort: "asc",
+        width: 100,
       },
       {
         label: "Action",
@@ -111,15 +128,15 @@ const AirPassengerTraffic = (props) => {
         width: 200,
       },
     ],
-    rows: airPassengerTraffic?.map((item, index) => {
+    rows: rollingStocks?.map((item, index) => {
       item.action = (
         <TableAction
-          id={airPassengerTraffic[index].id}
+          id={rollingStocks[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
           permissions={{
-            edit: "update air passengers traffic",
-            delete: "delete air passengers traffic",
+            edit: "update railway rolling stock",
+            delete: "delete railway rolling stock",
           }}
         />
       );
@@ -134,19 +151,16 @@ const AirPassengerTraffic = (props) => {
   return (
     <React.Fragment>
       <div className="page-content">
-        <AddAirPassengerTraffic
+        <AddRollingStock
           isOpen={isAddModalOpen}
           setIsOpen={setIsAddModalOpen}
         />
-        <EditAirPassengerTraffic
+        <EditRollingStock
           oldData={currentEditData}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
         />
-        <Breadcrumbs
-          title="Air transport Data"
-          breadcrumbItem="Traffic"
-        />
+        <Breadcrumbs title="Rolling Stock" breadcrumbItem="Wagon and Coaches" />
         {confirmAlert && (
           <SweetAlert
             title="Are you sure?"
@@ -169,14 +183,13 @@ const AirPassengerTraffic = (props) => {
         {success?.deleteSuccess && success?.deleteSuccess ? (
           <Alert color="success">{success?.deleteSuccess}</Alert>
         ) : null}
-
         <Row>
-          <Col className="col-12">
+          <Col lg={12}>
             <Card>
               <CardBody>
                 <div className="d-flex justify-content-between">
-                  <CardTitle>Air Passenger Traffic</CardTitle>
-                  {checkPermisssion("create air passengers traffic") && (
+                  <CardTitle>Rolling Stock</CardTitle>
+                  {checkPermisssion("create railway rolling stock") && (
                     <Button
                       color="success"
                       className="btn btn-success waves-effect waves-light float-right"
@@ -187,8 +200,12 @@ const AirPassengerTraffic = (props) => {
                   )}
                 </div>
                 <CardSubtitle className="mb-3"></CardSubtitle>
-
-                <MDBDataTable responsive striped bordered data={trafficData} />
+                <MDBDataTable
+                  responsive
+                  striped
+                  bordered
+                  data={dataRollingStocks}
+                />
               </CardBody>
             </Card>
           </Col>
@@ -198,28 +215,28 @@ const AirPassengerTraffic = (props) => {
   );
 };
 
-AirPassengerTraffic.propTypes = {
-  airPassengerTraffic: PropTypes.array,
-  onGetAirPassengerTraffic: PropTypes.func,
-  deleteAirPassengerTraffic: PropTypes.func,
+RollingStocks.propTypes = {
+  rollingStocks: PropTypes.array,
+  onGetRollingStock: PropTypes.func,
+  deleteRollingStock: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStateToProps = ({ airPassengerTraffic }) => ({
-  airPassengerTraffic: Array.isArray(airPassengerTraffic.airPassengerTraffic)
-    ? airPassengerTraffic.airPassengerTraffic
+const mapStateToProps = ({ rollingStock }) => ({
+  rollingStocks: Array.isArray(rollingStock.rollingStocks)
+    ? rollingStock.rollingStocks
     : null,
-  error: airPassengerTraffic.error,
-  success: airPassengerTraffic.success,
+  error: rollingStock.error,
+  success: rollingStock.success,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetAirPassengerTraffic: () => dispatch(getAirPassengerTraffic()),
-  deleteAirPassengerTraffic: (id) => dispatch(deleteAirPassengerTraffic(id)),
+  onGetRollingStocks: () => dispatch(getRollingStocks()),
+  deleteRollingStock: (id) => dispatch(deleteRollingStock(id)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(AirPassengerTraffic));
+)(withRouter(RollingStocks));
