@@ -39,6 +39,7 @@ const EditPassengerRoadTransportData = (props) => {
         onValidSubmit={(e, v) => {
           handleValidSubmit(e, v);
         }}
+        model={oldData}
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
@@ -65,7 +66,6 @@ const EditPassengerRoadTransportData = (props) => {
                   name="year"
                   placeholder=""
                   type="number"
-                  value={oldData?.year}
                   errorMessage="Select a Year"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -82,7 +82,6 @@ const EditPassengerRoadTransportData = (props) => {
                   name="number_of_passengers_carried"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_passengers_carried}
                   errorMessage="Enter Number of Passengers Carried."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -101,7 +100,6 @@ const EditPassengerRoadTransportData = (props) => {
                   name="number_of_vehicles_in_fleet"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_vehicles_in_fleet}
                   errorMessage="Enter Number of Vehicles in Fleet."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -118,7 +116,6 @@ const EditPassengerRoadTransportData = (props) => {
                   name="revenue_from_operation"
                   placeholder=""
                   type="number"
-                  value={oldData?.revenue_from_operation}
                   errorMessage="Enter Revenue from Operations"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -133,7 +130,6 @@ const EditPassengerRoadTransportData = (props) => {
                   name="number_of_employees"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_employees}
                   errorMessage="Enter Number of Employees"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -150,7 +146,6 @@ const EditPassengerRoadTransportData = (props) => {
                   name="annual_cost_of_vehicle_maintenance"
                   placeholder=""
                   type="number"
-                  value={oldData?.annual_cost_of_vehicle_maintenance}
                   errorMessage="Enter Annual Cost of Vehicle Maintenance"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -165,7 +160,6 @@ const EditPassengerRoadTransportData = (props) => {
                   name="number_of_accidents"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_accidents}
                   errorMessage="Enter Number of Accidents"
                   className="form-control"
                   validate={{ required: { value: true } }}

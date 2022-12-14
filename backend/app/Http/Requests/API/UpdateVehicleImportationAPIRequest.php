@@ -25,7 +25,7 @@ class UpdateVehicleImportationAPIRequest extends APIRequest
     public function rules()
     {
         $rules = VehicleImportation::$rules;
-        $rules['year'] = $rules['year'].",".$this->route("vehicle_importation");
+        $rules['vehicle_category'] = 'required|integer|unique:vehicle_importation,year,' . $this->route("vehicle_importation") . 'vehicle_category';
         return $rules;
     }
 }

@@ -32,9 +32,6 @@ const Role = (props) => {
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-  const [isChangePasswordModalOpen, setIsChangePasswordModalOpen] =
-    useState(false);
-
   const [confirmAlert, setConfirmAlert] = useState(false);
 
   const [currentId, setCurrentId] = useState(0);

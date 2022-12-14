@@ -26,6 +26,7 @@ import AddFreightRoadTransportData from "../../components/FreightRoadTransportDa
 import EditFreightRoadTransportData from "../../components/FreightRoadTransportData/editFreightRoadTransportData";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
+import { checkPermisssion } from "../../helpers/check_permission";
 
 const FreightRoadTransportData = (props) => {
   const { freightRTD, onGetFreightRTD, deleteFreightRTD, error, success } =
@@ -180,13 +181,15 @@ const FreightRoadTransportData = (props) => {
               <CardBody>
                 <div className="d-flex justify-content-between">
                   <CardTitle>Road transport data (Freight)</CardTitle>
-                  <Button
-                    color="success"
-                    className="btn btn-success waves-effect waves-light float-right"
-                    onClick={() => handleClick()}
-                  >
-                    Add
-                  </Button>{" "}
+                  {checkPermisssion("create freight road transport data") && (
+                    <Button
+                      color="success"
+                      className="btn btn-success waves-effect waves-light float-right"
+                      onClick={() => handleClick()}
+                    >
+                      Add
+                    </Button>
+                  )}
                 </div>
                 <CardSubtitle className="mb-3"></CardSubtitle>
 

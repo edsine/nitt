@@ -45,6 +45,7 @@ const EditAirPassengerTraffic = (props) => {
         onValidSubmit={(e, v) => {
           handleValidSubmit(e, v);
         }}
+        model={oldData}
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
@@ -71,7 +72,6 @@ const EditAirPassengerTraffic = (props) => {
                   name="year"
                   placeholder=""
                   type="number"
-                  value={oldData?.year}
                   errorMessage="Select a Year"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -88,7 +88,6 @@ const EditAirPassengerTraffic = (props) => {
                   name="domestic_passengers_traffic"
                   placeholder=""
                   type="number"
-                  value={oldData?.domestic_passengers_traffic}
                   errorMessage="Enter Number of Domestic Passenger Traffic."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -105,7 +104,6 @@ const EditAirPassengerTraffic = (props) => {
                   name="international_passengers_traffic"
                   placeholder=""
                   type="number"
-                  value={oldData?.international_passengers_traffic}
                   errorMessage="Enter Number of International Passenger Traffic."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -124,7 +122,6 @@ const EditAirPassengerTraffic = (props) => {
                   name="domestic_freight_traffic"
                   placeholder=""
                   type="number"
-                  value={oldData?.domestic_freight_traffic}
                   errorMessage="Enter Number of Domestic Freight Traffic."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -141,7 +138,6 @@ const EditAirPassengerTraffic = (props) => {
                   name="international_freight_traffic"
                   placeholder=""
                   type="number"
-                  value={oldData?.international_freight_traffic}
                   errorMessage="Enter Number of International Freight Traffic."
                   className="form-control"
                   validate={{ required: { value: true } }}

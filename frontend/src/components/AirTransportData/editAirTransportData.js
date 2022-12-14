@@ -39,6 +39,7 @@ const EditAirTransportData = (props) => {
         onValidSubmit={(e, v) => {
           handleValidSubmit(e, v);
         }}
+        model={oldData}
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
@@ -65,7 +66,6 @@ const EditAirTransportData = (props) => {
                   name="year"
                   placeholder=""
                   type="number"
-                  value={oldData?.year}
                   errorMessage="Select a Year"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -82,7 +82,6 @@ const EditAirTransportData = (props) => {
                   name="number_of_domestic_registered_airlines"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_domestic_registered_airlines}
                   errorMessage="Enter Number of Domestic Registered Airlines."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -99,7 +98,6 @@ const EditAirTransportData = (props) => {
                   name="number_of_domestic_deregistered_airlines"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_domestic_deregistered_airlines}
                   errorMessage="Enter Number of Domestic Deregistered Airlines."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -118,7 +116,6 @@ const EditAirTransportData = (props) => {
                   name="number_of_international_registered_airlines"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_international_registered_airlines}
                   errorMessage="Enter Number of International Registered Airlines."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -135,7 +132,6 @@ const EditAirTransportData = (props) => {
                   name="number_of_international_deregistered_airlines"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_international_deregistered_airlines}
                   errorMessage="Enter Number of International Deregistered Airlines."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -152,7 +148,6 @@ const EditAirTransportData = (props) => {
                   name="number_of_near_accidents"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_near_accidents}
                   errorMessage="Enter Number of Near Accidents"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -167,7 +162,6 @@ const EditAirTransportData = (props) => {
                   name="number_of_accidents"
                   placeholder=""
                   type="number"
-                  value={oldData?.number_of_accidents}
                   errorMessage="Enter Number of Accidents"
                   className="form-control"
                   validate={{ required: { value: true } }}

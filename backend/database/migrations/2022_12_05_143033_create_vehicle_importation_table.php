@@ -16,10 +16,11 @@ class CreateVehicleImportationTable extends Migration
     {
         Schema::create('vehicle_importation', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('year')->unique();
+            $table->integer('year');
             $table->integer('vehicle_category');
             $table->bigInteger('new_vehicle_count');
             $table->bigInteger('used_vehicle_count');
+            $table->unique(['year', 'vehicle_category']);
             $table->timestamps();
             $table->softDeletes();
         });

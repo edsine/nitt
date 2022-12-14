@@ -46,9 +46,9 @@ export const addRoleFail = (error) => ({
   payload: error,
 });
 
-export const editRole = (roles, id) => ({
+export const editRole = (role, id) => ({
   type: EDIT_ROLE,
-  payload: { roles, id },
+  payload: { role, id },
 });
 
 export const editRoleSuccess = (

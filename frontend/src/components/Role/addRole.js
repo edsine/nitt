@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
-import { AvForm, AvField } from "availity-reactstrap-validation";
+import {
+  AvForm,
+  AvField,
+  AvGroup,
+  AvInput,
+} from "availity-reactstrap-validation";
 import { addRole, getPermissions } from "../../store/actions";
 
 const AddRole = (props) => {
@@ -84,21 +89,22 @@ const AddRole = (props) => {
               </div>
             </Col>
             <Col md="12">
-              {permissionsArray?.map((permission, index) => (
-                <div key={index}>
-                  <AvField
-                    name="permissions[]"
-                    placeholder=""
-                    type="checkbox"
-                    className="form-control"
-                    validate={{ required: { value: true } }}
-                    id="permissions"
-                  ></AvField>
-                  <span class="ml-2">
-                    {permission.name}
-                  </span>
-                </div>
-              ))}
+              <Row>
+                {permissionsArray?.map((permission, index) => (
+                  <Col md={6} key={index}>
+                    <AvGroup check>
+                      <Label check>
+                        <AvInput
+                          type="checkbox"
+                          trueValue={permission}
+                          name="permissions[]"
+                        />{" "}
+                        {permission}
+                      </Label>
+                    </AvGroup>
+                  </Col>
+                ))}
+              </Row>
             </Col>
           </Row>
         </div>
@@ -132,8 +138,8 @@ AddRole.propTypes = {
   success: PropTypes.any,
 };
 
-const mapStatetoProps = ({ users, roles, permissions }) => {
-  const { error, success } = users;
+const mapStatetoProps = ({ roles, permissions }) => {
+  const { error, success } = roles;
   const permissionsArray = Array.isArray(permissions.permissions)
     ? permissions.permissions
     : null;

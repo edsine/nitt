@@ -25,6 +25,7 @@ import AddAirTransportData from "../../components/AirTransportData/addAirTranspo
 import EditAirTransportData from "../../components/AirTransportData/editAirTransportData";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
+import { checkPermisssion } from "../../helpers/check_permission";
 
 const AirTransportData = (props) => {
   const {
@@ -188,13 +189,15 @@ const AirTransportData = (props) => {
               <CardBody>
                 <div className="d-flex justify-content-between">
                   <CardTitle>Air Transport Data</CardTitle>
-                  <Button
-                    color="success"
-                    className="btn btn-success waves-effect waves-light float-right"
-                    onClick={() => handleClick()}
-                  >
-                    Add
-                  </Button>{" "}
+                  {checkPermisssion("create air transport data") && (
+                    <Button
+                      color="success"
+                      className="btn btn-success waves-effect waves-light float-right"
+                      onClick={() => handleClick()}
+                    >
+                      Add
+                    </Button>
+                  )}
                 </div>
                 <CardSubtitle className="mb-3"></CardSubtitle>
 

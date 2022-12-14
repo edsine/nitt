@@ -39,6 +39,7 @@ const EditVehicleImportation = (props) => {
         onValidSubmit={(e, v) => {
           handleValidSubmit(e, v);
         }}
+        model={oldData}
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
@@ -65,7 +66,6 @@ const EditVehicleImportation = (props) => {
                   name="year"
                   placeholder=""
                   type="number"
-                  value={oldData?.year}
                   errorMessage="Select a Year"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -80,7 +80,6 @@ const EditVehicleImportation = (props) => {
                   name="vehicle_category"
                   placeholder=""
                   type="select"
-                  value={oldData?.vehicle_category}
                   errorMessage="Select Vehicle Category"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -100,7 +99,6 @@ const EditVehicleImportation = (props) => {
                   name="new_vehicle_count"
                   placeholder=""
                   type="number"
-                  value={oldData?.new_vehicle_count}
                   errorMessage="Enter New Vehicle Count."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -115,7 +113,6 @@ const EditVehicleImportation = (props) => {
                   name="used_vehicle_count"
                   placeholder=""
                   type="number"
-                  value={oldData?.used_vehicle_count}
                   errorMessage="Enter Old Vehicle Count."
                   className="form-control"
                   validate={{ required: { value: true } }}

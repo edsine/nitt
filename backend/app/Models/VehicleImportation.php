@@ -55,8 +55,8 @@ class VehicleImportation extends Model
      * @var array
      */
     public static $rules = [
-        'year' => 'required|integer|unique:vehicle_importation,year',
-        'vehicle_category' => 'required|integer',
+        'year' => 'required|integer',
+        'vehicle_category' => 'required|integer|unique:vehicle_importation,year,vehicle_category',
         'new_vehicle_count' => 'required|integer',
         'used_vehicle_count' => 'required|integer'
     ];

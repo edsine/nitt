@@ -26,6 +26,7 @@ import AddPassengerRoadTransportData from "../../components/PassengerRoadTranspo
 import EditPassengerRoadTransportData from "../../components/PassengerRoadTransportData/editPassengerRoadTransportData";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
+import { checkPermisssion } from "../../helpers/check_permission";
 
 const PassengerRoadTransportData = (props) => {
   const {
@@ -185,13 +186,15 @@ const PassengerRoadTransportData = (props) => {
               <CardBody>
                 <div className="d-flex justify-content-between">
                   <CardTitle>Road transport data (Passengers) </CardTitle>
-                  <Button
-                    color="success"
-                    className="btn btn-success waves-effect waves-light float-right"
-                    onClick={() => handleClick()}
-                  >
-                    Add
-                  </Button>{" "}
+                  {checkPermisssion("create passenger road transport data") && (
+                    <Button
+                      color="success"
+                      className="btn btn-success waves-effect waves-light float-right"
+                      onClick={() => handleClick()}
+                    >
+                      Add
+                    </Button>
+                  )}
                 </div>
                 <CardSubtitle className="mb-3"></CardSubtitle>
                 <MDBDataTable

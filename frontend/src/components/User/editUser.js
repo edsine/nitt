@@ -51,6 +51,7 @@ const EditUser = (props) => {
         onValidSubmit={(e, v) => {
           handleValidSubmit(e, v);
         }}
+        model={oldData}
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
@@ -77,7 +78,6 @@ const EditUser = (props) => {
                   name="name"
                   placeholder=""
                   type="text"
-                  value={oldData?.name}
                   errorMessage="Enter a name"
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -92,7 +92,6 @@ const EditUser = (props) => {
                   name="email"
                   placeholder=""
                   type="email"
-                  value={oldData?.email}
                   errorMessage="Enter a vaid email."
                   className="form-control"
                   validate={{ required: { value: true } }}
@@ -111,7 +110,6 @@ const EditUser = (props) => {
                   type="select"
                   errorMessage="Please select a role"
                   className="form-control"
-                  value={oldData?.role}
                   validate={{ required: { value: true } }}
                   id="role"
                 >

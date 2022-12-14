@@ -9,6 +9,7 @@ use App\Repositories\RoleRepository;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\API\CreateRoleAPIRequest;
 use App\Http\Requests\API\UpdateRoleAPIRequest;
+use App\Http\Resources\RoleResource;
 
 /**
  * Class RoleAPIController
@@ -44,7 +45,7 @@ class RoleAPIController extends AppBaseController
             $request->get('limit')
         );
 
-        return $this->sendResponse($roles->toArray(), 'Roles retrieved successfully');
+        return $this->sendResponse(RoleResource::collection($roles), 'Roles retrieved successfully');
     }
 
     /**
@@ -61,11 +62,13 @@ class RoleAPIController extends AppBaseController
             return $this->sendError('Permission Denied', 403);
         }
 
-        $input = $request->all();
-        $permissions = $input['permissions'];
+        $data = [
+            'name' => $request->get('name'),
+            'guard_name' => 'web'
+        ];
 
-        $role = $this->roleRepository->create($input);
-        $role->syncPermissions($permissions ?? []);
+        $role = $this->roleRepository->create($data);
+        $role->syncPermissions($request->get('permissions') ?? []);
 
         return $this->sendResponse($role->toArray(), 'Role saved successfully');
     }
@@ -108,19 +111,21 @@ class RoleAPIController extends AppBaseController
         if (!checkPermission('update role')) {
             return $this->sendError('Permission Denied', 403);
         }
-        $input = $request->all();
-        $permissions = $input['permissions'];
 
         /** @var Role $role */
         $role = $this->roleRepository->find($id);
-        $role->syncPermissions($permissions ?? []);
-
 
         if (empty($role)) {
             return $this->sendError('Role not found');
         }
 
-        $role = $this->roleRepository->update($input, $id);
+        $data = [
+            'name' => $request->get('name'),
+            'guard_name' => 'web'
+        ];
+
+        $role = $this->roleRepository->update($data, $id);
+        $role->syncPermissions($request->get('permissions') ?? []);
 
         return $this->sendResponse($role->toArray(), 'Role updated successfully');
     }
@@ -145,7 +150,7 @@ class RoleAPIController extends AppBaseController
         $role = $this->roleRepository->find($id);
         $role_users = $role->users();
 
-        if($role_users->count() > 0) {
+        if ($role_users->count() > 0) {
             return $this->sendError('Role is attached to one or more users. It can not be deleted');
         }
 

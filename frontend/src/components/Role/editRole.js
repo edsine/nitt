@@ -2,8 +2,13 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
-import { AvForm, AvField } from "availity-reactstrap-validation";
-import { editUser, getRoles } from "../../store/actions";
+import {
+  AvForm,
+  AvField,
+  AvCheckbox,
+  AvCheckboxGroup,
+} from "availity-reactstrap-validation";
+import { editRole, getPermissions } from "../../store/actions";
 
 const EditRole = (props) => {
   const {
@@ -11,8 +16,8 @@ const EditRole = (props) => {
     setIsOpen,
     oldData,
     onEditUser,
-    rolesArray,
-    onGetRoles,
+    permissionsArray,
+    onGetPermissions,
     error,
     success,
   } = props;
@@ -30,8 +35,8 @@ const EditRole = (props) => {
   };
 
   useEffect(() => {
-    onGetRoles();
-  }, [onGetRoles]);
+    onGetPermissions();
+  }, [onGetPermissions]);
 
   return (
     <Modal
@@ -54,7 +59,7 @@ const EditRole = (props) => {
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
-            Edit User
+            Edit Role
           </h5>
           <button
             type="button"
@@ -70,7 +75,7 @@ const EditRole = (props) => {
         </div>
         <div className="modal-body">
           <Row>
-            <Col md="6">
+            <Col md="12">
               <div className="mb-3">
                 <Label htmlFor="name">Name</Label>
                 <AvField
@@ -85,44 +90,22 @@ const EditRole = (props) => {
                 />
               </div>
             </Col>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="email">Email</Label>
-                <AvField
-                  name="email"
-                  placeholder=""
-                  type="email"
-                  value={oldData?.email}
-                  errorMessage="Enter a vaid email."
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="email"
-                />
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="4">
-              <div className="mb-3">
-                <Label htmlFor="role">Role</Label>
-                <AvField
-                  name="role"
-                  placeholder=""
-                  type="select"
-                  errorMessage="Please select a role"
-                  className="form-control"
-                  value={oldData?.role}
-                  validate={{ required: { value: true } }}
-                  id="role"
+            <Col md="12">
+              <Row>
+                <AvCheckboxGroup
+                  name="permissions[]"
+                  inline
+                  value={oldData?.permissions}
                 >
-                  <option>Select</option>
-                  {rolesArray?.map((role, index) => (
-                    <option key={index} value={role.name}>
-                      {role.name}
-                    </option>
+                  {permissionsArray?.map((permission, index) => (
+                    <AvCheckbox
+                      key={index}
+                      label={permission}
+                      value={permission}
+                    />
                   ))}
-                </AvField>
-              </div>
+                </AvCheckboxGroup>
+              </Row>
             </Col>
           </Row>
         </div>
@@ -153,19 +136,21 @@ EditRole.propTypes = {
   onEditUser: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
-  onGetRoles: PropTypes.func,
+  onGetPermissions: PropTypes.func,
   rolesArray: PropTypes.array,
 };
 
-const mapStatetoProps = ({ users, roles }) => {
-  const { error, success } = users;
-  const rolesArray = Array.isArray(roles.roles) ? roles.roles : null;
-  return { error, success, rolesArray };
+const mapStatetoProps = ({ roles, permissions }) => {
+  const { error, success } = roles;
+  const permissionsArray = Array.isArray(permissions.permissions)
+    ? permissions.permissions
+    : null;
+  return { error, success, permissionsArray };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onEditUser: (values, id) => dispatch(editUser(values, id)),
-  onGetRoles: () => dispatch(getRoles()),
+  onEditUser: (values, id) => dispatch(editRole(values, id)),
+  onGetPermissions: () => dispatch(getPermissions()),
 });
 
 export default connect(mapStatetoProps, mapDispatchToProps)(EditRole);

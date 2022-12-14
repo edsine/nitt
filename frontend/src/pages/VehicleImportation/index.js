@@ -17,6 +17,7 @@ import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
 import AddVehicleImportation from "../../components/VehicleImportation/addVehicleImportation";
 import EditVehicleImportation from "../../components/VehicleImportation/editVehicleImportation";
+import { checkPermisssion } from "../../helpers/check_permission";
 
 const VehicleImportation = (props) => {
   const {
@@ -160,13 +161,15 @@ const VehicleImportation = (props) => {
                   <CardTitle>
                     Analysis of Vehicle Importation to Nigeria{" "}
                   </CardTitle>
-                  <Button
-                    color="success"
-                    className="btn btn-success waves-effect waves-light float-right"
-                    onClick={() => handleClick()}
-                  >
-                    Add
-                  </Button>{" "}
+                  {checkPermisssion("create vehicle importation") && (
+                    <Button
+                      color="success"
+                      className="btn btn-success waves-effect waves-light float-right"
+                      onClick={() => handleClick()}
+                    >
+                      Add
+                    </Button>
+                  )}
                 </div>
 
                 <MDBDataTable responsive striped bordered data={data} />
