@@ -104,7 +104,6 @@ import Register1 from "../pages/AuthenticationInner/Register";
 import Recoverpw from "../pages/AuthenticationInner/Recoverpw";
 import LockScreen from "../pages/AuthenticationInner/auth-lock-screen";
 
-
 import UserProfile from "../pages/Authentication/user-profile";
 import VehicleImportation from "../pages/VehicleImportation";
 import PassengerRoadTransportData from "../pages/PassengerRoadTransportData";
@@ -115,6 +114,7 @@ import RollingStock from "../pages/RollingStock";
 import AirPassengerTraffic from "../pages/AirPassengerTraffic";
 import User from "../pages/User";
 import Role from "../pages/Role";
+import Landing from "../pages/Landing";
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
@@ -204,7 +204,7 @@ const userRoutes = [
   { path: "/profile", component: UserProfile },
 
   // this route should be at the end of all other routes
-  { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> },
+  { path: "/", component: Landing },
 ];
 
 const permissionRoutes = [

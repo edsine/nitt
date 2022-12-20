@@ -6,6 +6,8 @@ import {
   PROFILE_IMAGE_SUCCESS,
   RESET_PROFILE_FLAG,
   EDIT_PROFILE_IMAGE,
+  SEND_VERIFICATION_EMAIL_SUCCESS,
+  SEND_VERIFICATION_EMAIL_ERROR,
 } from "./actionTypes";
 
 const initialState = {
@@ -13,6 +15,8 @@ const initialState = {
   success: "",
   profileImageError: "",
   profileImageSuccess: "",
+  verificationEmailError: "",
+  verificationEmailSuccess: "",
 };
 
 const profile = (state = initialState, action) => {
@@ -34,6 +38,12 @@ const profile = (state = initialState, action) => {
       break;
     case PROFILE_IMAGE_ERROR:
       state = { ...state, profileImageError: action.payload };
+      break;
+    case SEND_VERIFICATION_EMAIL_SUCCESS:
+      state = { ...state, verificationEmailSuccess: action.payload };
+      break;
+    case SEND_VERIFICATION_EMAIL_ERROR:
+      state = { ...state, verificationEmailError: action.payload };
       break;
     case RESET_PROFILE_FLAG:
       state = { ...state, success: null };

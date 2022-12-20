@@ -1,11 +1,17 @@
 //REGISTER
 export const POST_REGISTER = "auth/register";
 
+//RECOVER
+export const POST_RECOVER = "auth/recover";
+
 //LOGIN
 export const POST_LOGIN = "auth/login";
 
 //LOGOUT
 export const POST_LOGOUT = "auth/logout";
+
+// SEND VERIFICATION EMAIL
+export const SEND_VERIFICATION_EMAIL = "verify";
 
 // GET AUTHENTICATED USER
 export const GET_AUTHENTICATED_USER = "user";

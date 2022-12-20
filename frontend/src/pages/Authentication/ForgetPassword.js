@@ -13,7 +13,7 @@ import { AvForm, AvField } from "availity-reactstrap-validation"
 import { userForgetPassword } from "../../store/actions"
 
 // import images
-import logo from "../../assets/images/logo-sm-dark.png"
+import logo from "../../assets/images/nitt-logo.png"
 
 const ForgetPasswordPage = props => {
   useEffect(() => {
@@ -44,7 +44,6 @@ const ForgetPasswordPage = props => {
                   <div className="bg-login-overlay"></div>
                   <div className="position-relative">
                     <h5 className="text-white font-size-20">Reset Password</h5>
-                    <p className="text-white-50 mb-0">Re-Password with Qovex.</p>
 
                     <a href="/" className="logo logo-admin mt-4">
                       <img src={logo} alt="" height="30" />
@@ -94,11 +93,10 @@ const ForgetPasswordPage = props => {
                 </div>
               </div>
               <div className="mt-5 text-center">
-                  <p>Remember It ? <Link href="/login" className="fw-medium text-primary"> Sign In
+                  <p>Remember It ? <Link to="/login" className="fw-medium text-primary"> Sign In
                                 here</Link> </p>
                   <p>
-                    © {new Date().getFullYear()} Qovex. Crafted with{" "}
-                    <i className="mdi mdi-heart text-danger" /> by Themesbrand
+                    © {new Date().getFullYear()} NITT.
                 </p>
                 </div>
             </Col>

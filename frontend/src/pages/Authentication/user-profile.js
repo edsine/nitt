@@ -16,6 +16,7 @@ import avatar from "../../assets/images/users/avatar-2.jpg";
 // actions
 import {
   editProfile,
+  sendVerificationEmail,
   editProfileImage,
   resetProfileFlag,
   changePassword,
@@ -25,16 +26,20 @@ const UserProfile = (props) => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [idx, setIdx] = useState(1);
+  const [emailVerifiedAt, setEmailVerified] = useState(null);
   const [profileImagePath, setProfileImagePath] = useState(1);
   const {
     resetProfileFlag,
     editProfile,
     editProfileImage,
     changePassword,
+    sendVerificationEmail,
     error,
     success,
     profileImageSuccess,
     profileImageError,
+    verificationEmailSuccess,
+    verificationEmailError,
     userSuccess,
     userError,
   } = props;
@@ -55,6 +60,7 @@ const UserProfile = (props) => {
         setEmail(obj.email);
         setIdx(obj.id);
         setProfileImagePath(obj.profile_image_path);
+        setEmailVerified(obj.email_verified_at);
       }
       setTimeout(() => {
         resetProfileFlag();
@@ -77,6 +83,10 @@ const UserProfile = (props) => {
     changePassword(values, values.chPsIdx);
   }
 
+  function handleVerifyEmail(event, values) {
+    sendVerificationEmail();
+  }
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -89,14 +99,18 @@ const UserProfile = (props) => {
             {success && success ? (
               <Alert color="success">{success}</Alert>
             ) : null}
-
+            {verificationEmailError && verificationEmailError ? (
+              <Alert color="danger">{verificationEmailError}</Alert>
+            ) : null}
+            {verificationEmailSuccess && verificationEmailSuccess ? (
+              <Alert color="success">{verificationEmailSuccess}</Alert>
+            ) : null}
             {profileImageError && profileImageError ? (
               <Alert color="danger">{profileImageError}</Alert>
             ) : null}
             {profileImageSuccess && profileImageSuccess ? (
               <Alert color="success">{profileImageSuccess}</Alert>
             ) : null}
-
             {userError?.changePasswordError &&
             userError?.changePasswordError ? (
               <Alert color="danger">{userError?.changePasswordError}</Alert>
@@ -107,24 +121,41 @@ const UserProfile = (props) => {
                 {userSuccess?.changePasswordSuccess}
               </Alert>
             ) : null}
-
             <Card>
               <CardBody>
                 <div className="d-flex">
-                  <div className="ms-3">
+                  <div>
                     <img
                       src={profileImagePath || avatar}
                       alt=""
                       className="avatar-md rounded-circle img-thumbnail"
                     />
                   </div>
-                  <div className="flex-1 align-self-center">
+                  <div className="flex-1 align-self-center ms-3">
                     <div className="text-muted">
                       <h5>{name}</h5>
                       <p className="mb-1">{email}</p>
-                      {/* <p className="mb-0">Id no: #{idx}</p> */}
                     </div>
                   </div>
+                </div>
+                <div>
+                  {!emailVerifiedAt && (
+                    <AvForm
+                      className="form-horizontal"
+                      onValidSubmit={(e, v) => {
+                        handleVerifyEmail(e, v);
+                      }}
+                    >
+                      <div className="form-group">
+                        <AvField name="verifyId" value={idx} type="hidden" />
+                      </div>
+                      <div className="text-left mt-4">
+                        <Button type="submit" color="danger">
+                          Verify email
+                        </Button>
+                      </div>
+                    </AvForm>
+                  )}
                 </div>
               </CardBody>
             </Card>
@@ -281,16 +312,26 @@ UserProfile.propTypes = {
   editProfile: PropTypes.func,
   editProfileImage: PropTypes.func,
   changePassword: PropTypes.func,
+  sendVerificationEmail: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
   profileImageError: PropTypes.any,
   profileImageSuccess: PropTypes.any,
+  verificationEmailSuccess: PropTypes.any,
+  verificationEmailError: PropTypes.any,
   userError: PropTypes.any,
   userSuccess: PropTypes.any,
 };
 
 const mapStatetoProps = ({ Profile, users }) => {
-  const { error, success, profileImageError, profileImageSuccess } = Profile;
+  const {
+    error,
+    success,
+    profileImageError,
+    profileImageSuccess,
+    verificationEmailSuccess,
+    verificationEmailError,
+  } = Profile;
   const userError = users.error;
   const userSuccess = users.success;
   return {
@@ -300,6 +341,8 @@ const mapStatetoProps = ({ Profile, users }) => {
     userSuccess,
     profileImageSuccess,
     profileImageError,
+    verificationEmailError,
+    verificationEmailSuccess,
   };
 };
 
@@ -308,6 +351,7 @@ export default withRouter(
     editProfile,
     editProfileImage,
     resetProfileFlag,
+    sendVerificationEmail,
     changePassword,
   })(UserProfile)
 );

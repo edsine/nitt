@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Models\Role;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
 use App\Notifications\Auth\ResetPassword;
@@ -17,12 +18,19 @@ use App\Http\Requests\API\ResetAPIRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\API\RecoverAPIRequest;
 use App\Http\Requests\API\RegisterAPIRequest;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class AuthAPIController extends AppBaseController
 {
     public function __construct()
     {
-        $this->middleware('auth:sanctum', ['except' => ['login', 'register', 'recover', 'reset', 'verify']]);
+        $this->middleware('auth:sanctum', ['except' => ['login', 'register', 'recover', 'reset', 'getFrontendLogin']]);
+    }
+
+    public function verifyEmail(EmailVerificationRequest  $request)
+    {
+        $request->fulfill();
+        return $this->sendResponse(null, 'Verified successfully');
     }
 
     public function login(LoginAPIRequest $request)
@@ -39,6 +47,11 @@ class AuthAPIController extends AppBaseController
         }
 
         return $this->sendError('These credentials do not match our records');
+    }
+
+    public function getFrontendLogin()
+    {
+        return redirect(env('APP_FRONTEND_URL'));
     }
 
     public function logout()
@@ -62,6 +75,7 @@ class AuthAPIController extends AppBaseController
 
         //Send email for verification
         event(new Registered($user));
+        Auth::login($user);
 
         //Assign role
         $data_viewer_role = Role::where('name', '=', 'data-viewer')->first();
@@ -121,5 +135,12 @@ class AuthAPIController extends AppBaseController
         }
 
         return $this->sendError('The recovery token is incorrect or has already been used', 406);
+    }
+
+    public function verify(Request $request)
+    {
+        $request->user()->sendEmailVerificationNotification();
+
+        return $this->sendResponse(null, 'An email has been sent with a link to verify your email address');
     }
 }

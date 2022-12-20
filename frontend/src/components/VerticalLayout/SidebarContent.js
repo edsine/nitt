@@ -105,54 +105,61 @@ const SidebarContent = (props) => {
               </li>
             )}
 
-            <li>
-              <Link to="/#" className="waves-effect">
-                <i className="mdi mdi-road"></i>
-                <span className="badge rounded-pill bg-info float-end"></span>
-                <span>{props.t("Road transport data")}</span>
-              </Link>
-              <ul className="sub-menu">
-                {checkPermisssion("read passenger road transport data") && (
-                  <li>
-                    <Link to="/passenger-road-transport-data">
-                      {props.t("Passenger")}
-                    </Link>
-                  </li>
-                )}
+            {(checkPermisssion("read passenger road transport data") ||
+              checkPermisssion("read freight road transport data")) && (
+              <li>
+                <Link to="/#" className="waves-effect">
+                  <i className="mdi mdi-road"></i>
+                  <span className="badge rounded-pill bg-info float-end"></span>
+                  <span>{props.t("Road transport data")}</span>
+                </Link>
+                <ul className="sub-menu">
+                  {checkPermisssion("read passenger road transport data") && (
+                    <li>
+                      <Link to="/passenger-road-transport-data">
+                        {props.t("Passenger")}
+                      </Link>
+                    </li>
+                  )}
 
-                {checkPermisssion("read freight road transport data") && (
-                  <li>
-                    <Link to="/freight-road-transport-data">
-                      {props.t("Freight")}
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            </li>
-            <li>
-              <Link to="/#" className="waves-effect">
-                <i className="mdi mdi-airplane-landing"></i>
-                <span className="badge rounded-pill bg-info float-end"></span>
-                <span>{props.t("Air transport data")}</span>
-              </Link>
-              <ul className="sub-menu">
-                {checkPermisssion("read air transport data") && (
-                  <li>
-                    <Link to="/air-transport-data">
-                      {props.t("Transport data")}
-                    </Link>
-                  </li>
-                )}
+                  {checkPermisssion("read freight road transport data") && (
+                    <li>
+                      <Link to="/freight-road-transport-data">
+                        {props.t("Freight")}
+                      </Link>
+                    </li>
+                  )}
+                </ul>
+              </li>
+            )}
 
-                {checkPermisssion("read air passengers traffic") && (
-                  <li>
-                    <Link to="/air-passenger-traffic">
-                      {props.t("Traffic")}
-                    </Link>
-                  </li>
-                )}
-              </ul>
-            </li>
+            {(checkPermisssion("read air transport data") ||
+              checkPermisssion("read air passengers traffic")) && (
+              <li>
+                <Link to="/#" className="waves-effect">
+                  <i className="mdi mdi-airplane-landing"></i>
+                  <span className="badge rounded-pill bg-info float-end"></span>
+                  <span>{props.t("Air transport data")}</span>
+                </Link>
+                <ul className="sub-menu">
+                  {checkPermisssion("read air transport data") && (
+                    <li>
+                      <Link to="/air-transport-data">
+                        {props.t("Transport data")}
+                      </Link>
+                    </li>
+                  )}
+
+                  {checkPermisssion("read air passengers traffic") && (
+                    <li>
+                      <Link to="/air-passenger-traffic">
+                        {props.t("Traffic")}
+                      </Link>
+                    </li>
+                  )}
+                </ul>
+              </li>
+            )}
 
             {checkPermisssion("read railway passenger") && (
               <li>

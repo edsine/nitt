@@ -4,6 +4,9 @@ import {
   EDIT_PROFILE,
   EDIT_PROFILE_IMAGE,
   PROFILE_IMAGE_SUCCESS,
+  SEND_VERIFICATION_EMAIL,
+  SEND_VERIFICATION_EMAIL_SUCCESS,
+  SEND_VERIFICATION_EMAIL_ERROR,
   PROFILE_IMAGE_ERROR,
   RESET_PROFILE_FLAG,
 } from "./actionTypes";
@@ -46,6 +49,27 @@ export const profileImageSuccess = (msg) => {
 export const profileImageError = (error) => {
   return {
     type: PROFILE_IMAGE_ERROR,
+    payload: error,
+  };
+};
+
+export const sendVerificationEmail = () => {
+  return {
+    type: SEND_VERIFICATION_EMAIL,
+    payload: null
+  };
+};
+
+export const sendVerificationEmailSuccess = (msg) => {
+  return {
+    type: SEND_VERIFICATION_EMAIL_SUCCESS,
+    payload: msg,
+  };
+};
+
+export const sendVerificationEmailError = (error) => {
+  return {
+    type: SEND_VERIFICATION_EMAIL_ERROR,
     payload: error,
   };
 };

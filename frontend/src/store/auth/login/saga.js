@@ -15,7 +15,6 @@ import {
 import {
   postLogin,
   postLogout,
-  getAppPermissions,
 } from "../../../helpers/backend_helper";
 import { getHeaders } from "../../../helpers/backend-headers/headers";
 

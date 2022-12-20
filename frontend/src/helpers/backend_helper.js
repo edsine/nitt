@@ -21,6 +21,12 @@ export const getAppPermissions = (config) =>
 // Login Method
 export const postLogin = (data) => post(url.POST_LOGIN, data);
 
+// Register Method
+export const postRegister = (data) => post(url.POST_REGISTER, data);
+
+// Forgot Password Method
+export const postRecover = (data) => post(url.POST_RECOVER, data);
+
 // Logout Method
 export const postLogout = (data, config) => post(url.POST_LOGOUT, data, config);
 
@@ -109,9 +115,12 @@ export const deleteUser = (id, config) => del(url.DELETE_USER(id), config);
 export const putUpdateProfile = (data, id, config) =>
   put(url.PUT_UPDATE_PROFILE(id), data, config);
 
-// Update Profile
+// Update Profile Image
 export const putUpdateProfileImage = (data, id, config) =>
   put(url.PUT_UPDATE_PROFILE_IMAGE(id), data, config);
+
+export const postSendVerificationEmail = (config) =>
+  post(url.SEND_VERIFICATION_EMAIL, null, config);
 
 // Change Password
 export const postChangePassword = (data, id, config) =>

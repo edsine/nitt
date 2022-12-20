@@ -7,6 +7,7 @@ const Authmiddleware = ({
   layout: Layout,
   isAuthProtected,
   checkPermissions,
+  path,
   ...rest
 }) => {
   const history = useHistory();
@@ -25,6 +26,10 @@ const Authmiddleware = ({
 
         if (!checkPermissions) {
           return history.goBack();
+        }
+
+        if (path === "/") {
+          return <Component {...props} />;
         }
 
         return (

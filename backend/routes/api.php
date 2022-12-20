@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->get('user', function (Request $request) {
 
 
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
     Route::put('users/update_profile/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfile']);
     Route::put('users/update_profile_image/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfileImage']);
@@ -51,11 +51,10 @@ Route::prefix('auth')->group(function () {
     Route::post('reset', [AuthAPIController::class, 'reset'])->name('auth.reset');
 });
 
+Route::get('login', [AuthAPIController::class, 'getFrontendLogin'])->name('login');
 
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-})->middleware(['auth', 'signed'])->name('verification.verify');
+Route::post('verify', [AuthAPIController::class, 'verify'])->name('verification.send');
 
-
-
-
+Route::get('/email/verify/{id}/{hash}', [AuthAPIController::class, 'verifyEmail'])
+    ->middleware(['auth:sanctum', 'signed'])
+    ->name('verification.verify');

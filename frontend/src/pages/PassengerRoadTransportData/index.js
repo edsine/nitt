@@ -174,6 +174,9 @@ const PassengerRoadTransportData = (props) => {
             You won't be able to revert this!
           </SweetAlert>
         )}
+        {error?.getError && error.getError ? (
+          <Alert color="danger">{error?.getError}</Alert>
+        ) : null}
         {error?.deleteError && error.deleteError ? (
           <Alert color="danger">{error?.deleteError}</Alert>
         ) : null}

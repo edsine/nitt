@@ -60,7 +60,7 @@ const App = (props) => {
               layout={Layout}
               component={route.component}
               key={idx}
-              isAuthProtected={true}
+              isAuthProtected={route.path === "/" ? false : true}
               checkPermissions={true}
               exact
             />
