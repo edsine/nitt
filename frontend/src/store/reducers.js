@@ -21,6 +21,9 @@ import contacts from "./contacts/reducer";
 //tasks
 import tasks from "./tasks/reducer";
 
+// Dashboard Data
+import dashboardData from "./dashboard/reducer";
+
 // Road Transport Data
 import roadTransportData from "./roadtransportdata/reducer";
 
@@ -67,7 +70,8 @@ const rootReducer = combineReducers({
   vehicleImportation,
   permissions,
   railwaysPassengers,
-  rollingStock
+  rollingStock,
+  dashboardData,
 });
 
 export default rootReducer;

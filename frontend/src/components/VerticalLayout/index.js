@@ -48,7 +48,7 @@ class Layout extends Component {
     let currentage = this.capitalizeFirstLetter(this.props.location.pathname)
 
     document.title =
-      currentage + " | NITT - Visualisation Dashboard"
+      currentage + " | NITT - Digitization Dashboard"
     if (this.props.leftSideBarTheme) {
       this.props.changeSidebarTheme(this.props.leftSideBarTheme)
     }

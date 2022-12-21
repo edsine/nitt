@@ -1,27 +1,35 @@
-import React from "react"
-import { Row, Col, CardBody, Card, Progress } from "reactstrap"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Row, Col, CardBody, Card, Progress } from "reactstrap";
 
 //Import Components
-import LineChart from "./line-chart"
-import RevenueChart from "./revenue-chart"
-import SalesAnalytics from "./sales-analytics"
-import ScatterChart from "./scatter-analytics"
-import LatestTransaction from "./latest-transaction"
+import LineChart from "./line-chart";
+import RevenueChart from "./revenue-chart";
+import SalesAnalytics from "./sales-analytics";
+import ScatterChart from "./scatter-analytics";
 
-//Import Image
-import widgetImage from "../../assets/images/widget-img.png"
 import Overview from "./Overview";
-import Reviews from './Reviews';
-import Revenue from './Revenue';
-import Inbox  from './Inbox';
+import { getDashboardData } from "../../store/actions";
+import { Label, AvField, AvForm } from "availity-reactstrap-validation";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+  const { dashboardData, onGetDashboardData } = props;
+
+  const currentYear = new Date().getFullYear();
+  const [year, setYear] = useState(currentYear);
+
+  useEffect(() => {
+    onGetDashboardData({ year: year });
+  }, [onGetDashboardData, year]);
+
+  const handleValidSubmit = (event, values) => {
+    setYear(values.year);
+  };
 
   return (
     <React.Fragment>
       <div className="page-content">
-  
         <Row>
           <div className="col-12">
             <div className="page-title-box d-flex align-items-center justify-content-between">
@@ -29,15 +37,48 @@ const Dashboard = () => {
 
               <div className="page-title-right">
                 <ol className="breadcrumb m-0">
-                  <li className="breadcrumb-item active">Welcome to NITT Visualization Dashboard</li>
+                  <li className="breadcrumb-item active">
+                    Welcome to NITT Digitization Dashboard
+                  </li>
                 </ol>
               </div>
-
             </div>
           </div>
         </Row>
 
         <Row>
+          <AvForm
+            className="needs-validation"
+            onValidSubmit={(e, v) => {
+              handleValidSubmit(e, v);
+            }}
+          >
+            <Row>
+              <Col md={3}>
+                <label for="year">Year</label>
+                <div className="d-flex justify-content-start align-items-baseline">
+                  <div className="mb-3">
+                    <AvField
+                      name="year"
+                      placeholder=""
+                      type="number"
+                      value={year}
+                      errorMessage="Select a Year"
+                      className="form-control"
+                      validate={{ required: { value: true } }}
+                      id="year"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="btn btn-success waves-effect waves-light mx-3"
+                  >
+                    Filter
+                  </button>
+                </div>
+              </Col>
+            </Row>
+          </AvForm>
           <Col lg={3}>
             <Card>
               <CardBody>
@@ -48,17 +89,14 @@ const Dashboard = () => {
                     </span>
                   </div>
                   <div className="flex-1">
-                    <div className="font-size-16 mt-2">Road Passenger Carried</div>
+                    <div className="font-size-16 mt-2">
+                      Road Passenger Carried
+                    </div>
                   </div>
                 </div>
-                <h4 className="mt-4">834900</h4>
+                <h4 className="mt-4">{dashboardData.roadPassengerCarried}</h4>
                 <div className="row">
-                  <div className="col-7">
-                    <p className="mb-0"><span className="text-success me-2"> 10.28% <i
-                      className="mdi mdi-arrow-up"></i> </span></p>
-                  </div>
                   <div className="col-5 align-self-center">
-
                     <Progress
                       value="62"
                       color="primary"
@@ -78,16 +116,173 @@ const Dashboard = () => {
                     </span>
                   </div>
                   <div className="flex-1">
-                    <div className="font-size-16 mt-2">Air Passengers Carried</div>
-
+                    <div className="font-size-16 mt-2">
+                      Air Passengers Carried (Domestic)
+                    </div>
                   </div>
                 </div>
-                <h4 className="mt-4">344253</h4>
+                <h4 className="mt-4">{dashboardData.airPassengerCarried}</h4>
                 <Row>
-                  <div className="col-7">
-                    <p className="mb-0"><span className="text-success me-2"> 15.16% <i
-                      className="mdi mdi-arrow-up"></i> </span></p>
+                  <div className="col-5 align-self-center">
+                    <Progress
+                      value="62"
+                      color="success"
+                      className="bg-transparent progress-sm"
+                      size="sm"
+                    />
                   </div>
+                </Row>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col lg={3}>
+            <Card>
+              <CardBody>
+                <div className="d-flex align-items-start">
+                  <div className="avatar-sm font-size-20 me-3">
+                    <span className="avatar-title bg-soft-primary text-primary rounded">
+                      <i className="mdi mdi-account-multiple-outline"></i>
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-size-16 mt-2">
+                      Tonnes Carried (Freight)
+                    </div>
+                  </div>
+                </div>
+                <h4 className="mt-4">{dashboardData.freightTonnesCarried}</h4>
+                <Row>
+                  <div className="col-5 align-self-center">
+                    <Progress
+                      value="62"
+                      color="primary"
+                      className="bg-transparent progress-sm"
+                      size="sm"
+                    />
+                  </div>
+                </Row>
+              </CardBody>
+            </Card>
+            <Card>
+              <CardBody>
+                <div className="d-flex align-items-start">
+                  <div className="avatar-sm font-size-20 me-3">
+                    <span className="avatar-title bg-soft-primary text-primary rounded">
+                      <i className="mdi mdi-account-multiple-outline"></i>
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-size-16 mt-2">
+                      Air Passengers Carried (International)
+                    </div>
+                  </div>
+                </div>
+                <h4 className="mt-4">{dashboardData.airPassengerCarriedInt}</h4>
+                <Row>
+                  <div className="col-5 align-self-center">
+                    <Progress
+                      value="62"
+                      color="success"
+                      className="bg-transparent progress-sm"
+                      size="sm"
+                    />
+                  </div>
+                </Row>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col lg={3}>
+            <Card>
+              <CardBody>
+                <div className="d-flex align-items-start">
+                  <div className="avatar-sm font-size-20 me-3">
+                    <span className="avatar-title bg-soft-primary text-primary rounded">
+                      <i className="mdi mdi-account-multiple-outline"></i>
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-size-16 mt-2">New Cars Imported</div>
+                  </div>
+                </div>
+                <h4 className="mt-4">{dashboardData.newBusesImported}</h4>
+                <Row>
+                  <div className="col-5 align-self-center">
+                    <Progress
+                      value="62"
+                      color="primary"
+                      className="bg-transparent progress-sm"
+                      size="sm"
+                    />
+                  </div>
+                </Row>
+              </CardBody>
+            </Card>
+            <Card>
+              <CardBody>
+                <div className="d-flex align-items-start">
+                  <div className="avatar-sm font-size-20 me-3">
+                    <span className="avatar-title bg-soft-primary text-primary rounded">
+                      <i className="mdi mdi-account-multiple-outline"></i>
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-size-16 mt-2">Used Cars Imported</div>
+                  </div>
+                </div>
+                <h4 className="mt-4">{dashboardData.usedCarsImported}</h4>
+                <Row>
+                  <div className="col-5 align-self-center">
+                    <Progress
+                      value="62"
+                      color="success"
+                      className="bg-transparent progress-sm"
+                      size="sm"
+                    />
+                  </div>
+                </Row>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col lg={3}>
+            <Card>
+              <CardBody>
+                <div className="d-flex align-items-start">
+                  <div className="avatar-sm font-size-20 me-3">
+                    <span className="avatar-title bg-soft-primary text-primary rounded">
+                      <i className="mdi mdi-tag-plus-outline"></i>
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-size-16 mt-2">New Buses Imported</div>
+                  </div>
+                </div>
+                <h4 className="mt-4">{dashboardData.newBusesImported}</h4>
+                <div className="row">
+                  <div className="col-5 align-self-center">
+                    <Progress
+                      value="62"
+                      color="primary"
+                      className="bg-transparent progress-sm"
+                      size="sm"
+                    />
+                  </div>
+                </div>
+              </CardBody>
+            </Card>
+            <Card>
+              <CardBody>
+                <div className="d-flex align-items-start">
+                  <div className="avatar-sm font-size-20 me-3">
+                    <span className="avatar-title bg-soft-primary text-primary rounded">
+                      <i className="mdi mdi-account-multiple-outline"></i>
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <div className="font-size-16 mt-2">Used Buses Imported</div>
+                  </div>
+                </div>
+                <h4 className="mt-4">{dashboardData.usedBusesImported}</h4>
+                <Row>
                   <div className="col-5 align-self-center">
                     <Progress
                       value="62"
@@ -102,9 +297,8 @@ const Dashboard = () => {
           </Col>
           <Col lg={6}>
             <LineChart />
-
           </Col>
-          <Col lg={3}>
+          <Col lg={6}>
             <RevenueChart />
           </Col>
         </Row>
@@ -116,42 +310,24 @@ const Dashboard = () => {
             <ScatterChart />
           </Col>
 
-          {/* <Col lg={3}>
-            <Card className="bg-primary">
-              <CardBody>
-                <div className="text-white">
-                  <h5 className="text-white">2400 + New Users</h5>
-                  <p>At vero eos et accusamus et iusto odio dignissimos ducimus</p>
-                  <div>
-                    <Link to="#" className="btn btn-outline-success btn-sm">View more</Link>
-                  </div>
-                </div>
-                <Row className="justify-content-end">
-                  <div className="col-8">
-                    <div className="mt-4">
-                      <img src={widgetImage} alt=""
-                        className="img-fluid mx-auto d-block" />
-                    </div>
-                  </div>
-                </Row>
-              </CardBody>
-            </Card>
-          </Col> */}
           <Overview />
         </Row>
-        <Row>
-          {/* <Reviews /> */}
-          {/* <Revenue /> */}
-        </Row>
-
-        <Row>
-          {/* <Inbox />
-          <LatestTransaction /> */}
-        </Row>
-
       </div>
     </React.Fragment>
-  )
-}
+  );
+};
 
-export default Dashboard
+Dashboard.propTypes = {
+  onGetDashboardData: PropTypes.func,
+  dashboardData: PropTypes.any,
+};
+
+const mapStateToProps = ({ dashboardData }) => ({
+  dashboardData: dashboardData.data,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGetDashboardData: (values) => dispatch(getDashboardData(values)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

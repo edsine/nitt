@@ -19,6 +19,7 @@ import vehicleImportationSaga from "./vehicleimportation/saga";
 import permissionSaga from "./permission/saga";
 import railwaysPassengersSaga from "./railwayspassengers/saga";
 import rollingStockSaga from "./rollingstock/saga";
+import dashboardDataSaga from "./dashboard/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -40,6 +41,7 @@ export default function* rootSaga() {
     fork(vehicleImportationSaga),
     fork(permissionSaga),
     fork(railwaysPassengersSaga),
-    fork(rollingStockSaga)
+    fork(rollingStockSaga),
+    fork(dashboardDataSaga),
   ]);
 }

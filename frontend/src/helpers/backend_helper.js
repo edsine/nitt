@@ -30,9 +30,12 @@ export const postRecover = (data) => post(url.POST_RECOVER, data);
 // Logout Method
 export const postLogout = (data, config) => post(url.POST_LOGOUT, data, config);
 
-// Get Authenticated User Method
+// Get Dashboard Data Method
 export const getAuthenticatedUser = (config) =>
   get(url.GET_AUTHENTICATED_USER, config);
+
+// Get Authenticated User Method
+export const getDashboardData = (data, config) => post(url.GET_DASHBOARD_DATA, data, config);
 
 // Get Road Transport Data (Passengers)
 export const getPassengerRoadTransportData = (config) =>

@@ -13,6 +13,9 @@ export const POST_LOGOUT = "auth/logout";
 // SEND VERIFICATION EMAIL
 export const SEND_VERIFICATION_EMAIL = "verify";
 
+// GET DASHBOARD DATA
+export const GET_DASHBOARD_DATA = "dashboard";
+
 // GET AUTHENTICATED USER
 export const GET_AUTHENTICATED_USER = "user";
 

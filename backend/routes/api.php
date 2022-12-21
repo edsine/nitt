@@ -23,6 +23,7 @@ Route::middleware('auth:sanctum')->get('user', function (Request $request) {
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::post('dashboard', [App\Http\Controllers\API\DashboardAPIController::class, 'index']);
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
     Route::put('users/update_profile/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfile']);
     Route::put('users/update_profile_image/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfileImage']);
