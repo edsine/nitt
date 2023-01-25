@@ -231,8 +231,9 @@ class UserAPIController extends AppBaseController
             return $this->sendError('An error occured');
         }
 
-        $path_folder = public_path("storage/profile_images/$user->profile_image_path");
-        deleteImageWithPath($path_folder);
+        $path_folder = public_path("storage/profile_images");
+        $old_image_path = $path_folder . "/" . $user->profile_image_path;
+        deleteImageWithPath($old_image_path);
 
         $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
         $profile_image->move($path_folder, $file_name);
