@@ -295,14 +295,14 @@ const Dashboard = (props) => {
               </CardBody>
             </Card>
           </Col>
-          <Col lg={6}>
+          {/* <Col lg={6}>
             <LineChart />
           </Col>
           <Col lg={6}>
             <RevenueChart />
-          </Col>
+          </Col> */}
         </Row>
-        <Row>
+        {/* <Row>
           <Col lg={5}>
             <SalesAnalytics />
           </Col>
@@ -311,7 +311,7 @@ const Dashboard = (props) => {
           </Col>
 
           <Overview />
-        </Row>
+        </Row> */}
       </div>
     </React.Fragment>
   );

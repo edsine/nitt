@@ -115,9 +115,10 @@ import AirPassengerTraffic from "../pages/AirPassengerTraffic";
 import User from "../pages/User";
 import Role from "../pages/Role";
 import Landing from "../pages/Landing";
+import MaritimeAcademy from "../pages/MaritimeAcademy";
 
 const userRoutes = [
-  { path: "/dashboard", component: Dashboard },
+  { path: "/dashboard", component: Dashboard, exact: true },
   { path: "/dashboard2", component: Dashboard2 },
   { path: "/calendar", component: Calendar },
 
@@ -213,6 +214,7 @@ const permissionRoutes = [
     path: "/vehicle-importation",
     component: VehicleImportation,
     permission: "read vehicle importation",
+    exact: true,
   },
 
   //Passenger Road transport data
@@ -220,6 +222,7 @@ const permissionRoutes = [
     path: "/passenger-road-transport-data",
     component: PassengerRoadTransportData,
     permission: "read passenger road transport data",
+    exact: true,
   },
 
   //Freight Road transport data
@@ -227,6 +230,7 @@ const permissionRoutes = [
     path: "/freight-road-transport-data",
     component: FreightRoadTransportData,
     permission: "read freight road transport data",
+    exact: true,
   },
 
   //Air transport data
@@ -234,6 +238,7 @@ const permissionRoutes = [
     path: "/air-transport-data",
     component: AirTransportData,
     permission: "read air transport data",
+    exact: true,
   },
 
   //Air Passenger Traffic
@@ -241,6 +246,7 @@ const permissionRoutes = [
     path: "/air-passenger-traffic",
     component: AirPassengerTraffic,
     permission: "read air passengers traffic",
+    exact: true,
   },
 
   //Railways Passengers
@@ -248,6 +254,7 @@ const permissionRoutes = [
     path: "/railways-passengers",
     component: RailwaysPassengers,
     permission: "read railway passenger",
+    exact: true,
   },
 
   //Rolling Stock (Railway)
@@ -255,6 +262,15 @@ const permissionRoutes = [
     path: "/rolling-stock",
     component: RollingStock,
     permission: "read railway rolling stock",
+    exact: true,
+  },
+
+  //Maritime Academy
+  {
+    path: "/maritime-academy",
+    component: MaritimeAcademy,
+    permission: "read maritime academy",
+    exact: true,
   },
 
   //Users

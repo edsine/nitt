@@ -35,7 +35,8 @@ export const getAuthenticatedUser = (config) =>
   get(url.GET_AUTHENTICATED_USER, config);
 
 // Get Authenticated User Method
-export const getDashboardData = (data, config) => post(url.GET_DASHBOARD_DATA, data, config);
+export const getDashboardData = (data, config) =>
+  post(url.GET_DASHBOARD_DATA, data, config);
 
 // Get Road Transport Data (Passengers)
 export const getPassengerRoadTransportData = (config) =>
@@ -177,7 +178,7 @@ export const putRailwaysPassenger = (data, id, config) =>
 export const deleteRailwaysPassenger = (id, config) =>
   del(url.DELETE_RAILWAYS_PASSENGER(id), config);
 
-// Get Rolling Stock
+// Get Rolling Stocks
 export const getRollingStocks = (config) => get(url.GET_ROLLING_STOCKS, config);
 
 // Add Rolling Stock
@@ -191,3 +192,18 @@ export const putRollingStock = (data, id, config) =>
 // Delete Rolling Stock
 export const deleteRollingStock = (id, config) =>
   del(url.DELETE_ROLLING_STOCK(id), config);
+
+// Get MaritimeAcademies
+export const getMaritimeAcademies = (config) => get(url.GET_MARITIME_ACADEMIES, config);
+
+// Add MaritimeAcademy
+export const postMaritimeAcademy = (data, config) =>
+  post(url.ADD_MARITIME_ACADEMY, data, config);
+
+// Update MaritimeAcademy
+export const putMaritimeAcademy = (data, id, config) =>
+  put(url.PUT_MARITIME_ACADEMY(id), data, config);
+
+// Delete MaritimeAcademy
+export const deleteMaritimeAcademy = (id, config) =>
+  del(url.DELETE_MARITIME_ACADEMY(id), config);

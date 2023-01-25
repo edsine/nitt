@@ -20,6 +20,7 @@ import permissionSaga from "./permission/saga";
 import railwaysPassengersSaga from "./railwayspassengers/saga";
 import rollingStockSaga from "./rollingstock/saga";
 import dashboardDataSaga from "./dashboard/saga";
+import maritimeAcademySaga from "./maritimeacademy/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -43,5 +44,6 @@ export default function* rootSaga() {
     fork(railwaysPassengersSaga),
     fork(rollingStockSaga),
     fork(dashboardDataSaga),
+    fork(maritimeAcademySaga),
   ]);
 }

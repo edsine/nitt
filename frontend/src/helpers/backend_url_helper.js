@@ -145,3 +145,16 @@ export const PUT_ROLLING_STOCK = (id) => `railway_rolling_stocks/${id}`;
 
 // DELETE ROLLING STOCK
 export const DELETE_ROLLING_STOCK = (id) => `railway_rolling_stocks/${id}`;
+
+
+// GET MARITIME ACADEMIES
+export const GET_MARITIME_ACADEMIES = "maritime_academies";
+
+// ADD MARITIME ACADEMY
+export const ADD_MARITIME_ACADEMY = "maritime_academies";
+
+// UPDATE MARITIME ACADEMY
+export const PUT_MARITIME_ACADEMY = (id) => `maritime_academies/${id}`;
+
+// DELETE MARITIME ACADEMY
+export const DELETE_MARITIME_ACADEMY = (id) => `maritime_academies/${id}`;

@@ -47,3 +47,6 @@ export * from "./railwayspassengers/actions";
 
 // Rolling Stock
 export * from "./rollingstock/actions";
+
+// Maritime Academy
+export * from "./maritimeacademy/actions";
