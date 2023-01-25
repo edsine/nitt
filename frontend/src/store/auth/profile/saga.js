@@ -16,7 +16,7 @@ import {
 import {
   postSendVerificationEmail,
   putUpdateProfile,
-  putUpdateProfileImage,
+  postUpdateProfileImage,
 } from "../../../helpers/backend_helper";
 import {
   getFileUploadHeaders,
@@ -64,7 +64,7 @@ function* sendVerificationEmail() {
 
 function* editProfileImage({ payload: { data, idx } }) {
   try {
-    const response = yield call(putUpdateProfileImage, data, idx, {
+    const response = yield call(postUpdateProfileImage, data, idx, {
       headers: getFileUploadHeaders(),
     });
     if (response?.success) {

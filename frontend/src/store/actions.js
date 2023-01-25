@@ -50,3 +50,6 @@ export * from "./rollingstock/actions";
 
 // Maritime Academy
 export * from "./maritimeacademy/actions";
+
+// Maritime Transport
+export * from "./maritimetransport/actions";

@@ -75,7 +75,7 @@ const UserProfile = (props) => {
   function handleProfileImageChange(event, values) {
     const image = event.target.profile_image?.files[0];
     const data = new FormData();
-    data.append("profile_image", image);
+    data.append('profile_image', image);
     editProfileImage(data, values.profileImageId);
   }
 

@@ -7,7 +7,7 @@ const axiosApi = axios.create({
   baseURL: API_URL,
 })
 
-axiosApi.defaults.headers.post['Content-Type'] = 'application/json';
+// axiosApi.defaults.headers.post['Content-Type'] = 'application/json';
 
 axiosApi.defaults.headers.post['Accept'] = 'application/json';
 

@@ -54,6 +54,9 @@ import rollingStock from "./rollingstock/reducer";
 // Maritime Academy
 import maritimeAcademy from "./maritimeacademy/reducer";
 
+// Maritime Transport
+import maritimeTransports from "./maritimetransport/reducer";
+
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -75,7 +78,8 @@ const rootReducer = combineReducers({
   railwaysPassengers,
   rollingStock,
   dashboardData,
-  maritimeAcademy
+  maritimeAcademy,
+  maritimeTransports
 });
 
 export default rootReducer;

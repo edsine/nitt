@@ -120,8 +120,8 @@ export const putUpdateProfile = (data, id, config) =>
   put(url.PUT_UPDATE_PROFILE(id), data, config);
 
 // Update Profile Image
-export const putUpdateProfileImage = (data, id, config) =>
-  put(url.PUT_UPDATE_PROFILE_IMAGE(id), data, config);
+export const postUpdateProfileImage = (data, id, config) =>
+  post(url.POST_UPDATE_PROFILE_IMAGE(id), data, config);
 
 export const postSendVerificationEmail = (config) =>
   post(url.SEND_VERIFICATION_EMAIL, null, config);
@@ -194,7 +194,8 @@ export const deleteRollingStock = (id, config) =>
   del(url.DELETE_ROLLING_STOCK(id), config);
 
 // Get MaritimeAcademies
-export const getMaritimeAcademies = (config) => get(url.GET_MARITIME_ACADEMIES, config);
+export const getMaritimeAcademies = (config) =>
+  get(url.GET_MARITIME_ACADEMIES, config);
 
 // Add MaritimeAcademy
 export const postMaritimeAcademy = (data, config) =>
@@ -207,3 +208,19 @@ export const putMaritimeAcademy = (data, id, config) =>
 // Delete MaritimeAcademy
 export const deleteMaritimeAcademy = (id, config) =>
   del(url.DELETE_MARITIME_ACADEMY(id), config);
+
+// Get MaritimeTransports
+export const getMaritimeTransports = (config) =>
+  get(url.GET_MARITIME_TRANSPORTS, config);
+
+// Add MaritimeTransport
+export const postMaritimeTransport = (data, config) =>
+  post(url.ADD_MARITIME_TRANSPORT, data, config);
+
+// Update MaritimeTransport
+export const putMaritimeTransport = (data, id, config) =>
+  put(url.PUT_MARITIME_TRANSPORT(id), data, config);
+
+// Delete MaritimeTransport
+export const deleteMaritimeTransport = (id, config) =>
+  del(url.DELETE_MARITIME_TRANSPORT(id), config);

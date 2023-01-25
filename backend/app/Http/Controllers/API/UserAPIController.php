@@ -227,13 +227,18 @@ class UserAPIController extends AppBaseController
         }
 
         $profile_image = $request->file('profile_image');
-        $path_folder = public_path('storage/profile_images');
-        $path_to_old_image = $path_folder . "/" . $user->profile_image_path;
-        deleteImageWithPath($path_to_old_image);
+        if ($profile_image == null) {
+            return $this->sendError('An error occured');
+        }
+
+        $path_folder = public_path("storage/profile_images/$user->profile_image_path");
+        deleteImageWithPath($path_folder);
 
         $file_name = rand() . '.' . $profile_image->getClientOriginalExtension();
         $profile_image->move($path_folder, $file_name);
         $user->profile_image_path = $file_name;
+        $user->save();
+
 
         return $this->sendResponse($user->toArray(), 'Profile image updated successfully');
     }

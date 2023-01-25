@@ -72,7 +72,6 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     public static $profile_image_update = [
-        'profile_image' => 'required',
-        'profile_image.*' => 'required|profile_image|mimes:jpeg,png,jpg|max:2048'
+        'profile_image' => 'required|mimes:jpeg,png,jpg|max:512',
     ];
 }

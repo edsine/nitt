@@ -92,7 +92,7 @@ export const DELETE_USER = (id) => `users/${id}`;
 export const PUT_UPDATE_PROFILE = (id) => `users/update_profile/${id}`;
 
 // UPDATE PROFILE IMAGE
-export const PUT_UPDATE_PROFILE_IMAGE = (id) =>
+export const POST_UPDATE_PROFILE_IMAGE = (id) =>
   `users/update_profile_image/${id}`;
 
 // CHANGE PASSWORD
@@ -146,7 +146,6 @@ export const PUT_ROLLING_STOCK = (id) => `railway_rolling_stocks/${id}`;
 // DELETE ROLLING STOCK
 export const DELETE_ROLLING_STOCK = (id) => `railway_rolling_stocks/${id}`;
 
-
 // GET MARITIME ACADEMIES
 export const GET_MARITIME_ACADEMIES = "maritime_academies";
 
@@ -158,3 +157,15 @@ export const PUT_MARITIME_ACADEMY = (id) => `maritime_academies/${id}`;
 
 // DELETE MARITIME ACADEMY
 export const DELETE_MARITIME_ACADEMY = (id) => `maritime_academies/${id}`;
+
+// GET MARITIME TRANSPORTS
+export const GET_MARITIME_TRANSPORTS = "maritime_transports";
+
+// ADD MARITIME TRANSPORT
+export const ADD_MARITIME_TRANSPORT = "maritime_transports";
+
+// UPDATE MARITIME TRANSPORT
+export const PUT_MARITIME_TRANSPORT = (id) => `maritime_transports/${id}`;
+
+// DELETE MARITIME TRANSPORT
+export const DELETE_MARITIME_TRANSPORT = (id) => `maritime_transports/${id}`;

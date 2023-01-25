@@ -26,7 +26,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('dashboard', [App\Http\Controllers\API\DashboardAPIController::class, 'index']);
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
     Route::put('users/update_profile/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfile']);
-    Route::put('users/update_profile_image/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfileImage']);
+    Route::post('users/update_profile_image/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfileImage']);
     Route::post('users/change_password/{id}', [App\Http\Controllers\API\UserAPIController::class, 'changePassword'])->name('change_password');
     Route::resource('roles', App\Http\Controllers\API\RoleAPIController::class);
     Route::resource('passenger_road_transport_data', App\Http\Controllers\API\PassengerRoadTransportDataAPIController::class);
