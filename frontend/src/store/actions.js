@@ -53,3 +53,9 @@ export * from "./maritimeacademy/actions";
 
 // Maritime Transport
 export * from "./maritimetransport/actions";
+
+// Maritime Administration
+export * from "./maritimeadministration/actions";
+
+// Trains Punctuality
+export * from "./trainspunctuality/actions";

@@ -1,70 +1,70 @@
 import {
-  GET_MARITIME_TRANSPORTS_SUCCESS,
-  GET_MARITIME_TRANSPORTS_FAIL,
-  ADD_MARITIME_TRANSPORT_SUCCESS,
-  ADD_MARITIME_TRANSPORT_FAIL,
-  DELETE_MARITIME_TRANSPORT_SUCCESS,
-  EDIT_MARITIME_TRANSPORT_FAIL,
-  EDIT_MARITIME_TRANSPORT_SUCCESS,
-  DELETE_MARITIME_TRANSPORT_FAIL,
+  GET_MARITIME_ADMINISTRATIONS_SUCCESS,
+  GET_MARITIME_ADMINISTRATIONS_FAIL,
+  ADD_MARITIME_ADMINISTRATION_SUCCESS,
+  ADD_MARITIME_ADMINISTRATION_FAIL,
+  DELETE_MARITIME_ADMINISTRATION_SUCCESS,
+  EDIT_MARITIME_ADMINISTRATION_FAIL,
+  EDIT_MARITIME_ADMINISTRATION_SUCCESS,
+  DELETE_MARITIME_ADMINISTRATION_FAIL,
   CLEAR_MESSAGE,
 } from "./actionTypes";
 
 const INIT_STATE = {
-  maritimeTransports: [],
+  maritimeAdministrations: [],
   error: null,
   success: null,
 };
 
-const maritimeTransport = (state = INIT_STATE, action) => {
+const maritimeAdministration = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case GET_MARITIME_TRANSPORTS_SUCCESS:
+    case GET_MARITIME_ADMINISTRATIONS_SUCCESS:
       return {
         ...state,
-        maritimeTransports: action.payload,
+        maritimeAdministrations: action.payload,
         error: null,
       };
 
-    case GET_MARITIME_TRANSPORTS_FAIL:
+    case GET_MARITIME_ADMINISTRATIONS_FAIL:
       return {
         ...state,
         error: { ...state.error, getError: action.payload },
         success: null,
       };
-    case ADD_MARITIME_TRANSPORT_SUCCESS:
+    case ADD_MARITIME_ADMINISTRATION_SUCCESS:
       return {
         ...state,
         success: { ...state.success, addSuccess: action.payload.message },
         error: null,
       };
 
-    case ADD_MARITIME_TRANSPORT_FAIL:
+    case ADD_MARITIME_ADMINISTRATION_FAIL:
       return {
         ...state,
         error: { ...state.error, addError: action.payload },
         success: null,
       };
-    case EDIT_MARITIME_TRANSPORT_SUCCESS:
+    case EDIT_MARITIME_ADMINISTRATION_SUCCESS:
       return {
         ...state,
         success: { ...state.success, editSuccess: action.payload.message },
         error: null,
       };
 
-    case EDIT_MARITIME_TRANSPORT_FAIL:
+    case EDIT_MARITIME_ADMINISTRATION_FAIL:
       return {
         ...state,
         error: { ...state.error, editError: action.payload },
         success: null,
       };
-    case DELETE_MARITIME_TRANSPORT_SUCCESS:
+    case DELETE_MARITIME_ADMINISTRATION_SUCCESS:
       return {
         ...state,
         success: { ...state.success, deleteSuccess: action.payload },
         error: null,
       };
 
-    case DELETE_MARITIME_TRANSPORT_FAIL:
+    case DELETE_MARITIME_ADMINISTRATION_FAIL:
       return {
         ...state,
         error: { ...state.error, deleteError: action.payload },
@@ -81,4 +81,4 @@ const maritimeTransport = (state = INIT_STATE, action) => {
   }
 };
 
-export default maritimeTransport;
+export default maritimeAdministration;

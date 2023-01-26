@@ -169,3 +169,29 @@ export const PUT_MARITIME_TRANSPORT = (id) => `maritime_transports/${id}`;
 
 // DELETE MARITIME TRANSPORT
 export const DELETE_MARITIME_TRANSPORT = (id) => `maritime_transports/${id}`;
+
+// GET MARITIME ADMINISTRATIONS
+export const GET_MARITIME_ADMINISTRATIONS = "maritime_administrations";
+
+// ADD MARITIME ADMINISTRATION
+export const ADD_MARITIME_ADMINISTRATION = "maritime_administrations";
+
+// UPDATE MARITIME ADMINISTRATION
+export const PUT_MARITIME_ADMINISTRATION = (id) =>
+  `maritime_administrations/${id}`;
+
+// DELETE MARITIME ADMINISTRATION
+export const DELETE_MARITIME_ADMINISTRATION = (id) =>
+  `maritime_administrations/${id}`;
+
+// GET TRAINS PUNCTUALITIES
+export const GET_TRAINS_PUNCTUALITIES = "trains_punctualities";
+
+// ADD TRAINS PUNCTUALITY
+export const ADD_TRAINS_PUNCTUALITY = "trains_punctualities";
+
+// UPDATE TRAINS PUNCTUALITY
+export const PUT_TRAINS_PUNCTUALITY = (id) => `trains_punctualities/${id}`;
+
+// DELETE TRAINS PUNCTUALITY
+export const DELETE_TRAINS_PUNCTUALITY = (id) => `trains_punctualities/${id}`;

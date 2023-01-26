@@ -37,7 +37,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('railway_passengers', App\Http\Controllers\API\RailwayPassengerAPIController::class);
     Route::resource('railway_rolling_stocks', App\Http\Controllers\API\RailwayRollingStockAPIController::class);
     Route::resource('railway_safeties', App\Http\Controllers\API\RailwaySafetyAPIController::class);
-    Route::resource('train_punctualities', App\Http\Controllers\API\TrainPunctualityAPIController::class);
+    Route::resource('trains_punctualities', App\Http\Controllers\API\TrainPunctualityAPIController::class);
     Route::resource('maritime_administrations', App\Http\Controllers\API\MaritimeAdministrationAPIController::class);
     Route::resource('vehicle_importations', App\Http\Controllers\API\VehicleImportationAPIController::class);
     Route::resource('maritime_transports', App\Http\Controllers\API\MaritimeTransportAPIController::class);

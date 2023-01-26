@@ -15,7 +15,7 @@ class Cors
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {
+    {   
         return $next($request);
     }
 }

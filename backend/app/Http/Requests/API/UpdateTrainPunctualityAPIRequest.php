@@ -25,7 +25,7 @@ class UpdateTrainPunctualityAPIRequest extends APIRequest
     public function rules()
     {
         $rules = TrainPunctuality::$rules;
-        $rules['year'] = $rules['year'].",".$this->route("train_punctuality");
+        $rules['year'] = $rules['year'].",".$this->route("trains_punctuality");
         return $rules;
     }
 }

@@ -22,6 +22,8 @@ import rollingStockSaga from "./rollingstock/saga";
 import dashboardDataSaga from "./dashboard/saga";
 import maritimeAcademySaga from "./maritimeacademy/saga";
 import maritimeTransportSaga from "./maritimetransport/saga";
+import maritimeAdministrationSaga from "./maritimeadministration/saga";
+import trainsPunctualitySaga from "./trainspunctuality/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -47,5 +49,7 @@ export default function* rootSaga() {
     fork(dashboardDataSaga),
     fork(maritimeAcademySaga),
     fork(maritimeTransportSaga),
+    fork(maritimeAdministrationSaga),
+    fork(trainsPunctualitySaga),
   ]);
 }

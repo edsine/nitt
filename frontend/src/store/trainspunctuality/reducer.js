@@ -1,70 +1,70 @@
 import {
-  GET_MARITIME_TRANSPORTS_SUCCESS,
-  GET_MARITIME_TRANSPORTS_FAIL,
-  ADD_MARITIME_TRANSPORT_SUCCESS,
-  ADD_MARITIME_TRANSPORT_FAIL,
-  DELETE_MARITIME_TRANSPORT_SUCCESS,
-  EDIT_MARITIME_TRANSPORT_FAIL,
-  EDIT_MARITIME_TRANSPORT_SUCCESS,
-  DELETE_MARITIME_TRANSPORT_FAIL,
+  GET_TRAINS_PUNCTUALITIES_SUCCESS,
+  GET_TRAINS_PUNCTUALITIES_FAIL,
+  ADD_TRAINS_PUNCTUALITY_SUCCESS,
+  ADD_TRAINS_PUNCTUALITY_FAIL,
+  DELETE_TRAINS_PUNCTUALITY_SUCCESS,
+  EDIT_TRAINS_PUNCTUALITY_FAIL,
+  EDIT_TRAINS_PUNCTUALITY_SUCCESS,
+  DELETE_TRAINS_PUNCTUALITY_FAIL,
   CLEAR_MESSAGE,
 } from "./actionTypes";
 
 const INIT_STATE = {
-  maritimeTransports: [],
+  trainsPunctualities: [],
   error: null,
   success: null,
 };
 
-const maritimeTransport = (state = INIT_STATE, action) => {
+const trainsPunctuality = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case GET_MARITIME_TRANSPORTS_SUCCESS:
+    case GET_TRAINS_PUNCTUALITIES_SUCCESS:
       return {
         ...state,
-        maritimeTransports: action.payload,
+        trainsPunctualities: action.payload,
         error: null,
       };
 
-    case GET_MARITIME_TRANSPORTS_FAIL:
+    case GET_TRAINS_PUNCTUALITIES_FAIL:
       return {
         ...state,
         error: { ...state.error, getError: action.payload },
         success: null,
       };
-    case ADD_MARITIME_TRANSPORT_SUCCESS:
+    case ADD_TRAINS_PUNCTUALITY_SUCCESS:
       return {
         ...state,
         success: { ...state.success, addSuccess: action.payload.message },
         error: null,
       };
 
-    case ADD_MARITIME_TRANSPORT_FAIL:
+    case ADD_TRAINS_PUNCTUALITY_FAIL:
       return {
         ...state,
         error: { ...state.error, addError: action.payload },
         success: null,
       };
-    case EDIT_MARITIME_TRANSPORT_SUCCESS:
+    case EDIT_TRAINS_PUNCTUALITY_SUCCESS:
       return {
         ...state,
         success: { ...state.success, editSuccess: action.payload.message },
         error: null,
       };
 
-    case EDIT_MARITIME_TRANSPORT_FAIL:
+    case EDIT_TRAINS_PUNCTUALITY_FAIL:
       return {
         ...state,
         error: { ...state.error, editError: action.payload },
         success: null,
       };
-    case DELETE_MARITIME_TRANSPORT_SUCCESS:
+    case DELETE_TRAINS_PUNCTUALITY_SUCCESS:
       return {
         ...state,
         success: { ...state.success, deleteSuccess: action.payload },
         error: null,
       };
 
-    case DELETE_MARITIME_TRANSPORT_FAIL:
+    case DELETE_TRAINS_PUNCTUALITY_FAIL:
       return {
         ...state,
         error: { ...state.error, deleteError: action.payload },
@@ -81,4 +81,4 @@ const maritimeTransport = (state = INIT_STATE, action) => {
   }
 };
 
-export default maritimeTransport;
+export default trainsPunctuality;

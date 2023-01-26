@@ -21,20 +21,20 @@ import {
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import "../../assets/scss/datatables.scss";
 import {
-  getMaritimeAcademies,
-  deleteMaritimeAcademy,
+  getTrainsPunctualities,
+  deleteTrainsPunctuality,
 } from "../../store/actions";
-import AddMaritimeAcademy from "../../components/MaritimeAcademy/addMaritimeAcademy";
-import EditMaritimeAcademy from "../../components/MaritimeAcademy/editMaritimeAcademy";
+import AddTrainsPunctuality from "../../components/TrainsPunctuality/addTrainsPunctuality";
+import EditTrainsPunctuality from "../../components/TrainsPunctuality/editTrainsPunctuality";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { checkPermisssion } from "../../helpers/check_permission";
 
-const MaritimeAcademy = (props) => {
+const TrainsPunctuality = (props) => {
   const {
-    maritimeAcademies,
-    onGetMaritimeAcademies,
-    deleteMaritimeAcademy,
+    trainsPunctualities,
+    onGetTrainsPunctualities,
+    deleteTrainsPunctuality,
     error,
     success,
   } = props;
@@ -55,29 +55,29 @@ const MaritimeAcademy = (props) => {
   };
 
   const handleDelete = () => {
-    deleteMaritimeAcademy(currentId);
+    deleteTrainsPunctuality(currentId);
     setConfirmAlert(false);
   };
 
   const onEditClick = (id) => {
     setIsEditModalOpen(true);
     setCurrentId(id);
-    const editData = maritimeAcademies.find((item, index) => {
+    const editData = trainsPunctualities.find((item, index) => {
       return item.id === id;
     });
     setCurrentEditData(editData);
   };
 
   useEffect(() => {
-    onGetMaritimeAcademies();
+    onGetTrainsPunctualities();
   }, [
-    onGetMaritimeAcademies,
+    onGetTrainsPunctualities,
     success?.addSuccess,
     success?.editSuccess,
     success?.deleteSuccess,
   ]);
 
-  const dataMaritimeAcademies = {
+  const dataTrainsPunctualities = {
     columns: [
       {
         label: "Year",
@@ -86,20 +86,20 @@ const MaritimeAcademy = (props) => {
         width: 150,
       },
       {
-        label: "Number of Staff",
-        field: "number_of_staff",
+        label: "Number of Train Delay",
+        field: "number_of_train_delay",
         sort: "asc",
         width: 270,
       },
       {
-        label: "Number of Admitted Students",
-        field: "number_of_admitted_students",
+        label: "Number of Late Arrivals",
+        field: "number_of_late_arrival",
         sort: "asc",
         width: 200,
       },
       {
-        label: "Number of Graduands",
-        field: "number_of_graduands",
+        label: "Number of Prompty Arrivals",
+        field: "number_of_prompt_arrival",
         sort: "asc",
         width: 100,
       },
@@ -109,15 +109,15 @@ const MaritimeAcademy = (props) => {
         width: 200,
       },
     ],
-    rows: maritimeAcademies?.map((item, index) => {
+    rows: trainsPunctualities?.map((item, index) => {
       item.action = (
         <TableAction
-          id={maritimeAcademies[index].id}
+          id={trainsPunctualities[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
           permissions={{
-            edit: "update maritime academy",
-            delete: "delete maritime academy",
+            edit: "update train punctuality",
+            delete: "delete train punctuality",
           }}
         />
       );
@@ -132,16 +132,16 @@ const MaritimeAcademy = (props) => {
   return (
     <React.Fragment>
       <div className="page-content">
-        <AddMaritimeAcademy
+        <AddTrainsPunctuality
           isOpen={isAddModalOpen}
           setIsOpen={setIsAddModalOpen}
         />
-        <EditMaritimeAcademy
+        <EditTrainsPunctuality
           oldData={currentEditData}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
         />
-        <Breadcrumbs title="Maritime" breadcrumbItem="Maritime Academy" />
+        <Breadcrumbs title="Trains" breadcrumbItem="Trains Punctuality" />
         {confirmAlert && (
           <SweetAlert
             title="Are you sure?"
@@ -172,8 +172,8 @@ const MaritimeAcademy = (props) => {
             <Card>
               <CardBody>
                 <div className="d-flex justify-content-between">
-                  <CardTitle>Maritime Academy</CardTitle>
-                  {checkPermisssion("create maritime academy") && (
+                  <CardTitle>Trains Punctuality</CardTitle>
+                  {checkPermisssion("create train punctuality") && (
                     <Button
                       color="success"
                       className="btn btn-success waves-effect waves-light float-right"
@@ -188,7 +188,7 @@ const MaritimeAcademy = (props) => {
                   responsive
                   striped
                   bordered
-                  data={dataMaritimeAcademies}
+                  data={dataTrainsPunctualities}
                 />
               </CardBody>
             </Card>
@@ -199,28 +199,28 @@ const MaritimeAcademy = (props) => {
   );
 };
 
-MaritimeAcademy.propTypes = {
-  maritimeAcademies: PropTypes.array,
-  onGetMaritimeAcademies: PropTypes.func,
-  deleteMaritimeAcademy: PropTypes.func,
+TrainsPunctuality.propTypes = {
+  trainsPunctualities: PropTypes.array,
+  onGetTrainsPunctualities: PropTypes.func,
+  deleteTrainsPunctuality: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStateToProps = ({ maritimeAcademy }) => ({
-  maritimeAcademies: Array.isArray(maritimeAcademy.maritimeAcademies)
-    ? maritimeAcademy.maritimeAcademies
+const mapStateToProps = ({ trainsPunctuality }) => ({
+  trainsPunctualities: Array.isArray(trainsPunctuality.trainsPunctualities)
+    ? trainsPunctuality.trainsPunctualities
     : null,
-  error: maritimeAcademy.error,
-  success: maritimeAcademy.success,
+  error: trainsPunctuality.error,
+  success: trainsPunctuality.success,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetMaritimeAcademies: () => dispatch(getMaritimeAcademies()),
-  deleteMaritimeAcademy: (id) => dispatch(deleteMaritimeAcademy(id)),
+  onGetTrainsPunctualities: () => dispatch(getTrainsPunctualities()),
+  deleteTrainsPunctuality: (id) => dispatch(deleteTrainsPunctuality(id)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(MaritimeAcademy));
+)(withRouter(TrainsPunctuality));

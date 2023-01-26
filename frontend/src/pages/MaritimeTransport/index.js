@@ -4,8 +4,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 
-//
-
 import {
   Row,
   Col,
@@ -21,20 +19,20 @@ import {
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import "../../assets/scss/datatables.scss";
 import {
-  getMaritimeAcademies,
-  deleteMaritimeAcademy,
+  getMaritimeTransports,
+  deleteMaritimeTransport,
 } from "../../store/actions";
-import AddMaritimeAcademy from "../../components/MaritimeAcademy/addMaritimeAcademy";
-import EditMaritimeAcademy from "../../components/MaritimeAcademy/editMaritimeAcademy";
+import AddMaritimeTransport from "../../components/MaritimeTransport/addMaritimeTransport";
+import EditMaritimeTransport from "../../components/MaritimeTransport/editMaritimeTransport";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { checkPermisssion } from "../../helpers/check_permission";
 
-const MaritimeAcademy = (props) => {
+const MaritimeTransport = (props) => {
   const {
-    maritimeAcademies,
-    onGetMaritimeAcademies,
-    deleteMaritimeAcademy,
+    maritimeTransports,
+    onGetMaritimeTransports,
+    deleteMaritimeTransport,
     error,
     success,
   } = props;
@@ -55,29 +53,29 @@ const MaritimeAcademy = (props) => {
   };
 
   const handleDelete = () => {
-    deleteMaritimeAcademy(currentId);
+    deleteMaritimeTransport(currentId);
     setConfirmAlert(false);
   };
 
   const onEditClick = (id) => {
     setIsEditModalOpen(true);
     setCurrentId(id);
-    const editData = maritimeAcademies.find((item, index) => {
+    const editData = maritimeTransports.find((item, index) => {
       return item.id === id;
     });
     setCurrentEditData(editData);
   };
 
   useEffect(() => {
-    onGetMaritimeAcademies();
+    onGetMaritimeTransports();
   }, [
-    onGetMaritimeAcademies,
+    onGetMaritimeTransports,
     success?.addSuccess,
     success?.editSuccess,
     success?.deleteSuccess,
   ]);
 
-  const dataMaritimeAcademies = {
+  const dataMaritimeTransports = {
     columns: [
       {
         label: "Year",
@@ -86,20 +84,56 @@ const MaritimeAcademy = (props) => {
         width: 150,
       },
       {
-        label: "Number of Staff",
-        field: "number_of_staff",
+        label: "Containers",
+        field: "containers_count",
         sort: "asc",
         width: 270,
       },
       {
-        label: "Number of Admitted Students",
-        field: "number_of_admitted_students",
+        label: "Cargo",
+        field: "general_cargo_count",
         sort: "asc",
         width: 200,
       },
       {
-        label: "Number of Graduands",
-        field: "number_of_graduands",
+        label: "Bulk Cargo",
+        field: "bulk_cargo_count",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Tankers",
+        field: "tankers_count",
+        sort: "asc",
+        width: 150,
+      },
+      {
+        label: "Imported Containers",
+        field: "containers_import_count",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Exported Containers",
+        field: "containers_export_count",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "General Cargo Tonnage",
+        field: "general_cargo_tonnage",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Bulk Cargo Tonnage",
+        field: "bulk_cargo_tonnage",
+        sort: "asc",
+        width: 100,
+      },
+      {
+        label: "Accidents Recorded",
+        field: "accidents_recorded",
         sort: "asc",
         width: 100,
       },
@@ -109,15 +143,15 @@ const MaritimeAcademy = (props) => {
         width: 200,
       },
     ],
-    rows: maritimeAcademies?.map((item, index) => {
+    rows: maritimeTransports?.map((item, index) => {
       item.action = (
         <TableAction
-          id={maritimeAcademies[index].id}
+          id={maritimeTransports[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
           permissions={{
-            edit: "update maritime academy",
-            delete: "delete maritime academy",
+            edit: "update maritime transport",
+            delete: "delete maritime transport",
           }}
         />
       );
@@ -132,16 +166,16 @@ const MaritimeAcademy = (props) => {
   return (
     <React.Fragment>
       <div className="page-content">
-        <AddMaritimeAcademy
+        <AddMaritimeTransport
           isOpen={isAddModalOpen}
           setIsOpen={setIsAddModalOpen}
         />
-        <EditMaritimeAcademy
+        <EditMaritimeTransport
           oldData={currentEditData}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
         />
-        <Breadcrumbs title="Maritime" breadcrumbItem="Maritime Academy" />
+        <Breadcrumbs title="Maritime" breadcrumbItem="Maritime Transport" />
         {confirmAlert && (
           <SweetAlert
             title="Are you sure?"
@@ -172,8 +206,8 @@ const MaritimeAcademy = (props) => {
             <Card>
               <CardBody>
                 <div className="d-flex justify-content-between">
-                  <CardTitle>Maritime Academy</CardTitle>
-                  {checkPermisssion("create maritime academy") && (
+                  <CardTitle>Maritime Transport</CardTitle>
+                  {checkPermisssion("create maritime transport") && (
                     <Button
                       color="success"
                       className="btn btn-success waves-effect waves-light float-right"
@@ -188,7 +222,7 @@ const MaritimeAcademy = (props) => {
                   responsive
                   striped
                   bordered
-                  data={dataMaritimeAcademies}
+                  data={dataMaritimeTransports}
                 />
               </CardBody>
             </Card>
@@ -199,28 +233,28 @@ const MaritimeAcademy = (props) => {
   );
 };
 
-MaritimeAcademy.propTypes = {
-  maritimeAcademies: PropTypes.array,
-  onGetMaritimeAcademies: PropTypes.func,
-  deleteMaritimeAcademy: PropTypes.func,
+MaritimeTransport.propTypes = {
+  maritimeTransports: PropTypes.array,
+  onGetMaritimeTransport: PropTypes.func,
+  deleteMaritimeTransport: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStateToProps = ({ maritimeAcademy }) => ({
-  maritimeAcademies: Array.isArray(maritimeAcademy.maritimeAcademies)
-    ? maritimeAcademy.maritimeAcademies
+const mapStateToProps = ({ maritimeTransport }) => ({
+  maritimeTransports: Array.isArray(maritimeTransport.maritimeTransports)
+    ? maritimeTransport.maritimeTransports
     : null,
-  error: maritimeAcademy.error,
-  success: maritimeAcademy.success,
+  error: maritimeTransport.error,
+  success: maritimeTransport.success,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetMaritimeAcademies: () => dispatch(getMaritimeAcademies()),
-  deleteMaritimeAcademy: (id) => dispatch(deleteMaritimeAcademy(id)),
+  onGetMaritimeTransports: () => dispatch(getMaritimeTransports()),
+  deleteMaritimeTransport: (id) => dispatch(deleteMaritimeTransport(id)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(MaritimeAcademy));
+)(withRouter(MaritimeTransport));

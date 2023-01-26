@@ -116,6 +116,9 @@ import User from "../pages/User";
 import Role from "../pages/Role";
 import Landing from "../pages/Landing";
 import MaritimeAcademy from "../pages/MaritimeAcademy";
+import MaritimeTransport from "../pages/MaritimeTransport";
+import MaritimeAdministration from "../pages/MaritimeAdministration";
+import TrainsPunctuality from "../pages/TrainsPunctuality";
 
 const userRoutes = [
   { path: "/dashboard", component: Dashboard, exact: true },
@@ -205,7 +208,7 @@ const userRoutes = [
   { path: "/profile", component: UserProfile },
 
   // this route should be at the end of all other routes
-  { path: "/", component: Landing },
+  { path: "/", component: Landing, exact: true },
 ];
 
 const permissionRoutes = [
@@ -270,6 +273,30 @@ const permissionRoutes = [
     path: "/maritime-academy",
     component: MaritimeAcademy,
     permission: "read maritime academy",
+    exact: true,
+  },
+
+  //Maritime Transport
+  {
+    path: "/maritime-transport",
+    component: MaritimeTransport,
+    permission: "read maritime transport",
+    exact: true,
+  },
+
+  //Maritime Administration
+  {
+    path: "/maritime-administration",
+    component: MaritimeAdministration,
+    permission: "read maritime administration",
+    exact: true,
+  },
+
+  //Trains Punctuality
+  {
+    path: "/trains-punctuality",
+    component: TrainsPunctuality,
+    permission: "read train punctuality",
     exact: true,
   },
 

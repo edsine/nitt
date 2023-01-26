@@ -224,3 +224,35 @@ export const putMaritimeTransport = (data, id, config) =>
 // Delete MaritimeTransport
 export const deleteMaritimeTransport = (id, config) =>
   del(url.DELETE_MARITIME_TRANSPORT(id), config);
+
+// Get MaritimeAdministrations
+export const getMaritimeAdministrations = (config) =>
+  get(url.GET_MARITIME_ADMINISTRATIONS, config);
+
+// Add MaritimeAdministration
+export const postMaritimeAdministration = (data, config) =>
+  post(url.ADD_MARITIME_ADMINISTRATION, data, config);
+
+// Update MaritimeAdministration
+export const putMaritimeAdministration = (data, id, config) =>
+  put(url.PUT_MARITIME_ADMINISTRATION(id), data, config);
+
+// Delete MaritimeAdministration
+export const deleteMaritimeAdministration = (id, config) =>
+  del(url.DELETE_MARITIME_ADMINISTRATION(id), config);
+
+// Get TrainsPunctualities
+export const getTrainsPunctualities = (config) =>
+  get(url.GET_TRAINS_PUNCTUALITIES, config);
+
+// Add TrainsPunctuality
+export const postTrainsPunctuality = (data, config) =>
+  post(url.ADD_TRAINS_PUNCTUALITY, data, config);
+
+// Update TrainsPunctuality
+export const putTrainsPunctuality = (data, id, config) =>
+  put(url.PUT_TRAINS_PUNCTUALITY(id), data, config);
+
+// Delete TrainsPunctuality
+export const deleteTrainsPunctuality = (id, config) =>
+  del(url.DELETE_TRAINS_PUNCTUALITY(id), config);

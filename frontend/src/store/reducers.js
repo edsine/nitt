@@ -55,7 +55,13 @@ import rollingStock from "./rollingstock/reducer";
 import maritimeAcademy from "./maritimeacademy/reducer";
 
 // Maritime Transport
-import maritimeTransports from "./maritimetransport/reducer";
+import maritimeTransport from "./maritimetransport/reducer";
+
+// Maritime Administration
+import maritimeAdministration from "./maritimeadministration/reducer";
+
+// Trains Punctuality
+import trainsPunctuality from "./trainspunctuality/reducer";
 
 const rootReducer = combineReducers({
   // public
@@ -79,7 +85,9 @@ const rootReducer = combineReducers({
   rollingStock,
   dashboardData,
   maritimeAcademy,
-  maritimeTransports
+  maritimeTransport,
+  maritimeAdministration,
+  trainsPunctuality,
 });
 
 export default rootReducer;

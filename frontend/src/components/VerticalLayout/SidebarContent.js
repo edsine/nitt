@@ -163,7 +163,7 @@ const SidebarContent = (props) => {
 
             {checkPermisssion("read railway passenger") && (
               <li>
-                <Link to="/railways-passengers" className=" waves-effect">
+                <Link to="/railways-passengers" className="waves-effect">
                   <i className="mdi mdi-train"></i>
                   <span>{props.t("Railways Passengers")}</span>
                 </Link>
@@ -172,25 +172,67 @@ const SidebarContent = (props) => {
 
             {checkPermisssion("read railway rolling stock") && (
               <li>
-                <Link to="/rolling-stock" className=" waves-effect">
+                <Link to="/rolling-stock" className="waves-effect">
                   <i className="mdi mdi-train-variant"></i>
                   <span>{props.t("Rolling Stock")}</span>
                 </Link>
               </li>
             )}
 
-            {checkPermisssion("read maritime academy") && (
+            {(checkPermisssion("read maritime academy") ||
+              checkPermisssion("read maritime transport")) && (
               <li>
-                <Link to="/maritime-academy" className=" waves-effect">
+                <Link to="/#" className="waves-effect">
                   <i className="mdi mdi-school"></i>
-                  <span>{props.t("Maritime Academy")}</span>
+                  <span className="badge rounded-pill bg-info float-end"></span>
+                  <span>{props.t("Maritime")}</span>
+                </Link>
+                <ul className="sub-menu">
+                  {checkPermisssion("read maritime academy") && (
+                    <li>
+                      <Link to="/maritime-academy" className="waves-effect">
+                        <i className="mdi mdi-school"></i>
+                        <span>{props.t("Maritime Academy")}</span>
+                      </Link>
+                    </li>
+                  )}
+
+                  {checkPermisssion("read maritime administration") && (
+                    <li>
+                      <Link
+                        to="/maritime-administration"
+                        className="waves-effect"
+                      >
+                        <i className="mdi mdi-school"></i>
+                        <span>{props.t("Maritime Administration")}</span>
+                      </Link>
+                    </li>
+                  )}
+
+                  {checkPermisssion("read maritime transport") && (
+                    <li>
+                      <Link to="/maritime-transport" className="waves-effect">
+                        <i className="mdi mdi-car"></i>
+                        <span>{props.t("Maritime Transport")}</span>
+                      </Link>
+                    </li>
+                  )}
+                </ul>
+              </li>
+            )}
+
+            {checkPermisssion("read train punctuality") && (
+              <li>
+                <Link to="/trains-punctuality" className="waves-effect">
+                  <i className="mdi mdi-train"></i>
+                  <span>{props.t("Trains Punctuality")}</span>
                 </Link>
               </li>
             )}
 
             {checkPermisssion("read role") && (
               <li>
-                <Link to="/roles" className=" waves-effect">
+                <Link to="/roles" className="waves-effect">
                   <i className="mdi mdi-account-badge"></i>
                   <span>{props.t("Roles")}</span>
                 </Link>
@@ -199,7 +241,7 @@ const SidebarContent = (props) => {
 
             {checkPermisssion("read user") && (
               <li>
-                <Link to="/users" className=" waves-effect">
+                <Link to="/users" className="waves-effect">
                   <i className="mdi mdi-account"></i>
                   <span>{props.t("Users")}</span>
                 </Link>
