@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Route, Redirect, useHistory } from "react-router-dom";
+import ErrorBoundary from "../../components/ErrorBoundary";
 
 const Authmiddleware = ({
   component: Component,
@@ -34,7 +35,9 @@ const Authmiddleware = ({
 
         return (
           <Layout>
-            <Component {...props} />
+            <ErrorBoundary>
+              <Component {...props} />
+            </ErrorBoundary>
           </Layout>
         );
       }}
