@@ -55,7 +55,7 @@ const Dashboard = (props) => {
           >
             <Row>
               <Col md={3}>
-                <label for="year">Year</label>
+                <label for="year">Year (From 2014)</label>
                 <div className="d-flex justify-content-start align-items-baseline">
                   <div className="mb-3">
                     <AvField
@@ -63,7 +63,8 @@ const Dashboard = (props) => {
                       placeholder=""
                       type="number"
                       value={year}
-                      errorMessage="Select a Year"
+                      min={2014}
+                      errorMessage="Select a Year (2014 and above)"
                       className="form-control"
                       validate={{ required: { value: true } }}
                       id="year"

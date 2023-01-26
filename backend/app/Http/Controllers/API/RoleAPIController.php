@@ -112,6 +112,10 @@ class RoleAPIController extends AppBaseController
             return $this->sendError('Permission Denied', 403);
         }
 
+        if ($id == 1) {
+            return $this->sendError('Cannot update system role', 403);
+        }
+
         /** @var Role $role */
         $role = $this->roleRepository->find($id);
 
@@ -148,6 +152,11 @@ class RoleAPIController extends AppBaseController
 
         /** @var Role $role */
         $role = $this->roleRepository->find($id);
+
+        if ($id == 1) {
+            return $this->sendError('Cannot delete system role', 403);
+        }
+
         $role_users = $role->users();
 
         if ($role_users->count() > 0) {

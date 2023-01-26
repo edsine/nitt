@@ -97,11 +97,18 @@ const EditRole = (props) => {
                 value={oldData?.permissions}
               >
                 {permissionsArray?.map((permission, index) => (
-                  <AvCheckbox
-                    key={index}
-                    label={permission}
-                    value={permission}
-                  />
+                  <div>
+                    {index % 4 === 0 && (
+                      <strong style={{ display: "block" }}>
+                        {permission.split("create ")[1].toUpperCase()}
+                      </strong>
+                    )}
+                    <AvCheckbox
+                      key={index}
+                      label={permission}
+                      value={permission}
+                    />
+                  </div>
                 ))}
               </AvCheckboxGroup>
             </Col>

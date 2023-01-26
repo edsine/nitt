@@ -6,7 +6,7 @@ import {
   AvForm,
   AvField,
   AvCheckbox,
-  AvCheckboxGroup
+  AvCheckboxGroup,
 } from "availity-reactstrap-validation";
 import { addRole, getPermissions } from "../../store/actions";
 
@@ -89,16 +89,20 @@ const AddRole = (props) => {
               </div>
             </Col>
             <Col md="12">
-              <AvCheckboxGroup
-                name="permissions[]"
-                inline
-              >
+              <AvCheckboxGroup name="permissions[]" inline>
                 {permissionsArray?.map((permission, index) => (
-                  <AvCheckbox
-                    key={index}
-                    label={permission}
-                    value={permission}
-                  />
+                  <div>
+                    {index % 4 === 0 && (
+                      <strong style={{ display: "block" }}>
+                        {permission.split("create ")[1].toUpperCase()}
+                      </strong>
+                    )}
+                    <AvCheckbox
+                      key={index}
+                      label={permission}
+                      value={permission}
+                    />
+                  </div>
                 ))}
               </AvCheckboxGroup>
             </Col>
