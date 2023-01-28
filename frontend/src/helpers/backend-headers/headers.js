@@ -14,7 +14,8 @@ export const getHeaders = () => {
 
 export const getFileUploadHeaders = () => {
   const headers = {
-    accept: "*/*",
+    "Accept": "*/*",
+    "Content-Type": "multipart/form-data",
     Authorization: getAccessToken(),
   };
   return headers;

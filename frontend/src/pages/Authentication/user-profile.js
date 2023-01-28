@@ -21,6 +21,7 @@ import {
   resetProfileFlag,
   changePassword,
 } from "../../store/actions";
+import { BACKEND_URL } from "../../helpers/api_helper";
 
 const UserProfile = (props) => {
   const [email, setEmail] = useState("");
@@ -75,7 +76,7 @@ const UserProfile = (props) => {
   function handleProfileImageChange(event, values) {
     const image = event.target.profile_image?.files[0];
     const data = new FormData();
-    data.append('profile_image', image);
+    data.append("profile_image", image);
     editProfileImage(data, values.profileImageId);
   }
 
@@ -126,7 +127,10 @@ const UserProfile = (props) => {
                 <div className="d-flex">
                   <div>
                     <img
-                      src={profileImagePath || avatar}
+                      src={
+                        `${BACKEND_URL}/storage/profile_images/${profileImagePath}` ||
+                        avatar
+                      }
                       alt=""
                       className="avatar-md rounded-circle img-thumbnail"
                     />

@@ -15,6 +15,7 @@ import { withRouter, Link } from "react-router-dom";
 
 // users
 import user4 from "../../../assets/images/users/avatar-2.jpg";
+import { BACKEND_URL } from "../../../helpers/api_helper";
 
 const ProfileMenu = (props) => {
   // Declare a new state variable, which we'll call "menu"
@@ -54,7 +55,7 @@ const ProfileMenu = (props) => {
         >
           <img
             className="rounded-circle header-profile-user"
-            src={profileImagePath || user4}
+            src={`${BACKEND_URL}/storage/profile_images/${profileImagePath}` || user4}
             alt="Header Avatar"
           />{" "}
           <span className="d-none d-xl-inline-block ms-1">{username}</span>{" "}

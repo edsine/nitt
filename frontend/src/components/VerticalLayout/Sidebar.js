@@ -8,6 +8,7 @@ import { withTranslation } from "react-i18next";
 import SidebarContent from "./SidebarContent";
 
 import avatar2 from "../../assets/images/users/avatar-2.jpg";
+import { BACKEND_URL } from "../../helpers/api_helper";
 
 const Sidebar = (props) => {
   const { user } = props;
@@ -18,7 +19,10 @@ const Sidebar = (props) => {
           <div className="user-wid text-center py-4">
             <div className="user-img">
               <img
-                src={user.profile_image_path || avatar2}
+                src={
+                  `${BACKEND_URL}/storage/profile_images/${user.profile_image_path}` ||
+                  avatar2
+                }
                 alt=""
                 className="avatar-md mx-auto rounded-circle"
               />

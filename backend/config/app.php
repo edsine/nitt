@@ -54,6 +54,8 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
+    'frontend_url' => env('APP_FRONTEND_URL', 'http://localhost:3000'),
+
     'asset_url' => env('ASSET_URL', null),
 
     /*
@@ -166,7 +168,7 @@ return [
          * Package Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
-        InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class, 
+        InfyOm\GeneratorBuilder\GeneratorBuilderServiceProvider::class,
 
         /*
          * Application Service Providers...
