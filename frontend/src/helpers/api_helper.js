@@ -1,9 +1,9 @@
 import axios from "axios";
 
 //apply base url for axios
-export const API_URL = "http://127.0.0.1:8000/api";
+export const API_URL = process.env.REACT_APP_API_URL;
 
-export const BACKEND_URL = "http://127.0.0.1:8000";
+export const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const axiosApi = axios.create({
   baseURL: API_URL,
@@ -57,7 +57,6 @@ export async function del(url, config = {}) {
 }
 
 export async function fetchAPIPOST(url, data, config = {}) {
-  console.log(config);
   const options = {
     method: "POST",
     headers: config.headers,
