@@ -38,6 +38,15 @@ export async function post(url, data, config = {}) {
     });
 }
 
+export async function imagePost(url, data, config = {}) {
+  return axiosApi
+    .post(url, data, { ...config })
+    .then((response) => response.data)
+    .catch((error) => {
+      return error.response?.data;
+    });
+}
+
 export async function put(url, data, config = {}) {
   return axiosApi
     .put(url, { ...data }, { ...config })
@@ -51,20 +60,6 @@ export async function del(url, config = {}) {
   return await axiosApi
     .delete(url, { ...config })
     .then((response) => response.data)
-    .catch((error) => {
-      return error.response?.data;
-    });
-}
-
-export async function fetchAPIPOST(url, data, config = {}) {
-  const options = {
-    method: "POST",
-    headers: config.headers,
-    body: data,
-  };
-
-  fetch(`${API_URL}/${url}`, options)
-    .then((response) => response.json())
     .catch((error) => {
       return error.response?.data;
     });

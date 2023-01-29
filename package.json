@@ -1,0 +1,23 @@
+{
+  "name": "nitt",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install-backend": "cd backend && composer install",
+    "install-frontend": "npm install --prefix frontend",
+    "install": "npm run install-backend && npm run install-frontend",
+    "backend": "cd backend && php artisan serve",
+    "frontend": "npm start --prefix frontend"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edsine/nitt.git"
+  },
+  "author": "Omeiza Alabi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edsine/nitt/issues"
+  },
+  "homepage": "https://github.com/edsine/nitt#readme"
+}

@@ -11,6 +11,8 @@ import {
   profileError,
   sendVerificationEmailSuccess,
   sendVerificationEmailError,
+  profileImageSuccess,
+  profileImageError,
 } from "./actions";
 
 import {
@@ -69,16 +71,16 @@ function* editProfileImage({ payload: { data, idx } }) {
     });
     if (response?.success) {
       localStorage.setItem("authUser", JSON.stringify(response.data));
-      yield put(profileSuccess(response.message));
+      yield put(profileImageSuccess(response.message));
     } else {
       yield put(
-        profileError(
+        profileImageError(
           response?.errors ? Object.values(response?.errors) : response?.message
         )
       );
     }
   } catch (error) {
-    yield put(profileError(error));
+    yield put(profileImageError(error));
   }
 }
 

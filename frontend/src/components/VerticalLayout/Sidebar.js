@@ -50,6 +50,7 @@ const Sidebar = (props) => {
 
 Sidebar.propTypes = {
   type: PropTypes.string,
+  user: PropTypes.object
 };
 
 const mapStatetoProps = (state) => {

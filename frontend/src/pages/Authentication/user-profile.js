@@ -43,31 +43,31 @@ const UserProfile = (props) => {
     verificationEmailError,
     userSuccess,
     userError,
+    user,
   } = props;
 
   useEffect(() => {
     if (localStorage.getItem("authUser")) {
-      const obj = JSON.parse(localStorage.getItem("authUser"));
       if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-        setName(obj.displayName);
-        setEmail(obj.email);
-        setIdx(obj.uid);
+        setName(user.displayName);
+        setEmail(user.email);
+        setIdx(user.uid);
       } else if (
         process.env.REACT_APP_DEFAULTAUTH === "fake" ||
         process.env.REACT_APP_DEFAULTAUTH === "jwt" ||
         process.env.REACT_APP_DEFAULTAUTH === "backend"
       ) {
-        setName(obj.name);
-        setEmail(obj.email);
-        setIdx(obj.id);
-        setProfileImagePath(obj.profile_image_path);
-        setEmailVerified(obj.email_verified_at);
+        setName(user.name);
+        setEmail(user.email);
+        setIdx(user.id);
+        setProfileImagePath(user.profile_image_path);
+        setEmailVerified(user.email_verified_at);
       }
       setTimeout(() => {
         resetProfileFlag();
       }, 3000);
     }
-  }, [props.success, resetProfileFlag]);
+  }, [success, error, userSuccess, userError, user, resetProfileFlag]);
 
   function handleValidSubmit(event, values) {
     editProfile(values, values.id);
@@ -325,9 +325,10 @@ UserProfile.propTypes = {
   verificationEmailError: PropTypes.any,
   userError: PropTypes.any,
   userSuccess: PropTypes.any,
+  user: PropTypes.object,
 };
 
-const mapStatetoProps = ({ Profile, users }) => {
+const mapStatetoProps = ({ Profile, users, Login }) => {
   const {
     error,
     success,
@@ -338,7 +339,9 @@ const mapStatetoProps = ({ Profile, users }) => {
   } = Profile;
   const userError = users.error;
   const userSuccess = users.success;
+  const user = Login.user || JSON.parse(localStorage.getItem("authUser"));
   return {
+    user,
     error,
     success,
     userError,

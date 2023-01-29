@@ -1,5 +1,5 @@
 // import axios from "axios"
-import { del, fetchAPIPOST, get, post, put } from "./api_helper";
+import { del, get, post, imagePost, put } from "./api_helper";
 import * as url from "./backend_url_helper";
 
 // Gets the logged in user data from local session
@@ -122,10 +122,7 @@ export const putUpdateProfile = (data, id, config) =>
 // Update Profile Image
 
 export const postUpdateProfileImage = (data, id, config) =>
-  post(url.POST_UPDATE_PROFILE_IMAGE(id), data, config);
-
-export const postUpdateProfileImageWithFetch = (data, id, config) =>
-  fetchAPIPOST(url.POST_UPDATE_PROFILE_IMAGE(id), data, config);
+  imagePost(url.POST_UPDATE_PROFILE_IMAGE(id), data, config);
 
 export const postSendVerificationEmail = (config) =>
   post(url.SEND_VERIFICATION_EMAIL, null, config);

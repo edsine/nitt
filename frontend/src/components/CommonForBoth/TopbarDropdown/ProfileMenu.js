@@ -18,6 +18,7 @@ import user4 from "../../../assets/images/users/avatar-2.jpg";
 import { BACKEND_URL } from "../../../helpers/api_helper";
 
 const ProfileMenu = (props) => {
+  const { user, success } = props;
   // Declare a new state variable, which we'll call "menu"
   const [menu, setMenu] = useState(false);
 
@@ -27,19 +28,17 @@ const ProfileMenu = (props) => {
   useEffect(() => {
     if (localStorage.getItem("authUser")) {
       if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-        const obj = JSON.parse(localStorage.getItem("authUser"));
-        setusername(obj.displayName);
+        setusername(user.displayName);
       } else if (
         process.env.REACT_APP_DEFAULTAUTH === "fake" ||
         process.env.REACT_APP_DEFAULTAUTH === "jwt" ||
         process.env.REACT_APP_DEFAULTAUTH === "backend"
       ) {
-        const obj = JSON.parse(localStorage.getItem("authUser"));
-        setusername(obj.name);
-        setProfileImagePath(obj.profile_image_path);
+        setusername(user.name);
+        setProfileImagePath(user.profile_image_path);
       }
     }
-  }, [props.success]);
+  }, [success, user]);
 
   return (
     <React.Fragment>
@@ -55,7 +54,10 @@ const ProfileMenu = (props) => {
         >
           <img
             className="rounded-circle header-profile-user"
-            src={`${BACKEND_URL}/storage/profile_images/${profileImagePath}` || user4}
+            src={
+              `${BACKEND_URL}/storage/profile_images/${profileImagePath}` ||
+              user4
+            }
             alt="Header Avatar"
           />{" "}
           <span className="d-none d-xl-inline-block ms-1">{username}</span>{" "}
@@ -85,11 +87,13 @@ const ProfileMenu = (props) => {
 ProfileMenu.propTypes = {
   success: PropTypes.any,
   t: PropTypes.any,
+  user: PropTypes.object,
 };
 
-const mapStatetoProps = (state) => {
-  const { error, success } = state.Profile;
-  return { error, success };
+const mapStatetoProps = ({ Profile, Login }) => {
+  const { error, success } = Profile;
+  const user = Login.user || JSON.parse(localStorage.getItem("authUser"));
+  return { error, success, user };
 };
 
 export default withRouter(

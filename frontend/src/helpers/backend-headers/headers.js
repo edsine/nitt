@@ -6,7 +6,6 @@ export const getAccessToken = () => {
 
 export const getHeaders = () => {
   const headers = {
-    accept: "application/json",
     Authorization: getAccessToken(),
   };
   return headers;
@@ -14,7 +13,6 @@ export const getHeaders = () => {
 
 export const getFileUploadHeaders = () => {
   const headers = {
-    "Accept": "*/*",
     "Content-Type": "multipart/form-data",
     Authorization: getAccessToken(),
   };
