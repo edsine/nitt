@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, delay, put, takeEvery } from "redux-saga/effects";
 
 // Crypto Redux States
 import {
@@ -41,7 +41,9 @@ function* fetchUsers() {
       yield put(getUsersSuccess(data));
     } else {
       yield put(
-        getUsersFail(response?.errors ? Object.values(response?.errors) : response?.message)
+        getUsersFail(
+          response?.errors ? Object.values(response?.errors) : response?.message
+        )
       );
     }
   } catch (error) {
@@ -59,12 +61,16 @@ function* addUser({ payload }) {
       yield put(addUserSuccess(data, message));
     } else {
       yield put(
-        addUserFail(response?.errors ? Object.values(response?.errors) : response?.message)
+        addUserFail(
+          response?.errors ? Object.values(response?.errors) : response?.message
+        )
       );
     }
   } catch (error) {
     yield put(addUserFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* updateUser({ payload: { user, id } }) {
@@ -74,12 +80,16 @@ function* updateUser({ payload: { user, id } }) {
       yield put(editUserSuccess(response?.data, response?.message));
     } else {
       yield put(
-        editUserFail(response?.errors ? Object.values(response?.errors) : response?.message)
+        editUserFail(
+          response?.errors ? Object.values(response?.errors) : response?.message
+        )
       );
     }
   } catch (error) {
     yield put(editUserFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* updatePassword({ payload: { values, id } }) {
@@ -91,12 +101,16 @@ function* updatePassword({ payload: { values, id } }) {
       yield put(changePasswordSuccess(response?.data, response?.message));
     } else {
       yield put(
-        changePasswordFail(response?.errors ? Object.values(response?.errors) : response?.message)
+        changePasswordFail(
+          response?.errors ? Object.values(response?.errors) : response?.message
+        )
       );
     }
   } catch (error) {
     yield put(changePasswordFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* removeUser({ payload }) {
@@ -116,6 +130,8 @@ function* removeUser({ payload }) {
   } catch (error) {
     yield put(deleteUserFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* userSaga() {
