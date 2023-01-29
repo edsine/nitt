@@ -318,17 +318,17 @@ const BasicElements = () => {
                   </p>
 
                 <div>
-                  <Label for="customRange1" className="form-label">Example range</Label>
+                  <Label htmlFor="customRange1" className="form-label">Example range</Label>
                   <Input type="range" className="form-range" id="customRange1" />
                 </div>
 
                 <div className="mt-4">
-                  <Label for="customRange2" className="form-label">Min and max</Label>
+                  <Label htmlFor="customRange2" className="form-label">Min and max</Label>
                   <input type="range" className="form-range" min="0" max="5" id="customRange2" />
                 </div>
 
                 <div className="mt-4">
-                  <Label for="customRange3" className="form-label">Example range</Label>
+                  <Label htmlFor="customRange3" className="form-label">Example range</Label>
                   <input type="range" className="form-range" min="0" max="5" step="0.5" id="customRange2" />
                 </div>
 
@@ -552,7 +552,7 @@ const BasicElements = () => {
 
                 <div className="input-group">
                   <Input type="file" className="form-control" id="inputGroupFile02" />
-                  <Label className="input-group-text" for="inputGroupFile02">Upload</Label>
+                  <Label className="input-group-text" htmlFor="inputGroupFile02">Upload</Label>
                 </div>
 
               </CardBody>

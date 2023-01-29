@@ -31,7 +31,7 @@ const FormLayouts = () => {
 
                   <Form>
                     <div className="mb-3">
-                      <Label for="formrow-firstname-Input">First name</Label>
+                      <Label htmlFor="formrow-firstname-Input">First name</Label>
                       <Input
                         type="text"
                         className="form-control"
@@ -42,7 +42,7 @@ const FormLayouts = () => {
                     <Row>
                       <Col md={6}>
                         <div className="mb-3">
-                          <Label for="formrow-email-Input">Email</Label>
+                          <Label htmlFor="formrow-email-Input">Email</Label>
                           <Input
                             type="email"
                             className="form-control"
@@ -52,7 +52,7 @@ const FormLayouts = () => {
                       </Col>
                       <Col md={6}>
                         <div className="mb-3">
-                          <Label for="formrow-password-Input">Password</Label>
+                          <Label htmlFor="formrow-password-Input">Password</Label>
                           <Input
                             type="password"
                             className="form-control"
@@ -65,7 +65,7 @@ const FormLayouts = () => {
                     <Row>
                       <Col lg={4}>
                         <div className="mb-3">
-                          <Label for="formrow-InputCity">City</Label>
+                          <Label htmlFor="formrow-InputCity">City</Label>
                           <Input
                             type="text"
                             className="form-control"
@@ -75,7 +75,7 @@ const FormLayouts = () => {
                       </Col>
                       <Col lg={4}>
                         <div className="mb-3">
-                          <Label for="formrow-InputState">State</Label>
+                          <Label htmlFor="formrow-InputState">State</Label>
                           <select
                             id="formrow-InputState"
                             className="form-control"
@@ -88,7 +88,7 @@ const FormLayouts = () => {
 
                       <Col lg={4}>
                         <div className="mb-3">
-                          <Label for="formrow-InputZip">Zip</Label>
+                          <Label htmlFor="formrow-InputZip">Zip</Label>
                           <Input
                             type="text"
                             className="form-control"
@@ -107,7 +107,7 @@ const FormLayouts = () => {
                         />
                         <Label
                           className="form-check-Label"
-                          for="formrow-customCheck"
+                          htmlFor="formrow-customCheck"
                         >
                           Check me out
                         </Label>
@@ -131,7 +131,7 @@ const FormLayouts = () => {
                   <Form>
                     <div className="row mb-4">
                       <Label
-                        for="horizontal-firstname-Input"
+                        htmlFor="horizontal-firstname-Input"
                         className="col-sm-3 col-form-Label"
                       >
                         First name
@@ -146,7 +146,7 @@ const FormLayouts = () => {
                     </div>
                     <div className="row mb-4">
                       <Label
-                        for="horizontal-email-Input"
+                        htmlFor="horizontal-email-Input"
                         className="col-sm-3 col-form-Label"
                       >
                         Email
@@ -161,7 +161,7 @@ const FormLayouts = () => {
                     </div>
                     <div className="row mb-4">
                       <Label
-                        for="horizontal-password-Input"
+                        htmlFor="horizontal-password-Input"
                         className="col-sm-3 col-form-Label"
                       >
                         Password
@@ -185,7 +185,7 @@ const FormLayouts = () => {
                           />
                           <Label
                             className="form-check-Label"
-                            for="horizontal-customCheck"
+                            htmlFor="horizontal-customCheck"
                           >
                             Remember me
                           </Label>
@@ -216,18 +216,18 @@ const FormLayouts = () => {
 
                   <Form className="row gy-2 gx-3 align-items-center">
                     <div className="col-sm-auto">
-                      <Label className="visually-hidden" for="autoSizingInput">Name</Label>
+                      <Label className="visually-hidden" htmlFor="autoSizingInput">Name</Label>
                       <Input type="text" className="form-control" id="autoSizingInput" placeholder="Jane Doe" />
                     </div>
                     <div className="col-sm-auto">
-                      <Label className="visually-hidden" for="autoSizingInputGroup">Username</Label>
+                      <Label className="visually-hidden" htmlFor="autoSizingInputGroup">Username</Label>
                       <InputGroup>
                         <div className="input-group-text">@</div>
                         <input type="text" className="form-control" id="autoSizingInputGroup" placeholder="Username" />
                       </InputGroup>
                     </div>
                     <div className="col-sm-auto">
-                      <label className="visually-hidden" for="autoSizingSelect">Preference</label>
+                      <label className="visually-hidden" htmlFor="autoSizingSelect">Preference</label>
                       <select className="form-select" id="autoSizingSelect">
                         <option selected>Choose...</option>
                         <option value="1">One</option>
@@ -238,7 +238,7 @@ const FormLayouts = () => {
                     <div className="col-sm-auto">
                       <div className="form-check">
                         <input className="form-check-input" type="checkbox" id="autoSizingCheck" />
-                        <label className="form-check-label" for="autoSizingCheck">
+                        <label className="form-check-label" htmlFor="autoSizingCheck">
                           Remember me
                         </label>
                       </div>
@@ -260,7 +260,7 @@ const FormLayouts = () => {
 
                   <Form className="row row-cols-lg-auto g-3 align-items-center">
                     <Col xs={12}>
-                      <label className="visually-hidden" for="inlineFormInputGroupUsername">Username</label>
+                      <label className="visually-hidden" htmlFor="inlineFormInputGroupUsername">Username</label>
                       <InputGroup>
                         <div className="input-group-text">@</div>
                         <input type="text" className="form-control" id="inlineFormInputGroupUsername" placeholder="Username" />
@@ -268,7 +268,7 @@ const FormLayouts = () => {
                     </Col>
 
                     <Col xs={12}>
-                      <label className="visually-hidden" for="inlineFormSelectPref">Preference</label>
+                      <label className="visually-hidden" htmlFor="inlineFormSelectPref">Preference</label>
                       <select className="form-select" id="inlineFormSelectPref">
                         <option selected>Choose...</option>
                         <option value="1">One</option>
@@ -280,7 +280,7 @@ const FormLayouts = () => {
                     <Col xs={12}>
                       <div className="form-check">
                         <input className="form-check-input" type="checkbox" id="inlineFormCheck" />
-                        <label className="form-check-label" for="inlineFormCheck">
+                        <label className="form-check-label" htmlFor="inlineFormCheck">
                           Remember me
                         </label>
                       </div>
@@ -304,13 +304,13 @@ const FormLayouts = () => {
                   <Form>
                     <div className="form-floating mb-3">
                       <input type="text" className="form-control" id="floatingnameInput" placeholder="Enter Name" value="Maria Laird" />
-                      <label for="floatingnameInput">Name</label>
+                      <label htmlFor="floatingnameInput">Name</label>
                     </div>
                     <Row>
                       <Col md={6}>
                         <div className="form-floating mb-3">
                           <input type="email" className="form-control" id="floatingemailInput" placeholder="Enter Email address" value="name@example.com" />
-                          <label for="floatingemailInput">Email address</label>
+                          <label htmlFor="floatingemailInput">Email address</label>
                         </div>
                       </Col>
                       <Col md={6}>
@@ -321,7 +321,7 @@ const FormLayouts = () => {
                             <option value="2">Two</option>
                             <option value="3">Three</option>
                           </select>
-                          <label for="floatingSelectGrid">Works with selects</label>
+                          <label htmlFor="floatingSelectGrid">Works with selects</label>
                         </div>
                       </Col>
                     </Row>
@@ -330,7 +330,7 @@ const FormLayouts = () => {
 
                       <div className="form-check">
                         <input className="form-check-input" type="checkbox" id="floatingCheck" />
-                        <label className="form-check-label" for="floatingCheck">
+                        <label className="form-check-label" htmlFor="floatingCheck">
                           Check me out
                         </label>
                       </div>

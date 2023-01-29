@@ -231,7 +231,7 @@ const UserProfile = (props) => {
                           />
                           <Label
                             className="input-group-text"
-                            for="profile-image"
+                            htmlFor="profile-image"
                           >
                             Upload
                           </Label>

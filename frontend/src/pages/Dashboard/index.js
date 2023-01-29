@@ -55,7 +55,7 @@ const Dashboard = (props) => {
           >
             <Row>
               <Col md={3}>
-                <label for="year">Year (From 2014)</label>
+                <label htmlFor="year">Year (From 2014)</label>
                 <div className="d-flex justify-content-start align-items-baseline">
                   <div className="mb-3">
                     <AvField
