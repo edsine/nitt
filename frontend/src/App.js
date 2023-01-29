@@ -54,17 +54,6 @@ const App = (props) => {
               isAuthProtected={false}
             />
           ))}
-          {userRoutes.map((route, idx) => (
-            <Authmiddleware
-              path={route.path}
-              layout={Layout}
-              component={route.component}
-              key={idx}
-              isAuthProtected={route.path === "/" ? false : true}
-              checkPermissions={true}
-              exact
-            />
-          ))}
           {permissionRoutes.map((route, idx) => (
             <Authmiddleware
               path={route.path}
@@ -73,7 +62,16 @@ const App = (props) => {
               key={idx}
               isAuthProtected={true}
               checkPermissions={checkPermisssion(route.permission)}
-              exact
+            />
+          ))}
+          {userRoutes.map((route, idx) => (
+            <Authmiddleware
+              path={route.path}
+              layout={Layout}
+              component={route.component}
+              key={idx}
+              isAuthProtected={route.path === "/" ? false : true}
+              checkPermissions={true}
             />
           ))}
         </Switch>
