@@ -24,14 +24,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class RailwayPassenger extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     use HasFactory;
 
     public $table = 'railway_passengers';
 
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 

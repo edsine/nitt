@@ -21,14 +21,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class AirTransportData extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     use HasFactory;
 
     public $table = 'air_transport_data';
 
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 

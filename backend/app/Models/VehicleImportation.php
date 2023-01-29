@@ -18,14 +18,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class VehicleImportation extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     use HasFactory;
 
     public $table = 'vehicle_importation';
 
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 

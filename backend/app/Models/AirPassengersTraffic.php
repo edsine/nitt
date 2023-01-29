@@ -19,14 +19,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class AirPassengersTraffic extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     use HasFactory;
 
     public $table = 'air_passengers_traffic';
 
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 

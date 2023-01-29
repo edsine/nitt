@@ -18,14 +18,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class TrainPunctuality extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     use HasFactory;
 
     public $table = 'train_punctuality';
 
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 

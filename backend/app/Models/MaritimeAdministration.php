@@ -21,14 +21,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class MaritimeAdministration extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     use HasFactory;
 
     public $table = 'maritime_administration';
 
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 

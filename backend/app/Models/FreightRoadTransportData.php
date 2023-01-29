@@ -21,14 +21,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class FreightRoadTransportData extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     use HasFactory;
 
     public $table = 'freight_road_transport_data';
 
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 

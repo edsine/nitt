@@ -22,14 +22,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  */
 class RailwayRollingStock extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     use HasFactory;
 
     public $table = 'railway_rolling_stocks';
 
 
-    protected $dates = ['deleted_at'];
+    // protected $dates = ['deleted_at'];
 
 
 
