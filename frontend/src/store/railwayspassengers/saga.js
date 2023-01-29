@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, delay, put, takeEvery } from "redux-saga/effects";
 
 // Crypto Redux States
 import {
@@ -65,6 +65,8 @@ function* addRailwaysPassenger({ payload }) {
   } catch (error) {
     yield put(addRailwaysPassengerFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* updateRailwaysPassenger({ payload: { railwayPassenger, id } }) {
@@ -86,6 +88,8 @@ function* updateRailwaysPassenger({ payload: { railwayPassenger, id } }) {
   } catch (error) {
     yield put(editRailwaysPassengerFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* removeRailwaysPassenger({ payload }) {
@@ -105,6 +109,8 @@ function* removeRailwaysPassenger({ payload }) {
   } catch (error) {
     yield put(deleteRailwaysPassengerFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* railwaysPassengersSaga() {

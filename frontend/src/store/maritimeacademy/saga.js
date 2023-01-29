@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, delay, put, takeEvery } from "redux-saga/effects";
 
 // Crypto Redux States
 import {
@@ -65,6 +65,8 @@ function* addMaritimeAcademy({ payload }) {
   } catch (error) {
     yield put(addMaritimeAcademyFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* updateMaritimeAcademy({ payload: { maritimeAcademy, id } }) {
@@ -84,6 +86,8 @@ function* updateMaritimeAcademy({ payload: { maritimeAcademy, id } }) {
   } catch (error) {
     yield put(editMaritimeAcademyFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* removeMaritimeAcademy({ payload }) {
@@ -103,6 +107,8 @@ function* removeMaritimeAcademy({ payload }) {
   } catch (error) {
     yield put(deleteMaritimeAcademyFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* maritimeAcademySaga() {

@@ -80,7 +80,6 @@ export const deleteAirTransportDataFail = (error) => ({
   payload: error,
 });
 
-
 export const clearMessage = () => ({
   type: CLEAR_MESSAGE,
 });

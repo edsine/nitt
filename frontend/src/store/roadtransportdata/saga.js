@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, delay, put, takeEvery } from "redux-saga/effects";
 
 // Crypto Redux States
 import {
@@ -81,6 +81,8 @@ function* addPassengerRoadTransportData({ payload }) {
   } catch (error) {
     yield put(addPassengerRoadTransportDataFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* updatePassengerRoadTransportData({ payload: { passengerRTD, id } }) {
@@ -105,6 +107,8 @@ function* updatePassengerRoadTransportData({ payload: { passengerRTD, id } }) {
   } catch (error) {
     yield put(editPassengerRoadTransportDataFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* removePassengerRoadTransportData({ payload }) {
@@ -124,6 +128,8 @@ function* removePassengerRoadTransportData({ payload }) {
   } catch (error) {
     yield put(deletePassengerRoadTransportDataFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* fetchFreightRoadTransportData() {
@@ -164,6 +170,8 @@ function* addFreightRoadTransportData({ payload }) {
   } catch (error) {
     yield put(addFreightRoadTransportDataFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* updateFreightRoadTransportData({ payload: { freightRTD, id } }) {
@@ -185,6 +193,8 @@ function* updateFreightRoadTransportData({ payload: { freightRTD, id } }) {
   } catch (error) {
     yield put(editFreightRoadTransportDataFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* removeFreightRoadTransportData({ payload }) {
@@ -204,6 +214,8 @@ function* removeFreightRoadTransportData({ payload }) {
   } catch (error) {
     yield put(deleteFreightRoadTransportDataFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* roadTransportDataSaga() {

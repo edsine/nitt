@@ -9,6 +9,7 @@ import {
   SEND_VERIFICATION_EMAIL_ERROR,
   PROFILE_IMAGE_ERROR,
   RESET_PROFILE_FLAG,
+  CLEAR_MESSAGE,
 } from "./actionTypes";
 
 export const editProfile = (data, idx) => {
@@ -79,3 +80,7 @@ export const resetProfileFlag = (error) => {
     type: RESET_PROFILE_FLAG,
   };
 };
+
+export const clearMessage = () => ({
+  type: CLEAR_MESSAGE,
+});

@@ -8,6 +8,7 @@ import {
   EDIT_PROFILE_IMAGE,
   SEND_VERIFICATION_EMAIL_SUCCESS,
   SEND_VERIFICATION_EMAIL_ERROR,
+  CLEAR_MESSAGE,
 } from "./actionTypes";
 
 const initialState = {
@@ -47,6 +48,17 @@ const profile = (state = initialState, action) => {
       break;
     case RESET_PROFILE_FLAG:
       state = { ...state, success: null };
+      break;
+    case CLEAR_MESSAGE:
+      state = {
+        ...state,
+        success: null,
+        error: null,
+        profileImageError: null,
+        profileImageSuccess: null,
+        verificationEmailError: null,
+        verificationEmailSuccess: null,
+      };
       break;
     default:
       state = { ...state };

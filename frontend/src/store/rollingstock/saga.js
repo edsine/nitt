@@ -1,4 +1,4 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, delay, put, takeEvery } from "redux-saga/effects";
 
 // Crypto Redux States
 import {
@@ -65,6 +65,8 @@ function* addRollingStock({ payload }) {
   } catch (error) {
     yield put(addRollingStockFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* updateRollingStock({ payload: { rollingStock, id } }) {
@@ -84,6 +86,8 @@ function* updateRollingStock({ payload: { rollingStock, id } }) {
   } catch (error) {
     yield put(editRollingStockFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* removeRollingStock({ payload }) {
@@ -103,6 +107,8 @@ function* removeRollingStock({ payload }) {
   } catch (error) {
     yield put(deleteRollingStockFail(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* rollingStockSaga() {

@@ -1,4 +1,4 @@
-import { takeEvery, fork, put, all, call } from "redux-saga/effects";
+import { takeEvery, fork, put, all, call, delay } from "redux-saga/effects";
 
 // Login Redux States
 import {
@@ -13,6 +13,7 @@ import {
   sendVerificationEmailError,
   profileImageSuccess,
   profileImageError,
+  clearMessage,
 } from "./actions";
 
 import {
@@ -43,6 +44,8 @@ function* editProfile({ payload: { data, idx } }) {
   } catch (error) {
     yield put(profileError(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* sendVerificationEmail() {
@@ -62,6 +65,8 @@ function* sendVerificationEmail() {
   } catch (error) {
     yield put(sendVerificationEmailError(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 function* editProfileImage({ payload: { data, idx } }) {
@@ -82,6 +87,8 @@ function* editProfileImage({ payload: { data, idx } }) {
   } catch (error) {
     yield put(profileImageError(error));
   }
+  yield delay(2000);
+  yield put(clearMessage());
 }
 
 export function* watchProfile() {
