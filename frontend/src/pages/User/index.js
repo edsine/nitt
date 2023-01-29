@@ -25,6 +25,9 @@ import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
 import ChangePassword from "../../components/User/changePassword";
 import { checkPermisssion } from "../../helpers/check_permission";
+import { BACKEND_URL } from "../../helpers/api_helper";
+
+import avatar from "../../assets/images/avatar.png";
 
 const User = (props) => {
   const { users, onGetUsers, deleteUser, error, success } = props;
@@ -116,7 +119,11 @@ const User = (props) => {
         <img
           height={30}
           width={30}
-          src={users[index].profile_image}
+          src={
+            item.profile_image_path
+              ? `${BACKEND_URL}/storage/profile_images/${item.profile_image_path}`
+              : avatar
+          }
           alt=""
           className="avatar-md rounded-circle img-thumbnail"
         />

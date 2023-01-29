@@ -14,7 +14,7 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 
 // users
-import user4 from "../../../assets/images/users/avatar-2.jpg";
+import avatar from "../../../assets/images/avatar.png";
 import { BACKEND_URL } from "../../../helpers/api_helper";
 
 const ProfileMenu = (props) => {
@@ -55,8 +55,9 @@ const ProfileMenu = (props) => {
           <img
             className="rounded-circle header-profile-user"
             src={
-              `${BACKEND_URL}/storage/profile_images/${profileImagePath}` ||
-              user4
+              user.profile_image_path
+                ? `${BACKEND_URL}/storage/profile_images/${user.profile_image_path}`
+                : avatar
             }
             alt="Header Avatar"
           />{" "}

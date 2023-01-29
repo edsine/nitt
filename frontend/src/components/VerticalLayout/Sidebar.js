@@ -7,7 +7,7 @@ import { withRouter, Link } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 import SidebarContent from "./SidebarContent";
 
-import avatar2 from "../../assets/images/users/avatar-2.jpg";
+import avatar from "../../assets/images/avatar.png";
 import { BACKEND_URL } from "../../helpers/api_helper";
 
 const Sidebar = (props) => {
@@ -20,8 +20,9 @@ const Sidebar = (props) => {
             <div className="user-img">
               <img
                 src={
-                  `${BACKEND_URL}/storage/profile_images/${user.profile_image_path}` ||
-                  avatar2
+                  user.profile_image_path
+                    ? `${BACKEND_URL}/storage/profile_images/${user.profile_image_path}`
+                    : avatar
                 }
                 alt=""
                 className="avatar-md mx-auto rounded-circle"
@@ -50,7 +51,7 @@ const Sidebar = (props) => {
 
 Sidebar.propTypes = {
   type: PropTypes.string,
-  user: PropTypes.object
+  user: PropTypes.object,
 };
 
 const mapStatetoProps = (state) => {
