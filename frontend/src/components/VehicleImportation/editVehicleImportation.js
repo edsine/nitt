@@ -4,10 +4,17 @@ import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 import { editVehicleImportation } from "../../store/actions";
+import YearOptions from "../yearOptions";
 
 const EditVehicleImportation = (props) => {
-  const { isOpen, setIsOpen, oldData, onEditVehicleImportation, error, success } =
-    props;
+  const {
+    isOpen,
+    setIsOpen,
+    oldData,
+    onEditVehicleImportation,
+    error,
+    success,
+  } = props;
 
   const removeBodyCss = () => {
     document.body.classList.add("no_padding");
@@ -58,19 +65,22 @@ const EditVehicleImportation = (props) => {
           </button>
         </div>
         <div className="modal-body">
-        <Row>
+          <Row>
             <Col md="6">
               <div className="mb-3">
                 <Label htmlFor="year">Year</Label>
                 <AvField
                   name="year"
                   placeholder=""
-                  type="number"
+                  type="select"
                   errorMessage="Select a Year"
                   className="form-control"
                   validate={{ required: { value: true } }}
                   id="year"
-                />
+                >
+                  <option>Select</option>
+                  <YearOptions></YearOptions>
+                </AvField>
               </div>
             </Col>
             <Col md="6">

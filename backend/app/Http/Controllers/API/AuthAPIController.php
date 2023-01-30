@@ -73,15 +73,19 @@ class AuthAPIController extends AppBaseController
         $user->password = bcrypt($request->get('password'));
         $user->save();
 
-        //Send email for verification
-        event(new Registered($user));
         Auth::login($user);
 
         //Assign role
         $data_viewer_role = Role::where('name', '=', 'data-viewer')->first();
-
         $user->assignRole($data_viewer_role);
+
         $user_permissions = $user->getAllPermissions();
+
+        try {
+            //Send email for verification
+            event(new Registered($user));
+        } catch (\Throwable $th) {
+        }
 
 
         $token = $user->createToken(Str::slug(config('app.name') . '_auth_token', '_'))->plainTextToken;
@@ -139,7 +143,11 @@ class AuthAPIController extends AppBaseController
 
     public function verify(Request $request)
     {
-        $request->user()->sendEmailVerificationNotification();
+        try {
+            $request->user()->sendEmailVerificationNotification();
+        } catch (\Throwable $th) {
+            return $this->sendError('An error occured');
+        }
 
         return $this->sendResponse(null, 'An email has been sent with a link to verify your email address');
     }

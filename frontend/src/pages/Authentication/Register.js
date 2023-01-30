@@ -96,8 +96,7 @@ const Register = (props) => {
                           label="Password"
                           type="password"
                           required
-                          min={4}
-                          errorMessage="Enter password with a minimum lenght of 8"
+                          errorMessage="Enter password with a minimum length of 8"
                           placeholder="Enter Password"
                         />
                       </div>
@@ -108,7 +107,6 @@ const Register = (props) => {
                           type="password"
                           errorMessage="Password confirmation does not match"
                           placeholder="Confirm Password"
-                          min={4}
                           validate={{
                             required: { value: true },
                             match: { value: "password" },

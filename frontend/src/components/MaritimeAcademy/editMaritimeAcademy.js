@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 import { editMaritimeAcademy } from "../../store/actions";
+import YearOptions from "../yearOptions";
 
 const EditMaritimeAcademy = (props) => {
   const { isOpen, setIsOpen, oldData, error, success, onEditMaritimeAcademy } =
@@ -65,12 +66,15 @@ const EditMaritimeAcademy = (props) => {
                 <AvField
                   name="year"
                   placeholder=""
-                  type="number"
+                  type="select"
                   errorMessage="Select a Year"
                   className="form-control"
                   validate={{ required: { value: true } }}
                   id="year"
-                />
+                >
+                  <option>Select</option>
+                  <YearOptions></YearOptions>
+                </AvField>
               </div>
             </Col>
           </Row>

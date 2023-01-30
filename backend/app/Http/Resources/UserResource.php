@@ -22,8 +22,8 @@ class UserResource extends JsonResource
             'email' => $user->email,
             'email_verified_at' => $user->email_verified_at,
             'profile_image_path' => $user->profile_image_path,
-            'role' => $user->roles()->first()->name,
-            'role_id' => $user->roles()->first()->id,
+            'role' => $user->roles()->first() ? $user->roles()->first()->name : '',
+            'role_id' => $user->roles()->first() ? $user->roles()->first()->id : '',
             'created_at' => $user->created_at->toISOString(),
             'updated_at' => $user->updated_at->toISOString(),
             'deleted_at' => $user->deleted_at

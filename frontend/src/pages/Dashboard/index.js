@@ -4,14 +4,15 @@ import { connect } from "react-redux";
 import { Row, Col, CardBody, Card, Progress } from "reactstrap";
 
 //Import Components
-import LineChart from "./line-chart";
-import RevenueChart from "./revenue-chart";
-import SalesAnalytics from "./sales-analytics";
-import ScatterChart from "./scatter-analytics";
+// import LineChart from "./line-chart";
+// import RevenueChart from "./revenue-chart";
+// import SalesAnalytics from "./sales-analytics";
+// import ScatterChart from "./scatter-analytics";
 
-import Overview from "./Overview";
+// import Overview from "./Overview";
+import YearOptions from "../../components/yearOptions";
 import { getDashboardData } from "../../store/actions";
-import { Label, AvField, AvForm } from "availity-reactstrap-validation";
+import { AvField, AvForm } from "availity-reactstrap-validation";
 
 const Dashboard = (props) => {
   const { dashboardData, onGetDashboardData } = props;
@@ -55,20 +56,20 @@ const Dashboard = (props) => {
           >
             <Row>
               <Col md={3}>
-                <label htmlFor="year">Year (From 2014)</label>
+                <label htmlFor="year">Year</label>
                 <div className="d-flex justify-content-start align-items-baseline">
                   <div className="mb-3">
                     <AvField
                       name="year"
                       placeholder=""
-                      type="number"
-                      value={year}
-                      min={2014}
-                      errorMessage="Select a Year (2014 and above)"
+                      type="select"
+                      errorMessage="Select a Year"
                       className="form-control"
                       validate={{ required: { value: true } }}
                       id="year"
-                    />
+                    >
+                      <YearOptions></YearOptions>
+                    </AvField>
                   </div>
                   <button
                     type="submit"

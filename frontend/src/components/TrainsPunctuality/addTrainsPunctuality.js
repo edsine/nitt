@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 import { addTrainsPunctuality } from "../../store/actions";
+import YearOptions from "../yearOptions";
 
 const AddTrainsPunctuality = (props) => {
   const { isOpen, setIsOpen, error, success, onAddTrainsPunctuality } = props;
@@ -63,12 +64,15 @@ const AddTrainsPunctuality = (props) => {
                 <AvField
                   name="year"
                   placeholder=""
-                  type="number"
+                  type="select"
                   errorMessage="Select a Year"
                   className="form-control"
                   validate={{ required: { value: true } }}
                   id="year"
-                />
+                >
+                  <option>Select</option>
+                  <YearOptions></YearOptions>
+                </AvField>
               </div>
             </Col>
           </Row>

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 import { addVehicleImportation } from "../../store/actions";
+import YearOptions from "../yearOptions";
 
 const AddVehicleImportation = (props) => {
   const { isOpen, setIsOpen, error, success, onAddVehicleImportation } = props;
@@ -63,12 +64,24 @@ const AddVehicleImportation = (props) => {
                 <AvField
                   name="year"
                   placeholder=""
+                  type="select"
+                  errorMessage="Select a Year"
+                  className="form-control"
+                  validate={{ required: { value: true } }}
+                  id="year"
+                >
+                  <option>Select</option>
+                  <YearOptions></YearOptions>
+                </AvField>
+                {/* <AvField
+                  name="year"
+                  placeholder=""
                   type="number"
                   errorMessage="Select a Year"
                   className="form-control"
                   validate={{ required: { value: true } }}
                   id="year"
-                />
+                /> */}
               </div>
             </Col>
             <Col md="6">
