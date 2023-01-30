@@ -62,7 +62,15 @@ class VehicleImportationAPIController extends AppBaseController
         }
         $input = $request->all();
 
-        $vehicleImportation = $this->vehicleImportationRepository->create($input);
+        $vehicleImportation = null;
+        try {
+            $vehicleImportation = $this->vehicleImportationRepository->create($input);
+        } catch (\Throwable $th) {
+            if (str_contains($th->getMessage(), 'Integrity constraint violation')) {
+                return $this->sendError('The same year and vehicle category already exists');
+            }
+            return $this->sendError('An error occured');
+        }
 
         return $this->sendResponse($vehicleImportation->toArray(), 'Vehicle Importation saved successfully');
     }
@@ -113,7 +121,15 @@ class VehicleImportationAPIController extends AppBaseController
             return $this->sendError('Vehicle Importation not found');
         }
 
-        $vehicleImportation = $this->vehicleImportationRepository->update($input, $id);
+        $vehicleImportation = null;
+        try {
+            $vehicleImportation = $this->vehicleImportationRepository->update($input, $id);
+        } catch (\Throwable $th) {
+            if (str_contains($th->getMessage(), 'Integrity constraint violation')) {
+                return $this->sendError('The same year and vehicle category already exists');
+            }
+            return $this->sendError('An error occured');
+        }
 
         return $this->sendResponse($vehicleImportation->toArray(), 'Vehicle Importation updated successfully');
     }
