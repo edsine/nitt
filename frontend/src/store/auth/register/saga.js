@@ -11,6 +11,7 @@ import {
   postJwtRegister,
 } from "../../../helpers/fakebackend_helper";
 import { postRegister } from "../../../helpers/backend_helper";
+import { loginSuccess } from "../login/actions";
 
 // initialize relavant method of both Auth
 const fireBaseBackend = getFirebaseBackend();
@@ -47,6 +48,7 @@ function* registerUser({ payload: { user, history } }) {
         localStorage.setItem("authUser", JSON.stringify(user));
         localStorage.setItem("userToken", JSON.stringify(token));
         yield put(registerUserSuccessful(user));
+        yield put(loginSuccess(user));
         history.push("/dashboard");
       } else {
         yield put(

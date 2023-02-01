@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { Row, Col, CardBody, Card, Progress } from "reactstrap";
+import { Row, Col, CardBody, Card, Progress, Alert } from "reactstrap";
 
 //Import Components
 // import LineChart from "./line-chart";
@@ -15,7 +15,9 @@ import { getDashboardData } from "../../store/actions";
 import { AvField, AvForm } from "availity-reactstrap-validation";
 
 const Dashboard = (props) => {
-  const { dashboardData, onGetDashboardData } = props;
+  const { dashboardData, onGetDashboardData, user } = props;
+
+  console.log(user);
 
   const currentYear = new Date().getFullYear();
   const [year, setYear] = useState(currentYear);
@@ -47,6 +49,9 @@ const Dashboard = (props) => {
           </div>
         </Row>
 
+        {user?.email_verified_at && user.email_verified_at ? null : (
+          <Alert color="danger">Please verify your email address</Alert>
+        )}
         <Row>
           <AvForm
             className="needs-validation"
@@ -322,10 +327,12 @@ const Dashboard = (props) => {
 Dashboard.propTypes = {
   onGetDashboardData: PropTypes.func,
   dashboardData: PropTypes.any,
+  user: PropTypes.any,
 };
 
-const mapStateToProps = ({ dashboardData }) => ({
+const mapStateToProps = ({ dashboardData, Login }) => ({
   dashboardData: dashboardData.data,
+  user: Login.user || JSON.parse(localStorage.getItem("authUser")),
 });
 
 const mapDispatchToProps = (dispatch) => ({
