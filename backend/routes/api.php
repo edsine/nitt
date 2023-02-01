@@ -56,6 +56,7 @@ Route::get('login', [AuthAPIController::class, 'getFrontendLogin'])->name('login
 
 Route::post('verify', [AuthAPIController::class, 'verify'])->name('verification.send');
 
+Route::get('/reset/{token}', [AuthAPIController::class, 'resetPassword'])->name('auth.reset');
+
 Route::get('/email/verify/{id}/{hash}', [AuthAPIController::class, 'verifyEmail'])
-    ->middleware(['auth:sanctum', 'signed'])
     ->name('verification.verify');

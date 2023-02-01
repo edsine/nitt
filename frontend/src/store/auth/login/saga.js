@@ -12,10 +12,7 @@ import {
   postSocialLogin,
 } from "../../../helpers/fakebackend_helper";
 
-import {
-  postLogin,
-  postLogout,
-} from "../../../helpers/backend_helper";
+import { postLogin, postLogout } from "../../../helpers/backend_helper";
 import { getHeaders } from "../../../helpers/backend-headers/headers";
 
 const fireBaseBackend = getFirebaseBackend();
@@ -58,11 +55,17 @@ function* loginUser({ payload: { user, history } }) {
         localStorage.setItem("authUser", JSON.stringify(user));
         localStorage.setItem("userToken", JSON.stringify(token));
         yield put(loginSuccess(user));
+        history.push("/dashboard");
       } else {
-        yield put(apiError(response?.errors ? Object.values(response?.errors) : response?.message));
+        yield put(
+          apiError(
+            response?.errors
+              ? Object.values(response?.errors)
+              : response?.message
+          )
+        );
       }
     }
-    history.push("/dashboard");
   } catch (error) {
     yield put(apiError(error));
   }
@@ -81,7 +84,13 @@ function* logoutUser({ payload: { history } }) {
         localStorage.removeItem("userToken");
         yield put(logoutUserSuccess(response));
       } else {
-        yield put(apiError(response?.errors ? Object.values(response?.errors) : response?.message));
+        yield put(
+          apiError(
+            response?.errors
+              ? Object.values(response?.errors)
+              : response?.message
+          )
+        );
       }
     }
     history.push("/login");

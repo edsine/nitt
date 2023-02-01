@@ -5,7 +5,7 @@ import { Row, Col, Alert, Container } from "reactstrap";
 
 // Redux
 import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link, useLocation } from "react-router-dom";
 
 // availity-reactstrap-validation
 import { AvForm, AvField } from "availity-reactstrap-validation";
@@ -17,6 +17,11 @@ import { loginUser, apiError, socialLogin } from "../../store/actions";
 import logo from "../../assets/images/nitt-logo.png";
 
 const Login = (props) => {
+  const search = useLocation().search;
+  const searchParams = new URLSearchParams(search);
+  const success = searchParams.get("success");
+  const error = searchParams.get("error");
+
   useEffect(() => {
     document.body.className = "authentication-bg";
     // remove classname when component will unmount
@@ -65,6 +70,18 @@ const Login = (props) => {
                       {props.error && typeof props.error === "string" ? (
                         <Alert color="danger">{props.error}</Alert>
                       ) : null}
+
+                      {success === "true" && (
+                        <Alert color="success">
+                          Email verification was successful
+                        </Alert>
+                      )}
+
+                      {error === "true" && (
+                        <Alert color="danger">
+                          Invalid/Expired url provided
+                        </Alert>
+                      )}
 
                       <div className="mb-3">
                         <AvField

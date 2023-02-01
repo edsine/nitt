@@ -12,6 +12,7 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Redirect;
 use App\Notifications\Auth\ResetPassword;
 use App\Http\Requests\API\LoginAPIRequest;
 use App\Http\Requests\API\ResetAPIRequest;
@@ -24,13 +25,29 @@ class AuthAPIController extends AppBaseController
 {
     public function __construct()
     {
-        $this->middleware('auth:sanctum', ['except' => ['login', 'register', 'recover', 'reset', 'getFrontendLogin']]);
+        $this->middleware('auth:sanctum', ['except' => ['login', 'register', 'recover', 'reset', 'resetPassword', 'getFrontendLogin', 'verifyEmail']]);
     }
 
-    public function verifyEmail(EmailVerificationRequest  $request)
+    public function verifyEmail(Request $request, $user_id)
     {
-        $request->fulfill();
-        return $this->sendResponse(null, 'Verified successfully');
+        $user = User::find($user_id);
+
+        if ($user == null) {
+            $url = config('app.frontend_url');
+            return Redirect::to("$url/login?error=true");
+        }
+
+        if (!$request->hasValidSignature()) {
+            $url = config('app.frontend_url');
+            return Redirect::to("$url/login?error=true");
+        }
+
+        if (!$user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+        }
+
+        $url = config('app.frontend_url');
+        return Redirect::to("$url/login?success=true");
     }
 
     public function login(LoginAPIRequest $request)
@@ -115,6 +132,18 @@ class AuthAPIController extends AppBaseController
     }
 
 
+    public function resetPassword(Request $request, $token)
+    {
+        $tokenData = DB::table('password_resets')->where('token', $token)->first();
+        $url = config('app.frontend_url');
+
+        if ($tokenData) {
+            return Redirect::to("$url/reset-password?success=true&token=$token");
+        }
+
+        return Redirect::to("$url/forgot-password?error=true");
+    }
+
     public function reset(ResetAPIRequest $request)
     {
         $request->validated();
@@ -135,7 +164,8 @@ class AuthAPIController extends AppBaseController
             /** @var User $user */
             $user = Auth::loginUsingId($user->id);
             $token = $user->createToken(Str::slug(config('app.name') . '_auth_token', '_'))->plainTextToken;
-            return $this->sendResponse(['token' => $token, 'user' => $user->toArray()], 'An email has been sent with a link to reset the password');
+            $user_permissions = $user->getAllPermissions();
+            return $this->sendResponse(['token' => $token, 'user' => $user->toArray(), 'userPermissions' => $user_permissions->pluck('name')], 'Password reset successfully');
         }
 
         return $this->sendError('The recovery token is incorrect or has already been used', 406);

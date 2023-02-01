@@ -119,6 +119,7 @@ import MaritimeAcademy from "../pages/MaritimeAcademy";
 import MaritimeTransport from "../pages/MaritimeTransport";
 import MaritimeAdministration from "../pages/MaritimeAdministration";
 import TrainsPunctuality from "../pages/TrainsPunctuality";
+import ResetPassword from "../pages/Authentication/ResetPassword";
 
 const userRoutes = [
   // { path: "/dashboard2", component: Dashboard2 },
@@ -301,6 +302,7 @@ const authRoutes = [
   { path: "/logout", component: Logout },
   { path: "/login", component: Login },
   { path: "/forgot-password", component: ForgetPwd },
+  { path: "/reset-password", component: ResetPassword },
   { path: "/register", component: Register },
 
   { path: "/pages-maintenance", component: PagesMaintenance },

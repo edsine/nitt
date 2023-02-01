@@ -52,7 +52,7 @@ class ResetPassword extends Notification
             ->subject(__('Recover account'))
             ->greeting(__('Hi').' '.$this->notificationData->user->name.',')
             ->line(__('You are receiving this email because we received a password reset request for your account').'.')
-            ->action(__('Reset password'), url('/auth/reset/'.$this->notificationData->token).'?email='.urlencode($notifiable->email))
+            ->action(__('Reset password'), url('/api/reset/'.$this->notificationData->token).'?email='.urlencode($notifiable->email))
             ->line(__('If you did not request a password reset, no further action is required').'.');
     }
 

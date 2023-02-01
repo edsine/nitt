@@ -27,6 +27,9 @@ export const postRegister = (data) => post(url.POST_REGISTER, data);
 // Forgot Password Method
 export const postRecover = (data) => post(url.POST_RECOVER, data);
 
+// Reset Password Method
+export const postResetPassword = (data) => post(url.POST_RESET_PASSWORD, data);
+
 // Logout Method
 export const postLogout = (data, config) => post(url.POST_LOGOUT, data, config);
 

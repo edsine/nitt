@@ -9,6 +9,8 @@ import Account from "./auth/register/reducer";
 import ForgetPassword from "./auth/forgetpwd/reducer";
 import Profile from "./auth/profile/reducer";
 
+import resetPassword from "./auth/resetPassword/reducer";
+
 //Calendar
 import calendar from "./calendar/reducer";
 
@@ -88,6 +90,7 @@ const rootReducer = combineReducers({
   maritimeTransport,
   maritimeAdministration,
   trainsPunctuality,
+  resetPassword,
 });
 
 export default rootReducer;

@@ -4,6 +4,9 @@ export const POST_REGISTER = "auth/register";
 //RECOVER
 export const POST_RECOVER = "auth/recover";
 
+//RESET PASSWORD
+export const POST_RESET_PASSWORD = "auth/reset";
+
 //LOGIN
 export const POST_LOGIN = "auth/login";
 

@@ -10,15 +10,15 @@ import { withRouter, Link, useLocation } from "react-router-dom";
 import { AvForm, AvField } from "availity-reactstrap-validation";
 
 // action
-import { userForgetPassword } from "../../store/actions";
+import { resetPassword } from "../../store/actions";
 
 // import images
 import logo from "../../assets/images/nitt-logo.png";
 
-const ForgetPasswordPage = (props) => {
+const ResetPasswordPage = (props) => {
   const search = useLocation().search;
   const searchParams = new URLSearchParams(search);
-  const error = searchParams.get("error");
+  const token = searchParams.get("token");
 
   useEffect(() => {
     document.body.className = "authentication-bg";
@@ -29,7 +29,8 @@ const ForgetPasswordPage = (props) => {
   });
 
   function handleValidSubmit(event, values) {
-    props.userForgetPassword(values, props.history);
+    const newValues = { ...values, token: token };
+    props.resetPassword(newValues, props.history);
   }
 
   return (
@@ -75,24 +76,31 @@ const ForgetPasswordPage = (props) => {
                       </Alert>
                     ) : null}
 
-                    {error === "true" && (
-                      <Alert color="danger">
-                        The recovery token is incorrect or has already been used
-                      </Alert>
-                    )}
-
                     <AvForm
                       className="form-horizontal"
                       onValidSubmit={(e, v) => handleValidSubmit(e, v)}
                     >
                       <div className="mb-3">
                         <AvField
-                          name="email"
-                          label="Email"
-                          className="form-control"
-                          placeholder="Enter email"
-                          type="email"
+                          name="password"
+                          label="Password"
+                          type="password"
                           required
+                          errorMessage="Enter password with a minimum length of 8"
+                          placeholder="Enter Password"
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <AvField
+                          name="password_confirmation"
+                          label="Confirm Password"
+                          type="password"
+                          errorMessage="Password confirmation does not match"
+                          placeholder="Confirm Password"
+                          validate={{
+                            required: { value: true },
+                            match: { value: "password" },
+                          }}
                         />
                       </div>
                       <Row className="row mb-0">
@@ -127,18 +135,16 @@ const ForgetPasswordPage = (props) => {
   );
 };
 
-ForgetPasswordPage.propTypes = {
-  forgetError: PropTypes.any,
-  forgetSuccessMsg: PropTypes.any,
-  history: PropTypes.object,
-  userForgetPassword: PropTypes.func,
+ResetPasswordPage.propTypes = {
+  error: PropTypes.any,
+  success: PropTypes.any,
 };
 
 const mapStatetoProps = (state) => {
-  const { forgetError, forgetSuccessMsg } = state.ForgetPassword;
-  return { forgetError, forgetSuccessMsg };
+  const { error, success } = state.resetPassword;
+  return { error, success };
 };
 
 export default withRouter(
-  connect(mapStatetoProps, { userForgetPassword })(ForgetPasswordPage)
+  connect(mapStatetoProps, { resetPassword })(ResetPasswordPage)
 );
