@@ -128,7 +128,7 @@ return [
 
     'options' => [
 
-        'softDelete' => true,
+        'softDelete' => false,
 
         'save_schema_file' => true,
 
@@ -140,7 +140,7 @@ return [
 
         'repository_pattern' => true,
 
-        'resources' => false,
+        'resources' => true,
 
         'excluded_fields' => ['id'], // Array of columns that doesn't required while creating module
     ],

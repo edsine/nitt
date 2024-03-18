@@ -60,3 +60,75 @@ Route::get('/reset/{token}', [AuthAPIController::class, 'resetPassword'])->name(
 
 Route::get('/email/verify/{id}/{hash}', [AuthAPIController::class, 'verifyEmail'])
     ->name('verification.verify');
+
+
+Route::resource('gross_domestic_products', App\Http\Controllers\API\GrossDomesticProductAPIController::class);
+
+
+
+
+Route::resource('ship_container_traffics', App\Http\Controllers\API\ShipContainerTrafficAPIController::class);
+
+
+
+
+Route::resource('road_traffic_crashes', App\Http\Controllers\API\RoadTrafficCrashAPIController::class);
+
+
+Route::resource('fleet_operator_road_crashes', App\Http\Controllers\API\FleetOperatorRoadTrafficCrashAPIController::class);
+
+
+Route::resource('cargo_import_exports', App\Http\Controllers\API\CargoImportExportAPIController::class);
+
+
+Route::resource('ship_traffic_g_r_ts', App\Http\Controllers\API\ShipTrafficGRTAPIController::class);
+
+
+Route::resource('port_vehicular_traffics', App\Http\Controllers\API\PortVehicularTrafficAPIController::class);
+
+
+Route::resource('route_road_crashes', App\Http\Controllers\API\RouteRoadCrashAPIController::class);
+
+
+Route::resource('vehicle_plate_productions', App\Http\Controllers\API\VehiclePlateProductionAPIController::class);
+
+
+Route::resource('road_crash_causative_factors', App\Http\Controllers\API\RoadCrashCausativeFactorAPIController::class);
+
+
+Route::resource('driver_license_productions', App\Http\Controllers\API\DriverLicenseProductionAPIController::class);
+
+
+Route::resource('driver_license_issuances', App\Http\Controllers\API\DriverLicenseIssuanceAPIController::class);
+
+
+Route::resource('driver_license_renewals', App\Http\Controllers\API\DriverLicenseRenewalAPIController::class);
+
+
+Route::resource('traffic_offences', App\Http\Controllers\API\TrafficOffenceAPIController::class);
+
+
+Route::resource('vehicle_license_registrations', App\Http\Controllers\API\VehicleLicenseRegistrationAPIController::class);
+
+
+Route::resource('license_renewals', App\Http\Controllers\API\LicenseRenewalAPIController::class);
+
+
+
+
+Route::resource('vehicle_registrations', App\Http\Controllers\API\VehicleRegistrationAPIController::class);
+
+
+Route::resource('driving_test_records', App\Http\Controllers\API\DrivingTestRecordAPIController::class);
+
+
+Route::resource('fleet_accidents', App\Http\Controllers\API\FleetAccidentAPIController::class);
+
+
+Route::resource('corporation_passenger_traffics', App\Http\Controllers\API\CorporationPassengerTrafficAPIController::class);
+
+
+Route::resource('fleet_size_compositions', App\Http\Controllers\API\FleetSizeCompositionAPIController::class);
+
+
+Route::resource('fleet_operator_brands', App\Http\Controllers\API\FleetOperatorBrandAPIController::class);
