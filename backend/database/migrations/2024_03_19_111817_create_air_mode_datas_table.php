@@ -1,0 +1,42 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateAirModeDatasTable extends Migration
+{
+
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('air_mode_datas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('airport');
+            $table->integer('year');
+            $table->bigInteger('domestic_passengers_traffic');
+            $table->bigInteger('international_passengers_traffic');
+            $table->bigInteger('aircraft_traffic_domestic');
+            $table->bigInteger('aircraft_traffic_international');
+            $table->bigInteger('cargo_traffic_domestic');
+            $table->bigInteger('cargo_traffic_international');
+            $table->bigInteger('mail_traffic_domestic');
+            $table->bigInteger('mail_traffic_international');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('air_mode_datas');
+    }
+}

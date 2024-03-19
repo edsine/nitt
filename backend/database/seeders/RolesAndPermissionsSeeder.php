@@ -201,6 +201,11 @@ class RolesAndPermissionsSeeder extends Seeder
                 'update fleet operator brand',
                 'delete fleet operator brand',
 
+                'create air mode data',
+                'read air mode data',
+                'update air mode data',
+                'delete air mode data',
+
             ];
             $permissions = collect($arrayOfPermissionNames)->map(function ($permission) {
                 return ['name' => $permission, 'guard_name' => 'web'];
