@@ -18,13 +18,13 @@ class CreateFleetSizeCompositionsTable extends Migration
             $table->increments('id');
             $table->text('state');
             $table->integer('year');
-            $table->bigInteger('4pc');
-            $table->bigInteger('7pc');
-            $table->bigInteger('10pc');
-            $table->bigInteger('14pc');
-            $table->bigInteger('18pc');
-            $table->bigInteger('coaster');
-            $table->bigInteger('big_bus');
+            $table->bigInteger('4pc')->nullable();
+            $table->bigInteger('7pc')->nullable();
+            $table->bigInteger('10pc')->nullable();
+            $table->bigInteger('14pc')->nullable();
+            $table->bigInteger('18pc')->nullable();
+            $table->bigInteger('coaster')->nullable();
+            $table->bigInteger('big_bus')->nullable();
             $table->timestamps();
         });
     }

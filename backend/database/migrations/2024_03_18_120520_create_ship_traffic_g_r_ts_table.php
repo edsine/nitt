@@ -17,8 +17,8 @@ class CreateShipTrafficGRTsTable extends Migration
         Schema::create('ship_traffic_g_r_ts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year');
-            $table->bigInteger('number_of_vessels');
-            $table->bigInteger('grt');
+            $table->bigInteger('number_of_vessels')->nullable();
+            $table->bigInteger('grt')->nullable();
             $table->string('port');
             $table->timestamps();
         });

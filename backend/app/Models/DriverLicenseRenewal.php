@@ -57,7 +57,7 @@ class DriverLicenseRenewal extends Model
     public static $rules = [
         'year' => 'required|integer',
         'state' => 'required|string|unique:driver_license_renewals,year,state',
-        'vehicle_class' => 'nullable|integer',
+        'vehicle_class' => 'required|integer',
         'male_count' => 'nullable|integer',
         'female_count' => 'nullable|integer'
     ];

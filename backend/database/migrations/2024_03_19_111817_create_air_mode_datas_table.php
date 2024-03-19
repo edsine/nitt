@@ -18,14 +18,14 @@ class CreateAirModeDatasTable extends Migration
             $table->increments('id');
             $table->string('airport');
             $table->integer('year');
-            $table->bigInteger('domestic_passengers_traffic');
-            $table->bigInteger('international_passengers_traffic');
-            $table->bigInteger('aircraft_traffic_domestic');
-            $table->bigInteger('aircraft_traffic_international');
-            $table->bigInteger('cargo_traffic_domestic');
-            $table->bigInteger('cargo_traffic_international');
-            $table->bigInteger('mail_traffic_domestic');
-            $table->bigInteger('mail_traffic_international');
+            $table->bigInteger('domestic_passengers_traffic')->nullable();
+            $table->bigInteger('international_passengers_traffic')->nullable();
+            $table->bigInteger('aircraft_traffic_domestic')->nullable();
+            $table->bigInteger('aircraft_traffic_international')->nullable();
+            $table->bigInteger('cargo_traffic_domestic')->nullable();
+            $table->bigInteger('cargo_traffic_international')->nullable();
+            $table->bigInteger('mail_traffic_domestic')->nullable();
+            $table->bigInteger('mail_traffic_international')->nullable();
             $table->timestamps();
         });
     }

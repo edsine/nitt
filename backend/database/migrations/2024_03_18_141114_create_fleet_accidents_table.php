@@ -17,9 +17,9 @@ class CreateFleetAccidentsTable extends Migration
         Schema::create('fleet_accidents', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year');
-            $table->text('transport_company');
-            $table->bigInteger('vehicle');
-            $table->bigInteger('number_of_accidents');
+            $table->text('transport_company')->nullable();
+            $table->bigInteger('vehicle')->nullable();
+            $table->bigInteger('number_of_accidents')->nullable();
             $table->timestamps();
         });
     }

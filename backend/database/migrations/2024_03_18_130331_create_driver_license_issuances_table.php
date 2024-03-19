@@ -18,8 +18,8 @@ class CreateDriverLicenseIssuancesTable extends Migration
             $table->increments('id');
             $table->string('state');
             $table->integer('year');
-            $table->bigInteger('male_count');
-            $table->bigInteger('female_count');
+            $table->bigInteger('male_count')->nullable();
+            $table->bigInteger('female_count')->nullable();
             $table->integer('vehicle_class');
             $table->timestamps();
         });

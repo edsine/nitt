@@ -18,12 +18,12 @@ class CreateFleetOperatorBrandsTable extends Migration
             $table->increments('id');
             $table->integer('year');
             $table->string('state');
-            $table->integer('toyota_count');
-            $table->integer('mercedes_count');
-            $table->integer('nissan_count');
-            $table->integer('peugeot_count');
-            $table->integer('volkswagen_count');
-            $table->integer('sharon_count');
+            $table->integer('toyota_count')->nullable();
+            $table->integer('mercedes_count')->nullable();
+            $table->integer('nissan_count')->nullable();
+            $table->integer('peugeot_count')->nullable();
+            $table->integer('volkswagen_count')->nullable();
+            $table->integer('sharon_count')->nullable();
             $table->timestamps();
         });
     }

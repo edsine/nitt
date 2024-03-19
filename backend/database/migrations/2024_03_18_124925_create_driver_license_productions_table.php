@@ -18,7 +18,7 @@ class CreateDriverLicenseProductionsTable extends Migration
             $table->increments('id');
             $table->text('state');
             $table->integer('year');
-            $table->bigInteger('value');
+            $table->bigInteger('value')->nullable();
             $table->timestamps();
         });
     }

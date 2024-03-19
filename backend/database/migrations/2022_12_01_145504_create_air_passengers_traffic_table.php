@@ -16,10 +16,10 @@ class CreateAirPassengersTrafficTable extends Migration
     {
         Schema::create('air_passengers_traffic', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('domestic_passengers_traffic');
-            $table->bigInteger('international_passengers_traffic');
-            $table->bigInteger('domestic_freight_traffic');
-            $table->bigInteger('international_freight_traffic');
+            $table->bigInteger('domestic_passengers_traffic')->nullable();
+            $table->bigInteger('international_passengers_traffic')->nullable();
+            $table->bigInteger('domestic_freight_traffic')->nullable();
+            $table->bigInteger('international_freight_traffic')->nullable();
             $table->integer('year')->unique();
             $table->timestamps();
             $table->softDeletes();

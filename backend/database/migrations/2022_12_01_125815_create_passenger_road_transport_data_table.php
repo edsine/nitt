@@ -17,12 +17,12 @@ class CreatePassengerRoadTransportDataTable extends Migration
         Schema::create('passenger_road_transport_data', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year')->unique();
-            $table->bigInteger('number_of_passengers_carried');
-            $table->bigInteger('number_of_vehicles_in_fleet');
-            $table->bigInteger('revenue_from_operation');
-            $table->bigInteger('number_of_employees');
-            $table->bigInteger('annual_cost_of_vehicle_maintenance');
-            $table->bigInteger('number_of_accidents');
+            $table->bigInteger('number_of_passengers_carried')->nullable();
+            $table->bigInteger('number_of_vehicles_in_fleet')->nullable();
+            $table->bigInteger('revenue_from_operation')->nullable();
+            $table->bigInteger('number_of_employees')->nullable();
+            $table->bigInteger('annual_cost_of_vehicle_maintenance')->nullable();
+            $table->bigInteger('number_of_accidents')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

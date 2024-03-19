@@ -17,9 +17,9 @@ class CreateMaritimeAcademiesTable extends Migration
         Schema::create('maritime_academies', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year')->unique();
-            $table->bigInteger('number_of_staff');
-            $table->bigInteger('number_of_admitted_students');
-            $table->bigInteger('number_of_graduands');
+            $table->bigInteger('number_of_staff')->nullable();
+            $table->bigInteger('number_of_admitted_students')->nullable();
+            $table->bigInteger('number_of_graduands')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

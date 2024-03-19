@@ -17,12 +17,12 @@ class CreateMaritimeAdministrationTable extends Migration
         Schema::create('maritime_administration', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year')->unique();
-            $table->bigInteger('nigerian_sea_fearers_count');
-            $table->bigInteger('foreign_sea_fearers_count');
-            $table->bigInteger('number_of_vessels_registered');
-            $table->bigInteger('number_of_ships_cabotage');
-            $table->bigInteger('number_of_accidents');
-            $table->bigInteger('number_of_piracy_attacks');
+            $table->bigInteger('nigerian_sea_fearers_count')->nullable();
+            $table->bigInteger('foreign_sea_fearers_count')->nullable();
+            $table->bigInteger('number_of_vessels_registered')->nullable();
+            $table->bigInteger('number_of_ships_cabotage')->nullable();
+            $table->bigInteger('number_of_accidents')->nullable();
+            $table->bigInteger('number_of_piracy_attacks')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

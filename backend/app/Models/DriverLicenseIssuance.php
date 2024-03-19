@@ -59,7 +59,7 @@ class DriverLicenseIssuance extends Model
         'state' => 'required|string|unique:driver_license_issuances,year,state',
         'male_count' => 'nullable|integer',
         'female_count' => 'nullable|integer',
-        'vehicle_class' => 'nullable|integer'
+        'vehicle_class' => 'required|integer'
     ];
 
 

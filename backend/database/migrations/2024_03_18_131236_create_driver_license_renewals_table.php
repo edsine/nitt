@@ -19,8 +19,8 @@ class CreateDriverLicenseRenewalsTable extends Migration
             $table->text('state');
             $table->integer('year');
             $table->integer('vehicle_class');
-            $table->integer('male_count');
-            $table->integer('female_count');
+            $table->integer('male_count')->nullable();
+            $table->integer('female_count')->nullable();
             $table->timestamps();
         });
     }

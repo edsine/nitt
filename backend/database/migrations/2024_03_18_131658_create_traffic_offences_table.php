@@ -19,7 +19,7 @@ class CreateTrafficOffencesTable extends Migration
             $table->text('offence');
             $table->integer('year');
             $table->text('state');
-            $table->bigInteger('count');
+            $table->bigInteger('count')->nullable();
             $table->timestamps();
         });
     }

@@ -17,7 +17,7 @@ class CreateRouteRoadCrashesTable extends Migration
         Schema::create('route_road_crashes', function (Blueprint $table) {
             $table->increments('id');
             $table->text('route');
-            $table->bigInteger('number_of_crashes');
+            $table->bigInteger('number_of_crashes')->nullable();
             $table->integer('year');
             $table->timestamps();
         });

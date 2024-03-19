@@ -17,7 +17,7 @@ class CreatePortVehicularTrafficsTable extends Migration
         Schema::create('port_vehicular_traffics', function (Blueprint $table) {
             $table->increments('id');
             $table->string('port');
-            $table->bigInteger('traffic');
+            $table->bigInteger('traffic')->nullable();
             $table->integer('year');
             $table->timestamps();
         });
