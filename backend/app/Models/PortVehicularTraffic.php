@@ -21,7 +21,7 @@ class PortVehicularTraffic extends Model
     use HasFactory;
 
     public $table = 'port_vehicular_traffics';
-    
+
 
 
 
@@ -49,8 +49,10 @@ class PortVehicularTraffic extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'port' => 'required|string|unique:port_vehicular_traffics,year,port',
+        'traffic' => 'nullable|integer',
     ];
 
-    
+
 }

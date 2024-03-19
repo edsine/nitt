@@ -24,8 +24,11 @@ class UpdateAirModeDataAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('air_mode_data');
+
         $rules = AirModeData::$rules;
-        
+        $rules['year'] = 'required|year|unique:air_mode_data,year,' . $id;
+
         return $rules;
     }
 }

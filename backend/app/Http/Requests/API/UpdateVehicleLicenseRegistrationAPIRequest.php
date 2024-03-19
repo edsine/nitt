@@ -24,8 +24,13 @@ class UpdateVehicleLicenseRegistrationAPIRequest extends APIRequest
      */
     public function rules()
     {
+
+
+        $id = $this->route('vehicle_license_registration');
         $rules = VehicleLicenseRegistration::$rules;
-        
+
+        $rules['state'] = 'required|string|unique:vehicle_license_registrations,year,' . $id . 'state';
+
         return $rules;
     }
 }

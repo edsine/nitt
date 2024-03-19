@@ -27,7 +27,7 @@ class FleetSizeComposition extends Model
     use HasFactory;
 
     public $table = 'fleet_size_compositions';
-    
+
 
 
 
@@ -67,8 +67,16 @@ class FleetSizeComposition extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'state' => 'required|string|unique:fleet_size_compositions,year,state',
+        '4pc' => 'nullable|integer',
+        '7pc' => 'nullable|integer',
+        '10pc' => 'nullable|integer',
+        '14pc' => 'nullable|integer',
+        '18pc' => 'nullable|integer',
+        'coaster' => 'nullable|integer',
+        'big_bus' => 'nullable|integer'
     ];
 
-    
+
 }

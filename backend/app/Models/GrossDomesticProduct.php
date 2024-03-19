@@ -26,7 +26,7 @@ class GrossDomesticProduct extends Model
     use HasFactory;
 
     public $table = 'gross_domestic_products';
-    
+
 
 
 
@@ -64,8 +64,15 @@ class GrossDomesticProduct extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer|unique:gross_domestic_products,year',
+        'transportation_and_storage' => 'nullable|integer',
+        'road_transport' => 'nullable|integer',
+        'rail_transport_and_pipelines' => 'nullable|integer',
+        'water_transport' => 'nullable|integer',
+        'air_transport' => 'nullable|integer',
+        'transport_services' => 'nullable|integer',
+        'post_and_courier_services' => 'nullable|integer'
     ];
 
-    
+
 }

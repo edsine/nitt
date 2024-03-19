@@ -24,8 +24,11 @@ class UpdateGrossDomesticProductAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('gross_domestic_product');
+
         $rules = GrossDomesticProduct::$rules;
-        
+        $rules['year'] = 'required|integer|unique:gross_domestic_products,year,' . $id;
+
         return $rules;
     }
 }

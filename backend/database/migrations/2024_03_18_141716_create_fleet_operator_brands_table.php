@@ -17,7 +17,7 @@ class CreateFleetOperatorBrandsTable extends Migration
         Schema::create('fleet_operator_brands', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year');
-            $table->integer('state');
+            $table->string('state');
             $table->integer('toyota_count');
             $table->integer('mercedes_count');
             $table->integer('nissan_count');

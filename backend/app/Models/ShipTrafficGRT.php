@@ -22,7 +22,7 @@ class ShipTrafficGRT extends Model
     use HasFactory;
 
     public $table = 'ship_traffic_g_r_ts';
-    
+
 
 
 
@@ -52,8 +52,11 @@ class ShipTrafficGRT extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'integer',
+        'port' => 'required|string|unique:ship_traffic_g_r_ts,year,port',
+        'number_of_vessels' => 'nullable|integer',
+        'grt' => 'nullable|integer',
     ];
 
-    
+
 }

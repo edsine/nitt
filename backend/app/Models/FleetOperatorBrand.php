@@ -26,7 +26,7 @@ class FleetOperatorBrand extends Model
     use HasFactory;
 
     public $table = 'fleet_operator_brands';
-    
+
 
 
 
@@ -64,8 +64,15 @@ class FleetOperatorBrand extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'state' => 'required|string|unique:fleet_operator_brands,year,state',
+        'toyota_count' => 'integer',
+        'mercedes_count' => 'integer',
+        'nissan_count' => 'integer',
+        'peugeot_count' => 'integer',
+        'volkswagen_count' => 'integer',
+        'sharon_count' => 'integer'
     ];
 
-    
+
 }

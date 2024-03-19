@@ -24,8 +24,12 @@ class UpdateRoadCrashCausativeFactorAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('road_crash_causative_factor');
+
         $rules = RoadCrashCausativeFactor::$rules;
-        
+
+        $rules['state'] = 'required|integer|unique:road_crash_causative_factors,state,' . $id;
+
         return $rules;
     }
 }

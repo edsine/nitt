@@ -24,8 +24,12 @@ class UpdateFleetSizeCompositionAPIRequest extends APIRequest
      */
     public function rules()
     {
+
+        $id = $this->route('fleet_size_composition');
         $rules = FleetSizeComposition::$rules;
-        
+
+        $rules['state'] = 'required|string|unique:fleet_size_compositions,year,' . $id . 'state';
+
         return $rules;
     }
 }

@@ -22,7 +22,7 @@ class CorporationPassengerTraffic extends Model
     use HasFactory;
 
     public $table = 'corporation_passenger_traffics';
-    
+
 
 
 
@@ -52,8 +52,11 @@ class CorporationPassengerTraffic extends Model
      * @var array
      */
     public static $rules = [
-        
+        'destination' => 'nullable|string',
+        'count' => 'nullable|integer',
+        'year' => 'required|integer',
+        'source' => 'required|string|unique:corporation_passenger_traffics,year,source',
     ];
 
-    
+
 }

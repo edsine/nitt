@@ -24,8 +24,11 @@ class UpdateFleetOperatorBrandAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('fleet_operator_brand');
         $rules = FleetOperatorBrand::$rules;
-        
+
+        $rules['state'] = 'required|string|unique:fleet_operator_brands,year,' . $id . 'state';
+
         return $rules;
     }
 }

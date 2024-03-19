@@ -22,7 +22,7 @@ class TrafficOffence extends Model
     use HasFactory;
 
     public $table = 'traffic_offences';
-    
+
 
 
 
@@ -52,8 +52,11 @@ class TrafficOffence extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'state' => 'required|string|unique:traffic_offences,year,state',
+        'offence' => 'required|string',
+        'count' => 'nullable|integer'
     ];
 
-    
+
 }

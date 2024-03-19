@@ -25,7 +25,7 @@ class VehicleRegistration extends Model
     use HasFactory;
 
     public $table = 'vehicle_registrations';
-    
+
 
 
 
@@ -61,8 +61,14 @@ class VehicleRegistration extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'vehicle_type' => 'required|integer|unique:vehicle_registrations,year,vehicle_type',
+        'private_count' => 'nullable|integer',
+        'commercial_count' => 'nullable|integer',
+        'government_count' => 'nullable|integer',
+        'diplomatic_count' => 'nullable|integer',
+        'schools_count' => 'nullable|integer'
     ];
 
-    
+
 }

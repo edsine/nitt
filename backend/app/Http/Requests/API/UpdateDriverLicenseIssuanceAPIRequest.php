@@ -24,8 +24,11 @@ class UpdateDriverLicenseIssuanceAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('driver_license_issuance');
         $rules = DriverLicenseIssuance::$rules;
-        
+
+        $rules['state'] = 'required|string|unique:driver_license_issuances,year,' . $id . 'state';
+
         return $rules;
     }
 }

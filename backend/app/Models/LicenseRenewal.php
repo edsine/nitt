@@ -29,7 +29,7 @@ class LicenseRenewal extends Model
     use HasFactory;
 
     public $table = 'license_renewals';
-    
+
 
 
 
@@ -73,8 +73,18 @@ class LicenseRenewal extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'state' => 'required|string|unique:license_renewals,year,state',
+        'car' => 'nullable|integer',
+        'van' => 'nullable|integer',
+        'lorry' => 'nullable|integer',
+        'mini_bus' => 'nullable|integer',
+        'big_bus' => 'nullable|integer',
+        'tanker' => 'nullable|integer',
+        'trailer' => 'nullable|integer',
+        'tipper' => 'nullable|integer',
+        'tractor' => 'nullable|integer',
     ];
 
-    
+
 }

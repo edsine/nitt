@@ -39,7 +39,7 @@ class RoadCrashCausativeFactor extends Model
     use HasFactory;
 
     public $table = 'road_crash_causative_factors';
-    
+
 
 
 
@@ -103,8 +103,28 @@ class RoadCrashCausativeFactor extends Model
      * @var array
      */
     public static $rules = [
-        
+        'state' => 'required|string|unique:road_crash_causative_factors,state',
+        'speed_violation' => 'nullable|integer',
+        'lost_control' => 'nullable|integer',
+        'dangerous_driving' => 'nullable|integer',
+        'tyre_burst' => 'nullable|integer',
+        'brake_failure' => 'nullable|integer',
+        'wrongful_overtaking' => 'nullable|integer',
+        'route_violation' => 'nullable|integer',
+        'mechanically_deficient_vehicle' => 'nullable|integer',
+        'bad_road' => 'nullable|integer',
+        'road_obstruction_violation' => 'nullable|integer',
+        'dangerous_overtaking' => 'nullable|integer',
+        'overloading' => 'nullable|integer',
+        'sleeping_on_steering' => 'nullable|integer',
+        'driving_under_alcohol_drug' => 'nullable|integer',
+        'use_of_phone_driving' => 'nullable|integer',
+        'night_journey' => 'nullable|integer',
+        'fatigue' => 'nullable|integer',
+        'poor_weather' => 'nullable|integer',
+        'sign_light_violation' => 'nullable|integer',
+        'others' => 'nullable|integer'
     ];
 
-    
+
 }

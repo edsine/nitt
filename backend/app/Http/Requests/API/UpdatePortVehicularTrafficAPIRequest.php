@@ -24,8 +24,11 @@ class UpdatePortVehicularTrafficAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('port_vehicular_traffic');
         $rules = PortVehicularTraffic::$rules;
-        
+
+        $rules['port'] = 'required|string|unique:port_vehicular_traffics,year,' . $id . 'port';
+
         return $rules;
     }
 }

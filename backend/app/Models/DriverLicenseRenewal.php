@@ -23,7 +23,7 @@ class DriverLicenseRenewal extends Model
     use HasFactory;
 
     public $table = 'driver_license_renewals';
-    
+
 
 
 
@@ -55,8 +55,12 @@ class DriverLicenseRenewal extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'state' => 'required|string|unique:driver_license_renewals,year,state',
+        'vehicle_class' => 'nullable|integer',
+        'male_count' => 'nullable|integer',
+        'female_count' => 'nullable|integer'
     ];
 
-    
+
 }

@@ -24,8 +24,12 @@ class UpdateFleetOperatorRoadTrafficCrashAPIRequest extends APIRequest
      */
     public function rules()
     {
+
+        $id = $this->route('fleet_accident');
+
         $rules = FleetOperatorRoadTrafficCrash::$rules;
-        
+        $rules['fleet_operator'] = 'required|string|unique:fleet_operator_road_traffic_crashes,fleet_operator,' . $id;
+
         return $rules;
     }
 }

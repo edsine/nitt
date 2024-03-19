@@ -24,8 +24,11 @@ class UpdateShipTrafficGRTAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('ship_traffic_g_r_t');
         $rules = ShipTrafficGRT::$rules;
-        
+
+        $rules['port'] = 'required|string|unique:ship_traffic_g_r_ts,year,' . $id . 'port';
+
         return $rules;
     }
 }

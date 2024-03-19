@@ -16,7 +16,7 @@ class CreateDriverLicenseIssuancesTable extends Migration
     {
         Schema::create('driver_license_issuances', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('state');
+            $table->string('state');
             $table->integer('year');
             $table->bigInteger('male_count');
             $table->bigInteger('female_count');

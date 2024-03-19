@@ -24,8 +24,12 @@ class UpdateFleetAccidentAPIRequest extends APIRequest
      */
     public function rules()
     {
+
+        $id = $this->route('fleet_accident');
+
         $rules = FleetAccident::$rules;
-        
+        $rules['year'] = 'required|integer|unique:fleet_accidents,year,' . $id;
+
         return $rules;
     }
 }

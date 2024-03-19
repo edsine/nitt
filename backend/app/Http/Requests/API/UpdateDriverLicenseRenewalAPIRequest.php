@@ -24,8 +24,12 @@ class UpdateDriverLicenseRenewalAPIRequest extends APIRequest
      */
     public function rules()
     {
+
+        $id = $this->route('driver_license_renewal');
         $rules = DriverLicenseRenewal::$rules;
-        
+
+        $rules['state'] = 'required|string|unique:driver_license_renewals,year,' . $id . 'state';
+
         return $rules;
     }
 }

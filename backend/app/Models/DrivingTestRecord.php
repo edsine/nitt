@@ -29,7 +29,7 @@ class DrivingTestRecord extends Model
     use HasFactory;
 
     public $table = 'driving_test_records';
-    
+
 
 
 
@@ -73,8 +73,18 @@ class DrivingTestRecord extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'state' => 'required|string|unique:driving_test_records,year,state',
+        'renewal_count' => 'nullable|integer',
+        'fresh_count' => 'nullable|integer',
+        '3y_count' => 'nullable|integer',
+        '5y_count' => 'nullable|integer',
+        'failure' => 'nullable|integer',
+        'collected' => 'nullable|integer',
+        'due_for' => 'nullable|integer',
+        'lp' => 'nullable|integer',
+        'total_captured' => 'nullable|integer'
     ];
 
-    
+
 }

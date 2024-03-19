@@ -21,7 +21,7 @@ class VehiclePlateProduction extends Model
     use HasFactory;
 
     public $table = 'vehicle_plate_productions';
-    
+
 
 
 
@@ -49,8 +49,10 @@ class VehiclePlateProduction extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'vehicle_category' => 'required|integer|unique:vehicle_plate_productions,year,vehicle_category',
+        'value' => 'integer'
     ];
 
-    
+
 }

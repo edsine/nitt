@@ -24,8 +24,11 @@ class UpdateLicenseRenewalAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('license_renewal');
         $rules = LicenseRenewal::$rules;
-        
+
+        $rules['state'] = 'required|string|unique:license_renewals,year,' . $id . 'state';
+
         return $rules;
     }
 }

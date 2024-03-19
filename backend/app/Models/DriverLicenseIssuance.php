@@ -23,7 +23,7 @@ class DriverLicenseIssuance extends Model
     use HasFactory;
 
     public $table = 'driver_license_issuances';
-    
+
 
 
 
@@ -42,7 +42,7 @@ class DriverLicenseIssuance extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'state' => 'integer',
+        'state' => 'string',
         'year' => 'integer',
         'male_count' => 'integer',
         'female_count' => 'integer',
@@ -55,8 +55,12 @@ class DriverLicenseIssuance extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'state' => 'required|string|unique:driver_license_issuances,year,state',
+        'male_count' => 'nullable|integer',
+        'female_count' => 'nullable|integer',
+        'vehicle_class' => 'nullable|integer'
     ];
 
-    
+
 }

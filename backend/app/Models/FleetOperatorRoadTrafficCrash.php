@@ -23,7 +23,7 @@ class FleetOperatorRoadTrafficCrash extends Model
     use HasFactory;
 
     public $table = 'fleet_operator_road_traffic_crashes';
-    
+
 
 
 
@@ -55,8 +55,12 @@ class FleetOperatorRoadTrafficCrash extends Model
      * @var array
      */
     public static $rules = [
-        
+        'fleet_operator' => 'required|string|unique:fleet_operator_road_traffic_crashes,fleet_operator',
+        'number_of_cases' => 'nullable|integer',
+        'number_killed' => 'nullable|integer',
+        'number_injured' => 'nullable|integer',
+        'number_of_persons' => 'nullable|integer'
     ];
 
-    
+
 }

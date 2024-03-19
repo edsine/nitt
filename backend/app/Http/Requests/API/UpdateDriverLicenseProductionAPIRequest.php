@@ -24,8 +24,11 @@ class UpdateDriverLicenseProductionAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('driver_license_production');
         $rules = DriverLicenseProduction::$rules;
-        
+
+        $rules['state'] = 'required|string|unique:driver_license_productions,year,' . $id . 'state';
+
         return $rules;
     }
 }

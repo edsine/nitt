@@ -21,7 +21,7 @@ class RouteRoadCrash extends Model
     use HasFactory;
 
     public $table = 'route_road_crashes';
-    
+
 
 
 
@@ -49,8 +49,10 @@ class RouteRoadCrash extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'route' => 'required|string|unique:route_road_crashes,year,route',
+        'number_of_crashes' => 'nullable|integer',
     ];
 
-    
+
 }

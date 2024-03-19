@@ -24,8 +24,11 @@ class UpdateCargoImportExportAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('cargo_import_export');
         $rules = CargoImportExport::$rules;
-        
+
+        $rules['port'] = 'required|integer|unique:cargo_import_exports,year,' . $id . 'port';
+
         return $rules;
     }
 }

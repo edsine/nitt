@@ -21,7 +21,7 @@ class DriverLicenseProduction extends Model
     use HasFactory;
 
     public $table = 'driver_license_productions';
-    
+
 
 
 
@@ -49,8 +49,10 @@ class DriverLicenseProduction extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer',
+        'state' => 'required|string|unique:driver_license_productions,year,state',
+        'value' => 'nullable|integer'
     ];
 
-    
+
 }

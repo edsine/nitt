@@ -24,8 +24,12 @@ class UpdateRoadTrafficCrashAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('road_traffic_crash');
+
         $rules = RoadTrafficCrash::$rules;
-        
+
+        $rules['state'] = 'required|integer|unique:road_traffic_crashes,state,' . $id;
+
         return $rules;
     }
 }

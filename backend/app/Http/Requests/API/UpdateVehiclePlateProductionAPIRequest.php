@@ -24,8 +24,11 @@ class UpdateVehiclePlateProductionAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('vehicle_plate_production');
         $rules = VehiclePlateProduction::$rules;
-        
+
+        $rules['vehicle_category'] = 'required|string|unique:vehicle_plate_productions,year,' . $id . 'vehicle_category';
+
         return $rules;
     }
 }

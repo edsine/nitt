@@ -27,8 +27,8 @@ class AirModeData extends Model
 
     use HasFactory;
 
-    public $table = 'air_mode_datas';
-    
+    public $table = 'air_mode_data';
+
 
 
 
@@ -70,8 +70,17 @@ class AirModeData extends Model
      * @var array
      */
     public static $rules = [
-        
+        'airport' => 'string',
+        'year' => 'required|integer|unique:air_mode_data,year',
+        'domestic_passengers_traffic' => 'nullable|integer',
+        'international_passengers_traffic' => 'nullable|integer',
+        'aircraft_traffic_domestic' => 'nullable|integer',
+        'aircraft_traffic_international' => 'nullable|integer',
+        'cargo_traffic_domestic' => 'nullable|integer',
+        'cargo_traffic_international' => 'nullable|integer',
+        'mail_traffic_domestic' => 'nullable|integer',
+        'mail_traffic_international' => 'nullable|integer'
     ];
 
-    
+
 }

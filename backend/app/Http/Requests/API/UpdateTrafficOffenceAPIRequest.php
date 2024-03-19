@@ -24,8 +24,11 @@ class UpdateTrafficOffenceAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('traffic_offence');
         $rules = TrafficOffence::$rules;
-        
+
+        $rules['state'] = 'required|string|unique:traffic_offences,year,' . $id . 'state';
+
         return $rules;
     }
 }

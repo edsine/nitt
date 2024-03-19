@@ -24,8 +24,12 @@ class UpdateDrivingTestRecordAPIRequest extends APIRequest
      */
     public function rules()
     {
+
+        $id = $this->route('driving_test_record');
         $rules = DrivingTestRecord::$rules;
-        
+
+        $rules['state'] = 'required|string|unique:driving_test_records,year,' . $id . 'state';
+
         return $rules;
     }
 }

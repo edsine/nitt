@@ -24,8 +24,11 @@ class UpdateCorporationPassengerTrafficAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('corporation_passenger_traffic');
         $rules = CorporationPassengerTraffic::$rules;
-        
+
+        $rules['source'] = 'required|integer|unique:corporation_passenger_traffics,year,' . $id . 'source';
+
         return $rules;
     }
 }

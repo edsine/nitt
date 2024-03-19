@@ -23,7 +23,7 @@ class CargoImportExport extends Model
     use HasFactory;
 
     public $table = 'cargo_import_exports';
-    
+
 
 
 
@@ -55,8 +55,13 @@ class CargoImportExport extends Model
      * @var array
      */
     public static $rules = [
-        
+        'id' => 'integer',
+        'year' => 'required|integer',
+        'port' => 'required|string|unique:cargo_import_exports,year,port',
+        'import' => 'nullable|integer',
+        'export' => 'nullable|integer',
+        'total_throughput' => 'nullable|integer'
     ];
 
-    
+
 }

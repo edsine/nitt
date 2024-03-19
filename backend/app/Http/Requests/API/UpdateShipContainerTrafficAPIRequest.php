@@ -24,8 +24,11 @@ class UpdateShipContainerTrafficAPIRequest extends APIRequest
      */
     public function rules()
     {
+        $id = $this->route('ship_container_traffic');
         $rules = ShipContainerTraffic::$rules;
-        
+
+        $rules['state'] = 'required|integer|unique:ship_container_traffics,state,' . $id;
+
         return $rules;
     }
 }

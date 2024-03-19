@@ -22,7 +22,7 @@ class FleetAccident extends Model
     use HasFactory;
 
     public $table = 'fleet_accidents';
-    
+
 
 
 
@@ -52,8 +52,11 @@ class FleetAccident extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer|unique:fleet_accidents,year',
+        'transport_company' => 'nullable|string',
+        'vehicle' => 'nullable|integer',
+        'number_of_accidents' => 'nullable|integer'
     ];
 
-    
+
 }

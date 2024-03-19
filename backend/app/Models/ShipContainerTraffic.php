@@ -22,7 +22,7 @@ class ShipContainerTraffic extends Model
     use HasFactory;
 
     public $table = 'ship_container_traffics';
-    
+
 
 
 
@@ -52,8 +52,11 @@ class ShipContainerTraffic extends Model
      * @var array
      */
     public static $rules = [
-        
+        'year' => 'required|integer|unique:ship_container_traffics,year',
+        'ship_traffic' => 'nullable|integer',
+        'container_traffic' => 'nullable|integer',
+        'cargo_throughput' => 'nullable|integer'
     ];
 
-    
+
 }
