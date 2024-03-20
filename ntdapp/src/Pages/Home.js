@@ -24,7 +24,13 @@ const Home = () => {
   return (
     <>
       <h1>Home</h1>
-      <BarChart chartData={chartData} />
+      <div className="col-md-12">
+        <div className="card">
+          <div className="card-body">
+            <BarChart chartData={chartData} />
+          </div>
+        </div>
+      </div>
     </>
   );
 };

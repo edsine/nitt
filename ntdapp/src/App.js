@@ -15,14 +15,18 @@ function App() {
     <>
       <div className="main">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/about" element={<About />}></Route>
-          <Route path="/contact" element={<Contact />}></Route>
-          <Route path="/charttemp" element={<ChartTemp />}></Route>
-          <Route path="/maptemp" element={<MapTemp />}></Route>
-          <Route path="/tabletemp" element={<TableTemp />}></Route>
-        </Routes>
+        <div className="container">
+          <div className="row">
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="/contact" element={<Contact />}></Route>
+              <Route path="/charttemp" element={<ChartTemp />}></Route>
+              <Route path="/maptemp" element={<MapTemp />}></Route>
+              <Route path="/tabletemp" element={<TableTemp />}></Route>
+            </Routes>
+          </div>
+        </div>
         <Footer />
       </div>
     </>
