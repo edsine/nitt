@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import Logo from '../assets/ntdlogo.jpg';
 import "../App.css";
+import { LogoNtd } from "./Images"
 
 function Navbar() {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
@@ -12,7 +13,7 @@ function Navbar() {
     <nav className="navbar navbar-expand-lg navbar-light bg-white">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          <img src={Logo} alt="Company Logo" className="logo" />
+          <LogoNtd />
         </a>
         <button
           className="navbar-toggler"
