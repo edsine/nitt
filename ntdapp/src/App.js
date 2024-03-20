@@ -1,18 +1,18 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
+import HomeCopy from "./Pages/Home-copy";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
-import Navbar from "./Components/Navbar";
+import NavbarCopy from "./Components/Navbar-copy";
 import Footer from "./Components/Footer";
 import "./App.css";
 function App() {
   return (
     <>
       <div className="main">
-        <Navbar/>
+        <NavbarCopy/>
         <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" element={<HomeCopy />}></Route>
             <Route path="/about" element={<About />}></Route>
             <Route path="/contact" element={<Contact />}></Route>
         </Routes>
