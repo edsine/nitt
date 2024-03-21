@@ -1,9 +1,9 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
+import HomeCopy from "./Pages/Home-copy";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
-import Navbar from "./Components/Navbar";
+import NavbarCopy from "./Components/Navbar-copy";
 import Footer from "./Components/Footer";
 import "./App.css";
 import MapTemp from "./Pages/Templates/Map_Template";
