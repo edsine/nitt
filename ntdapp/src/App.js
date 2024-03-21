@@ -6,17 +6,40 @@ import About from "./Pages/About";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import "./App.css";
+import MapTemp from "./Pages/Templates/Map_Template";
+import TableTemp from "./Pages/Templates/Table_Template";
+import ChartTemp from "./Pages/Templates/Chart_Template";
+import ApexBob from "./Components/apexcharts/ApexBob";
+import ApexCand from "./Components/apexcharts/ApexCand";
+import ApexCandle from "./Components/apexcharts/ApexCandle";
+import ApexPie from "./Components/apexcharts/ApexPie";
+
 function App() {
   return (
     <>
       <div className="main">
-        <Navbar/>
-        <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/about" element={<About />}></Route>
-            <Route path="/contact" element={<Contact />}></Route>
-        </Routes>
-        <Footer/>
+        <Navbar />
+        <div className="container">
+          <div className="row">
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/about" element={<About />}></Route>
+              <Route path="/contact" element={<Contact />}></Route>
+              <Route path="/charttemp" element={<ChartTemp />}></Route>
+              <Route path="/maptemp" element={<MapTemp />}></Route>
+              <Route path="/tabletemp" element={<TableTemp />}></Route>
+              <Route path="/apexbob" element={<ApexBob />}></Route>
+              <Route path="/tabletemp" element={<ApexCand />}></Route>
+              <Route path="/tabletemp" element={<ApexCandle />}></Route>
+              <Route path="/tabletemp" element={<ApexPie />}></Route>
+              <Route path="/tabletemp" element={<ApexPie />}></Route>
+              <Route path="/tabletemp" element={<ApexPie />}></Route>
+              <Route path="/tabletemp" element={<ApexPie />}></Route>
+
+            </Routes>
+          </div>
+        </div>
+        {/* <Footer /> */}
       </div>
     </>
   );

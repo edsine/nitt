@@ -29,16 +29,16 @@ function Navbar() {
         <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse rounded-end d-lg-flex justify-content-center w-25`} id="navbarNav" style={{ boxShadow: '5px 5px 5px rgba(0, 0, 0, 0.2)', width:"50%" }}>
           <ul className="navbar-nav">
             <li className="nav-item">
-              <a className="links nav-link active" aria-current="page" href="#">Home</a>
+              <a className="links nav-link active" aria-current="page" href="/charttemp">Charts</a>
             </li>
             <li className="nav-item">
-              <a className="links nav-link" href="#">Features</a>
+              <a className="links nav-link" href="/tabletemp">Tables</a>
             </li>
             <li className="nav-item">
-              <a className="links nav-link" href="#">About</a>
+              {/* <a className="links nav-link" href="#">About</a> */}
             </li>
             <li className="nav-item">
-              <a className="links nav-link">Contact</a>
+              {/* <a className="links nav-link">Contact</a> */}
             </li>
           </ul>
         </div>
