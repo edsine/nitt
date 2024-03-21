@@ -1,6 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import HomeCopy from "./Pages/Home-copy";
+import Home from "./Pages/Home";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import NavbarCopy from "./Components/Navbar-copy";
@@ -14,11 +15,13 @@ function App() {
   return (
     <>
       <div className="main">
-        <Navbar />
-        <div className="container">
+        {/* <Navbar /> */}
+        <NavbarCopy />
+        <div className="container-fluid">
           <div className="row">
             <Routes>
-              <Route path="/" element={<Home />}></Route>
+              <Route path="/" element={<HomeCopy />}></Route>
+              <Route path="/home" element={<Home />}></Route>
               <Route path="/about" element={<About />}></Route>
               <Route path="/contact" element={<Contact />}></Route>
               <Route path="/charttemp" element={<ChartTemp />}></Route>
