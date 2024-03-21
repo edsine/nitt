@@ -1,0 +1,66 @@
+{
+
+    "datasets":[
+        {
+            "name": "All mode Data",
+            "description": "All mode data",
+            "image": "url",
+            "data": [
+                {
+                    "name": "Table 3.1: Gross Domestic Product at Current Basic Prices From 1981-2021 - Annual 1 (₦ Billion)",
+                    "endpoint": "gross_domestic_product"
+                },
+                {
+                    "name": "Table 3.2: Gross Domestic Product at Current Basic Prices From 1981-2021 - %",
+                    "endpoint": "gross_domestic_product_by_percentage"
+                }
+            ]
+        },
+        {
+            "name": "Water mode Data",
+            "description": "All mode data",
+            "image": "url",
+            "data": [
+                "gross_domes"
+            ]
+        },
+        {
+            "name": "Air mode Data",
+            "description": "All mode data",
+            "image": "url",
+            "data": [
+                "gross_domes"
+            ]
+        }
+    ]
+}
+
+
+
+{
+    "message": true,
+    "data": [
+        {
+            "activity_sector": 1981,
+            "transportation_and_storage": 5.76,
+            "road_transport": 2.61,
+            "rail_transport_and_pipelines": 1.04,
+            "water_transport": 0.7,
+            "air_transport": 0.69,
+            "transport_services": 0.08,
+            "post_and_courier_services": 0.63
+        },
+        {
+            "activity_sector": 1981,
+            "transportation_and_storage": 5.76,
+            "road_transport": 2.61,
+            "rail_transport_and_pipelines": 1.04,
+            "water_transport": 0.7,
+            "air_transport": 0.69,
+            "transport_services": 0.08,
+            "post_and_courier_services": 0.63
+        },
+    ]
+}
+
+

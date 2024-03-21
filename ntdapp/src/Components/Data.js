@@ -1,8 +1,12 @@
 const gdpData = [
     {
       "year": 1981,
+      "Transportation_Storage" : 5.76,
       "Rail Transport & Pipelines": 5.76,
-      "Air Transport": 2.61,
+      "Road Transport": 2.61,
+      "Water Transport": 0.7,
+      "Air transport" : 0.69,
+      "Transport Services": 0.08,
       "Post and Courier Services": 0.63
     },
     {
@@ -126,4 +130,6 @@ const gdpData = [
       "Post and Courier Services": 4.21
     }
   ];
+  
+
   
