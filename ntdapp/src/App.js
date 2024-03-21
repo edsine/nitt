@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./Pages/Home";
+import Home from "./Pages/Homes";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
 import Navbar from "./Components/Navbar";
@@ -13,6 +13,8 @@ import ApexBob from "./Components/apexcharts/ApexBob";
 import ApexCand from "./Components/apexcharts/ApexCand";
 import ApexCandle from "./Components/apexcharts/ApexCandle";
 import ApexPie from "./Components/apexcharts/ApexPie";
+import DataSetDetails from "./Pages/DataSetDetails";
+import DataSetCharts from "./Pages/DataSetCharts";
 
 function App() {
   return (
@@ -35,7 +37,9 @@ function App() {
               <Route path="/tabletemp" element={<ApexPie />}></Route>
               <Route path="/tabletemp" element={<ApexPie />}></Route>
               <Route path="/tabletemp" element={<ApexPie />}></Route>
-
+              <Route path="/datasetdetails/:datasetName" element={<DataSetDetails />}></Route>
+              <Route path="/datasetcharts/:datasetName/:tableName" element={<DataSetCharts />}></Route>
+              {/* <Route path="/datasetdetails/:datasetName" component={DataSetDetails} /> */}
             </Routes>
           </div>
         </div>
