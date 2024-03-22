@@ -65,7 +65,7 @@ function* addTrainsPunctuality({ payload }) {
   } catch (error) {
     yield put(addTrainsPunctualityFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -86,7 +86,7 @@ function* updateTrainsPunctuality({ payload: { trainsPunctuality, id } }) {
   } catch (error) {
     yield put(editTrainsPunctualityFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -107,7 +107,7 @@ function* removeTrainsPunctuality({ payload }) {
   } catch (error) {
     yield put(deleteTrainsPunctualityFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

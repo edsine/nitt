@@ -230,6 +230,15 @@ const SidebarContent = (props) => {
               </li>
             )}
 
+            {checkPermisssion("read gross domestic product") && (
+              <li>
+                <Link to="/gross-domestic-product" className="waves-effect">
+                  <i className="mdi mdi-train"></i>
+                  <span>{props.t("Gross Domestic Product")}</span>
+                </Link>
+              </li>
+            )}
+
             {checkPermisssion("read role") && (
               <li>
                 <Link to="/roles" className="waves-effect">

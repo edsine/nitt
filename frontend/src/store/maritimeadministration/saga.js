@@ -65,7 +65,7 @@ function* addMaritimeAdministration({ payload }) {
   } catch (error) {
     yield put(addMaritimeAdministrationFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -86,7 +86,7 @@ function* updateMaritimeAdministration({ payload: { maritimeAdministration, id }
   } catch (error) {
     yield put(editMaritimeAdministrationFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -107,7 +107,7 @@ function* removeMaritimeAdministration({ payload }) {
   } catch (error) {
     yield put(deleteMaritimeAdministrationFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

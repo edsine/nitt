@@ -41,6 +41,9 @@ import users from "./user/reducer";
 // Roles
 import roles from "./role/reducer";
 
+// Helpers
+import helpers from "./helpers/reducer";
+
 // Permissions
 import permissions from "./permission/reducer";
 
@@ -65,6 +68,9 @@ import maritimeAdministration from "./maritimeadministration/reducer";
 // Trains Punctuality
 import trainsPunctuality from "./trainspunctuality/reducer";
 
+// Gross Domestic Product
+import grossDomesticProduct from "./grossdomesticproduct/reducer";
+
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -81,6 +87,7 @@ const rootReducer = combineReducers({
   airPassengerTraffic,
   users,
   roles,
+  helpers,
   vehicleImportation,
   permissions,
   railwaysPassengers,
@@ -91,6 +98,7 @@ const rootReducer = combineReducers({
   maritimeAdministration,
   trainsPunctuality,
   resetPassword,
+  grossDomesticProduct,
 });
 
 export default rootReducer;

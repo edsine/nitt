@@ -65,7 +65,7 @@ function* addVehicleImportation({ payload }) {
   } catch (error) {
     yield put(addVehicleImportationFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -88,7 +88,7 @@ function* updateVehicleImportation({ payload: { vehicleImportation, id } }) {
   } catch (error) {
     yield put(editVehicleImportationFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -109,7 +109,7 @@ function* removeVehicleImportation({ payload }) {
   } catch (error) {
     yield put(deleteVehicleImportationFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

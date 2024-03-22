@@ -15,6 +15,7 @@ import airTransportDataSaga from "./airtransportdata/saga";
 import airPassengerTrafficSaga from "./airpassengertraffic/saga";
 import userSaga from "./user/saga";
 import roleSaga from "./role/saga";
+import helperSaga from "./helpers/saga";
 import vehicleImportationSaga from "./vehicleimportation/saga";
 import permissionSaga from "./permission/saga";
 import railwaysPassengersSaga from "./railwayspassengers/saga";
@@ -25,6 +26,7 @@ import maritimeTransportSaga from "./maritimetransport/saga";
 import maritimeAdministrationSaga from "./maritimeadministration/saga";
 import trainsPunctualitySaga from "./trainspunctuality/saga";
 import resetPasswordSaga from "./auth/resetPassword/saga";
+import grossDomesticProductSaga from "./grossdomesticproduct/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -43,6 +45,7 @@ export default function* rootSaga() {
     fork(airPassengerTrafficSaga),
     fork(userSaga),
     fork(roleSaga),
+    fork(helperSaga),
     fork(vehicleImportationSaga),
     fork(permissionSaga),
     fork(railwaysPassengersSaga),
@@ -53,5 +56,6 @@ export default function* rootSaga() {
     fork(maritimeAdministrationSaga),
     fork(trainsPunctualitySaga),
     fork(resetPasswordSaga),
+    fork(grossDomesticProductSaga),
   ]);
 }

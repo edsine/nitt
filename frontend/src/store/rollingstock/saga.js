@@ -65,7 +65,7 @@ function* addRollingStock({ payload }) {
   } catch (error) {
     yield put(addRollingStockFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -86,7 +86,7 @@ function* updateRollingStock({ payload: { rollingStock, id } }) {
   } catch (error) {
     yield put(editRollingStockFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -107,7 +107,7 @@ function* removeRollingStock({ payload }) {
   } catch (error) {
     yield put(deleteRollingStockFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

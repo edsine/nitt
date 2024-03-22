@@ -65,7 +65,7 @@ function* addAirTransportData({ payload }) {
   } catch (error) {
     yield put(addAirTransportDataFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -86,7 +86,7 @@ function* updateAirTransportData({ payload: { airTransportData, id } }) {
   } catch (error) {
     yield put(editAirTransportDataFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -107,7 +107,7 @@ function* removeAirTransportData({ payload }) {
   } catch (error) {
     yield put(deleteAirTransportDataFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

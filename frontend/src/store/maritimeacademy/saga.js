@@ -65,7 +65,7 @@ function* addMaritimeAcademy({ payload }) {
   } catch (error) {
     yield put(addMaritimeAcademyFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -86,7 +86,7 @@ function* updateMaritimeAcademy({ payload: { maritimeAcademy, id } }) {
   } catch (error) {
     yield put(editMaritimeAcademyFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -107,7 +107,7 @@ function* removeMaritimeAcademy({ payload }) {
   } catch (error) {
     yield put(deleteMaritimeAcademyFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

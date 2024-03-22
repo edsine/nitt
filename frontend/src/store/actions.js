@@ -41,6 +41,9 @@ export * from "./role/actions";
 // Permissions
 export * from "./permission/actions";
 
+// Helpers
+export * from "./helpers/actions";
+
 // Vehicle Importation
 export * from "./vehicleimportation/actions";
 
@@ -61,3 +64,6 @@ export * from "./maritimeadministration/actions";
 
 // Trains Punctuality
 export * from "./trainspunctuality/actions";
+
+// Gross Domestic Product
+export * from "./grossdomesticproduct/actions";

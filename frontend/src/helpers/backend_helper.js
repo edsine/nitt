@@ -1,5 +1,5 @@
 // import axios from "axios"
-import { del, get, post, imagePost, put } from "./api_helper";
+import { del, get, post, filePost, put } from "./api_helper";
 import * as url from "./backend_url_helper";
 
 // Gets the logged in user data from local session
@@ -125,7 +125,7 @@ export const putUpdateProfile = (data, id, config) =>
 // Update Profile Image
 
 export const postUpdateProfileImage = (data, id, config) =>
-  imagePost(url.POST_UPDATE_PROFILE_IMAGE(id), data, config);
+  filePost(url.POST_UPDATE_PROFILE_IMAGE(id), data, config);
 
 export const postSendVerificationEmail = (config) =>
   post(url.SEND_VERIFICATION_EMAIL, null, config);
@@ -149,6 +149,9 @@ export const deleteRole = (id, config) => del(url.DELETE_ROLE(id), config);
 
 // Get Permissions
 export const getPermissions = (config) => get(url.GET_APP_PERMISSIONS, config);
+
+// Get Helpers
+export const getHelpers = (config) => get(url.GET_HELPERS, config);
 
 // Get VehicleImportation
 export const getVehicleImportations = (config) =>
@@ -260,3 +263,23 @@ export const putTrainsPunctuality = (data, id, config) =>
 // Delete TrainsPunctuality
 export const deleteTrainsPunctuality = (id, config) =>
   del(url.DELETE_TRAINS_PUNCTUALITY(id), config);
+
+// Get GrossDomesticProducts
+export const getGrossDomesticProducts = (config) =>
+  get(url.GET_GROSS_DOMESTIC_PRODUCTS, config);
+
+// Add GrossDomesticProduct
+export const postGrossDomesticProduct = (data, config) =>
+  post(url.ADD_GROSS_DOMESTIC_PRODUCT, data, config);
+
+// Bulk Upload GrossDomesticProduct
+export const postBulkUploadGrossDomesticProduct = (data, config) =>
+  filePost(url.BULK_UPLOAD_GROSS_DOMESTIC_PRODUCT, data, config);
+
+// Update GrossDomesticProduct
+export const putGrossDomesticProduct = (data, id, config) =>
+  put(url.PUT_GROSS_DOMESTIC_PRODUCT(id), data, config);
+
+// Delete GrossDomesticProduct
+export const deleteGrossDomesticProduct = (id, config) =>
+  del(url.DELETE_GROSS_DOMESTIC_PRODUCT(id), config);

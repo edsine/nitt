@@ -38,7 +38,7 @@ export async function post(url, data, config = {}) {
     });
 }
 
-export async function imagePost(url, data, config = {}) {
+export async function filePost(url, data, config = {}) {
   return axiosApi
     .post(url, data, { ...config })
     .then((response) => response.data)

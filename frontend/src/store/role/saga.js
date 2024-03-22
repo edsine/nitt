@@ -56,7 +56,7 @@ function* addRole({ payload }) {
   } catch (error) {
     yield put(addRoleFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -73,7 +73,7 @@ function* updateRole({ payload: { role, id } }) {
   } catch (error) {
     yield put(editRoleFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -92,7 +92,7 @@ function* removeRole({ payload }) {
   } catch (error) {
     yield put(deleteRoleFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

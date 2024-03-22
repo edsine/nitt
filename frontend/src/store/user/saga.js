@@ -69,7 +69,7 @@ function* addUser({ payload }) {
   } catch (error) {
     yield put(addUserFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -88,7 +88,7 @@ function* updateUser({ payload: { user, id } }) {
   } catch (error) {
     yield put(editUserFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -109,7 +109,7 @@ function* updatePassword({ payload: { values, id } }) {
   } catch (error) {
     yield put(changePasswordFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -130,7 +130,7 @@ function* removeUser({ payload }) {
   } catch (error) {
     yield put(deleteUserFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

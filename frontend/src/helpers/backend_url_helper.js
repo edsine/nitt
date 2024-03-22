@@ -125,6 +125,9 @@ export const PUT_VEHICLE_IMPORTATION = (id) => `vehicle_importations/${id}`;
 // DELETE ROLE
 export const DELETE_VEHICLE_IMPORTATION = (id) => `vehicle_importations/${id}`;
 
+// GET HELPERS
+export const GET_HELPERS = "helpers";
+
 // GET RAILWAYS PASSENGERS
 export const GET_RAILWAYS_PASSENGERS = "railway_passengers";
 
@@ -198,3 +201,19 @@ export const PUT_TRAINS_PUNCTUALITY = (id) => `trains_punctualities/${id}`;
 
 // DELETE TRAINS PUNCTUALITY
 export const DELETE_TRAINS_PUNCTUALITY = (id) => `trains_punctualities/${id}`;
+
+
+// GET GROSS DOMESTIC PRODUCTS
+export const GET_GROSS_DOMESTIC_PRODUCTS = "gross_domestic_products";
+
+// ADD GROSS DOMESTIC
+export const ADD_GROSS_DOMESTIC_PRODUCT = "gross_domestic_products";
+
+// BULK UPLOAD GROSS DOMESTIC
+export const BULK_UPLOAD_GROSS_DOMESTIC_PRODUCT = "gross_domestic_products/upload";
+
+// UPDATE GROSS DOMESTIC
+export const PUT_GROSS_DOMESTIC_PRODUCT = (id) => `gross_domestic_products/${id}`;
+
+// DELETE GROSS DOMESTIC
+export const DELETE_GROSS_DOMESTIC_PRODUCT = (id) => `gross_domestic_products/${id}`;

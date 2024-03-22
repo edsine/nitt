@@ -2,7 +2,7 @@ const YearOptions = () => {
   const currentYear = new Date().getFullYear();
   const yearsArray = [];
 
-  for (let index = parseInt(currentYear); index >= 2014; index--) {
+  for (let index = parseInt(currentYear); index >= 1981; index--) {
     yearsArray.push(index);
   }
 

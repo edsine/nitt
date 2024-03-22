@@ -1,21 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
-import { addVehicleImportation, getHelpers } from "../../store/actions";
+import { addGrossDomesticProduct } from "../../store/actions";
 import YearOptions from "../yearOptions";
 
-const AddVehicleImportation = (props) => {
-  const {
-    isOpen,
-    setIsOpen,
-    error,
-    success,
-    onAddVehicleImportation,
-    vehicleCategories,
-    onGetHelpers,
-  } = props;
+const AddGrossDomesticProduct = (props) => {
+  const { isOpen, setIsOpen, error, success, onAddGrossDomesticProduct } = props;
 
   const removeBodyCss = () => {
     document.body.classList.add("no_padding");
@@ -26,12 +18,8 @@ const AddVehicleImportation = (props) => {
   };
 
   const handleValidSubmit = (event, values) => {
-    onAddVehicleImportation(values);
+    onAddGrossDomesticProduct(values);
   };
-
-  useEffect(() => {
-    onGetHelpers();
-  }, [onGetHelpers]);
 
   return (
     <Modal
@@ -54,7 +42,7 @@ const AddVehicleImportation = (props) => {
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
-            Add Vehicle Importation
+            Add Gross Domestic Product
           </h5>
           <button
             type="button"
@@ -85,66 +73,109 @@ const AddVehicleImportation = (props) => {
                   <option>Select</option>
                   <YearOptions></YearOptions>
                 </AvField>
-                {/* <AvField
-                  name="year"
-                  placeholder=""
-                  type="number"
-                  errorMessage="Select a Year"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="year"
-                /> */}
               </div>
             </Col>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="vehicleCategory">Vehicle Category</Label>
+                <Label htmlFor="transportation_and_storage">
+                  Transportation and Storage
+                </Label>
                 <AvField
-                  name="vehicle_category"
-                  placeholder=""
-                  type="select"
-                  errorMessage="Select Vehicle Category"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="vehicleCategory"
-                >
-                  <option>Select</option>
-                  {vehicleCategories &&
-                    Object.entries(vehicleCategories).map(([key, value]) => {
-                      return (
-                        <option key={key} value={key}>
-                          {value}
-                        </option>
-                      );
-                    })}
-                </AvField>
-              </div>
-            </Col>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="newVehicleCount">New Vehicle Count</Label>
-                <AvField
-                  name="new_vehicle_count"
+                  name="transportation_and_storage"
                   placeholder=""
                   type="number"
-                  errorMessage="Enter New Vehicle Count."
+                  errorMessage="Enter Number for Tansportation and Storage."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="newVehicleCount"
+                  id="transportation_and_storage"
                 />
               </div>
             </Col>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="usedVehicleCount">Old Vehicle Count</Label>
+                <Label htmlFor="road_transport">Road Transport</Label>
                 <AvField
-                  name="used_vehicle_count"
+                  name="road_transport"
                   placeholder=""
                   type="number"
-                  errorMessage="Enter Old Vehicle Count."
+                  errorMessage="Enter Number for Road Transport."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="usedVehicleCount"
+                  id="road_transport"
+                />
+              </div>
+            </Col>
+          </Row>
+          <Row>
+            <Col md="4">
+              <div className="mb-3">
+                <Label htmlFor="rail_transport_and_pipelines">
+                  Rail Transport and Pipelines
+                </Label>
+                <AvField
+                  name="rail_transport_and_pipelines"
+                  placeholder=""
+                  type="number"
+                  errorMessage="Enter Number for Rail Transport and Pipelines."
+                  className="form-control"
+                  validate={{ required: { value: true } }}
+                  id="rail_transport_and_pipelines"
+                />
+              </div>
+            </Col>
+            <Col md="4">
+              <div className="mb-3">
+                <Label htmlFor="water_transport">Water Transport</Label>
+                <AvField
+                  name="water_transport"
+                  placeholder=""
+                  type="number"
+                  errorMessage="Enter Number of Water Transport."
+                  className="form-control"
+                  validate={{ required: { value: true } }}
+                  id="water_transport"
+                />
+              </div>
+            </Col>
+            <Col md="4">
+              <div className="mb-3">
+                <Label htmlFor="air_transport">Air Transport</Label>
+                <AvField
+                  name="air_transport"
+                  placeholder=""
+                  type="number"
+                  errorMessage="Enter Number of Air Transport."
+                  className="form-control"
+                  validate={{ required: { value: true } }}
+                  id="air_transport"
+                />
+              </div>
+            </Col>
+            <Col md="4">
+              <div className="mb-3">
+                <Label htmlFor="transport_services">Transport Services</Label>
+                <AvField
+                  name="transport_services"
+                  placeholder=""
+                  type="number"
+                  errorMessage="Enter Number of Transport Services."
+                  className="form-control"
+                  validate={{ required: { value: true } }}
+                  id="transport_services"
+                />
+              </div>
+            </Col>
+            <Col md="4">
+              <div className="mb-3">
+                <Label htmlFor="post_and_courier_services">Post and Courier Services</Label>
+                <AvField
+                  name="post_and_courier_services"
+                  placeholder=""
+                  type="number"
+                  errorMessage="Enter Number of Post and Courier Services."
+                  className="form-control"
+                  validate={{ required: { value: true } }}
+                  id="post_and_courier_services"
                 />
               </div>
             </Col>
@@ -173,28 +204,23 @@ const AddVehicleImportation = (props) => {
   );
 };
 
-AddVehicleImportation.propTypes = {
-  onAddVehicleImportation: PropTypes.func,
-  vehicleCategories: PropTypes.object,
-  vehicleImportations: PropTypes.array,
+AddGrossDomesticProduct.propTypes = {
+  onAddGrossDomesticProduct: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStatetoProps = ({ vehicleImportation, helpers }) => {
-  const vehicleCategories = helpers.helpers.vehicle_categories
-    ? helpers.helpers.vehicle_categories
-    : null;
-  const { error, success } = vehicleImportation;
-  return { error, success, vehicleCategories };
+const mapStatetoProps = ({ grossDomesticProduct }) => {
+  const { error, success } = grossDomesticProduct;
+  return { error, success };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddVehicleImportation: (values) => dispatch(addVehicleImportation(values)),
-  onGetHelpers: () => dispatch(getHelpers()),
+  onAddGrossDomesticProduct: (values) =>
+    dispatch(addGrossDomesticProduct(values)),
 });
 
 export default connect(
   mapStatetoProps,
   mapDispatchToProps
-)(AddVehicleImportation);
+)(AddGrossDomesticProduct);

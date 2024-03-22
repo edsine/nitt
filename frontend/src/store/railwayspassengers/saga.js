@@ -65,7 +65,7 @@ function* addRailwaysPassenger({ payload }) {
   } catch (error) {
     yield put(addRailwaysPassengerFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -88,7 +88,7 @@ function* updateRailwaysPassenger({ payload: { railwayPassenger, id } }) {
   } catch (error) {
     yield put(editRailwaysPassengerFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -109,7 +109,7 @@ function* removeRailwaysPassenger({ payload }) {
   } catch (error) {
     yield put(deleteRailwaysPassengerFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

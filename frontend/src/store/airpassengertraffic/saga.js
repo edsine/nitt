@@ -65,7 +65,7 @@ function* addAirPassengerTraffic({ payload }) {
   } catch (error) {
     yield put(addAirPassengerTrafficFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -91,7 +91,7 @@ function* updateAirPassengerTraffic({ payload: { airPassengerTraffic, id } }) {
   } catch (error) {
     yield put(editAirPassengerTrafficFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -112,7 +112,7 @@ function* removeAirPassengerTraffic({ payload }) {
   } catch (error) {
     yield put(deleteAirPassengerTrafficFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

@@ -44,7 +44,7 @@ function* editProfile({ payload: { data, idx } }) {
   } catch (error) {
     yield put(profileError(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -65,7 +65,7 @@ function* sendVerificationEmail() {
   } catch (error) {
     yield put(sendVerificationEmailError(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -87,7 +87,7 @@ function* editProfileImage({ payload: { data, idx } }) {
   } catch (error) {
     yield put(profileImageError(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 

@@ -65,7 +65,7 @@ function* addMaritimeTransport({ payload }) {
   } catch (error) {
     yield put(addMaritimeTransportFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -86,7 +86,7 @@ function* updateMaritimeTransport({ payload: { maritimeTransport, id } }) {
   } catch (error) {
     yield put(editMaritimeTransportFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
@@ -107,7 +107,7 @@ function* removeMaritimeTransport({ payload }) {
   } catch (error) {
     yield put(deleteMaritimeTransportFail(error));
   }
-  yield delay(2000);
+  yield delay(3000);
   yield put(clearMessage());
 }
 
