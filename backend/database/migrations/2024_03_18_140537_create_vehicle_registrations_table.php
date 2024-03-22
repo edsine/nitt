@@ -18,11 +18,11 @@ class CreateVehicleRegistrationsTable extends Migration
             $table->increments('id');
             $table->integer('year');
             $table->integer('vehicle_type');
-            $table->bigInteger('private_count')->nullable();
-            $table->bigInteger('commercial_count')->nullable();
-            $table->bigInteger('government_count')->nullable();
-            $table->bigInteger('diplomatic_count')->nullable();
-            $table->bigInteger('schools_count')->nullable();
+            $table->float('private_count')->nullable();
+            $table->float('commercial_count')->nullable();
+            $table->float('government_count')->nullable();
+            $table->float('diplomatic_count')->nullable();
+            $table->float('schools_count')->nullable();
             $table->timestamps();
         });
     }

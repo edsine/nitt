@@ -19,7 +19,7 @@ class CreateCorporationPassengerTrafficsTable extends Migration
             $table->text('source');
             $table->text('destination');
             $table->integer('year');
-            $table->bigInteger('count')->nullable();
+            $table->float('count')->nullable();
             $table->timestamps();
         });
     }

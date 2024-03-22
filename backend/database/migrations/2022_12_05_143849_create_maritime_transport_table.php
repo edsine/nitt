@@ -17,15 +17,15 @@ class CreateMaritimeTransportTable extends Migration
         Schema::create('maritime_transport', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year')->unique();
-            $table->bigInteger('containers_count')->nullable();
-            $table->bigInteger('general_cargo_count')->nullable();
-            $table->bigInteger('bulk_cargo_count')->nullable();
-            $table->bigInteger('tankers_count')->nullable();
-            $table->bigInteger('containers_import_count')->nullable();
-            $table->bigInteger('containers_export_count')->nullable();
-            $table->bigInteger('general_cargo_tonnage')->nullable();
-            $table->bigInteger('bulk_cargo_tonnage')->nullable();
-            $table->bigInteger('accidents_recorded')->nullable();
+            $table->float('containers_count')->nullable();
+            $table->float('general_cargo_count')->nullable();
+            $table->float('bulk_cargo_count')->nullable();
+            $table->float('tankers_count')->nullable();
+            $table->float('containers_import_count')->nullable();
+            $table->float('containers_export_count')->nullable();
+            $table->float('general_cargo_tonnage')->nullable();
+            $table->float('bulk_cargo_tonnage')->nullable();
+            $table->float('accidents_recorded')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

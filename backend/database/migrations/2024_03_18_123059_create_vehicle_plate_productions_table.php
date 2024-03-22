@@ -18,7 +18,7 @@ class CreateVehiclePlateProductionsTable extends Migration
             $table->increments('id');
             $table->integer('vehicle_category');
             $table->integer('year');
-            $table->bigInteger('value')->nullable();
+            $table->float('value')->nullable();
             $table->timestamps();
         });
     }

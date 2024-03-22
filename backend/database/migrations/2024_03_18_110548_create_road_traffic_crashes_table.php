@@ -16,14 +16,14 @@ class CreateRoadTrafficCrashesTable extends Migration
     {
         Schema::create('road_traffic_crashes', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('fatal_cases')->nullable();
-            $table->bigInteger('serious_cases')->nullable();
-            $table->bigInteger('minor_cases')->nullable();
-            $table->bigInteger('total_cases')->nullable();
-            $table->bigInteger('persons_injured')->nullable();
-            $table->bigInteger('total_casualty')->nullable();
+            $table->float('fatal_cases')->nullable();
+            $table->float('serious_cases')->nullable();
+            $table->float('minor_cases')->nullable();
+            $table->float('total_cases')->nullable();
+            $table->float('persons_injured')->nullable();
+            $table->float('total_casualty')->nullable();
             $table->integer('year');
-            $table->bigInteger('persons_killed')->nullable();
+            $table->float('persons_killed')->nullable();
             $table->timestamps();
         });
     }

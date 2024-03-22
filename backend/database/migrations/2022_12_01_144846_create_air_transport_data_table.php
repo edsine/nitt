@@ -17,12 +17,12 @@ class CreateAirTransportDataTable extends Migration
         Schema::create('air_transport_data', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year')->unique();
-            $table->bigInteger('number_of_domestic_registered_airlines')->nullable();
-            $table->bigInteger('number_of_international_registered_airlines')->nullable();
-            $table->bigInteger('number_of_domestic_deregistered_airlines')->nullable();
-            $table->bigInteger('number_of_international_deregistered_airlines')->nullable();
-            $table->bigInteger('number_of_near_accidents')->nullable();
-            $table->bigInteger('number_of_accidents')->nullable();
+            $table->float('number_of_domestic_registered_airlines')->nullable();
+            $table->float('number_of_international_registered_airlines')->nullable();
+            $table->float('number_of_domestic_deregistered_airlines')->nullable();
+            $table->float('number_of_international_deregistered_airlines')->nullable();
+            $table->float('number_of_near_accidents')->nullable();
+            $table->float('number_of_accidents')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

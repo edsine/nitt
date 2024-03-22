@@ -18,15 +18,15 @@ class CreateVehicleLicenseRegistrationsTable extends Migration
             $table->increments('id');
             $table->integer('year');
             $table->text('state');
-            $table->bigInteger('car')->nullable();
-            $table->bigInteger('van')->nullable();
-            $table->bigInteger('lorry')->nullable();
-            $table->bigInteger('mini_bus')->nullable();
-            $table->bigInteger('big_bus')->nullable();
-            $table->bigInteger('tanker')->nullable();
-            $table->bigInteger('trailer')->nullable();
-            $table->bigInteger('tipper')->nullable();
-            $table->bigInteger('tractor')->nullable();
+            $table->float('car')->nullable();
+            $table->float('van')->nullable();
+            $table->float('lorry')->nullable();
+            $table->float('mini_bus')->nullable();
+            $table->float('big_bus')->nullable();
+            $table->float('tanker')->nullable();
+            $table->float('trailer')->nullable();
+            $table->float('tipper')->nullable();
+            $table->float('tractor')->nullable();
             $table->timestamps();
         });
     }

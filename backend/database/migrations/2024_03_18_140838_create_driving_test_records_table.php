@@ -18,15 +18,15 @@ class CreateDrivingTestRecordsTable extends Migration
             $table->increments('id');
             $table->text('state');
             $table->integer('year');
-            $table->bigInteger('renewal_count')->nullable();
-            $table->bigInteger('fresh_count')->nullable();
-            $table->bigInteger('3y_count')->nullable();
-            $table->bigInteger('5y_count')->nullable();
-            $table->bigInteger('failure')->nullable();
-            $table->bigInteger('collected')->nullable();
-            $table->bigInteger('due_for')->nullable();
-            $table->bigInteger('lp')->nullable();
-            $table->bigInteger('total_captured')->nullable();
+            $table->float('renewal_count')->nullable();
+            $table->float('fresh_count')->nullable();
+            $table->float('3y_count')->nullable();
+            $table->float('5y_count')->nullable();
+            $table->float('failure')->nullable();
+            $table->float('collected')->nullable();
+            $table->float('due_for')->nullable();
+            $table->float('lp')->nullable();
+            $table->float('total_captured')->nullable();
             $table->timestamps();
         });
     }

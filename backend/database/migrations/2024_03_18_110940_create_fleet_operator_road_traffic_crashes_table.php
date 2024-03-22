@@ -17,10 +17,10 @@ class CreateFleetOperatorRoadTrafficCrashesTable extends Migration
         Schema::create('fleet_operator_road_traffic_crashes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('fleet_operator');
-            $table->bigInteger('number_of_cases')->nullable();
-            $table->bigInteger('number_killed')->nullable();
-            $table->bigInteger('number_injured')->nullable();
-            $table->bigInteger('number_of_persons')->nullable();
+            $table->float('number_of_cases')->nullable();
+            $table->float('number_killed')->nullable();
+            $table->float('number_injured')->nullable();
+            $table->float('number_of_persons')->nullable();
             $table->timestamps();
         });
     }

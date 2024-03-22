@@ -18,9 +18,9 @@ class CreateCargoImportExportsTable extends Migration
             $table->increments('id');
             $table->string('port');
             $table->integer('year');
-            $table->bigInteger('import')->nullable();
-            $table->bigInteger('export')->nullable();
-            $table->bigInteger('total_throughput')->nullable();
+            $table->float('import')->nullable();
+            $table->float('export')->nullable();
+            $table->float('total_throughput')->nullable();
             $table->timestamps();
         });
     }

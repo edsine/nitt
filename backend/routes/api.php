@@ -21,6 +21,7 @@ Route::middleware('auth:sanctum')->get('user', function (Request $request) {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+    Route::get('helpers', [App\Http\Controllers\API\HelpersAPIController::class, 'index']);
     Route::post('dashboard', [App\Http\Controllers\API\DashboardAPIController::class, 'index']);
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
     Route::put('users/update_profile/{id}', [App\Http\Controllers\API\UserAPIController::class, 'updateProfile']);
@@ -41,6 +42,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('maritime_transports', App\Http\Controllers\API\MaritimeTransportAPIController::class);
     Route::get('permissions', [App\Http\Controllers\API\PermissionAPIController::class, 'index']);
     Route::resource('gross_domestic_products', App\Http\Controllers\API\GrossDomesticProductAPIController::class);
+    Route::post('gross_domestic_products/upload', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'bulkUpload']);
     Route::resource('ship_container_traffics', App\Http\Controllers\API\ShipContainerTrafficAPIController::class);
     Route::resource('road_traffic_crashes', App\Http\Controllers\API\RoadTrafficCrashAPIController::class);
     Route::resource('fleet_operator_road_crashes', App\Http\Controllers\API\FleetOperatorRoadTrafficCrashAPIController::class);

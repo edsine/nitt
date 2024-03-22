@@ -18,8 +18,8 @@ class CreateFleetAccidentsTable extends Migration
             $table->increments('id');
             $table->integer('year');
             $table->text('transport_company')->nullable();
-            $table->bigInteger('vehicle')->nullable();
-            $table->bigInteger('number_of_accidents')->nullable();
+            $table->float('vehicle')->nullable();
+            $table->float('number_of_accidents')->nullable();
             $table->timestamps();
         });
     }

@@ -16,13 +16,13 @@ class CreateRailwayRollingStocksTable extends Migration
     {
         Schema::create('railway_rolling_stocks', function (Blueprint $table) {
             $table->increments('id');
-            $table->bigInteger('number_of_coaches_rolling_stock')->nullable();
-            $table->bigInteger('number_of_wagon_rolling_stock')->nullable();
-            $table->bigInteger('average_loco_availability')->nullable();
-            $table->bigInteger('average_coaches_maintenance_cost')->nullable();
-            $table->bigInteger('average_wagon_maintenance_cost')->nullable();
-            $table->bigInteger('annual_average_km_travel_coaches')->nullable();
-            $table->bigInteger('annual_average_km_travel_wagon')->nullable();
+            $table->float('number_of_coaches_rolling_stock')->nullable();
+            $table->float('number_of_wagon_rolling_stock')->nullable();
+            $table->float('average_loco_availability')->nullable();
+            $table->float('average_coaches_maintenance_cost')->nullable();
+            $table->float('average_wagon_maintenance_cost')->nullable();
+            $table->float('annual_average_km_travel_coaches')->nullable();
+            $table->float('annual_average_km_travel_wagon')->nullable();
             $table->integer('year')->unique();
             $table->timestamps();
             $table->softDeletes();

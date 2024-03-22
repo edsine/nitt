@@ -49,13 +49,13 @@ class GrossDomesticProduct extends Model
     protected $casts = [
         'id' => 'integer',
         'year' => 'integer',
-        'transportation_and_storage' => 'integer',
-        'road_transport' => 'integer',
-        'rail_transport_and_pipelines' => 'integer',
-        'water_transport' => 'integer',
-        'air_transport' => 'integer',
-        'transport_services' => 'integer',
-        'post_and_courier_services' => 'integer'
+        'transportation_and_storage' => 'float',
+        'road_transport' => 'float',
+        'rail_transport_and_pipelines' => 'float',
+        'water_transport' => 'float',
+        'air_transport' => 'float',
+        'transport_services' => 'float',
+        'post_and_courier_services' => 'float'
     ];
 
     /**
@@ -65,13 +65,13 @@ class GrossDomesticProduct extends Model
      */
     public static $rules = [
         'year' => 'required|integer|unique:gross_domestic_products,year',
-        'transportation_and_storage' => 'nullable|integer',
-        'road_transport' => 'nullable|integer',
-        'rail_transport_and_pipelines' => 'nullable|integer',
-        'water_transport' => 'nullable|integer',
-        'air_transport' => 'nullable|integer',
-        'transport_services' => 'nullable|integer',
-        'post_and_courier_services' => 'nullable|integer'
+        'transportation_and_storage' => 'nullable|numeric',
+        'road_transport' => 'nullable|numeric',
+        'rail_transport_and_pipelines' => 'nullable|numeric',
+        'water_transport' => 'nullable|numeric',
+        'air_transport' => 'nullable|numeric',
+        'transport_services' => 'nullable|numeric',
+        'post_and_courier_services' => 'nullable|numeric'
     ];
 
 

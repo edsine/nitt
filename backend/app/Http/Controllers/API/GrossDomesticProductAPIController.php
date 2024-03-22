@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers\API;
 
+use Response;
+use Illuminate\Http\Request;
+use App\Models\GrossDomesticProduct;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\AppBaseController;
+use App\Imports\GrossDomesticProductImport;
+use App\Http\Resources\GrossDomesticProductResource;
+use App\Repositories\GrossDomesticProductRepository;
 use App\Http\Requests\API\CreateGrossDomesticProductAPIRequest;
 use App\Http\Requests\API\UpdateGrossDomesticProductAPIRequest;
-use App\Models\GrossDomesticProduct;
-use App\Repositories\GrossDomesticProductRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use App\Http\Resources\GrossDomesticProductResource;
-use Response;
 
 /**
  * Class GrossDomesticProductController
@@ -67,6 +70,39 @@ class GrossDomesticProductAPIController extends AppBaseController
         $grossDomesticProduct = $this->grossDomesticProductRepository->create($input);
 
         return $this->sendResponse(new GrossDomesticProductResource($grossDomesticProduct), 'Gross Domestic Product saved successfully');
+    }
+
+    /**
+     * Upload GrossDomesticProduct in storage.
+     * POST /grossDomesticProducts/upload
+     *
+     * @param CreateGrossDomesticProductAPIRequest $request
+     *
+     * @return Response
+     */
+    public function bulkUpload(Request $request)
+    {
+        if (!checkPermission('create gross domestic product')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:xlsx',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $file = $request->file('file');
+
+        $response = (new GrossDomesticProductImport)->import($file);
+
+        if (!$response['status']) {
+            return $this->sendError('File import error: ' . $response['message'], 422);
+        } else {
+            return $this->sendSuccess("File imported successfully");
+        }
     }
 
     /**

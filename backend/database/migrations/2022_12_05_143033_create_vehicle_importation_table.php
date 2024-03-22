@@ -18,8 +18,8 @@ class CreateVehicleImportationTable extends Migration
             $table->increments('id');
             $table->integer('year');
             $table->integer('vehicle_category');
-            $table->bigInteger('new_vehicle_count')->nullable();
-            $table->bigInteger('used_vehicle_count')->nullable();
+            $table->float('new_vehicle_count')->nullable();
+            $table->float('used_vehicle_count')->nullable();
             $table->unique(['year', 'vehicle_category']);
             $table->timestamps();
             $table->softDeletes();
