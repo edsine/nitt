@@ -1,0 +1,7 @@
+installed libraries / packages
+
+1. React Router 6 for Navigation
+2. Bootstrap CDN (in the HTML public folder)
+3. React ChartJS (npm install --save chart.js react-chartjs-2)
+4. Fake (npm install --save-dev faker@5.5.3)
+5. React Bootstrap Next (npm install react-bootstrap-table-next bootstrap)

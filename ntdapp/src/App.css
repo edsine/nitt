@@ -1,0 +1,67 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
+ 
+.main{
+  background: linear-gradient(to bottom, #e7edea, #e0f1dd);
+  min-height: 100vh;
+} 
+
+
+.logo {
+  width: 100px; /* Adjust width as desired */
+  height: auto; /* Maintain aspect ratio */
+}
+
+
+/* Navbar.css */
+.links {
+  color: red;
+
+   /* Change to your desired green color */
+}
+
+
+.column {
+  width: 50%;
+  background-color: #f0f0f0; /* Add background color for better visibility */
+  padding: 20px;
+  border: 1px solid #ccc; /* Add border properties */
+}
+
+.two-column-container {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .two-column-container {
+    flex-direction: column;
+  }
+
+  .column {
+    width: 100%;
+  }
+}
+
+.headerDisplay {
+  white-space: pre-wrap; /* Allow text wrapping */
+}
+
+
+/* Home.css */
+
+.column p {
+  font-size: 22px;
+  margin-bottom: 100px; /* Add spacing between paragraphs */
+}
+
+.column h2 {
+  font-size: 48px; /* Adjust header font size */
+  margin-bottom: 40px; /* Add some space below the header */
+}
+
+/* Add any other typography styles you desire */
+
