@@ -120,6 +120,7 @@ import MaritimeTransport from "../pages/MaritimeTransport";
 import MaritimeAdministration from "../pages/MaritimeAdministration";
 import TrainsPunctuality from "../pages/TrainsPunctuality";
 import GrossDomesticProduct from "../pages/GrossDomesticProduct";
+import ShipContainerTraffics from "../pages/ShipContainerTraffics";
 import ResetPassword from "../pages/Authentication/ResetPassword";
 
 const userRoutes = [
@@ -297,6 +298,13 @@ const permissionRoutes = [
     path: "/gross-domestic-product",
     component: GrossDomesticProduct,
     permission: "read gross domestic product",
+  },
+
+  //Ship Container Traffics
+  {
+    path: "/ship-container-traffics",
+    component: ShipContainerTraffics,
+    permission: "read ship container traffic",
   },
 
   //Users

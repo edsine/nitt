@@ -87,33 +87,17 @@ const EditRailwaysPassenger = (props) => {
           <Row>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="numberOfUrbanPassengersCarried">
-                  Urban Passengers Carried
+                <Label htmlFor="numberOfPassengersCarried">
+                  Passengers Carried
                 </Label>
                 <AvField
-                  name="number_of_urban_passengers_carried"
+                  name="passengers_carried"
                   placeholder=""
                   type="number"
-                  errorMessage="Enter Number of Urban Passengers Carried."
+                  errorMessage="Enter Number of Passengers Carried."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="numberOfUrbanPassengersCarried"
-                />
-              </div>
-            </Col>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="numberOfRegionalPassengersCarried">
-                  Regional Passengers Carried
-                </Label>
-                <AvField
-                  name="number_of_regional_passengers_carried"
-                  placeholder=""
-                  type="number"
-                  errorMessage="Enter Number of Regional Passengers Carried"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="numberOfRegionalPassengersCarried"
+                  id="numberOfPassengersCarried"
                 />
               </div>
             </Col>
@@ -128,36 +112,6 @@ const EditRailwaysPassenger = (props) => {
                   className="form-control"
                   validate={{ required: { value: true } }}
                   id="freightCarried"
-                />
-              </div>
-            </Col>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="numberOfFreightTrains">Freight Trains</Label>
-                <AvField
-                  name="number_of_freight_trains"
-                  placeholder=""
-                  type="number"
-                  errorMessage="Enter Number of Freight Trains"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="numberOfFreightTrains"
-                />
-              </div>
-            </Col>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="numberOfPassengerTrains">
-                  Passenger Trains
-                </Label>
-                <AvField
-                  name="number_of_passenger_trains"
-                  placeholder=""
-                  type="number"
-                  errorMessage="Enter Number of Passenger Trains"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="numberOfPassengerTrains"
                 />
               </div>
             </Col>
@@ -190,56 +144,6 @@ const EditRailwaysPassenger = (props) => {
                   className="form-control"
                   validate={{ required: { value: true } }}
                   id="passengerRevenueGeneration"
-                />
-              </div>
-            </Col>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="passengerRevenueGeneration">
-                  Passenger Revenue Generation
-                </Label>
-                <AvField
-                  name="passenger_revenue_generation"
-                  placeholder=""
-                  type="number"
-                  errorMessage="Enter Revenue Generated from Freight"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="passengerRevenueGeneration"
-                />
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="freightFuelConsumptionRate">
-                  Freight Fuel Consumption
-                </Label>
-                <AvField
-                  name="freight_fuel_consumption_rate"
-                  placeholder=""
-                  type="number"
-                  errorMessage="Enter Freight Fuel Consumption Rate"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="freightFuelConsumptionRate"
-                />
-              </div>
-            </Col>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="passengerFuelConsumptionRate">
-                  Passenger Fuel Consumption
-                </Label>
-                <AvField
-                  name="passenger_fuel_consumption_rate"
-                  placeholder=""
-                  type="number"
-                  errorMessage="Enter Freight Fuel Consumption Rate"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="passengerFuelConsumptionRate"
                 />
               </div>
             </Col>

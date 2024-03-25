@@ -19,21 +19,21 @@ import {
 import Breadcrumbs from "../../components/Common/Breadcrumb";
 import "../../assets/scss/datatables.scss";
 import {
-  getRailwaysPassengers,
-  deleteRailwaysPassenger,
+  getShipContainerTraffics,
+  deleteShipContainerTraffic,
 } from "../../store/actions";
-import AddRailwaysPassenger from "../../components/RailwaysPassenger/addRailwaysPassenger";
-import BulkUploadRailwaysPassenger from "../../components/RailwaysPassenger/bulkUploadRailwaysPassenger";
-import EditRailwaysPassenger from "../../components/RailwaysPassenger/editRailwaysPassenger";
+import AddShipContainerTraffic from "../../components/ShipContainerTraffic/addShipContainerTraffic";
+import BulkUploadShipContainerTraffic from "../../components/ShipContainerTraffic/bulkUploadShipContainerTraffic";
+import EditShipContainerTraffic from "../../components/ShipContainerTraffic/editShipContainerTraffic";
 import TableAction from "../../components/Common/TableAction";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { checkPermisssion } from "../../helpers/check_permission";
 
-const RailwaysPassengers = (props) => {
+const ShipContainerTraffics = (props) => {
   const {
-    railwaysPassengers,
-    onGetRailwaysPassengers,
-    deleteRailwaysPassenger,
+    shipContainerTraffics,
+    onGetShipContainerTraffics,
+    deleteShipContainerTraffic,
     error,
     success,
   } = props;
@@ -56,30 +56,30 @@ const RailwaysPassengers = (props) => {
   };
 
   const handleDelete = () => {
-    deleteRailwaysPassenger(currentId);
+    deleteShipContainerTraffic(currentId);
     setConfirmAlert(false);
   };
 
   const onEditClick = (id) => {
     setIsEditModalOpen(true);
     setCurrentId(id);
-    const editData = railwaysPassengers.find((item, index) => {
+    const editData = shipContainerTraffics.find((item, index) => {
       return item.id === id;
     });
     setCurrentEditData(editData);
   };
 
   useEffect(() => {
-    onGetRailwaysPassengers();
+    onGetShipContainerTraffics();
   }, [
-    onGetRailwaysPassengers,
+    onGetShipContainerTraffics,
     success?.bulkUploadSuccess,
     success?.addSuccess,
     success?.editSuccess,
     success?.deleteSuccess,
   ]);
 
-  const dataRailwaysPassengers = {
+  const dataShipContainerTraffics = {
     columns: [
       {
         label: "Year",
@@ -87,75 +87,39 @@ const RailwaysPassengers = (props) => {
         sort: "asc",
         width: 150,
       },
-      // {
-      //   label: "Urban Passengers carried",
-      //   field: "number_of_urban_passengers_carried",
-      //   sort: "asc",
-      //   width: 270,
-      // },
-      // {
-      //   label: "Regional Passengers carried",
-      //   field: "number_of_regional_passengers_carried",
-      //   sort: "asc",
-      //   width: 200,
-      // },
       {
-        label: "Passengers carried",
-        field: "passengers_carried",
+        label: "Ship Traffic (No. of Vessels)",
+        field: "ship_traffic",
         sort: "asc",
         width: 200,
       },
       {
-        label: "Freight Carried",
-        field: "freight_carried",
-        sort: "asc",
-        width: 100,
-      },
-      // {
-      //   label: "Freight Trains",
-      //   field: "number_of_freight_trains",
-      //   sort: "asc",
-      //   width: 150,
-      // },
-      // {
-      //   label: "Passenger Trains",
-      //   field: "number_of_passenger_trains",
-      //   sort: "asc",
-      //   width: 100,
-      // },
-      {
-        label: "Passenger Revenue Generation",
-        field: "passenger_revenue_generation",
+        label: "Container Traffic (TEU)",
+        field: "container_traffic",
         sort: "asc",
         width: 100,
       },
       {
-        label: "Freight Revenue Generation",
-        field: "freight_revenue_generation",
+        label: "Cargo Throughput (Tonnes)",
+        field: "cargo_throughput",
         sort: "asc",
         width: 100,
       },
-      // {
-      //   label: "Passenger Fuel Consumption",
-      //   field: "passenger_fuel_consumption_rate",
-      //   sort: "asc",
-      //   width: 100,
-      // },
       {
         label: "Action",
         field: "action",
         width: 200,
       },
     ],
-    rows: railwaysPassengers?.map((item, index) => {
+    rows: shipContainerTraffics?.map((item, index) => {
       item.action = (
         <TableAction
-          id={railwaysPassengers[index].id}
+          id={shipContainerTraffics[index].id}
           handleEdit={onEditClick}
           handleDelete={OnDeleteClick}
           permissions={{
-            edit: "update railway passenger",
-            delete: "delete railway passenger",
+            edit: "update ship container traffic",
+            delete: "delete ship container traffic",
           }}
         />
       );
@@ -174,20 +138,20 @@ const RailwaysPassengers = (props) => {
   return (
     <React.Fragment>
       <div className="page-content">
-        <AddRailwaysPassenger
+        <AddShipContainerTraffic
           isOpen={isAddModalOpen}
           setIsOpen={setIsAddModalOpen}
         />
-        <BulkUploadRailwaysPassenger
+        <BulkUploadShipContainerTraffic
           isOpen={isBulkUploadModalOpen}
           setIsOpen={setIsBulkUploadModalOpen}
         />
-        <EditRailwaysPassenger
+        <EditShipContainerTraffic
           oldData={currentEditData}
           isOpen={isEditModalOpen}
           setIsOpen={setIsEditModalOpen}
         />
-        <Breadcrumbs title="Railways" breadcrumbItem="Passenger" />
+        <Breadcrumbs title="Ship & Container" breadcrumbItem="Traffic" />
         {confirmAlert && (
           <SweetAlert
             title="Are you sure?"
@@ -218,8 +182,11 @@ const RailwaysPassengers = (props) => {
             <Card>
               <CardBody>
                 <div className="d-flex justify-content-between">
-                  <CardTitle>Railways Passengers/Freight</CardTitle>
-                  {checkPermisssion("create railway passenger") && (
+                  <CardTitle>
+                    National Ship Traffic, Container Traffic and Cargo
+                    Throughput{" "}
+                  </CardTitle>
+                  {checkPermisssion("create ship container traffic") && (
                     <div>
                       <Button
                         color="success"
@@ -243,7 +210,7 @@ const RailwaysPassengers = (props) => {
                   responsive
                   striped
                   bordered
-                  data={dataRailwaysPassengers}
+                  data={dataShipContainerTraffics}
                 />
               </CardBody>
             </Card>
@@ -254,28 +221,32 @@ const RailwaysPassengers = (props) => {
   );
 };
 
-RailwaysPassengers.propTypes = {
-  railwaysPassengers: PropTypes.array,
-  onGetRailwaysPassenger: PropTypes.func,
-  deleteRailwaysPassenger: PropTypes.func,
+ShipContainerTraffics.propTypes = {
+  shipContainerTraffics: PropTypes.array,
+  onGetShipContainerTraffic: PropTypes.func,
+  deleteShipContainerTraffic: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
 
-const mapStateToProps = ({ railwaysPassengers }) => ({
-  railwaysPassengers: Array.isArray(railwaysPassengers.railwaysPassengers)
-    ? railwaysPassengers.railwaysPassengers
-    : null,
-  error: railwaysPassengers.error,
-  success: railwaysPassengers.success,
-});
+const mapStateToProps = ({ shipContainerTraffic }) => {
+  return {
+    shipContainerTraffics: Array.isArray(
+      shipContainerTraffic.shipContainerTraffics
+    )
+      ? shipContainerTraffic.shipContainerTraffics
+      : null,
+    error: shipContainerTraffic.error,
+    success: shipContainerTraffic.success,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
-  onGetRailwaysPassengers: () => dispatch(getRailwaysPassengers()),
-  deleteRailwaysPassenger: (id) => dispatch(deleteRailwaysPassenger(id)),
+  onGetShipContainerTraffics: () => dispatch(getShipContainerTraffics()),
+  deleteShipContainerTraffic: (id) => dispatch(deleteShipContainerTraffic(id)),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withRouter(RailwaysPassengers));
+)(withRouter(ShipContainerTraffics));

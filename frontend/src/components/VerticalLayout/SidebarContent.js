@@ -165,7 +165,7 @@ const SidebarContent = (props) => {
               <li>
                 <Link to="/railways-passengers" className="waves-effect">
                   <i className="mdi mdi-train"></i>
-                  <span>{props.t("Railways Passengers")}</span>
+                  <span>{props.t("Railways Passengers/Freight")}</span>
                 </Link>
               </li>
             )}
@@ -235,6 +235,15 @@ const SidebarContent = (props) => {
                 <Link to="/gross-domestic-product" className="waves-effect">
                   <i className="mdi mdi-train"></i>
                   <span>{props.t("Gross Domestic Product")}</span>
+                </Link>
+              </li>
+            )}
+
+            {checkPermisssion("read ship container traffic") && (
+              <li>
+                <Link to="/ship-container-traffics" className="waves-effect">
+                  <i className="mdi mdi-train"></i>
+                  <span>{props.t("Ship Container Traffic")}</span>
                 </Link>
               </li>
             )}

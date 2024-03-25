@@ -27,7 +27,7 @@ class UpdateShipContainerTrafficAPIRequest extends APIRequest
         $id = $this->route('ship_container_traffic');
         $rules = ShipContainerTraffic::$rules;
 
-        $rules['state'] = 'required|integer|unique:ship_container_traffics,state,' . $id;
+        $rules['year'] = 'required|integer|unique:ship_container_traffics,year,' . $id;
 
         return $rules;
     }

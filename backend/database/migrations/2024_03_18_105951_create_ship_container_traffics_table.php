@@ -17,9 +17,9 @@ class CreateShipContainerTrafficsTable extends Migration
         Schema::create('ship_container_traffics', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year');
-            $table->float('ship_traffic')->nullable();
-            $table->float('container_traffic')->nullable();
-            $table->float('cargo_throughput')->nullable();
+            $table->float('ship_traffic', 30, 2)->nullable();
+            $table->float('container_traffic', 30, 2)->nullable();
+            $table->float('cargo_throughput', 30, 2)->nullable();
             $table->timestamps();
         });
     }

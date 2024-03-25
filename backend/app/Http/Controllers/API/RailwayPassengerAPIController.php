@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\API;
 
+use Response;
+use Illuminate\Http\Request;
+use App\Models\RailwayPassenger;
+use App\Imports\RailwayPassengerImport;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\AppBaseController;
+use App\Repositories\RailwayPassengerRepository;
 use App\Http\Requests\API\CreateRailwayPassengerAPIRequest;
 use App\Http\Requests\API\UpdateRailwayPassengerAPIRequest;
-use App\Models\RailwayPassenger;
-use App\Repositories\RailwayPassengerRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use Response;
 
 /**
  * Class RailwayPassengerController
@@ -65,6 +67,38 @@ class RailwayPassengerAPIController extends AppBaseController
         $railwayPassenger = $this->railwayPassengerRepository->create($input);
 
         return $this->sendResponse($railwayPassenger->toArray(), 'Railway Passenger saved successfully');
+    }
+
+    /**
+     * Upload RailwaysPassenger in storage.
+     * POST /railwaysPassenger/upload
+     *
+     *
+     * @return Response
+     */
+    public function bulkUpload(Request $request)
+    {
+        if (!checkPermission('create railway passenger')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:xlsx',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $file = $request->file('file');
+
+        $response = (new RailwayPassengerImport)->import($file);
+
+        if (!$response['status']) {
+            return $this->sendError('File import error: ' . $response['message'], 422);
+        } else {
+            return $this->sendSuccess("File imported successfully");
+        }
     }
 
     /**

@@ -5,6 +5,9 @@ import {
   ADD_RAILWAYS_PASSENGER,
   ADD_RAILWAYS_PASSENGER_FAIL,
   ADD_RAILWAYS_PASSENGER_SUCCESS,
+  BULK_UPLOAD_RAILWAYS_PASSENGER,
+  BULK_UPLOAD_RAILWAYS_PASSENGER_SUCCESS,
+  BULK_UPLOAD_RAILWAYS_PASSENGER_FAIL,
   EDIT_RAILWAYS_PASSENGER,
   EDIT_RAILWAYS_PASSENGER_FAIL,
   EDIT_RAILWAYS_PASSENGER_SUCCESS,
@@ -41,6 +44,21 @@ export const addRailwaysPassengerSuccess = (railwayPassenger, message) => ({
 
 export const addRailwaysPassengerFail = (error) => ({
   type: ADD_RAILWAYS_PASSENGER_FAIL,
+  payload: error,
+});
+
+export const bulkUploadRailwaysPassenger = (data) => ({
+  type: BULK_UPLOAD_RAILWAYS_PASSENGER,
+  payload: data,
+});
+
+export const bulkUploadRailwaysPassengerSuccess = (message) => ({
+  type: BULK_UPLOAD_RAILWAYS_PASSENGER_SUCCESS,
+  payload: message,
+});
+
+export const bulkUploadRailwaysPassengerFail = (error) => ({
+  type: BULK_UPLOAD_RAILWAYS_PASSENGER_FAIL,
   payload: error,
 });
 

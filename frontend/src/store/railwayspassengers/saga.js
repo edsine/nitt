@@ -4,6 +4,7 @@ import { call, delay, put, takeEvery } from "redux-saga/effects";
 import {
   GET_RAILWAYS_PASSENGERS,
   ADD_RAILWAYS_PASSENGER,
+  BULK_UPLOAD_RAILWAYS_PASSENGER,
   EDIT_RAILWAYS_PASSENGER,
   DELETE_RAILWAYS_PASSENGER,
 } from "./actionTypes";
@@ -12,6 +13,8 @@ import {
   getRailwaysPassengersFail,
   addRailwaysPassengerSuccess,
   addRailwaysPassengerFail,
+  bulkUploadRailwaysPassengerSuccess,
+  bulkUploadRailwaysPassengerFail,
   editRailwaysPassengerSuccess,
   editRailwaysPassengerFail,
   deleteRailwaysPassengerSuccess,
@@ -22,10 +25,14 @@ import {
 import {
   getRailwaysPassengers,
   postRailwaysPassenger,
+  postBulkUploadRailwaysPassenger,
   putRailwaysPassenger,
   deleteRailwaysPassenger,
 } from "../../helpers/backend_helper";
-import { getHeaders } from "../../helpers/backend-headers/headers";
+import {
+  getHeaders,
+  getFileUploadHeaders,
+} from "../../helpers/backend-headers/headers";
 
 function* fetchRailwaysPassengers() {
   try {
@@ -64,6 +71,28 @@ function* addRailwaysPassenger({ payload }) {
     }
   } catch (error) {
     yield put(addRailwaysPassengerFail(error));
+  }
+  yield delay(3000);
+  yield put(clearMessage());
+}
+
+function* bulkUploadRailwaysPassenger({ payload }) {
+  try {
+    const response = yield call(postBulkUploadRailwaysPassenger, payload, {
+      headers: getFileUploadHeaders(),
+    });
+
+    if (response?.success) {
+      yield put(bulkUploadRailwaysPassengerSuccess(response.message));
+    } else {
+      yield put(
+        bulkUploadRailwaysPassengerFail(
+          response?.errors ? Object.values(response?.errors) : response?.message
+        )
+      );
+    }
+  } catch (error) {
+    yield put(bulkUploadRailwaysPassengerFail(error));
   }
   yield delay(3000);
   yield put(clearMessage());
@@ -116,6 +145,7 @@ function* removeRailwaysPassenger({ payload }) {
 function* railwaysPassengersSaga() {
   yield takeEvery(GET_RAILWAYS_PASSENGERS, fetchRailwaysPassengers);
   yield takeEvery(ADD_RAILWAYS_PASSENGER, addRailwaysPassenger);
+  yield takeEvery(BULK_UPLOAD_RAILWAYS_PASSENGER, bulkUploadRailwaysPassenger);
   yield takeEvery(EDIT_RAILWAYS_PASSENGER, updateRailwaysPassenger);
   yield takeEvery(DELETE_RAILWAYS_PASSENGER, removeRailwaysPassenger);
 }

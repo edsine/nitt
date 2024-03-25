@@ -41,9 +41,9 @@ class ShipContainerTraffic extends Model
     protected $casts = [
         'id' => 'integer',
         'year' => 'integer',
-        'ship_traffic' => 'integer',
-        'container_traffic' => 'integer',
-        'cargo_throughput' => 'integer'
+        'ship_traffic' => 'float',
+        'container_traffic' => 'float',
+        'cargo_throughput' => 'float'
     ];
 
     /**
@@ -53,9 +53,9 @@ class ShipContainerTraffic extends Model
      */
     public static $rules = [
         'year' => 'required|integer|unique:ship_container_traffics,year',
-        'ship_traffic' => 'nullable|integer',
-        'container_traffic' => 'nullable|integer',
-        'cargo_throughput' => 'nullable|integer'
+        'ship_traffic' => 'nullable|numeric',
+        'container_traffic' => 'nullable|numeric',
+        'cargo_throughput' => 'nullable|numeric'
     ];
 
 

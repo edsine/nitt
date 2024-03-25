@@ -71,6 +71,9 @@ import trainsPunctuality from "./trainspunctuality/reducer";
 // Gross Domestic Product
 import grossDomesticProduct from "./grossdomesticproduct/reducer";
 
+// Ship Container Traffic
+import shipContainerTraffic from "./shipcontainertraffics/reducer";
+
 const rootReducer = combineReducers({
   // public
   Layout,
@@ -99,6 +102,7 @@ const rootReducer = combineReducers({
   trainsPunctuality,
   resetPassword,
   grossDomesticProduct,
+  shipContainerTraffic,
 });
 
 export default rootReducer;

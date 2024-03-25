@@ -134,6 +134,9 @@ export const GET_RAILWAYS_PASSENGERS = "railway_passengers";
 // ADD RAILWAYS PASSENGER
 export const ADD_RAILWAYS_PASSENGER = "railway_passengers";
 
+// BULK UPLOAD RAILWAYS PASSENGER
+export const BULK_UPLOAD_RAILWAYS_PASSENGER = "railway_passengers/upload";
+
 // UPDATE RAILWAYS PASSENGER
 export const PUT_RAILWAYS_PASSENGER = (id) => `railway_passengers/${id}`;
 
@@ -217,3 +220,19 @@ export const PUT_GROSS_DOMESTIC_PRODUCT = (id) => `gross_domestic_products/${id}
 
 // DELETE GROSS DOMESTIC
 export const DELETE_GROSS_DOMESTIC_PRODUCT = (id) => `gross_domestic_products/${id}`;
+
+
+// GET SHIP CONTAINER TRAFFIC
+export const GET_SHIP_CONTAINER_TRAFFICS = "ship_container_traffics";
+
+// ADD SHIP CONTAINER TRAFFIC
+export const ADD_SHIP_CONTAINER_TRAFFIC = "ship_container_traffics";
+
+// BULK UPLOAD SHIP CONTAINER TRAFFIC
+export const BULK_UPLOAD_SHIP_CONTAINER_TRAFFIC = "ship_container_traffics/upload";
+
+// UPDATE SHIP CONTAINER TRAFFIC
+export const PUT_SHIP_CONTAINER_TRAFFIC = (id) => `ship_container_traffics/${id}`;
+
+// DELETE SHIP CONTAINER TRAFFIC
+export const DELETE_SHIP_CONTAINER_TRAFFIC = (id) => `ship_container_traffics/${id}`;

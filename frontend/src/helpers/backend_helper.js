@@ -177,6 +177,10 @@ export const getRailwaysPassengers = (config) =>
 export const postRailwaysPassenger = (data, config) =>
   post(url.ADD_RAILWAYS_PASSENGER, data, config);
 
+// Bulk Upload Railways Passengers
+export const postBulkUploadRailwaysPassenger = (data, config) =>
+  filePost(url.BULK_UPLOAD_RAILWAYS_PASSENGER, data, config);
+
 // Update Railways Passengers
 export const putRailwaysPassenger = (data, id, config) =>
   put(url.PUT_RAILWAYS_PASSENGER(id), data, config);
@@ -283,3 +287,23 @@ export const putGrossDomesticProduct = (data, id, config) =>
 // Delete GrossDomesticProduct
 export const deleteGrossDomesticProduct = (id, config) =>
   del(url.DELETE_GROSS_DOMESTIC_PRODUCT(id), config);
+
+// Get ShipContainerTraffics
+export const getShipContainerTraffics = (config) =>
+  get(url.GET_SHIP_CONTAINER_TRAFFICS, config);
+
+// Add ShipContainerTraffic
+export const postShipContainerTraffic = (data, config) =>
+  post(url.ADD_SHIP_CONTAINER_TRAFFIC, data, config);
+
+// Bulk Upload ShipContainerTraffic
+export const postBulkUploadShipContainerTraffic = (data, config) =>
+  filePost(url.BULK_UPLOAD_SHIP_CONTAINER_TRAFFIC, data, config);
+
+// Update ShipContainerTraffic
+export const putShipContainerTraffic = (data, id, config) =>
+  put(url.PUT_SHIP_CONTAINER_TRAFFIC(id), data, config);
+
+// Delete ShipContainerTraffic
+export const deleteShipContainerTraffic = (id, config) =>
+  del(url.DELETE_SHIP_CONTAINER_TRAFFIC(id), config);

@@ -3,11 +3,18 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Modal, Row, Col, Label, Alert } from "reactstrap";
 import { AvForm, AvField } from "availity-reactstrap-validation";
-import { addRailwaysPassenger } from "../../store/actions";
+import { editShipContainerTraffic } from "../../store/actions";
 import YearOptions from "../yearOptions";
 
-const AddRailwaysPassenger = (props) => {
-  const { isOpen, setIsOpen, error, success, onAddRailwaysPassenger } = props;
+const EditShipContainerTraffic = (props) => {
+  const {
+    isOpen,
+    setIsOpen,
+    oldData,
+    error,
+    success,
+    onEditShipContainerTraffic,
+  } = props;
 
   const removeBodyCss = () => {
     document.body.classList.add("no_padding");
@@ -18,7 +25,7 @@ const AddRailwaysPassenger = (props) => {
   };
 
   const handleValidSubmit = (event, values) => {
-    onAddRailwaysPassenger(values);
+    onEditShipContainerTraffic(values, oldData.id);
   };
 
   return (
@@ -28,21 +35,22 @@ const AddRailwaysPassenger = (props) => {
         toggle();
       }}
     >
-      {error?.addError && error.addError ? (
-        <Alert color="danger">{error?.addError}</Alert>
+      {error?.editError && error.editError ? (
+        <Alert color="danger">{error?.editError}</Alert>
       ) : null}
-      {success?.addSuccess && success?.addSuccess ? (
-        <Alert color="success">{success?.addSuccess}</Alert>
+      {success?.editSuccess && success?.editSuccess ? (
+        <Alert color="success">{success?.editSuccess}</Alert>
       ) : null}
       <AvForm
         className="needs-validation"
         onValidSubmit={(e, v) => {
           handleValidSubmit(e, v);
         }}
+        model={oldData}
       >
         <div className="modal-header">
           <h5 className="modal-title mt-0" id="myModalLabel">
-            Add Railways Passenger
+            Edit Ship Container Traffic
           </h5>
           <button
             type="button"
@@ -79,63 +87,49 @@ const AddRailwaysPassenger = (props) => {
           <Row>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="numberOfPassengersCarried">
-                  Passengers Carried
+                <Label htmlFor="ship_traffic">
+                  Ship Traffic (No. of Vessels)
                 </Label>
                 <AvField
-                  name="passengers_carried"
+                  name="ship_traffic"
                   placeholder=""
                   type="number"
-                  errorMessage="Enter Number of Urban Passengers Carried."
+                  errorMessage="Enter Number of Ship Traffic (No. of Vessels)."
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="numberOfPassengersCarried"
+                  id="ship_traffic"
                 />
               </div>
             </Col>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="freightCarried">Freight Carried</Label>
+                <Label htmlFor="container_traffic">
+                  Container Traffic (Tonnes)
+                </Label>
                 <AvField
-                  name="freight_carried"
+                  name="container_traffic"
                   placeholder=""
                   type="number"
-                  errorMessage="Enter Number of Freight Carried"
+                  errorMessage="Enter Number of Container Traffic (Tonnes)"
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="freightCarried"
+                  id="container_traffic"
                 />
               </div>
             </Col>
             <Col md="6">
               <div className="mb-3">
-                <Label htmlFor="freightRevenueGeneration">
-                  Freight Revenue Generation
+                <Label htmlFor="cargo_throughput">
+                  Cargo Throughput (Tonnes)
                 </Label>
                 <AvField
-                  name="freight_revenue_generation"
+                  name="cargo_throughput"
                   placeholder=""
                   type="number"
-                  errorMessage="Enter Revenue Generated from Freight"
+                  errorMessage="Enter Number of Cargo Throughput (Tonnes)"
                   className="form-control"
                   validate={{ required: { value: true } }}
-                  id="freightRevenueGeneration"
-                />
-              </div>
-            </Col>
-            <Col md="6">
-              <div className="mb-3">
-                <Label htmlFor="passengerRevenueGeneration">
-                  Passenger Revenue Generation
-                </Label>
-                <AvField
-                  name="passenger_revenue_generation"
-                  placeholder=""
-                  type="number"
-                  errorMessage="Enter Revenue Generated from Freight"
-                  className="form-control"
-                  validate={{ required: { value: true } }}
-                  id="passengerRevenueGeneration"
+                  id="cargo_throughput"
                 />
               </div>
             </Col>
@@ -164,8 +158,8 @@ const AddRailwaysPassenger = (props) => {
   );
 };
 
-AddRailwaysPassenger.propTypes = {
-  onAddRailwaysPassenger: PropTypes.func,
+EditShipContainerTraffic.propTypes = {
+  onEditShipContainerTraffic: PropTypes.func,
   error: PropTypes.any,
   success: PropTypes.any,
 };
@@ -176,10 +170,11 @@ const mapStatetoProps = ({ railwaysPassengers }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onAddRailwaysPassenger: (values) => dispatch(addRailwaysPassenger(values)),
+  onEditShipContainerTraffic: (values, id) =>
+    dispatch(editShipContainerTraffic(values, id)),
 });
 
 export default connect(
   mapStatetoProps,
   mapDispatchToProps
-)(AddRailwaysPassenger);
+)(EditShipContainerTraffic);

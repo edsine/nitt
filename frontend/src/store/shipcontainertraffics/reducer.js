@@ -1,52 +1,52 @@
 import {
-  GET_RAILWAYS_PASSENGERS_SUCCESS,
-  GET_RAILWAYS_PASSENGERS_FAIL,
-  ADD_RAILWAYS_PASSENGER_SUCCESS,
-  ADD_RAILWAYS_PASSENGER_FAIL,
-  BULK_UPLOAD_RAILWAYS_PASSENGER_SUCCESS,
-  BULK_UPLOAD_RAILWAYS_PASSENGER_FAIL,
-  DELETE_RAILWAYS_PASSENGER_SUCCESS,
-  EDIT_RAILWAYS_PASSENGER_FAIL,
-  EDIT_RAILWAYS_PASSENGER_SUCCESS,
-  DELETE_RAILWAYS_PASSENGER_FAIL,
+  GET_SHIP_CONTAINER_TRAFFICS_SUCCESS,
+  GET_SHIP_CONTAINER_TRAFFICS_FAIL,
+  ADD_SHIP_CONTAINER_TRAFFIC_SUCCESS,
+  ADD_SHIP_CONTAINER_TRAFFIC_FAIL,
+  BULK_UPLOAD_SHIP_CONTAINER_TRAFFIC_SUCCESS,
+  BULK_UPLOAD_SHIP_CONTAINER_TRAFFIC_FAIL,
+  DELETE_SHIP_CONTAINER_TRAFFIC_SUCCESS,
+  EDIT_SHIP_CONTAINER_TRAFFIC_FAIL,
+  EDIT_SHIP_CONTAINER_TRAFFIC_SUCCESS,
+  DELETE_SHIP_CONTAINER_TRAFFIC_FAIL,
   CLEAR_MESSAGE,
 } from "./actionTypes";
 
 const INIT_STATE = {
-  railwaysPassengers: [],
+  shipContainerTraffics: [],
   error: null,
   success: null,
 };
 
-const railwaysPassengers = (state = INIT_STATE, action) => {
+const shipContainerTraffics = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case GET_RAILWAYS_PASSENGERS_SUCCESS:
+    case GET_SHIP_CONTAINER_TRAFFICS_SUCCESS:
       return {
         ...state,
-        railwaysPassengers: action.payload,
+        shipContainerTraffics: action.payload,
         error: null,
       };
 
-    case GET_RAILWAYS_PASSENGERS_FAIL:
+    case GET_SHIP_CONTAINER_TRAFFICS_FAIL:
       return {
         ...state,
         error: { ...state.error, getError: action.payload },
         success: null,
       };
-    case ADD_RAILWAYS_PASSENGER_SUCCESS:
+    case ADD_SHIP_CONTAINER_TRAFFIC_SUCCESS:
       return {
         ...state,
         success: { ...state.success, addSuccess: action.payload.message },
         error: null,
       };
 
-    case ADD_RAILWAYS_PASSENGER_FAIL:
+    case ADD_SHIP_CONTAINER_TRAFFIC_FAIL:
       return {
         ...state,
         error: { ...state.error, addError: action.payload },
         success: null,
       };
-    case BULK_UPLOAD_RAILWAYS_PASSENGER_SUCCESS:
+    case BULK_UPLOAD_SHIP_CONTAINER_TRAFFIC_SUCCESS:
       return {
         ...state,
         success: {
@@ -56,33 +56,33 @@ const railwaysPassengers = (state = INIT_STATE, action) => {
         error: null,
       };
 
-    case BULK_UPLOAD_RAILWAYS_PASSENGER_FAIL:
+    case BULK_UPLOAD_SHIP_CONTAINER_TRAFFIC_FAIL:
       return {
         ...state,
         error: { ...state.error, bulkUploadError: action.payload },
         success: null,
       };
-    case EDIT_RAILWAYS_PASSENGER_SUCCESS:
+    case EDIT_SHIP_CONTAINER_TRAFFIC_SUCCESS:
       return {
         ...state,
         success: { ...state.success, editSuccess: action.payload.message },
         error: null,
       };
 
-    case EDIT_RAILWAYS_PASSENGER_FAIL:
+    case EDIT_SHIP_CONTAINER_TRAFFIC_FAIL:
       return {
         ...state,
         error: { ...state.error, editError: action.payload },
         success: null,
       };
-    case DELETE_RAILWAYS_PASSENGER_SUCCESS:
+    case DELETE_SHIP_CONTAINER_TRAFFIC_SUCCESS:
       return {
         ...state,
         success: { ...state.success, deleteSuccess: action.payload },
         error: null,
       };
 
-    case DELETE_RAILWAYS_PASSENGER_FAIL:
+    case DELETE_SHIP_CONTAINER_TRAFFIC_FAIL:
       return {
         ...state,
         error: { ...state.error, deleteError: action.payload },
@@ -99,4 +99,4 @@ const railwaysPassengers = (state = INIT_STATE, action) => {
   }
 };
 
-export default railwaysPassengers;
+export default shipContainerTraffics;

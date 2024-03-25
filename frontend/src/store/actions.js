@@ -67,3 +67,6 @@ export * from "./trainspunctuality/actions";
 
 // Gross Domestic Product
 export * from "./grossdomesticproduct/actions";
+
+// Ship Container Traffic
+export * from "./shipcontainertraffics/actions";

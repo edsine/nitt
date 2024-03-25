@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers\API;
 
+use Response;
+use Illuminate\Http\Request;
+use App\Models\ShipContainerTraffic;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\AppBaseController;
+use App\Imports\ShipContainerTrafficImport;
+use App\Http\Resources\ShipContainerTrafficResource;
+use App\Repositories\ShipContainerTrafficRepository;
 use App\Http\Requests\API\CreateShipContainerTrafficAPIRequest;
 use App\Http\Requests\API\UpdateShipContainerTrafficAPIRequest;
-use App\Models\ShipContainerTraffic;
-use App\Repositories\ShipContainerTrafficRepository;
-use Illuminate\Http\Request;
-use App\Http\Controllers\AppBaseController;
-use App\Http\Resources\ShipContainerTrafficResource;
-use Response;
 
 /**
  * Class ShipContainerTrafficController
@@ -67,6 +69,38 @@ class ShipContainerTrafficAPIController extends AppBaseController
         $shipContainerTraffic = $this->shipContainerTrafficRepository->create($input);
 
         return $this->sendResponse(new ShipContainerTrafficResource($shipContainerTraffic), 'Ship Container Traffic saved successfully');
+    }
+
+    /**
+     * Upload ShipContainerTraffic in storage.
+     * POST /shipContainerTraffic/upload
+     *
+     *
+     * @return Response
+     */
+    public function bulkUpload(Request $request)
+    {
+        if (!checkPermission('create ship container traffic')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:xlsx',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
+
+        $file = $request->file('file');
+
+        $response = (new ShipContainerTrafficImport)->import($file);
+
+        if (!$response['status']) {
+            return $this->sendError('File import error: ' . $response['message'], 422);
+        } else {
+            return $this->sendSuccess("File imported successfully");
+        }
     }
 
     /**

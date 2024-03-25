@@ -34,6 +34,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('air_passengers_traffic', App\Http\Controllers\API\AirPassengersTrafficAPIController::class);
     Route::resource('maritime_academies', App\Http\Controllers\API\MaritimeAcademyAPIController::class);
     Route::resource('railway_passengers', App\Http\Controllers\API\RailwayPassengerAPIController::class);
+    Route::post('railway_passengers/upload', [App\Http\Controllers\API\RailwayPassengerAPIController::class, 'bulkUpload']);
     Route::resource('railway_rolling_stocks', App\Http\Controllers\API\RailwayRollingStockAPIController::class);
     Route::resource('railway_safeties', App\Http\Controllers\API\RailwaySafetyAPIController::class);
     Route::resource('trains_punctualities', App\Http\Controllers\API\TrainPunctualityAPIController::class);
@@ -44,6 +45,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('gross_domestic_products', App\Http\Controllers\API\GrossDomesticProductAPIController::class);
     Route::post('gross_domestic_products/upload', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'bulkUpload']);
     Route::resource('ship_container_traffics', App\Http\Controllers\API\ShipContainerTrafficAPIController::class);
+    Route::post('ship_container_traffics/upload', [App\Http\Controllers\API\ShipContainerTrafficAPIController::class, 'bulkUpload']);
     Route::resource('road_traffic_crashes', App\Http\Controllers\API\RoadTrafficCrashAPIController::class);
     Route::resource('fleet_operator_road_crashes', App\Http\Controllers\API\FleetOperatorRoadTrafficCrashAPIController::class);
     Route::resource('cargo_import_exports', App\Http\Controllers\API\CargoImportExportAPIController::class);

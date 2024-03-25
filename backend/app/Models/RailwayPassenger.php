@@ -39,6 +39,7 @@ class RailwayPassenger extends Model
         'year',
         'number_of_urban_passengers_carried',
         'number_of_regional_passengers_carried',
+        'passengers_carried',
         'freight_carried',
         'number_of_freight_trains',
         'number_of_passenger_trains',
@@ -56,15 +57,16 @@ class RailwayPassenger extends Model
     protected $casts = [
         'id' => 'integer',
         'year' => 'integer',
-        'number_of_urban_passengers_carried' => 'integer',
-        'number_of_regional_passengers_carried' => 'integer',
-        'freight_carried' => 'integer',
-        'number_of_freight_trains' => 'integer',
-        'number_of_passenger_trains' => 'integer',
-        'freight_revenue_generation' => 'integer',
-        'passenger_revenue_generation' => 'integer',
-        'passenger_fuel_consumption_rate' => 'integer',
-        'freight_fuel_consumption_rate' => 'integer'
+        'number_of_urban_passengers_carried' => 'float',
+        'number_of_regional_passengers_carried' => 'float',
+        'passengers_carried' => 'float',
+        'freight_carried' => 'float',
+        'number_of_freight_trains' => 'float',
+        'number_of_passenger_trains' => 'float',
+        'freight_revenue_generation' => 'float',
+        'passenger_revenue_generation' => 'float',
+        'passenger_fuel_consumption_rate' => 'float',
+        'freight_fuel_consumption_rate' => 'float'
     ];
 
     /**
@@ -74,15 +76,16 @@ class RailwayPassenger extends Model
      */
     public static $rules = [
         'year' => 'required|integer|unique:railway_passengers,year',
-        'number_of_urban_passengers_carried' => 'required|integer',
-        'number_of_regional_passengers_carried' => 'required|integer',
-        'freight_carried' => 'required|integer',
-        'number_of_freight_trains' => 'required|integer',
-        'number_of_passenger_trains' => 'required|integer',
-        'freight_revenue_generation' => 'required|integer',
-        'passenger_revenue_generation' => 'required|integer',
-        'passenger_fuel_consumption_rate' => 'required|integer',
-        'freight_fuel_consumption_rate' => 'required|integer'
+        'number_of_urban_passengers_carried' => 'nullable|numeric',
+        'number_of_regional_passengers_carried' => 'nullable|numeric',
+        'passengers_carried' => 'nullable|numeric',
+        'freight_carried' => 'nullable|numeric',
+        'number_of_freight_trains' => 'nullable|numeric',
+        'number_of_passenger_trains' => 'nullable|numeric',
+        'freight_revenue_generation' => 'nullable|numeric',
+        'passenger_revenue_generation' => 'nullable|numeric',
+        'passenger_fuel_consumption_rate' => 'nullable|numeric',
+        'freight_fuel_consumption_rate' => 'nullable|numeric'
     ];
 
 

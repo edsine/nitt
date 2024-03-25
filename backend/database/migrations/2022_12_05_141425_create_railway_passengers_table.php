@@ -17,15 +17,16 @@ class CreateRailwayPassengersTable extends Migration
         Schema::create('railway_passengers', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('year')->unique();
-            $table->float('number_of_urban_passengers_carried')->nullable();
-            $table->float('number_of_regional_passengers_carried')->nullable();
-            $table->float('freight_carried')->nullable();
-            $table->float('number_of_freight_trains')->nullable();
-            $table->float('number_of_passenger_trains')->nullable();
-            $table->float('freight_revenue_generation')->nullable();
-            $table->float('passenger_revenue_generation')->nullable();
-            $table->float('passenger_fuel_consumption_rate')->nullable();
-            $table->float('freight_fuel_consumption_rate')->nullable();
+            $table->float('passengers_carried', 30, 2)->nullable();
+            $table->float('number_of_urban_passengers_carried', 30, 2)->nullable();
+            $table->float('number_of_regional_passengers_carried', 30, 2)->nullable();
+            $table->float('freight_carried', 30, 2)->nullable();
+            $table->float('number_of_freight_trains', 30, 2)->nullable();
+            $table->float('number_of_passenger_trains', 30, 2)->nullable();
+            $table->float('freight_revenue_generation', 30, 2)->nullable();
+            $table->float('passenger_revenue_generation', 30, 2)->nullable();
+            $table->float('passenger_fuel_consumption_rate', 30, 2)->nullable();
+            $table->float('freight_fuel_consumption_rate', 30, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

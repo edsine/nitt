@@ -27,6 +27,7 @@ import maritimeAdministrationSaga from "./maritimeadministration/saga";
 import trainsPunctualitySaga from "./trainspunctuality/saga";
 import resetPasswordSaga from "./auth/resetPassword/saga";
 import grossDomesticProductSaga from "./grossdomesticproduct/saga";
+import shipContainerTrafficsSaga from "./shipcontainertraffics/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -57,5 +58,6 @@ export default function* rootSaga() {
     fork(trainsPunctualitySaga),
     fork(resetPasswordSaga),
     fork(grossDomesticProductSaga),
+    fork(shipContainerTrafficsSaga)
   ]);
 }
