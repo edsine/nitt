@@ -43,8 +43,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('maritime_transports', App\Http\Controllers\API\MaritimeTransportAPIController::class);
     Route::get('permissions', [App\Http\Controllers\API\PermissionAPIController::class, 'index']);
     Route::resource('gross_domestic_products', App\Http\Controllers\API\GrossDomesticProductAPIController::class);
-    Route::get('gross_domestic_products_formatted', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'indexFormatted']);
-    Route::get('gross_domestic_products_formatted_by_percentage', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'indexFormattedByPercentage']);
     Route::post('gross_domestic_products/upload', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'bulkUpload']);
     Route::resource('ship_container_traffics', App\Http\Controllers\API\ShipContainerTrafficAPIController::class);
     Route::post('ship_container_traffics/upload', [App\Http\Controllers\API\ShipContainerTrafficAPIController::class, 'bulkUpload']);
@@ -71,6 +69,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('air_mode_data', App\Http\Controllers\API\AirModeDataAPIController::class);
 });
 
+
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthAPIController::class, 'login'])->name('auth.login');
     Route::post('logout', [AuthAPIController::class, 'logout'])->name('auth.logout');
@@ -84,3 +83,10 @@ Route::post('verify', [AuthAPIController::class, 'verify'])->name('verification.
 Route::get('/reset/{token}', [AuthAPIController::class, 'resetPassword'])->name('auth.reset');
 Route::get('/email/verify/{id}/{hash}', [AuthAPIController::class, 'verifyEmail'])
     ->name('verification.verify');
+
+
+// Formatted endpoints for NTD
+
+// All mode data endpoints
+Route::get('gross_domestic_products_formatted', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'indexFormatted']);
+Route::get('gross_domestic_products_formatted_by_percentage', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'indexFormattedByPercentage']);

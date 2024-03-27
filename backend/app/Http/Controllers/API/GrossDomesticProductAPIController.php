@@ -87,10 +87,6 @@ class GrossDomesticProductAPIController extends AppBaseController
 
     public function indexFormatted(Request $request)
     {
-        if (!checkPermission('read gross domestic product')) {
-            return $this->sendError('Permission Denied', 403);
-        }
-
         $grossDomesticProducts = $this->grossDomesticProductRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
@@ -111,10 +107,6 @@ class GrossDomesticProductAPIController extends AppBaseController
 
     public function indexFormattedByPercentage(Request $request)
     {
-        if (!checkPermission('read gross domestic product')) {
-            return $this->sendError('Permission Denied', 403);
-        }
-
         $grossDomesticProducts = $this->grossDomesticProductRepository->all(
             $request->except(['skip', 'limit']),
             $request->get('skip'),
