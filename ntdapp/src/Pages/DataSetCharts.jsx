@@ -1,36 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import tablesData from '../Components/JsonData/Tables.json';
 import ApexCharts from 'react-apexcharts';
 import { Form } from 'react-bootstrap';
 
 function DataSetCharts() {
-  const { datasetName, tableName } = useParams();
+  const { datasetName, tableName, selectedEndpoint } = useParams();
   const [tableData, setTableData] = useState({});
   const [selectedYear, setSelectedYear] = useState('');
   const [chartType, setChartType] = useState('');
   const [suitableChartTypes, setSuitableChartTypes] = useState([]);
+  const [years, setYears] = useState([]);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const dataForTable = tablesData[unescape(datasetName)]?.tables.find((table) => table.name === unescape(tableName));
-    if (dataForTable) {
-      console.log('Data for table:', dataForTable);
-      setTableData(dataForTable.data);
-      const years = Object.keys(dataForTable.data[Object.keys(dataForTable.data)[0]]) || [];
-      setSelectedYear(years[0] || '');
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/${selectedEndpoint}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const jsonData = await response.json();
+        setTableData(jsonData.data);
 
-      const categories = Object.keys(dataForTable.data);
-      const seriesCount = Object.keys(dataForTable.data[categories[0]]).length;
-      let suitableTypes = [];
-      if (seriesCount === 1) {
-        suitableTypes.push('line', 'area', 'heatmap', 'scatter', 'pie', 'donut', 'radialBar');
-      } else if (seriesCount > 1) {
-        suitableTypes.push('line', 'bar', 'area', 'scatter');
+        const years = Object.keys(jsonData.data.data[Object.keys(jsonData.data.data)[0]]) || [];
+        setYears(years);
+        setSelectedYear(years[0] || '');
+
+        const categories = Object.keys(jsonData.data.data);
+        setCategories(categories);
+        const seriesCount = Object.keys(jsonData.data.data[categories[0]]).length;
+        let suitableTypes = [];
+        if (seriesCount === 1) {
+          suitableTypes.push('line', 'area', 'heatmap', 'scatter', 'pie', 'donut', 'radialBar');
+        } else if (seriesCount > 1) {
+          suitableTypes.push('line', 'bar', 'area', 'scatter');
+        }
+        setSuitableChartTypes(suitableTypes);
+        setChartType(suitableTypes[0]);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-      setSuitableChartTypes(suitableTypes);
-      setChartType(suitableTypes[0]);
-    }
-  }, [datasetName, tableName]);
+    };
+
+    fetchData();
+  }, []);
+
 
   const handleChangeYear = (event) => {
     setSelectedYear(event.target.value);
@@ -49,30 +63,30 @@ function DataSetCharts() {
       },
     },
     xaxis: {
-      categories: Object.keys(tableData),
+      categories: categories,
       title: {
         text: 'Year',
       },
     },
     title: {
-      text: `${unescape(datasetName)} - ${unescape(tableName)} Chart`, // Updated chart title with decoded names
+      text: `${datasetName} - ${tableName} Chart`,
       align: 'center',
     },
   };
 
-  const filteredData = Object.keys(tableData).map((key) => ({
+  const filteredData = Object.keys(tableData.data).map((key) => ({
     x: key,
-    y: tableData[key][selectedYear] || 0,
+    y: tableData.data[key][selectedYear] || 0,
   }));
 
   return (
     <div>
-      <h2>{unescape(datasetName)} - {unescape(tableName)} Chart</h2>
+      <h2>{datasetName} - {tableName} Chart</h2>
       <Form className="my-4">
         <Form.Group controlId="exampleForm.SelectCustom">
           <Form.Label>Select Year</Form.Label>
           <Form.Select value={selectedYear} onChange={handleChangeYear}>
-            {Object.keys(tableData[Object.keys(tableData)[0]] || {}).map((year, index) => (
+            {years && years.map((year, index) => (
               <option key={index} value={year}>
                 {year}
               </option>

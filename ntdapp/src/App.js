@@ -15,6 +15,7 @@ import ApexCandle from "./Components/apexcharts/ApexCandle";
 import ApexPie from "./Components/apexcharts/ApexPie";
 import DataSetDetails from "./Pages/DataSetDetails";
 import DataSetCharts from "./Pages/DataSetCharts";
+import DataSetDetailsTest from "./Pages/DataSetDetailsTest";
 
 function App() {
   return (
@@ -38,7 +39,8 @@ function App() {
               <Route path="/tabletemp" element={<ApexPie />}></Route>
               <Route path="/tabletemp" element={<ApexPie />}></Route>
               <Route path="/datasetdetails/:datasetName" element={<DataSetDetails />}></Route>
-              <Route path="/datasetcharts/:datasetName/:tableName" element={<DataSetCharts />}></Route>
+              <Route path="/datasetdetailstest/:datasetName" element={<DataSetDetailsTest />}></Route>
+              <Route path="/datasetcharts/:datasetName/:tableName/:selectedEndpoint" element={<DataSetCharts />}></Route>
               {/* <Route path="/datasetdetails/:datasetName" component={DataSetDetails} /> */}
             </Routes>
           </div>
