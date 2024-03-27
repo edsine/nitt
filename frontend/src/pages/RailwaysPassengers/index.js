@@ -171,6 +171,21 @@ const RailwaysPassengers = (props) => {
     setIsBulkUploadModalOpen(true);
   };
 
+  const handleDownloadSample = () => {
+    const fileUrl =
+      process.env.PUBLIC_URL + "/excel_samples/rail_passenger_freight.xlsx";
+
+    const link = document.createElement("a");
+    link.href = fileUrl;
+    link.download = "rail_passenger_freight_sample.xlsx";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+  };
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -234,6 +249,13 @@ const RailwaysPassengers = (props) => {
                         onClick={() => handleUploadClick()}
                       >
                         Upload
+                      </Button>
+                      <Button
+                        color="secondary"
+                        className="btn btn-secondary waves-effect waves-light float-right"
+                        onClick={() => handleDownloadSample()}
+                      >
+                        Downlaod Sample
                       </Button>
                     </div>
                   )}

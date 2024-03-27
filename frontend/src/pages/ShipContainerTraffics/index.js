@@ -135,6 +135,21 @@ const ShipContainerTraffics = (props) => {
     setIsBulkUploadModalOpen(true);
   };
 
+    const handleDownloadSample = () => {
+      const fileUrl =
+        process.env.PUBLIC_URL + "/excel_samples/ship_traffic_container.xlsx";
+
+      const link = document.createElement("a");
+      link.href = fileUrl;
+      link.download = "ship_traffic_container_sample.xlsx";
+
+      document.body.appendChild(link);
+
+      link.click();
+
+      document.body.removeChild(link);
+    };
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -201,6 +216,13 @@ const ShipContainerTraffics = (props) => {
                         onClick={() => handleUploadClick()}
                       >
                         Upload
+                      </Button>
+                      <Button
+                        color="secondary"
+                        className="btn btn-secondary waves-effect waves-light float-right"
+                        onClick={() => handleDownloadSample()}
+                      >
+                        Downlaod Sample
                       </Button>
                     </div>
                   )}

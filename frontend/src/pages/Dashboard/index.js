@@ -17,8 +17,6 @@ import { AvField, AvForm } from "availity-reactstrap-validation";
 const Dashboard = (props) => {
   const { dashboardData, onGetDashboardData, user } = props;
 
-  console.log(user);
-
   const currentYear = new Date().getFullYear();
   const [year, setYear] = useState(currentYear);
 

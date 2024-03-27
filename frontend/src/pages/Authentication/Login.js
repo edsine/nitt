@@ -55,7 +55,7 @@ const Login = (props) => {
                       Sign in to continue to NITT.
                     </p>
                     <Link to="/" className="logo logo-admin mt-4">
-                      <img src={logo} alt="" height="30" />
+                      <img src={logo} alt="" height="70" />
                     </Link>
                   </div>
                 </div>
