@@ -86,5 +86,7 @@ Route::get('/email/verify/{id}/{hash}', [AuthAPIController::class, 'verifyEmail'
 
 
 // Formatted endpoints for NTD
+
+// All mode data endpoints
 Route::get('gross_domestic_products_formatted', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'indexFormatted']);
 Route::get('gross_domestic_products_formatted_by_percentage', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'indexFormattedByPercentage']);
