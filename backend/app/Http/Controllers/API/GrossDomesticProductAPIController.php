@@ -51,6 +51,88 @@ class GrossDomesticProductAPIController extends AppBaseController
         return $this->sendResponse(GrossDomesticProductResource::collection($grossDomesticProducts), 'Gross Domestic Products retrieved successfully');
     }
 
+    private function formatData($data, $field)
+    {
+        $formatted = [];
+
+        foreach ($data as $item) {
+            $formatted[$item->year] = $item->$field;
+        }
+
+        return $formatted;
+    }
+
+    private function formatDataByPercentage($data, $field)
+    {
+        $formatted = [];
+
+        // Calculate the total of all transportation modes for each year
+        foreach ($data as $item) {
+            $total = $item->road_transport + $item->rail_transport_and_pipelines +
+                $item->water_transport + $item->air_transport +
+                $item->pipeline_transport + $item->post_and_courierservices;
+
+            // Calculate the percentage for the specified field
+            if ($total != 0) {
+                $formatted[$item->year] = number_format(($item->$field / $total) * 100, 2) . '%';
+            } else {
+                // Handle the case where total is zero to avoid division by zero error
+                $formatted[$item->year] = '0%';
+            }
+        }
+
+        return $formatted;
+    }
+
+
+    public function indexFormatted(Request $request)
+    {
+        if (!checkPermission('read gross domestic product')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
+        $grossDomesticProducts = $this->grossDomesticProductRepository->all(
+            $request->except(['skip', 'limit']),
+            $request->get('skip'),
+            $request->get('limit')
+        );
+
+        $formattedData = [
+            'Road Transport' => $this->formatData($grossDomesticProducts, 'road_transport'),
+            'Rail Transport and Pipelines' => $this->formatData($grossDomesticProducts, 'rail_transport_and_pipelines'),
+            'Water Transport' => $this->formatData($grossDomesticProducts, 'water_transport'),
+            'Air Transport' => $this->formatData($grossDomesticProducts, 'air_transport'),
+            'Pipeline Transport' => $this->formatData($grossDomesticProducts, 'pipeline_transport'),
+            'Post and Courier Services' => $this->formatData($grossDomesticProducts, 'post_and_courierservices'),
+        ];
+
+        return $this->sendResponse(["name" => "Gross Domestic Product at Current Basic Prices From 1981-2021 - Annual 1 (₦ Billion)", "data" => $formattedData], 'Gross Domestic Products retrieved successfully');
+    }
+
+    public function indexFormattedByPercentage(Request $request)
+    {
+        if (!checkPermission('read gross domestic product')) {
+            return $this->sendError('Permission Denied', 403);
+        }
+
+        $grossDomesticProducts = $this->grossDomesticProductRepository->all(
+            $request->except(['skip', 'limit']),
+            $request->get('skip'),
+            $request->get('limit')
+        );
+
+        $formattedData = [
+            'Road Transport' => $this->formatDataByPercentage($grossDomesticProducts, 'road_transport'),
+            'Rail Transport and Pipelines' => $this->formatDataByPercentage($grossDomesticProducts, 'rail_transport_and_pipelines'),
+            'Water Transport' => $this->formatDataByPercentage($grossDomesticProducts, 'water_transport'),
+            'Air Transport' => $this->formatDataByPercentage($grossDomesticProducts, 'air_transport'),
+            'Pipeline Transport' => $this->formatDataByPercentage($grossDomesticProducts, 'pipeline_transport'),
+            'Post and Courier Services' => $this->formatDataByPercentage($grossDomesticProducts, 'post_and_courierservices'),
+        ];
+
+        return $this->sendResponse(["name" => "Gross Domestic Product at Current Basic Prices From 1981-2021 - Annual (%)", "data" => $formattedData], 'Gross Domestic Products retrieved successfully');
+    }
+
     /**
      * Store a newly created GrossDomesticProduct in storage.
      * POST /grossDomesticProducts
