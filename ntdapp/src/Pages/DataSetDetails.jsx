@@ -1,7 +1,8 @@
 // DataSetDetails.jsx
 
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, json } from 'react-router-dom';
 import tablesData from '../Components/JsonData/Tables.json';
 import { Table, Nav, Form } from 'react-bootstrap';
 
@@ -9,6 +10,24 @@ function DataSetDetails() {
   const { datasetName } = useParams();
   const [tables, setTables] = useState([]);
   const [selectedTable, setSelectedTable] = useState('');
+  const [selectedEndpoint, setSelectedEndpoint] = useState('');
+  const [tableData, setTableData] = useState(null);
+
+  const fetchData = async (endpoint) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8000/api/${endpoint}`);
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const jsonData = await response.json();
+      setTableData(jsonData.data);
+    } catch (error) {
+      console.log(error);
+    } finally {
+
+      // Maybe later
+    }
+  };
 
   useEffect(() => {
     // Fetch data for the selected datasetName from your data source
@@ -17,12 +36,20 @@ function DataSetDetails() {
     if (dataForDatasetName && dataForDatasetName.tables) {
       setTables(dataForDatasetName.tables);
       setSelectedTable(dataForDatasetName.tables[0]?.name || '');
+      setSelectedEndpoint(dataForDatasetName.tables[0]?.endpoint);
     }
-    console.log(tablesData);
   }, [datasetName]);
 
+  useEffect(() => {
+    fetchData(selectedEndpoint);
+  }, [selectedEndpoint]);
+
   const handleChange = (event) => {
+    const dataForDatasetName = tablesData[datasetName];
+    const selectedDataset = dataForDatasetName.tables.find(item => item.name === event.target.value);
+    const endpoint = selectedDataset ? selectedDataset.endpoint : '';
     setSelectedTable(event.target.value);
+    setSelectedEndpoint(endpoint);
   };
 
   return (
@@ -31,7 +58,7 @@ function DataSetDetails() {
       <div className="action-tabs">
         <Nav variant="tabs">
           <Nav.Item>
-            <Nav.Link as={Link} to={`/datasetcharts/${datasetName}/${selectedTable}`}>
+            <Nav.Link as={Link} to={`/datasetcharts/${datasetName}/${selectedTable}/${selectedEndpoint}`}>
               View Chart
             </Nav.Link>
           </Nav.Item>
@@ -55,36 +82,38 @@ function DataSetDetails() {
         </Form.Group>
       </Form>
       <div className="table-container">
-        {tables.map((table, index) => (
-          <div key={index} className="table" style={{ display: selectedTable === table.name ? 'block' : 'none' }}>
-            <h3>{table.name}</h3>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>Year</th>
-                  {Object.keys(table.data).map((column, index) => (
+        <div className="table" style={{ display: selectedTable === tableData?.name ? 'block' : 'none' }}>
+          <h3>{tableData?.name}</h3>
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Year</th>
+                {
+                  tableData?.data && Object.keys(tableData?.data).map((column, index) => (
                     <th key={index}>{column}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {Object.keys(table.data).map((key, index) => (
-                  Object.keys(table.data[key]).map((year, rowIndex) => (
-                    <tr key={`${key}-${rowIndex}`}>
-                      <td>{year}</td>
-                      {Object.keys(table.data).map((innerKey, cellIndex) => (
-                        <td key={`${key}-${innerKey}-${cellIndex}`}>
-                          {table.data[innerKey][year]}
-                        </td>
-                      ))}
-                    </tr>
                   ))
-                ))}
-              </tbody>
-            </Table>
-          </div>
-        ))}
+                }
+              </tr>
+            </thead>
+            <tbody>
+              { tableData?.data && Object.keys(tableData?.data).map((key, index) => (
+                Object.keys(tableData?.data[key]).map((year, rowIndex) => (
+                  <tr key={`${key}-${rowIndex}`}>
+                    <td>{year}</td>
+                    {Object.keys(tableData?.data).map((innerKey, cellIndex) => (
+                      <td key={`${key}-${innerKey}-${cellIndex}`}>
+                        {tableData?.data[innerKey][year]}
+                      </td>
+                    ))}
+                  </tr>
+                ))
+              ))}
+            </tbody>
+          </Table>
+        </div>
       </div>
+
+
     </div>
   );
 }
