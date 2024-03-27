@@ -18,6 +18,7 @@ function DataSetDetails() {
       setTables(dataForDatasetName.tables);
       setSelectedTable(dataForDatasetName.tables[0]?.name || '');
     }
+    console.log(tablesData);
   }, [datasetName]);
 
   const handleChange = (event) => {
@@ -61,19 +62,23 @@ function DataSetDetails() {
               <thead>
                 <tr>
                   <th>Year</th>
-                  {Object.keys(table.data).map((transport, index) => (
-                    <th key={index}>{transport}</th>
+                  {Object.keys(table.data).map((column, index) => (
+                    <th key={index}>{column}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(table.data['RailTransportAndPipelines']).map((year, rowIndex) => (
-                  <tr key={rowIndex}>
-                    <td>{year}</td>
-                    {Object.keys(table.data).map((transport, cellIndex) => (
-                      <td key={cellIndex}>{table.data[transport][year]}</td>
-                    ))}
-                  </tr>
+                {Object.keys(table.data).map((key, index) => (
+                  Object.keys(table.data[key]).map((year, rowIndex) => (
+                    <tr key={`${key}-${rowIndex}`}>
+                      <td>{year}</td>
+                      {Object.keys(table.data).map((innerKey, cellIndex) => (
+                        <td key={`${key}-${innerKey}-${cellIndex}`}>
+                          {table.data[innerKey][year]}
+                        </td>
+                      ))}
+                    </tr>
+                  ))
                 ))}
               </tbody>
             </Table>
