@@ -1,8 +1,5 @@
-// DataSetDetails.jsx
-
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useParams, Link, json } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import tablesData from '../Components/JsonData/Tables.json';
 import { Table, Nav, Form } from 'react-bootstrap';
 
@@ -12,29 +9,24 @@ function DataSetDetails() {
   const [selectedTable, setSelectedTable] = useState('');
   const [selectedEndpoint, setSelectedEndpoint] = useState('');
   const [tableData, setTableData] = useState(null);
+  const [selectedYear, setSelectedYear] = useState('');
 
   const fetchData = async (endpoint) => {
-    if(endpoint !== '') {
-          try {
-            const response = await fetch(
-              `http://127.0.0.1:8000/api/${endpoint}`
-            );
-            if (!response.ok) {
-              throw new Error("Network response was not ok");
-            }
-            const jsonData = await response.json();
-            setTableData(jsonData.data);
-          } catch (error) {
-            console.log(error);
-          } finally {
-            // Maybe later
-          }
+    if (endpoint !== '') {
+      try {
+        const response = await fetch(`http://127.0.0.1:8000/api/${endpoint}`);
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        const jsonData = await response.json();
+        setTableData(jsonData.data);
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   useEffect(() => {
-    // Fetch data for the selected datasetName from your data source
-    // For demonstration purposes, I'm using the tablesData directly from Tables.json
     const dataForDatasetName = tablesData[datasetName];
     if (dataForDatasetName && dataForDatasetName.tables) {
       setTables(dataForDatasetName.tables);
@@ -53,6 +45,9 @@ function DataSetDetails() {
     const endpoint = selectedDataset ? selectedDataset.endpoint : '';
     setSelectedTable(event.target.value);
     setSelectedEndpoint(endpoint);
+
+    const firstYear = selectedDataset.data ? Object.keys(selectedDataset.data[Object.keys(selectedDataset.data)[0]])[0] : '';
+    setSelectedYear(firstYear);
   };
 
   return (
@@ -61,12 +56,12 @@ function DataSetDetails() {
       <div className="action-tabs">
         <Nav variant="tabs">
           <Nav.Item>
-            <Nav.Link as={Link} to={`/datasetcharts/${datasetName}/${selectedTable}/${selectedEndpoint}`}>
+            <Nav.Link as={Link} to={`/datasetcharts/${datasetName}/${encodeURIComponent(selectedTable)}/${selectedEndpoint}`}>
               View Chart
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link as={Link} to={`/datasetanalytics/${datasetName}`}>
+            <Nav.Link as={Link} to={`/datasetanalytics/${datasetName}/${encodeURIComponent(selectedTable)}/${selectedEndpoint}`}>
               View Analytics
             </Nav.Link>
           </Nav.Item>
@@ -91,15 +86,13 @@ function DataSetDetails() {
             <thead>
               <tr>
                 <th>Year</th>
-                {
-                  tableData?.data && Object.keys(tableData?.data).map((column, index) => (
-                    <th key={index}>{column}</th>
-                  ))
-                }
+                {tableData?.data && Object.keys(tableData?.data).map((column, index) => (
+                  <th key={index}>{column}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              { tableData?.data && Object.keys(tableData?.data).map((key, index) => (
+              {tableData?.data && Object.keys(tableData?.data).map((key, index) => (
                 Object.keys(tableData?.data[key]).map((year, rowIndex) => (
                   <tr key={`${key}-${rowIndex}`}>
                     <td>{year}</td>
@@ -115,8 +108,6 @@ function DataSetDetails() {
           </Table>
         </div>
       </div>
-
-
     </div>
   );
 }
