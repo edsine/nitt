@@ -43,7 +43,7 @@ function DataSetCharts() {
     };
 
     fetchData();
-  }, []);
+  }, [selectedEndpoint]);
 
 
   const handleChangeYear = (event) => {
@@ -74,7 +74,7 @@ function DataSetCharts() {
     },
   };
 
-  const filteredData = Object.keys(tableData.data).map((key) => ({
+  const filteredData = tableData.data && Object.keys(tableData?.data).map((key) => ({
     x: key,
     y: tableData.data[key][selectedYear] || 0,
   }));

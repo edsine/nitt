@@ -14,18 +14,21 @@ function DataSetDetails() {
   const [tableData, setTableData] = useState(null);
 
   const fetchData = async (endpoint) => {
-    try {
-      const response = await fetch(`http://127.0.0.1:8000/api/${endpoint}`);
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const jsonData = await response.json();
-      setTableData(jsonData.data);
-    } catch (error) {
-      console.log(error);
-    } finally {
-
-      // Maybe later
+    if(endpoint !== '') {
+          try {
+            const response = await fetch(
+              `http://127.0.0.1:8000/api/${endpoint}`
+            );
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            const jsonData = await response.json();
+            setTableData(jsonData.data);
+          } catch (error) {
+            console.log(error);
+          } finally {
+            // Maybe later
+          }
     }
   };
 
