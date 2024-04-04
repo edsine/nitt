@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Table, Nav, Form, Spinner, Alert } from 'react-bootstrap';
-import tablesData from '../Components/JsonData/Tables.json';
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { Table, Nav, Form, Spinner, Alert } from "react-bootstrap";
+import tablesData from "../Components/JsonData/Tables.json";
 
 function DataSetDetailsTest() {
   const { datasetName } = useParams();
   const [tables, setTables] = useState([]);
-  const [selectedTable, setSelectedTable] = useState('');
+  const [selectedTable, setSelectedTable] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  const API_URL = process.env.REACT_APP_API_URL;
 
   const fetchData = async (endpoint) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/${endpoint}`);
+      const response = await fetch(`${API_URL}/${endpoint}`);
       if (!response.ok) {
-        throw new Error('Failed to fetch data');
+        throw new Error("Failed to fetch data");
       }
       const responseData = await response.json();
       console.log(responseData); // Log the entire data object for debugging
@@ -28,19 +30,17 @@ function DataSetDetailsTest() {
           data: tablesData[tableName],
         }));
         setTables(tables);
-        setSelectedTable(tables[0]?.name || '');
+        setSelectedTable(tables[0]?.name || "");
       } else {
-        throw new Error('Invalid data format');
+        throw new Error("Invalid data format");
       }
       setError(null);
     } catch (error) {
-      setError(error.message || 'An error occurred while fetching data');
+      setError(error.message || "An error occurred while fetching data");
     } finally {
       setLoading(false);
     }
   };
-
-
 
   useEffect(() => {
     const dataset = tablesData[datasetName];
@@ -52,7 +52,9 @@ function DataSetDetailsTest() {
 
   const handleChange = (event) => {
     setSelectedTable(event.target.value);
-    const selectedTableInfo = tablesData[datasetName].tables.find((table) => table.name === event.target.value);
+    const selectedTableInfo = tablesData[datasetName].tables.find(
+      (table) => table.name === event.target.value
+    );
     if (selectedTableInfo) {
       fetchData(selectedTableInfo.endpoint);
     }
@@ -64,7 +66,10 @@ function DataSetDetailsTest() {
       <div className="action-tabs">
         <Nav variant="tabs">
           <Nav.Item>
-            <Nav.Link as={Link} to={`/datasetcharts/${datasetName}/${selectedTable}`}>
+            <Nav.Link
+              as={Link}
+              to={`/datasetcharts/${datasetName}/${selectedTable}`}
+            >
               View Chart
             </Nav.Link>
           </Nav.Item>
@@ -91,7 +96,11 @@ function DataSetDetailsTest() {
       {error && <Alert variant="danger">{error}</Alert>}
       <div className="table-container">
         {tables.map((table, index) => (
-          <div key={index} className="table" style={{ display: selectedTable === table.name ? 'block' : 'none' }}>
+          <div
+            key={index}
+            className="table"
+            style={{ display: selectedTable === table.name ? "block" : "none" }}
+          >
             <h3>{table.name}</h3>
             <Table striped bordered hover>
               <thead>
@@ -103,7 +112,7 @@ function DataSetDetailsTest() {
                 </tr>
               </thead>
               <tbody>
-                {Object.keys(table.data).map((key, index) => (
+                {Object.keys(table.data).map((key, index) =>
                   Object.keys(table.data[key]).map((year, rowIndex) => (
                     <tr key={`${key}-${rowIndex}`}>
                       <td>{year}</td>
@@ -114,7 +123,7 @@ function DataSetDetailsTest() {
                       ))}
                     </tr>
                   ))
-                ))}
+                )}
               </tbody>
             </Table>
           </div>

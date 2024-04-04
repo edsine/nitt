@@ -13,9 +13,10 @@ function DataSetCharts() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
+    const API_URL = process.env.REACT_APP_API_URL;
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/${selectedEndpoint}`);
+        const response = await fetch(`${API_URL}/${selectedEndpoint}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

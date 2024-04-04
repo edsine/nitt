@@ -11,10 +11,12 @@ function DataSetDetails() {
   const [tableData, setTableData] = useState(null);
   const [selectedYear, setSelectedYear] = useState('');
 
+  const API_URL = process.env.REACT_APP_API_URL;
+
   const fetchData = async (endpoint) => {
     if (endpoint !== '') {
       try {
-        const response = await fetch(`http://127.0.0.1:8000/api/${endpoint}`);
+        const response = await fetch(`${API_URL}/${endpoint}`);
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
