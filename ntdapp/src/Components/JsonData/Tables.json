@@ -15,11 +15,11 @@
         "tables": [
             {
               "name": "Rail Passenger Traffic Data and Revenue accrued from 1964 to 2022",
-            "endpoint": "rail_passenger_traffic_data_and_revenue"
+            "endpoint": "railway_passengers_formatted"
             },
             {
                 "name": "Freight (Tons) and Revenue (₦) data from 1964 to 2022",
-                "endpoint": "freight_and_revenue_data"
+                "endpoint": "railway_freight_formatted"
             }
         ]
     }

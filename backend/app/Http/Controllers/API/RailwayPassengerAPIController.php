@@ -49,6 +49,50 @@ class RailwayPassengerAPIController extends AppBaseController
         return $this->sendResponse($railwayPassengers->toArray(), 'Railway Passengers retrieved successfully');
     }
 
+    private function formatData($data, $field)
+    {
+        $formatted = [];
+
+        foreach ($data as $item) {
+            $formatted[$item->year] = $item->$field;
+        }
+
+        return $formatted;
+    }
+
+
+    public function indexFormatted(Request $request)
+    {
+        $railwayPassenger = $this->railwayPassengerRepository->all(
+            $request->except(['skip', 'limit']),
+            $request->get('skip'),
+            $request->get('limit')
+        );
+
+        $formattedData = [
+            'Passenger Volume' => $this->formatData($railwayPassenger, 'passengers_carried'),
+            'Revenue (₦)' => $this->formatData($railwayPassenger, 'passenger_revenue_generation'),
+        ];
+
+        return $this->sendResponse(["name" => "Rail Passenger Traffic Data and Revenue", "data" => $formattedData], 'Railway Passengers retrieved successfully');
+    }
+
+    public function indexFormattedFreight(Request $request)
+    {
+        $railwayPassenger = $this->railwayPassengerRepository->all(
+            $request->except(['skip', 'limit']),
+            $request->get('skip'),
+            $request->get('limit')
+        );
+
+        $formattedData = [
+            'Freight Volume' => $this->formatData($railwayPassenger, 'freight_carried'),
+            'Revenue (₦)' => $this->formatData($railwayPassenger, 'freight_revenue_generation'),
+        ];
+
+        return $this->sendResponse(["name" => "Freight Traffic Data and Revenue", "data" => $formattedData], 'Railway Freight retrieved successfully');
+    }
+
     /**
      * Store a newly created RailwayPassenger in storage.
      * POST /railwayPassengers

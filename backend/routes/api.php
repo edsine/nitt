@@ -90,3 +90,7 @@ Route::get('/email/verify/{id}/{hash}', [AuthAPIController::class, 'verifyEmail'
 // All mode data endpoints
 Route::get('gross_domestic_products_formatted', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'indexFormatted']);
 Route::get('gross_domestic_products_formatted_by_percentage', [App\Http\Controllers\API\GrossDomesticProductAPIController::class, 'indexFormattedByPercentage']);
+
+// Rail mode data endpoints
+Route::get('railway_passengers_formatted', [App\Http\Controllers\API\RailwayPassengerAPIController::class, 'indexFormatted']);
+Route::get('railway_freight_formatted', [App\Http\Controllers\API\RailwayPassengerAPIController::class, 'indexFormattedFreight']);
