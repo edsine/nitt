@@ -74,7 +74,7 @@ class RailwayPassengerAPIController extends AppBaseController
             'Revenue (₦)' => $this->formatData($railwayPassenger, 'passenger_revenue_generation'),
         ];
 
-        return $this->sendResponse(["name" => "Rail Passenger Traffic Data and Revenue", "data" => $formattedData], 'Railway Passengers retrieved successfully');
+        return $this->sendResponse(["name" => "Rail Passenger Traffic Data and Revenue accrued from 1964 to 2022", "data" => $formattedData], 'Railway Passengers retrieved successfully');
     }
 
     public function indexFormattedFreight(Request $request)
@@ -90,7 +90,7 @@ class RailwayPassengerAPIController extends AppBaseController
             'Revenue (₦)' => $this->formatData($railwayPassenger, 'freight_revenue_generation'),
         ];
 
-        return $this->sendResponse(["name" => "Freight Traffic Data and Revenue", "data" => $formattedData], 'Railway Freight retrieved successfully');
+        return $this->sendResponse(["name" => "Freight (Tons) and Revenue (₦) data from 1964 to 2022", "data" => $formattedData], 'Railway Freight retrieved successfully');
     }
 
     /**
