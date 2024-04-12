@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware([])->group(function () {
     Route::get('helpers', [App\Http\Controllers\API\HelpersAPIController::class, 'index']);
     Route::post('dashboard', [App\Http\Controllers\API\DashboardAPIController::class, 'index']);
     Route::resource('users', App\Http\Controllers\API\UserAPIController::class);
