@@ -70,7 +70,7 @@
 <div class="small-box bg-success">
 <div class="inner">
 <h3>0</h3>
-<p>Road Passengers</p>
+<p>All Mode Data</p>
 </div>
 <div class="icon">
 <i class=""></i>
@@ -84,7 +84,7 @@
 <div class="small-box bg-warning">
 <div class="inner">
 <h3>0</h3>
-<p>Road Transport Freight</p>
+<p>Rail Mode Data</p>
 </div>
 <div class="icon">
 <i class=""></i>
@@ -98,7 +98,7 @@
 <div class="small-box bg-danger">
 <div class="inner">
 <h3>0</h3>
-<p>Air Transport Data</p>
+<p>Water Mode Data</p>
 </div>
 <div class="icon">
 <i class=""></i>
@@ -119,7 +119,7 @@
   <div class="small-box bg-info">
   <div class="inner">
   <h3>0</h3>
-  <p>Rolling Stocks</p>
+  <p>Air Mode Data</p>
   </div>
   <div class="icon">
   <i class=""></i>
@@ -133,7 +133,7 @@
   <div class="small-box bg-success">
   <div class="inner">
   <h3>0</h3>
-  <p>Maritime Academy</p>
+  <p>Road Mode Data</p>
   </div>
   <div class="icon">
   <i class=""></i>
@@ -147,7 +147,7 @@
   <div class="small-box bg-warning">
   <div class="inner">
   <h3>0</h3>
-  <p>Maritime Administration</p>
+  <p>Fleet Operator</p>
   </div>
   <div class="icon">
   <i class=""></i>
@@ -161,7 +161,7 @@
   <div class="small-box bg-danger">
   <div class="inner">
   <h3>0</h3>
-  <p>Maritime Transport</p>
+  <p>Casuality Factor For Road Crashes</p>
   </div>
   <div class="icon">
   <i class=""></i>

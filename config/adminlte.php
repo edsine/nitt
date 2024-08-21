@@ -330,7 +330,7 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text' => 'Road Transport',
+            'text' => 'Road Mode Data',
             'icon' => 'nav-icon fas fa-th',
             'submenu' => [
                 [
@@ -345,7 +345,7 @@ return [
             ],
         ],
         [
-            'text' => 'Air Transport Data',
+            'text' => 'Air Mode Data',
             'icon' => 'nav-icon fas fa-th',
             'submenu' => [
                 [
@@ -361,14 +361,14 @@ return [
         ],
         
         [
-            'text' => 'Rolling Stock',
+            'text' => 'Rail Mode Data',
             'url' => '/stocks',
             'icon' => 'nav-icon fas fa-th',
            // 'label' => 4,
             'label_color' => 'success',
         ],
         [
-            'text' => 'Maritime',
+            'text' => 'Maritime Data',
             'icon' => 'nav-icon fas fa-th',
             'submenu' => [
                 [
@@ -387,7 +387,7 @@ return [
             ],
         ],
         [
-            'text' => 'Trains Punctuality',
+            'text' => 'Fleet OPerator Data',
             'url' => '/trains',
             'icon' => 'nav-icon fas fa-th',
            // 'label' => 4,

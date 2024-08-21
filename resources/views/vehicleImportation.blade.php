@@ -81,9 +81,9 @@
             <tr>
                 <th>ID</th>
                 <th>Year</th>
-                <th>Vehicle Category</th>
-                <th>New Vehicle Count</th>
-                <th>Used Vehicle Count</th>
+                <th>Govt Motor Vehicle</th>
+                <th>Govt Articulated</th>
+                <th>Private Motor Vehicle</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -287,7 +287,7 @@
                     vehicleChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
-                            labels: ['New Vehicles', 'Used Vehicles'],
+                            labels: ['Govt Vehicles', 'Private Vehicles'],
                             datasets: [{
                                 label: 'Vehicle Counts',
                                 data: [data.new_vehicle_count, data.used_vehicle_count],
