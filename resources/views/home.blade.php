@@ -35,7 +35,12 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-<br/><br/>
+<br/>
+<button type="button" class="btn btn-primary">
+  VIEW VISUALIZATION DATA
+</button>
+<br/>
+<br/>
 
 
 
@@ -50,13 +55,13 @@
 
 <div class="small-box bg-info">
 <div class="inner">
-<h3>0</h3>
-<p>Road Passengers</p>
+<h3>{{ \App\Models\VehicleImportation::count() }}</h3>
+<p>Vehicle Production analysis</p>
 </div>
 <div class="icon">
 <i class=""></i>
 </div>
-<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+<a href="{{ route('records') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
 </div>
 </div>
 
@@ -65,7 +70,7 @@
 <div class="small-box bg-success">
 <div class="inner">
 <h3>0</h3>
-<p>Tonnes Carried</p>
+<p>Road Passengers</p>
 </div>
 <div class="icon">
 <i class=""></i>
@@ -79,7 +84,7 @@
 <div class="small-box bg-warning">
 <div class="inner">
 <h3>0</h3>
-<p>New Cars Imported</p>
+<p>Road Transport Freight</p>
 </div>
 <div class="icon">
 <i class=""></i>
@@ -93,7 +98,7 @@
 <div class="small-box bg-danger">
 <div class="inner">
 <h3>0</h3>
-<p>Air Passengers</p>
+<p>Air Transport Data</p>
 </div>
 <div class="icon">
 <i class=""></i>
@@ -114,7 +119,7 @@
   <div class="small-box bg-info">
   <div class="inner">
   <h3>0</h3>
-  <p>Air Passengers</p>
+  <p>Rolling Stocks</p>
   </div>
   <div class="icon">
   <i class=""></i>
@@ -128,7 +133,7 @@
   <div class="small-box bg-success">
   <div class="inner">
   <h3>0</h3>
-  <p>Used Cars</p>
+  <p>Maritime Academy</p>
   </div>
   <div class="icon">
   <i class=""></i>
@@ -142,7 +147,7 @@
   <div class="small-box bg-warning">
   <div class="inner">
   <h3>0</h3>
-  <p>Used Buses</p>
+  <p>Maritime Administration</p>
   </div>
   <div class="icon">
   <i class=""></i>
@@ -156,7 +161,7 @@
   <div class="small-box bg-danger">
   <div class="inner">
   <h3>0</h3>
-  <p>Train Passengers</p>
+  <p>Maritime Transport</p>
   </div>
   <div class="icon">
   <i class=""></i>

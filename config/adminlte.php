@@ -323,7 +323,7 @@ return [
             'label_color' => 'success',
         ],
         [
-            'text' => 'Vehicle Importation',
+            'text' => 'Vehicle Production',
             'url' => '/records',
             'icon' => 'nav-icon fas fa-th',
            // 'label' => 4,
