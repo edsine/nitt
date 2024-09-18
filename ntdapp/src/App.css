@@ -65,3 +65,33 @@
 
 /* Add any other typography styles you desire */
 
+
+
+
+/* LandingPage.css */
+
+.wrapper{
+  background: linear-gradient (rgba(227, 240, 226, 255), rgba(227, 240, 226, 255)), url('./assets/nittlogo.png');
+  height: 100vh;
+background-position: center;
+background-size: cover; 
+}
+button{
+  padding: 7px 14px;
+  font-size: 1.2rem;
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 1px solid rgb(249, 168, 168);
+  border-radius: 4px;
+  cursor: pointer;
+}
+button:hover{ 
+  background:white;
+  color: black;
+}
+.centered{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

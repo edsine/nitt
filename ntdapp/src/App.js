@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import Home from "./Pages/Homes";
 import Contact from "./Pages/Contact";
 import About from "./Pages/About";
@@ -17,16 +18,20 @@ import DataSetDetails from "./Pages/DataSetDetails";
 import DataSetCharts from "./Pages/DataSetCharts";
 import DataSetDetailsTest from "./Pages/DataSetDetailsTest";
 import DatasetAnalytics from "./Pages/DataSetAnalytics";
+import LandingPage from "./Components/LandingPage";
 
 function App() {
   return (
     <>
+   
       <div className="main">
-        <Navbar />
+        
         <div className="container">
           <div className="row">
             <Routes>
-              <Route path="/" element={<Home />}></Route>
+              <Route path="/" element={<LandingPage />}></Route>
+              
+              <Route path="/data" element={<Home />}></Route>
               <Route path="/about" element={<About />}></Route>
               <Route path="/contact" element={<Contact />}></Route>
               <Route path="/charttemp" element={<ChartTemp />}></Route>

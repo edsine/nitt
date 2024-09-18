@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/edsine/nitt/issues"
   },
-  "homepage": "https://github.com/edsine/nitt#readme"
+  "homepage": "https://github.com/edsine/nitt#readme",
+  "dependencies": {
+    "react-router-dom": "^6.26.2"
+  }
 }
