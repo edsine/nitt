@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Logo from "../assets/ntdlogo.jpg" 
-import {Link} from "react-router-dom"
+import Logo from "../assets/ntdlogo.jpg"; 
+import nittLogo from "../assets/nittlogo_.png"; 
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="text-2xl font-bold">
           <Link to='/'>
-           <img src={Logo} alt="Company Logo" className="w-[60px]" />
+           <img src={nittLogo} alt="Company Logo" className="w-[70px]" />
           </Link>
         </div>
 
