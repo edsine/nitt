@@ -28,8 +28,6 @@ function DataSetDetails() {
     }
   };
 
-
-
   useEffect(() => {
     const dataForDatasetName = tablesData[datasetName];
     if (dataForDatasetName && dataForDatasetName.tables) {
@@ -84,8 +82,6 @@ function DataSetDetails() {
         </Form.Group>
       </Form>
       <div className="table-container">
-        <div className="table" style={{ display: selectedTable === tableData?.name ? 'block' : 'none' }}>
-          <h3>{tableData?.name}</h3>
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -96,21 +92,9 @@ function DataSetDetails() {
               </tr>
             </thead>
             <tbody>
-              {tableData?.data && Object.keys(tableData?.data).map((key, index) => (
-                Object.keys(tableData?.data[key]).map((year, rowIndex) => (
-                  <tr key={`${key}-${rowIndex}`}>
-                    <td>{year}</td>
-                    {Object.keys(tableData?.data).map((innerKey, cellIndex) => (
-                      <td key={`${key}-${innerKey}-${cellIndex}`}>
-                        {tableData?.data[innerKey][year]}
-                      </td>
-                    ))}
-                  </tr>
-                ))
-              ))}
-            </tbody>
-          </Table>
-        </div>
+            {renderTableRows()}
+          </tbody>
+        </Table>
       </div>
     </div>
   );

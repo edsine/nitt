@@ -46,7 +46,6 @@ function DataSetCharts() {
     fetchData();
   }, [selectedEndpoint]);
 
-
   const handleChangeYear = (event) => {
     setSelectedYear(event.target.value);
   };
