@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Navbar } from 'react-bootstrap';
 import { Line } from 'react-chartjs-2';
 
 function ChartContainer() {

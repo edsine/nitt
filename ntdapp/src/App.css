@@ -1,97 +1,16 @@
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.graphanimation-class {
+    filter: invert(1);
+  }
+  .lottie-container {
+    transition: opacity 0.5s ease-in-out; /* Smooth fade transition */
+  }
   
-}
- 
-.main{
-  background: linear-gradient(to bottom, #e7edea, #e0f1dd);
-  min-height: 100vh;
-} 
-
-
-.logo {
-  width: 100px; /* Adjust width as desired */
-  height: auto; /* Maintain aspect ratio */
-}
-
-
-/* Navbar.css */
-.links {
-  color: red;
-
-   /* Change to your desired green color */
-}
-
-
-.column {
-  width: 50%;
-  background-color: #f0f0f0; /* Add background color for better visibility */
-  padding: 20px;
-  border: 1px solid #ccc; /* Add border properties */
-}
-
-.two-column-container {
-  display: flex;
-}
-
-@media (max-width: 768px) {
-  .two-column-container {
-    flex-direction: column;
+  .fade-in {
+    opacity: 1;
   }
-
-  .column {
-    width: 100%;
+  
+  .fade-out {
+    opacity: 0;
   }
-}
-
-.headerDisplay {
-  white-space: pre-wrap; /* Allow text wrapping */
-}
-
-
-/* Home.css */
-
-.column p {
-  font-size: 22px;
-  margin-bottom: 100px; /* Add spacing between paragraphs */
-}
-
-.column h2 {
-  font-size: 48px; /* Adjust header font size */
-  margin-bottom: 40px; /* Add some space below the header */
-}
-
-/* Add any other typography styles you desire */
-
-
-
-
-/* LandingPage.css */
-
-.wrapper{
-  background: linear-gradient (rgba(227, 240, 226, 255), rgba(227, 240, 226, 255)), url('./assets/nittlogo.png');
-  height: 100vh;
-background-position: center;
-background-size: cover; 
-}
-button{
-  padding: 7px 14px;
-  font-size: 1.2rem;
-  color: #fff;
-  font-weight: 600;
-  text-transform: uppercase;
-  border: 1px solid rgb(249, 168, 168);
-  border-radius: 4px;
-  cursor: pointer;
-}
-button:hover{ 
-  background:white;
-  color: black;
-}
-.centered{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  
+    

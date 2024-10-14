@@ -6,7 +6,7 @@ import { PCA } from 'ml-pca';
 
 function DatasetAnalytics() {
   const { datasetName, tableName, selectedEndpoint } = useParams();
-  const [tableData, setTableData] = useState({});
+  const [tableData, setTableData, setData] = useState({});
   const [selectedYear, setSelectedYear] = useState('');
   const [summaryStatistics, setSummaryStatistics] = useState(null);
   const [correlationResults, setCorrelationResults] = useState({});
@@ -27,6 +27,7 @@ function DatasetAnalytics() {
           throw new Error('Failed to fetch data');
         }
         const jsonData = await response.json();
+        setData(jsonData);
         setTableData(jsonData.data);
         setSelectedYear(Object.keys(jsonData.data.data[Object.keys(jsonData.data.data)[0]])[0]);
 

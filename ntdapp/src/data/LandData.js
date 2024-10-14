@@ -5,12 +5,12 @@ export const LandData = [
    
     },
     {
-      title: "About",
-      path: "about",
+      title: "Data",
+      path: "/data",
       
     },  {
       title: "Contact",
-      path: "contact",
+      path: "https://nitt.gov.ng/contact-us/",
     
     }
   ]

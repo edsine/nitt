@@ -1,102 +1,30 @@
-import React from 'react';
+import React from "react";
+import {Link} from "react-router-dom";
 
-function Footer() {
+const Footer = () => {
   return (
-    <footer className="bg-dark text-white text-center text-lg-start fixed-bottom">
-      {/* Grid container */}
-      <div className="container p-4">
-        {/*Grid row*/}
-        <div className="row">
-          {/*Grid column*/}
-          <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 className="text-uppercase">Links</h5>
-
-            <ul className="list-unstyled mb-0">
-              <li>
-                <a href="#!" className="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 4</a>
-              </li>
-            </ul>
-          </div>
-          {/*Grid column*/}
-          <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 className="text-uppercase">Links</h5>
-
-            <ul className="list-unstyled mb-0">
-              <li>
-                <a href="#!" className="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 4</a>
-              </li>
-            </ul>
+    <footer className="bg-gray-800 text-white py-6">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="text-xl font-bold mb-4 md:mb-0">
+            <a href="/" className="text-green-500 no-underline">
+              NITT
+            </a>
           </div>
 
-          {/* Repeat the above Grid column pattern for other columns */}
-          <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 className="text-uppercase">Links</h5>
-
-            <ul className="list-unstyled mb-0">
-              <li>
-                <a href="#!" className="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 4</a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 className="text-uppercase">Links</h5>
-
-            <ul className="list-unstyled mb-0">
-              <li>
-                <a href="#!" className="text-white">Link 1</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 2</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 3</a>
-              </li>
-              <li>
-                <a href="#!" className="text-white">Link 4</a>
-              </li>
-            </ul>
+          <div className="flex space-x-6 mb-4 md:mb-0">
+          <Link to='/' className="hover:text-green-500 transition duration-300 no-underline">Home</Link>
+          <Link to='/data' className="hover:text-green-500 transition duration-300 no-underline">Data</Link>
+          <Link to='/contact' className="hover:text-green-500 transition duration-300 no-underline">Contact</Link>
           </div>
         </div>
-        {/*Grid row*/}
-      </div>
-      {/* Grid container */}
 
-      {/* Copyright */}
-      <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-        © 2020 Copyright:
-        <a className="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+        <div className="mt-6 text-center text-sm text-gray-400">
+          &copy; {new Date().getFullYear()} NITT. All rights reserved.
+        </div>
       </div>
-      {/* Copyright */}
     </footer>
   );
-}
+};
 
 export default Footer;
