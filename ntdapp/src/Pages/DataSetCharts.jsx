@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ApexCharts from 'react-apexcharts';
-import { Form } from 'react-bootstrap';
+import { Form, Spinner, Alert } from 'react-bootstrap';
 
 function DataSetCharts() {
   const { datasetName, tableName, selectedEndpoint } = useParams();
-  const [tableData, setTableData] = useState({});
+  const [data, setData] = useState([]);
   const [selectedYear, setSelectedYear] = useState('');
-  const [chartType, setChartType] = useState('');
-  const [suitableChartTypes, setSuitableChartTypes] = useState([]);
+  const [chartType, setChartType] = useState('line');
+  const [suitableChartTypes, setSuitableChartTypes] = useState(['line']);
   const [years, setYears] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const API_URL = process.env.REACT_APP_API_URL;
@@ -21,32 +23,30 @@ function DataSetCharts() {
           throw new Error('Failed to fetch data');
         }
         const jsonData = await response.json();
-        setTableData(jsonData.data);
+        setData(jsonData);
 
-        const years = Object.keys(jsonData.data.data[Object.keys(jsonData.data.data)[0]]) || [];
+        const years = jsonData.map(item => item.year);
         setYears(years);
         setSelectedYear(years[0] || '');
 
-        const categories = Object.keys(jsonData.data.data);
+        const categories = Object.keys(jsonData[0]).filter(key => key !== 'id' && key !== 'year');
         setCategories(categories);
-        const seriesCount = Object.keys(jsonData.data.data[categories[0]]).length;
-        let suitableTypes = [];
-        if (seriesCount === 1) {
-          suitableTypes.push('line', 'area', 'heatmap', 'scatter', 'pie', 'donut', 'radialBar');
-        } else if (seriesCount > 1) {
-          suitableTypes.push('line', 'bar', 'area', 'scatter');
-        }
-        setSuitableChartTypes(suitableTypes);
-        setChartType(suitableTypes[0]);
+
+        // Define suitable chart types based on the data
+        setSuitableChartTypes(categories.length > 1 ? ['line', 'bar', 'area', 'scatter'] : ['line', 'area', 'pie', 'donut']);
+
+        setChartType('line');
       } catch (error) {
-        console.error('Error fetching data:', error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [selectedEndpoint]);
 
-  const handleChangeYear = (event) => {
+    const handleChangeYear = (event) => {
     setSelectedYear(event.target.value);
   };
 
@@ -63,7 +63,7 @@ function DataSetCharts() {
       },
     },
     xaxis: {
-      categories: categories,
+      categories: years,
       title: {
         text: 'Year',
       },
@@ -72,44 +72,55 @@ function DataSetCharts() {
       text: `${datasetName} - ${tableName} Chart`,
       align: 'center',
     },
+    yaxis: {
+      title: {
+        text: 'Value',
+      },
+    },
   };
 
-  const filteredData = tableData.data && Object.keys(tableData?.data).map((key) => ({
-    x: key,
-    y: tableData.data[key][selectedYear] || 0,
+  const seriesData = categories.map(category => ({
+    name: category,
+    data: data.map(item => ({
+      x: item.year,
+      y: parseFloat(item[category]) || 0,
+    })),
   }));
 
   return (
     <div>
       <h2>{datasetName} - {tableName} Chart</h2>
-      <Form className="my-4">
-        <Form.Group controlId="exampleForm.SelectCustom">
-          <Form.Label>Select Year</Form.Label>
-          <Form.Select value={selectedYear} onChange={handleChangeYear}>
-            {years && years.map((year, index) => (
-              <option key={index} value={year}>
-                {year}
-              </option>
-            ))}
-          </Form.Select>
-        </Form.Group>
-        {chartType && (
+      {loading && <Spinner animation="border" />}
+      {error && <Alert variant="danger">Error: {error}</Alert>}
+      {!loading && !error && (
+        <Form className="my-4">
           <Form.Group controlId="exampleForm.SelectCustom">
-            <Form.Label>Select Chart Type</Form.Label>
-            <Form.Select value={chartType} onChange={(e) => handleChangeChartType(e.target.value)}>
-              {suitableChartTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type === 'bar' ? 'Bar Chart' : type === 'line' ? 'Line Chart' : type === 'area' ? 'Area Chart' :
-                    type === 'heatmap' ? 'Heatmap' : type === 'scatter' ? 'Scatter Plot' : type === 'pie' ? 'Pie Chart' :
-                      type === 'donut' ? 'Donut Chart' : type === 'radialBar' ? 'Radial Bar Chart' : 'Unknown Chart'}
+            <Form.Label>Select Year</Form.Label>
+            <Form.Select value={selectedYear} onChange={handleChangeYear}>
+              {years.map((year, index) => (
+                <option key={index} value={year}>
+                  {year}
                 </option>
               ))}
             </Form.Select>
           </Form.Group>
-        )}
-      </Form>
+          {suitableChartTypes.length > 0 && (
+            <Form.Group controlId="exampleForm.SelectCustom">
+              <Form.Label>Select Chart Type</Form.Label>
+              <Form.Select value={chartType} onChange={(e) => handleChangeChartType(e.target.value)}>
+                {suitableChartTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type === 'bar' ? 'Bar Chart' : type === 'line' ? 'Line Chart' : type === 'area' ? 'Area Chart' :
+                      type === 'pie' ? 'Pie Chart' : type === 'donut' ? 'Donut Chart' : type === 'scatter' ? 'Scatter Plot' : 'Unknown Chart'}
+                  </option>
+                ))}
+              </Form.Select>
+            </Form.Group>
+          )}
+        </Form>
+      )}
       {suitableChartTypes.includes(chartType) && (
-        <ApexCharts options={chartOptions} series={[{ data: filteredData }]} type={chartType} height={350} />
+        <ApexCharts options={chartOptions} series={seriesData} type={chartType} height={350} />
       )}
     </div>
   );

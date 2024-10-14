@@ -1,26 +1,631 @@
 {
-    "All Modes Data": {
+    "All Modes Transport": {
         "tables": [
             {
                 "name": "Gross Domestic Product at Current Basic Prices From 1981-2021 - Annual 1 (₦ Billion)",
-                "endpoint": "gross_domestic_products_formatted"
+                "endpoint": "grossdomesticproduction_billion"
             },
             {
                 "name": "Gross Domestic Product at Current Basic Prices From 1981-2021 - Annual (%)",
-                "endpoint": "gross_domestic_products_formatted_by_percentage"
+                "endpoint": "grossdomesticproduction_percent"
             }
         ]
     },
-    "Rail Mode Data": {
+    "Rail Mode Transport": {
         "tables": [
             {
-              "name": "Rail Passenger Traffic Data and Revenue accrued from 1964 to 2022",
-            "endpoint": "railway_passengers_formatted"
+                "name": "Rail Passenger Traffic Data and Revenue accrued from 1964 - 2022",
+                "endpoint": "rail_passenger"
             },
             {
                 "name": "Freight (Tons) and Revenue (₦) data from 1964 to 2022",
                 "endpoint": "railway_freight_formatted"
             }
         ]
+    },
+    "Maritime transport": {
+        "tables": [
+            {
+                "name": "National Ship Traffic, Container Traffic and Cargo Throughput from 1990 to 2020",
+                "endpoint": "national_ship"
+            },
+            {
+                "name": "Cargo Import, Export and Throughput at Apapa Port from 1996 to 2017",
+                "endpoint": "cargo_apapa"
+            },
+            {
+                "name": "Cargo Import, Export and Throughput at Calabar Port from 1996 to 2017",
+                "endpoint": "cargo_calabar"
+            },
+            {
+                "name": "Cargo Import, Export and Throughput at Delta Port from 1996 to 2017",
+                "endpoint": "cargo_delta"
+            },
+            {
+                "name": "Cargo Import, Export and Throughput of Nigeria Ports from 1996 to 2021",
+                "endpoint": "cargo_nigeria"
+            },
+            {
+                "name": "Cargo Import, Export and Throughput at Onne Port from 1996 to 2017",
+                "endpoint": "cargo_onne"
+            },
+            {
+                "name": "Cargo Import, Export and Throughput at Rivers Port from 1996 to 2017",
+                "endpoint": "cargo_rivers"
+            },
+            {
+                "name": "Cargo Import, Export and Throughput at Tincan Island Port from 1996 to 2017",
+                "endpoint": "cargo_tincan"
+            }
+        ]
+    },
+    "Road Mode Transport": {
+        "tables": [
+            {
+                "name": "Trend of Road Traffic Crashes From 1960 to 2022 in Nigeria",
+                "endpoint": "road_traffic_crashes_year"
+            },
+            {
+                "name": "Year 2006 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2006"
+            },
+            {
+                "name": "Year 2008 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2008"
+            },
+            {
+                "name": "Year 2009 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2009"
+            },
+            {
+                "name": "Year 2010 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2010"
+            },
+            {
+                "name": "Year 2011 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2011"
+            },
+            {
+                "name": "Year 2012 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2012"
+            },
+            {
+                "name": "Year 2013 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2013"
+            },
+            {
+                "name": "Year 2014 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2014"
+            },
+            {
+                "name": "Year 2015 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2015"
+            },
+            {
+                "name": "Year 2016 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2016"
+            },
+            {
+                "name": "Year 2017 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2017"
+            },
+            {
+                "name": "Year 2018 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2018"
+            },
+            {
+                "name": "Year 2019 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2019"
+            },
+            {
+                "name": "Year 2020 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2020"
+            },
+            {
+                "name": "Year 2021 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2021"
+            },
+            {
+                "name": "Year 2022 Road Traffic Crashes (RTC) Records by States in Nigeria",
+                "endpoint": "road_traffic_crashes_2022"
+            }
+        ]
+    },
+    "Fleet Operators": {
+        "tables": [
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for First Quarter of 2015",
+                "endpoint": "fleet_crashes_q12015"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for First Quarter of 2016",
+                "endpoint": "fleet_crashes_q12016"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for First Quarter of 2018",
+                "endpoint": "fleet_crashes_q12018"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for First Quarter of 2021",
+                "endpoint": "fleet_crashes_q12021"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for First Quarter of 2022",
+                "endpoint": "fleet_crashes_q12022"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Second Quarter of 2015",
+                "endpoint": "fleet_crashes_q22015"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Second Quarter of 2016",
+                "endpoint": "fleet_crashes_q22016"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Second Quarter of 2018",
+                "endpoint": "fleet_crashes_q22018"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Second Quarter of 2021",
+                "endpoint": "fleet_crashes_q22021"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Second Quarter of 2022",
+                "endpoint": "fleet_crashes_q22022"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Third Quarter of 2015",
+                "endpoint": "fleet_crashes_q32015"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Third Quarter of 2016",
+                "endpoint": "fleet_crashes_q32016"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Third Quarter of 2018",
+                "endpoint": "fleet_crashes_q32018"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Third Quarter of 2021",
+                "endpoint": "fleet_crashes_q32021"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Third Quarter of 2022",
+                "endpoint": "fleet_crashes_q32022"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Fourth Quarter of 2015",
+                "endpoint": "fleet_crashes_q42015"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Fourth 2016",
+                "endpoint": "fleet_crashes_q42016"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Fourth 2018",
+                "endpoint": "fleet_crashes_q42018"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Fourth 2021",
+                "endpoint": "fleet_crashes_q42021"
+            },
+            {
+                "name": "Road Traffic Crashes Involving Fleet Operators in Nigeria for Fourth 2022",
+                "endpoint": "fleet_crashes_q42022"
+            }
+        ]
+    },
+    "Vehicle Production Analysis": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Causative Factor for Road Crash": {
+        "tables": [
+            {
+                "name": "Causative Factors of Road Traffic Crashes in Year 2013 by States",
+                "endpoint": "causative"
+            },
+            {
+                "name": "Causative Factors of Road Traffic Crashes in Year 2014 by States",
+                "endpoint": "causative2014"
+            },
+            {
+                "name": "The Causative Factors of Road Traffic Crashes in Year 2017 in States across Nigeria",
+                "endpoint": "causative2017"
+            },
+            {
+                "name": "The Causative Factors of Road Traffic Crashes in Year 2019 in States across Nigeria",
+                "endpoint": "causative2019"
+            },
+            {
+                "name": "The Causative Factors of Road Traffic Crashes in Year 2020 in States across Nigeria",
+                "endpoint": "causative2020"
+            },
+            {
+                "name": "The Causative Factors of Road Traffic Crashes in Year 2021 in States across Nigeria",
+                "endpoint": "causative2021"
+            }
+        ]
+    },
+    "National Drivers Llicense": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Adamawa Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Akwa Ibom Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Bauchi Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Benue State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Borno State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Ebonyi State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Edo State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Ekiti State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "FCT Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Gombe State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Jigawa State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Imo State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Kaduna State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Kano State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Katsina State Historical Data": { 
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Kebbi State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Kogi State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Kwara State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Lagos State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Nasarawa State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Niger State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Ogun State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Ondo State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Osun State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Oyo State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Plateau State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Sokoto State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Taraba State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Yobe State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
+    },
+    "Zamfara State Historical Data": {
+        "tables": [
+            {
+                "name": "",
+                "endpoint": ""
+            },
+            {
+                "name": "",
+                "endpoint": ""
+            }
+        ]
     }
+    
 }

@@ -69,9 +69,9 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-green-600 px-4 pt-2 pb-4 space-y-2">
-          <a href="#home" className="block text-white hover:text-green-200 transition-colors">Home</a>
-          <a href="#about" className="block text-white hover:text-green-200 transition-colors">Data</a>
-          <a href="#contact" className="block text-white hover:text-green-200 transition-colors">Contact</a>
+          <Link to='/' className="bg-[#32CD32]  text-white  no-underline hover:bg-green-700 transition duration-300 px-3 py-1 rounded">Home</Link>
+          <Link to='/data' className="bg-[#32CD32] text-white no-underline hover:bg-green-700 transition duration-300 px-3 py-1 rounded">Data</Link>
+          <Link to='/contact' className="bg-[#32CD32] text-white no-underline hover:bg-green-700 transition duration-300 px-3 py-1 rounded">Contact</Link>
         </div>
       )}
     </nav>

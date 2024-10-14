@@ -23,6 +23,7 @@ export default function BarChart() {
 
   return (
     <div>
+      
       <h1>My Chart</h1>
       <Chart options={options} series={series} type="bar" height={350} />
     </div>
