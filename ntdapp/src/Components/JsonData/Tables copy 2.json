@@ -1,0 +1,243 @@
+{
+    "name: Rail Passenger Traffic Data and Revenue accrued from 1964 - 2022": {
+        "data": {
+            "1964": {
+                "Passenger Volume": "11,288,000",
+                "Revenue (₦)": "-",
+                "year": "1964"
+            },
+            "1965": {
+                "Passenger Volume": "10,630,000",
+                "Revenue (₦)": "-"
+            },
+            "1966": {
+                "Passenger Volume": "11,621,000",
+                "Revenue (₦)": "-"
+            },
+            "1967": {
+                "Passenger Volume": "10,005,000",
+                "Revenue (₦)": "-"
+            },
+            "1968": {
+                "Passenger Volume": "6,916,000",
+                "Revenue (₦)": "-"
+            },
+            "1969": {
+                "Passenger Volume": "8,007,000",
+                "Revenue (₦)": "-"
+            },
+            "1970": {
+                "Passenger Volume": "8,942,000",
+                "Revenue (₦)": "4,676,000"
+            },
+            "1971": {
+                "Passenger Volume": "8,942,000",
+                "Revenue (₦)": "6,296,000"
+            },
+            "1972": {
+                "Passenger Volume": "5,819,000",
+                "Revenue (₦)": "7,447,000"
+            },
+            "1973": {
+                "Passenger Volume": "5,131,000",
+                "Revenue (₦)": "5,906,000"
+            },
+            "1974": {
+                "Passenger Volume": "4,342,000",
+                "Revenue (₦)": "6,067,000"
+            },
+            "1975": {
+                "Passenger Volume": "6,755,000",
+                "Revenue (₦)": "11,003,000"
+            },
+            "1976": {
+                "Passenger Volume": "7,491,000",
+                "Revenue (₦)": "10,004,000"
+            },
+            "1977": {
+                "Passenger Volume": "6,747,000",
+                "Revenue (₦)": "10,822,000"
+            },
+            "1978": {
+                "Passenger Volume": "6,750,000",
+                "Revenue (₦)": "12,982,000"
+            },
+            "1979": {
+                "Passenger Volume": "6,771,000",
+                "Revenue (₦)": "18,716,000"
+            },
+            "1980": {
+                "Passenger Volume": "4,917,000",
+                "Revenue (₦)": "17,290,000"
+            },
+            "1981": {
+                "Passenger Volume": "9,638,000",
+                "Revenue (₦)": "26,623,000"
+            },
+            "1982": {
+                "Passenger Volume": "11,612,000",
+                "Revenue (₦)": "28,288,000"
+            },
+            "1983": {
+                "Passenger Volume": "13,142,000",
+                "Revenue (₦)": "29,877,000"
+            },
+            "1984": {
+                "Passenger Volume": "15,553,000",
+                "Revenue (₦)": "33,147,000"
+            },
+            "1985": {
+                "Passenger Volume": "11,324,000",
+                "Revenue (₦)": "36,205,000"
+            },
+            "1986": {
+                "Passenger Volume": "9,878,000",
+                "Revenue (₦)": "39,059,000"
+            },
+            "1987": {
+                "Passenger Volume": "7,383,000",
+                "Revenue (₦)": "35,750,000"
+            },
+            "1988": {
+                "Passenger Volume": "4,196,000",
+                "Revenue (₦)": "25,117,000"
+            },
+            "1989": {
+                "Passenger Volume": "6,520,000",
+                "Revenue (₦)": "24,318,000"
+            },
+            "1990": {
+                "Passenger Volume": "6,345,000",
+                "Revenue (₦)": "31,403,000"
+            },
+            "1991": {
+                "Passenger Volume": "3,443,000",
+                "Revenue (₦)": "19,300,000"
+            },
+            "1992": {
+                "Passenger Volume": "1,747,000",
+                "Revenue (₦)": "17,013,000"
+            },
+            "1993": {
+                "Passenger Volume": "1,502,000",
+                "Revenue (₦)": "14,627,000"
+            },
+            "1994": {
+                "Passenger Volume": "784,491",
+                "Revenue (₦)": "36,809,884"
+            },
+            "1995": {
+                "Passenger Volume": "2,889,977",
+                "Revenue (₦)": "56,144,354"
+            },
+            "1996": {
+                "Passenger Volume": "2,626,026",
+                "Revenue (₦)": "112,907,824"
+            },
+            "1997": {
+                "Passenger Volume": "2,946,940",
+                "Revenue (₦)": "126,456,928"
+            },
+            "1998": {
+                "Passenger Volume": "1,070,424",
+                "Revenue (₦)": "74,457,194"
+            },
+            "1999": {
+                "Passenger Volume": "1,788,171",
+                "Revenue (₦)": "88,882,085"
+            },
+            "2000": {
+                "Passenger Volume": "2,610,435",
+                "Revenue (₦)": "142,920,540"
+            },
+            "2001": {
+                "Passenger Volume": "1,283,986",
+                "Revenue (₦)": "110,455,012"
+            },
+            "2002": {
+                "Passenger Volume": "987,088",
+                "Revenue (₦)": "101,017,010"
+            },
+            "2003": {
+                "Passenger Volume": "1,622,271",
+                "Revenue (₦)": "156,276,964"
+            },
+            "2004": {
+                "Passenger Volume": "1,751,159",
+                "Revenue (₦)": "206,772,909"
+            },
+            "2005": {
+                "Passenger Volume": "752,482",
+                "Revenue (₦)": "87,176,829"
+            },
+            "2006": {
+                "Passenger Volume": "708,802",
+                "Revenue (₦)": "84,322,338"
+            },
+            "2007": {
+                "Passenger Volume": "1,478,700",
+                "Revenue (₦)": "145,094,568"
+            },
+            "2008": {
+                "Passenger Volume": "1,996,324",
+                "Revenue (₦)": "233,513,196"
+            },
+            "2009": {
+                "Passenger Volume": "1,285,080",
+                "Revenue (₦)": "204,573,771"
+            },
+            "2010": {
+                "Passenger Volume": "1,514,215",
+                "Revenue (₦)": "205,241,800"
+            },
+            "2011": {
+                "Passenger Volume": "3,493,443",
+                "Revenue (₦)": "466,821,564"
+            },
+            "2012": {
+                "Passenger Volume": "4,155,988",
+                "Revenue (₦)": "734,966,548"
+            },
+            "2013": {
+                "Passenger Volume": "4,328,787",
+                "Revenue (₦)": "987,299,966"
+            },
+            "2014": {
+                "Passenger Volume": "4,685,570",
+                "Revenue (₦)": "1,042,555,495"
+            },
+            "2015": {
+                "Passenger Volume": "2,581,046",
+                "Revenue (₦)": "947,686,537"
+            },
+            "2016": {
+                "Passenger Volume": "3,159,140",
+                "Revenue (₦)": "1,242,684,640"
+            },
+            "2017": {
+                "Passenger Volume": "2,591,744",
+                "Revenue (₦)": "1,187,173,222"
+            },
+            "2018": {
+                "Passenger Volume": "3,019,761",
+                "Revenue (₦)": "1,921,320,991"
+            },
+            "2019": {
+                "Passenger Volume": "2,925,342",
+                "Revenue (₦)": "2,662,363,791"
+            },
+            "2020": {
+                "Passenger Volume": "1,127,391",
+                "Revenue (₦)": "1,919,628"
+            },
+            "2021": {
+                "Passenger Volume": "2,923,189",
+                "Revenue (₦)": "5,703,461,817"
+            },
+            "2022": {
+                "Passenger Volume": "3,211,864",
+                "Revenue (₦)": "4,731,252,033"
+            }
+        }
+    }
+}
