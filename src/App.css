@@ -1,0 +1,16 @@
+.graphanimation-class {
+    filter: invert(1);
+  }
+  .lottie-container {
+    transition: opacity 0.5s ease-in-out; /* Smooth fade transition */
+  }
+  
+  .fade-in {
+    opacity: 1;
+  }
+  
+  .fade-out {
+    opacity: 0;
+  }
+  
+    
