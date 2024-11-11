@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import ApexCharts from 'react-apexcharts';
 import { Form, Spinner, Alert } from 'react-bootstrap';
+import Navbar from '../Components/LandBar';
+import Footer from '../Components/Footer';
 
 function DataSetCharts() {
   const { datasetName, tableName, selectedEndpoint } = useParams();
@@ -89,7 +91,10 @@ function DataSetCharts() {
 
   return (
     <div>
-      <h2>{datasetName} - {tableName} Chart</h2>
+      <Navbar/>
+      <div className="bg-green-100 min-h-screen p-4">
+
+      <h2 className='mt-11'>{datasetName} - {tableName} Charts</h2>
       {loading && <Spinner animation="border" />}
       {error && <Alert variant="danger">Error: {error}</Alert>}
       {!loading && !error && (
@@ -122,6 +127,8 @@ function DataSetCharts() {
       {suitableChartTypes.includes(chartType) && (
         <ApexCharts options={chartOptions} series={seriesData} type={chartType} height={350} />
       )}
+    </div>
+    <Footer/>
     </div>
   );
 }

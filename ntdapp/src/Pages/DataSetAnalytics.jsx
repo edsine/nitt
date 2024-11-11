@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 import { Form, Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
 import Chart from 'react-apexcharts';
 import { PCA } from 'ml-pca';
+import Navbar from '../Components/LandBar';
+
 
 function DatasetAnalytics() {
   const { datasetName, tableName, selectedEndpoint } = useParams();
@@ -599,7 +601,10 @@ function DatasetAnalytics() {
 
   return (
     <div>
-      <h2>{datasetName} - {tableName} Analytics</h2>
+      <Navbar/>
+      <div className="bg-green-100 min-h-screen p-4">
+
+      <h2 className='mt-10'>{datasetName} - {tableName} Analytics</h2>
       <Form className="my-4">
         <Form.Group controlId="exampleForm.SelectCustom">
           <Form.Label>Select Year</Form.Label>
@@ -1021,7 +1026,7 @@ function DatasetAnalytics() {
           </Col>
         </Row>
       )}
-
+    </div>
     </div>
   );
 }
